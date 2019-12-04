@@ -126,6 +126,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / caloricDeficitValue;
 
 		numberOfDaysTilGoalInsert.textContent  = numberOfDaysTilGoal;
+
+		numberOfWeeksTilGoal = numberOfDaysTilGoal / 7;
+
+		numberOfMonthsTilGoal = numberOfWeeksTilGoal / 4;
+
+		numberOfWeeksTilGoalInsert.textContent = numberOfWeeksTilGoal;
+
+		numberOfMonthsTilGoalInsert.textContent = numberOfMonthsTilGoal
+
     } //end function calcDaysToGoalBf
 
     const calcButton = document.querySelector('.calcButton');
@@ -182,7 +191,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let caloricDeficitValue; 
     let totalCaloriesUntilBfGoal;
     let numberOfDaysTilGoal;
+    let numberOfWeeksTilGoal;
+    let numberOfMonthsTilGoal;
     const numberOfDaysTilGoalInsert = document.getElementById('numberOfDaysTilGoalInsert');
+    const numberOfWeeksTilGoalInsert = document.getElementById('numberOfWeeksTilGoalInsert');
+    const numberOfMonthsTilGoalInsert = document.getElementById('numberOfMonthsTilGoalInsert');
+
     
 
 	calcButton.addEventListener('click', doTheCalc);
