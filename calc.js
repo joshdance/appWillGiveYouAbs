@@ -137,6 +137,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
     } //end function calcDaysToGoalBf
 
+    function answerApple() {
+    	let appleGuessValue = appleGuess.value;
+    	let appleGuessDifference = appleGuessValue - appleCalories;
+    	if (appleGuessDifference > 0) {
+    		appleGuessText.textContent = 'You were over by ' + appleGuessDifference + '. An apple has ' + appleCalories + '.';
+    	} else if (appleGuessDifference == 0){
+    		appleGuessText.textContent = 'Congratulations! You were spot on. You didn\'t cheat and look it up did you?';
+    	} else {
+    		appleGuessText.textContent = 'You were under by ' + Math.abs(appleGuessDifference) + '. An apple has ' + appleCalories + '.';
+    	}
+
+    }
+
+    function answerSnickers() {
+    	let snickersGuessValue = snickersGuess.value;
+    	let snickersGuessDifference = snickersGuessValue - snickersCalories;
+    	if (snickersGuessDifference > 0) {
+    		snickersGuessText.textContent = 'You were over by ' + snickersGuessDifference + '. A Snickers has ' + snickersCalories + ' calories.';
+    	} else if (snickersGuessDifference == 0){
+    		snickersGuessText.textContent = 'Congratulations! You were spot on. You didn\'t cheat and look it up did you?';
+    	}else {
+    		snickersGuessText.textContent = 'You were under by ' + Math.abs(snickersGuessDifference) + '. A Snickers has ' + snickersCalories + ' calories.';
+    	}
+    }
+
+    function answerFiveGuys() {
+  		let fiveGuysBurgerGuessValue = fiveGuysBurgerGuess.value;
+    	let fiveGuysBurgerGuessDifference = fiveGuysBurgerGuessValue - fiveGuysBurgerCalories;
+    	if (fiveGuysBurgerGuessDifference > 0) {
+    		fiveGuysBurgerGuessText.textContent = 'You were over by ' + fiveGuysBurgerGuessDifference + '. A Five Guys Burger has ' + fiveGuysBurgerCalories + ' calories.';
+    	} else if (fiveGuysBurgerGuessDifference == 0){
+    		fiveGuysBurgerGuessText.textContent = 'Congratulations! You were spot on. You didn\'t cheat and look it up did you?';
+    	}else {
+    		fiveGuysBurgerGuessText.textContent = 'You were under by ' + Math.abs(fiveGuysBurgerGuessDifference) + '. A Five Guys Burger has ' + fiveGuysBurgerCalories + ' calories.';
+    	}
+    }
+
     const calcButton = document.querySelector('.calcButton');
     //remember to use the correct selector! Or just id. 
     const calcBmrButton = document.getElementById('calcBmr');
@@ -197,10 +234,29 @@ document.addEventListener("DOMContentLoaded", function() {
     const numberOfWeeksTilGoalInsert = document.getElementById('numberOfWeeksTilGoalInsert');
     const numberOfMonthsTilGoalInsert = document.getElementById('numberOfMonthsTilGoalInsert');
 
-    
+    const appleGuessText = document.getElementById('appleGuessText')
+    const appleGuess = document.getElementById('appleGuess')
+    const appleGuessButton = document.getElementById('appleGuessButton')
+    const appleCalories = 95;
+
+    const snickersGuessText  = document.getElementById('snickersGuessText')
+    const snickersGuess = document.getElementById('snickersGuess')
+    const snickersGuessButton = document.getElementById('snickersGuessButton')
+    const snickersCalories = 280;
+
+    const fiveGuysBurgerGuessText = document.getElementById('fiveGuysBurgerGuessText')
+    const fiveGuysBurgerGuess = document.getElementById('fiveGuysBurgerGuess')
+    const fiveGuysBurgerGuessButton = document.getElementById('fiveGuysBurgerGuessButton')
+    const fiveGuysBurgerCalories = 1060;
 
 	calcButton.addEventListener('click', doTheCalc);
     calcBmrButton.addEventListener('click', calcBmr);
+
+    appleGuessButton.addEventListener('click', answerApple);
+    snickersGuessButton.addEventListener('click', answerSnickers);
+    fiveGuysBurgerGuessButton.addEventListener('click', answerFiveGuys);
+
+
    
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
