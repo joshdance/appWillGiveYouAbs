@@ -136,6 +136,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		numberOfMonthsTilGoalInsert.textContent = numberOfMonthsTilGoal
 
+		//it will be in miliseconds. So have to convert to days. 
+		let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
+
+		daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
+
     } //end function calcDaysToGoalBf
 
     function answerApple() {
@@ -268,6 +273,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const averageFemaleHeight = 63.6;
     const averageFemaleWaistInches = 38.7;
     const averageFemaleBodyFatPercentage = 41;
+
+    const firstDayOfSummer = new Date("06/20/2020");
+    let todaysDate = new Date();
+
+    const daysTillSummer = document.getElementById('daysTillSummerInsert');
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
     	for (var bfPercentageIterator = percentValue ; bfPercentageIterator >= 5; bfPercentageIterator--) {
