@@ -2,16 +2,17 @@
 <html>
 <head>
 	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <p>this is my calculator</p>
 
 <div>
-	<input type="number" id="weightInputBox" class="weightInputBox">
+	<input type="number" id="weightInputBox" class="weightInputBox" value="180">
 </div>
 
 <div>
-	<input type="number" id="percentInputBox" class="percentInputBox" placeholder="in whole percent. example 20 not .2">
+	<input type="number" id="percentInputBox" class="percentInputBox" placeholder="in whole percent. example 20 not .2" value="22">
 </div>
 
 <div>
@@ -36,13 +37,13 @@ sex
 <label for="male">Male</label>
 </div>
 age
-<input type="number" name="age" id="age">
+<input type="number" name="age" id="age" value="33">
 height ft
-<input type="number" name="feet" id="feet">
+<input type="number" name="feet" id="feet" value="5">
 height inches
-<input type="number" name="inches" id="inches">
+<input type="number" name="inches" id="inches" value="8">
 weight
-<input type="number" name="weight" id="weight">
+<input type="number" name="weight" id="weight" value="180">
 
 <div>
 	<button type="button" class="calcBmrButton" id="calcBmr">Calculate your BMR!</button>
@@ -73,17 +74,17 @@ With your current weight of <p id="weightInsert">X</p> and your current bf % of 
 
 To get to <span name="bfPercentGenderInsert">gender</span> % bf, you need to lose <p id="loseInsert">B</p> lbs of fat. 
 
-Then you will have <p id="newFatInsert">C</p> lbs of fat, for a body fat % of <span name="bfPercentGenderInsert">gender</span> % bf.
+Then you will have <p id="newFatInsert">C</p> lbs of fat, and <p id="newTotalBodyWeightInsert"></p> of total body weight, for a body fat % of <span name="bfPercentGenderInsert">gender</span> % bf.
 
 Pick your caloric deficit
-<input type="number" id="caloricDeficitInput">
+<input type="number" id="caloricDeficitInput" value="500">
 
 It will take you <span id="numberOfDaysTilGoalInsert">X</span> number of days to reach your goal.
 <div>
 	It will take you <span id="numberOfWeeksTilGoalInsert">X</span> number of weeks to reach your goal. 
 </div>
 <div>
-	It will take you <span id="numberOfMonthsTilGoalInsert">X</span> number of weeks to reach your goal. 
+	It will take you <span id="numberOfMonthsTilGoalInsert">X</span> number of months to reach your goal. 
 </div>
 <div>
 <img src="images/tempApple.jpeg">

@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	fatInsert.textContent = LbsBfResults
     	loseInsert.textContent = LbsToLoseToGoal;
     	newFatInsert.textContent = GoalFatResults;
+    	newTotalBodyWeightInsert.textContent = GoalTotalBodyWeight;
 
     	calcDaysToGoalBf();
 
@@ -215,6 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const fatInsert = document.getElementById('fatInsert');
     const loseInsert = document.getElementById('loseInsert');
     const newFatInsert = document.getElementById('newFatInsert');
+    const newTotalBodyWeightInsert = document.getElementById('newTotalBodyWeightInsert')
+    
     
     let leanResults;
     let weightValue;
@@ -256,8 +259,15 @@ document.addEventListener("DOMContentLoaded", function() {
     snickersGuessButton.addEventListener('click', answerSnickers);
     fiveGuysBurgerGuessButton.addEventListener('click', answerFiveGuys);
 
+    const averageMaleWeight = 197;
+    const averageMaleHeightInches = 69.0;
+    const averageMaleWaistInches = 40.3;
+    const averageMaleBodyFatPercentage = 28;
 
-   
+    const averageFemaleWeight = 170;
+    const averageFemaleHeight = 63.6;
+    const averageFemaleWaistInches = 38.7;
+    const averageFemaleBodyFatPercentage = 41;
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
     	for (var bfPercentageIterator = percentValue ; bfPercentageIterator >= 5; bfPercentageIterator--) {
