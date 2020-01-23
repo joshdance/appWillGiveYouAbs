@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	   leanResultsDiv.textContent = leanResults;
 	   //calcDown(weightValue, percentValue, LbsBfResults, leanResults);
 	   calcGoalPercent();
+	   calcProteinNeed();
     }
 
     function calcBmr(){
@@ -107,7 +108,12 @@ document.addEventListener("DOMContentLoaded", function() {
     	for (var i = bfPercentGenderInsert.length - 1; i >= 0; i--) {
     		bfPercentGenderInsert[i].textContent = bfPercentageGoalByGender*100;
     	}//there are multiple bfPercentGenerInserts so iterate thru them all to set. 
-    	weightInsert.textContent = weightValue;
+    	
+    	//TODO
+    	for (var i = weightInsert.length - 1; i >= 0; i--) {
+    		weightInsert[i].textContent = weightValue;
+    	//instead of one weightInsert.textContent = weightValue;
+    	}//there are multiple weightInsert so iterate thru them all to set. 
     	bfInsert.textContent = percentValue;
     	leanInsert.textContent = leanResults;
     	fatInsert.textContent = LbsBfResults
@@ -118,6 +124,11 @@ document.addEventListener("DOMContentLoaded", function() {
     	calcDaysToGoalBf();
 
     } //end calcGoalPercent
+
+    function calcProteinNeed(){
+    	gramsProteinNeeded = weightValue * .82;
+		gramsProteinInsert.textContent = gramsProteinNeeded;
+    } // end calcProteinNeed
 
     function calcDaysToGoalBf() {
 		caloricDeficitValue = parseInt(caloricDeficitInput.value);
@@ -215,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } // end of if
 
     const bfPercentGenderInsert = document.getElementsByName('bfPercentGenderInsert');
-    const weightInsert = document.getElementById('weightInsert');
+    const weightInsert = document.getElementsByName('weightInsert');
     const bfInsert = document.getElementById('bfInsert');
     const leanInsert = document.getElementById('leanInsert');
     const fatInsert = document.getElementById('fatInsert');
@@ -278,6 +289,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let todaysDate = new Date();
 
     const daysTillSummer = document.getElementById('daysTillSummerInsert');
+
+    let gramsProteinNeeded;
+    const gramsProteinInsert = document.getElementById('gramsProteinInsert');
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
     	for (var bfPercentageIterator = percentValue ; bfPercentageIterator >= 5; bfPercentageIterator--) {
