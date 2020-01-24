@@ -1,39 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>This App Will Give You Abs</title>
-https://www.youtube.com/watch?v=d1mbbYKPpHY</head>
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <body>
-	<h1>This App Will Give You Abs</h1>
+<p>this is my calculator</p>
 
-<h2>This is h2</h2>
-<h3>This is h3</h3>
-<h4>Thi is h4</h4>
+<div>
+	<input type="number" id="weightInputBox" class="weightInputBox" value="180">
+</div>
 
-<ul>List Stuff
-<ul>Blog</ul>
-<ul>Calculators</ul>
+<div>
+	<input type="number" id="percentInputBox" class="percentInputBox" placeholder="in whole percent. example 20 not .2" value="22">
+</div>
 
-<li>Li list stuff</li>
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Courses</a></li>
-</ul>
+<div>
+	<button type="button" class="calcButton">Calculate it!</button>
+</div>
 
-<p>This App will give you abs. If you do it. If you work hard. You can do it. </p>
+<div>
+	lbs of body fat = <span id="LbsBfResultsDiv"></span>
+</div>
+<div>
+	lbs of lean mass = <span id="leanResultsDiv"></span>
+</div>
 
-<table>
-	<tr>
-		<td><button>Web Dev Course</button></td>
-		<td><button>iOS Dev Course</button></td>
-		<td><button>Unity Dev Course</button></td>
-	</tr>
-	<tr>
-		<td>text for the row</td>
-		<td>text for the 2 row</td>
-		<td>text for the 3 row</td>
-	</tr>
-</table>
+<div id="bfRunDown"></div>
 
+<div>Calculate your BMR</div>
+<div>
+sex
+<input type="radio" name="sex" id="female" value="female">
+<label for="female">Female</label>
+<input type="radio" name="sex" id="male" value="male" checked>
+<label for="male">Male</label>
+</div>
+age
+<input type="number" name="age" id="age" value="33">
+height ft
+<input type="number" name="feet" id="feet" value="5">
+height inches
+<input type="number" name="inches" id="inches" value="8">
+weight
+<input type="number" name="weight" id="weight" value="180">
+
+<div>
+	<button type="button" class="calcBmrButton" id="calcBmr">Calculate your BMR!</button>
+</div>
+
+<div>Your BMR =<span id="bmrAnswer"></span></div>
+<p></p>
+<div>
+Activity Multiplier
+</div>
+<div>
+<input type="radio" name="activity" id="sedentary" value="sedentary" checked>
+<label for="sedentary">Sedentary 1.15</label>
+<input type="radio" name="activity" id="light" value="light">
+<label for="light">Light Activity 1.35</label>
+<input type="radio" name="activity" id="moderate" value="moderate">
+<label for="moderate">Moderate Activity 1.55</label>
+<input type="radio" name="activity" id="veryactive" value="veryactive">
+<label for="veryactive">Very Active 1.75</label>
+<input type="radio" name="activity" id="extremely" value="extremely">
+<label for="extremely">Extremely Active 1.95</label>
+</div>
+<div>Your TDEE with Activity Multiple = <span id="tdee"></span></div>
+<p></p>
+<H2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</H2>
+With your current weight of <span name="weightInsert">X</span> and your current bf % of <span id="bfInsert">Y</span> you have <span id="leanInsert">Z</span> lbs of lean body mass and <span id="fatInsert">A</span> lbs of body fat. 
+<p></p>
+To get to <span name="bfPercentGenderInsert">gender</span> % bf, you need to lose <span id="loseInsert">B</span> lbs of fat. 
+
+Then you will have <span id="newFatInsert">C</span> lbs of fat, and <span id="newTotalBodyWeightInsert"></span> of total body weight, for a body fat % of <span name="bfPercentGenderInsert">gender</span> % bf.
+<div></div>
+<p>
+
+Pick your caloric deficit
+<input type="number" id="caloricDeficitInput" value="500">
+
+It will take you <span id="numberOfDaysTilGoalInsert">X</span> number of days to reach your goal.
+<div>
+	It will take you <span id="numberOfWeeksTilGoalInsert">X</span> number of weeks to reach your goal. 
+</div>
+<div>
+	It will take you <span id="numberOfMonthsTilGoalInsert">X</span> number of months to reach your goal. 
+</div>
+<div>
+	There are <span id="daysTillSummerInsert">X</span> number of days until summer June 20, 2020 🏝. 
+</div>
+<p></p>
+<div>
+	To lose fat and not muscle you need to workout lifting weights to remind your body you need the muscles. You need to eat enough protein to give the body fuel for building and maintaining muscles. And you need to sleep to allow your body to recover and keep your muscles. 
+</div>
+<p></p>
+<div>
+	Research shows that you need .82 grams of protein per pound of total body mass. 
+
+	At <span name="weightInsert">X</span>lbs total body weight, you need <span id='gramsProteinInsert'></span> grams of protein a day. 
+</div>
+
+<p> </p>
+<h1>Estimating Calories is Hard</h1>
+<div>
+<img src="images/tempApple.jpeg">
+<div id="appleGuessText">How many calories in an apple?</div>
+<input type="number" name="appleGuess" id="appleGuess">
+<button type="button" class="appleGuessButton" id="appleGuessButton">Guess!</button>
+</div>
+
+<div>
+<img src="images/tempSnickers.jpeg">
+<div id="snickersGuessText">How many calories in a Snickers?</div>
+<input type="number" name="snickersGuess" id="snickersGuess">
+<button type="button" class="snickersGuessButton" id="snickersGuessButton">Guess!</button>
+</div>
+
+<div>
+<img src="images/5guysTemp.jpeg">
+<div id="fiveGuysBurgerGuessText">How many calories in a 5 guys burger?</div>
+<input type="number" name="fiveGuysBurgerGuess" id="fiveGuysBurgerGuess">
+<button type="button" class="fiveGuysBurgerGuessButton" id="fiveGuysBurgerGuessButton">Guess!</button>
+</div>
+
+
+
+<script src="calc.js"></script>
+<script src="countUp.js"></script>
 </body>
 </html>

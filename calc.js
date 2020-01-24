@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	}
     }
 
+
     const calcButton = document.querySelector('.calcButton');
     //remember to use the correct selector! Or just id. 
     const calcBmrButton = document.getElementById('calcBmr');
@@ -198,6 +199,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const weightInputBox2 = document.getElementById('weightInputBox');
     const percentInputBox2 = document.getElementById('percentInputBox');
     const LbsBfResultsDiv = document.getElementById('LbsBfResultsDiv');
+
+	//let weightCount = new CountUp("LbsBfResultsDiv", 22, 99.99);
+    //weightCount.start();
+
     const leanResultsDiv = document.getElementById('leanResultsDiv');
     let bfPercentageArray = [];
     const bfRunDown = document.getElementById('bfRunDown');
