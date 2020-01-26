@@ -19,40 +19,71 @@
 	<button type="button" class="calcButton">Calculate it!</button>
 </div>
 
+<h2>Starting Point</h2>
 <div>
-	lbs of body fat = <span id="LbsBfResultsDiv"></span>
+	You currently weight <span name="weightInsert">A</span>lbs. With your current body fat percentage of <span id="bfInsert">Y</span>% you have <span id="LbsBfResultsDiv">B</span> of body fat and <span id="leanResultsDiv"></span> lbs of lean body mass.
 </div>
-<div>
-	lbs of lean mass = <span id="leanResultsDiv"></span>
-</div>
+
+<div>You want to decrease your body fat, and keep your lean body mass.</div>
+<div>To do that, you need to do </div>
+<ol>
+	<li>Be in an energy deficit.</li>
+	<li>Lift weights.</li>
+	<li>Eat enough protein to repair and build your muscles.</li>
+	<li>Sleep enough to repair and build your muscles and keep you stress hormones down..</li>
+</ol>
 
 <div id="bfRunDown"></div>
+<div>Let's tackle the first one.</div>
 
-<div>Calculate your BMR</div>
+<h2>Energy Deficit</h2>
+<div>This one is a simple concept, but difficult to do. You need to balance how much energy you consume, with home much energy you use.</div>
+<div>The energy you use needs to be consistently greater than the energy you consume.</div>
+
+<div>Let's first calculate how much energy you use on average. </div>
+
+<div>Your body uses or burns energy all the time to keep you alive and happy. If you did absolutely nothing in a day, your body would still burn a lot of energy keeping you healthy.</div>
+<div>This is called your base metabolic rate, or BMR.</div>
+
+<h3>Let's Calculate your BMR</h3>
 <div>
-sex
+What is your gender?
 <input type="radio" name="sex" id="female" value="female">
 <label for="female">Female</label>
 <input type="radio" name="sex" id="male" value="male" checked>
 <label for="male">Male</label>
 </div>
-age
-<input type="number" name="age" id="age" value="33">
-height ft
-<input type="number" name="feet" id="feet" value="5">
-height inches
-<input type="number" name="inches" id="inches" value="8">
-weight
-<input type="number" name="weight" id="weight" value="180">
+<p>
+<div>
+	What is your age?
+	<input type="number" name="age" id="age" value="33">
+</div>
+<div>
+	What is your height in feet?
+	<input type="number" name="feet" id="feet" value="5">
+	and your remaining height in inches
+	<input type="number" name="inches" id="inches" value="8">
+</div>
+
+<div>
+	What is your weight in lbs?
+	<input type="number" name="weight" id="weight" value="180">
+</div>
+
 
 <div>
 	<button type="button" class="calcBmrButton" id="calcBmr">Calculate your BMR!</button>
 </div>
-
-<div>Your BMR =<span id="bmrAnswer"></span></div>
 <p></p>
+
+<div>Your estimated BMR is <span id="bmrAnswer"></span></div>
+<p></p>
+<div>If you did nothing in a day, you body would burn that many calories keeping you alive. </div>
 <div>
-Activity Multiplier
+	However, we all do activites during the day. We multiple this BMR by an activity multipler to add in additional calories that we burn with our activity. 
+</div>
+<div>
+<h3>Activity Multiplier</h3>
 </div>
 <div>
 <input type="radio" name="activity" id="sedentary" value="sedentary" checked>
@@ -66,6 +97,7 @@ Activity Multiplier
 <input type="radio" name="activity" id="extremely" value="extremely">
 <label for="extremely">Extremely Active 1.95</label>
 </div>
+<p></p>
 <div>Your TDEE with Activity Multiple = <span id="tdee"></span></div>
 <p></p>
 <H2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</H2>

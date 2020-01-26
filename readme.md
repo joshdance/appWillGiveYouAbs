@@ -3,7 +3,7 @@ read.me
 Next steps:
 
 1. add in the ability to add the activity multipliers. - Done Nov 25th
-2. style the page a little bit.
+2. style the page a little bit. - kind of done. 
 3. show the equation.
 4. add validation to the fields? 
 5. calc days till goal - Done Nov 31st
@@ -11,5 +11,7 @@ Next steps:
 7. calc months till goal
 8. get the numbers to be correct. They are too floaty right now. Int? 
 9. show assumptions on the page. 
+10. calc days till summer - Done. 
+11. Show what percentage your planned caloric deficit is. 
 
 
