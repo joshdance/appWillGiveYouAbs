@@ -13,5 +13,11 @@ Next steps:
 9. show assumptions on the page. 
 10. calc days till summer - Done. 
 11. Show what percentage your planned caloric deficit is. 
+12. warn if planned deficit is greater than research says you can handle effectively. 
+
+11. planned deficit / current TDEE = % deficit. 
+12. lbs fat * 31 per day = max caloric deficit possible. if planned > max - show warning. 
+
+
 
 
