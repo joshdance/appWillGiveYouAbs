@@ -11,6 +11,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	   //calcDown(weightValue, percentValue, LbsBfResults, leanResults);
 	   calcGoalPercent();
 	   calcProteinNeed();
+	   calcBmr();
+	   calcGoalPercent();
+    }
+
+    function reCalc(){
+    	doTheCalc();
     }
 
     function calcBmr(){
@@ -193,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     const calcButton = document.querySelector('.calcButton');
+    const reCalcButton = document.getElementById('reCalcButton');
     //remember to use the correct selector! Or just id. 
     const calcBmrButton = document.getElementById('calcBmr');
 
@@ -211,9 +218,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let selectedSex;
     let bfPercentageGoalByGender;
     const bfGoalMale = .1;
-    const bfGoalFemale = .2;
+    const bfGoalFemale = .21;
     let calcGoalPercentModifier;
-    const calcGoalPercentModifierFemale = .25;
+    const calcGoalPercentModifierFemale = .2658;
     const calcGoalPercentModifierMale = .1111111111;
 
     const sex = document.getElementsByName('sex');//return node list. All the checkboxes. Careful. 
@@ -274,6 +281,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const fiveGuysBurgerCalories = 1060;
 
 	calcButton.addEventListener('click', doTheCalc);
+	reCalcButton.addEventListener('click', reCalc);
     calcBmrButton.addEventListener('click', calcBmr);
 
     appleGuessButton.addEventListener('click', answerApple);

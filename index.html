@@ -5,14 +5,26 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<p>this is my calculator</p>
-
+<h1>This App Will Give You Abs</h1>
+<div>
+	What is your current weight?
+</div>
 <div>
 	<input type="number" id="weightInputBox" class="weightInputBox" value="180">
 </div>
-
+<div>
+	What is your current body fat percentage? If you don't know, you can estimate. Click to open the estimating section.
+</div>
 <div>
 	<input type="number" id="percentInputBox" class="percentInputBox" placeholder="in whole percent. example 20 not .2" value="22">
+</div>
+
+<div>
+	What is your gender?
+	<input type="radio" name="sex" id="female" value="female">
+	<label for="female">Female</label>
+	<input type="radio" name="sex" id="male" value="male" checked>
+	<label for="male">Male</label>
 </div>
 
 <div>
@@ -46,13 +58,7 @@
 <div>This is called your base metabolic rate, or BMR.</div>
 
 <h3>Let's Calculate your BMR</h3>
-<div>
-What is your gender?
-<input type="radio" name="sex" id="female" value="female">
-<label for="female">Female</label>
-<input type="radio" name="sex" id="male" value="male" checked>
-<label for="male">Male</label>
-</div>
+
 <p>
 <div>
 	What is your age?
@@ -108,9 +114,13 @@ To get to <span name="bfPercentGenderInsert">gender</span> % bf, you need to los
 Then you will have <span id="newFatInsert">C</span> lbs of fat, and <span id="newTotalBodyWeightInsert"></span> of total body weight, for a body fat % of <span name="bfPercentGenderInsert">gender</span> % bf.
 <div></div>
 <p>
-
-Pick your caloric deficit
-<input type="number" id="caloricDeficitInput" value="500">
+<div>
+	Pick your caloric deficit: 
+	<input type="number" id="caloricDeficitInput" value="500">
+</div>
+<div>
+	<button type="button" id="reCalcButton">Re-calculate</button>
+</div>
 
 It will take you <span id="numberOfDaysTilGoalInsert">X</span> number of days to reach your goal.
 <div>
