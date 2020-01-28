@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	   calcProteinNeed();
 	   calcBmr();
 	   calcGoalPercent();
+	   calcPercentDeficit();
     }
 
     function reCalc(){
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
     		selectedActivityValue = extremelyActiveValue;
     	}
 
-    	let bmrWithActivity = bmrResult * selectedActivityValue;
+    	bmrWithActivity = bmrResult * selectedActivityValue;
 
     	tdee.textContent = bmrWithActivity;
 
@@ -159,6 +160,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
 
     } //end function calcDaysToGoalBf
+
+    function calcPercentDeficit() {
+    	calculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
+    	percentDeficitInsert.textContent = calculatedPercentDeficit;
+    }
 
     function answerApple() {
     	let appleGuessValue = appleGuess.value;
@@ -231,6 +237,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const bmrAnswer = document.getElementById('bmrAnswer');
 
     let bmrResult;
+
+    let bmrWithActivity;
 
     const activityList = document.getElementsByName('activity');
     for (var i = activityList.length - 1; i >= 0; i--) {
@@ -305,6 +313,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let gramsProteinNeeded;
     const gramsProteinInsert = document.getElementById('gramsProteinInsert');
+
+    const percentDeficitInsert = document.getElementById('percentDeficitInsert');
+    let calculatedPercentDeficit
+
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
     	for (var bfPercentageIterator = percentValue ; bfPercentageIterator >= 5; bfPercentageIterator--) {
