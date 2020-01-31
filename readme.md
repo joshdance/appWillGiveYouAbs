@@ -13,7 +13,7 @@ Next steps:
 9. show assumptions on the page. 
 10. calc days till summer - Done. 
 11. Show what percentage your planned caloric deficit is. 13. add in what % is your caloric deficit. you enter it, it calculates it. - Done.
-12. add what day your goal will end on. 145 days away is -> blank.
+12. add what day your goal will end on. 145 days away is -> Done. Not formatted great but done.
 13. warn if planned deficit is greater than research says you can handle effectively. - 12. lbs fat * 31 per day = max caloric deficit possible. if planned > max - show warning. 
 14. let the user enter their own bf % goal
 

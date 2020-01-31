@@ -144,7 +144,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / caloricDeficitValue;
 
-		numberOfDaysTilGoalInsert.textContent  = numberOfDaysTilGoal;
+		for (var i = numberOfDaysTilGoalInsert.length - 1; i >= 0; i--) {
+    		numberOfDaysTilGoalInsert[i].textContent  = numberOfDaysTilGoal;
+    	} //multiple number of days till goal, fill em all out. 
 
 		numberOfWeeksTilGoal = numberOfDaysTilGoal / 7;
 
@@ -158,6 +160,18 @@ document.addEventListener("DOMContentLoaded", function() {
 		let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
 
 		daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
+
+		let today = new Date();
+		let goalEndDate = new Date();
+		//numberOfDaysTilGoal is the days to add
+		goalEndDate.setDate(today.getDate() + numberOfDaysTilGoal);
+
+		let dd = goalEndDate.getDate();
+		let mm = goalEndDate.getMonth() + 1; //javascript is weird. 
+		let yyyy = goalEndDate.getFullYear();
+
+		let goalEndDateFormatted = dd + '/' + mm + '/' + yyyy;
+		dateFromCalculatedDaysAway.textContent = goalEndDateFormatted;
 
     } //end function calcDaysToGoalBf
 
@@ -269,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let numberOfDaysTilGoal;
     let numberOfWeeksTilGoal;
     let numberOfMonthsTilGoal;
-    const numberOfDaysTilGoalInsert = document.getElementById('numberOfDaysTilGoalInsert');
+    const numberOfDaysTilGoalInsert = document.getElementsByName('numberOfDaysTilGoalInsert');
     const numberOfWeeksTilGoalInsert = document.getElementById('numberOfWeeksTilGoalInsert');
     const numberOfMonthsTilGoalInsert = document.getElementById('numberOfMonthsTilGoalInsert');
 
@@ -315,7 +329,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const gramsProteinInsert = document.getElementById('gramsProteinInsert');
 
     const percentDeficitInsert = document.getElementById('percentDeficitInsert');
-    let calculatedPercentDeficit
+    let calculatedPercentDeficit;
+
+    const dateFromCalculatedDaysAway = document.getElementById('dateFromCalculatedDaysAway');
+    let calculatedDateFromCalculatedDaysAway;
 
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
