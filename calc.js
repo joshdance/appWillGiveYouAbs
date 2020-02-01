@@ -100,7 +100,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     	bmrWithActivity = bmrResult * selectedActivityValue;
 
-    	tdee.textContent = bmrWithActivity;
+    	for (var i = tdee.length - 1; i >= 0; i--) {
+    		tdee[i].textContent  = bmrWithActivity;
+    	} //multiple tdees fill em all out. 
+
+    	caloricDeficitValue = caloricDeficitValue +1;
+
+    	for (var i = userPickedDeficitInsert.length - 1; i >= 0; i--) {
+    		userPickedDeficitInsert[i].textContent  = caloricDeficitValue;
+    	} //multiple tdees fill em all out. 
+
+    	let caloriesADay = bmrWithActivity - caloricDeficitValue;
+
+    	for (var i = calorieBudgetInsert.length - 1; i >= 0; i--) {
+    		calorieBudgetInsert[i].textContent  = caloriesADay;
+    	} //multiple tdees fill em all out. 
 
     } //end activieMultipler
 
@@ -254,6 +268,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let bmrWithActivity;
 
+    let tdee = document.getElementsByName('tdee');
+
     const activityList = document.getElementsByName('activity');
     for (var i = activityList.length - 1; i >= 0; i--) {
     	activityList[i],addEventListener('click', activeMultipler);
@@ -333,6 +349,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const dateFromCalculatedDaysAway = document.getElementById('dateFromCalculatedDaysAway');
     let calculatedDateFromCalculatedDaysAway;
+
+    const calorieBudgetInsert = document.getElementsByName('calorieBudgetInsert');
+    const userPickedDeficitInsert = document.getElementsByName('userPickedDeficitInsert');
 
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {

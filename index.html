@@ -104,7 +104,7 @@
 <label for="extremely">Extremely Active 1.95</label>
 </div>
 <p></p>
-<div>Your TDEE with Activity Multiple = <span id="tdee"></span></div>
+<div>Your TDEE with Activity Multiple = <span name="tdee"></span></div>
 <p></p>
 <H2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</H2>
 With your current weight of <span name="weightInsert">X</span> and your current bf % of <span id="bfInsert">Y</span> you have <span id="leanInsert">Z</span> lbs of lean body mass and <span id="fatInsert">A</span> lbs of body fat. 
@@ -121,12 +121,19 @@ Then you will have <span id="newFatInsert">C</span> lbs of fat, and <span id="ne
 <div>
 	<button type="button" id="reCalcButton">Re-calculate</button>
 </div>
-
+<p></p>
+<div>
+	Your TDEE of <span name="tdee">X</span> minus your deficit of <span name="userPickedDeficitInsert">Y</span> gives you <span name="calorieBudgetInsert">Z</span> calories a day. 
+</div>
+<p></p>
 <div>
 	You caloric deficit is <span id="percentDeficitInsert">not calculated</span>%. General advice is to pick a 25% deficit. 
 </div>
 <p></p>
-It will take you <span name="numberOfDaysTilGoalInsert">X</span> number of days to reach your goal.
+<div>
+	Eating <span name="calorieBudgetInsert">Z</span> calories a day, 
+</div>
+it will take you <span name="numberOfDaysTilGoalInsert">X</span> number of days to reach your goal.
 <div>
 	It will take you <span id="numberOfWeeksTilGoalInsert">X</span> number of weeks to reach your goal. 
 </div>
