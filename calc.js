@@ -119,7 +119,10 @@ document.addEventListener("DOMContentLoaded", function() {
     } //end activieMultipler
 
     function calcGoalPercent(){
-    	GoalFatResults = calcGoalPercentModifier * leanResults;
+    	getGoalBfPercentage();
+    	userGoalPercentModifer = userBfGoal/(100 - userBfGoal);
+
+    	GoalFatResults = userGoalPercentModifer * leanResults;
     	GoalTotalBodyWeight = GoalFatResults + leanResults;
 
     	LbsToLoseToGoal = LbsBfResults - GoalFatResults;
@@ -127,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	//set
     	
     	for (var i = bfPercentGenderInsert.length - 1; i >= 0; i--) {
-    		bfPercentGenderInsert[i].textContent = bfPercentageGoalByGender*100;
+    		bfPercentGenderInsert[i].textContent = userBfGoal;
     	}//there are multiple bfPercentGenerInserts so iterate thru them all to set. 
     	
     	//TODO
@@ -135,7 +138,11 @@ document.addEventListener("DOMContentLoaded", function() {
     		weightInsert[i].textContent = weightValue;
     	//instead of one weightInsert.textContent = weightValue;
     	}//there are multiple weightInsert so iterate thru them all to set. 
-    	bfInsert.textContent = percentValue;
+    	
+		for (var i = bfInsert.length - 1; i >= 0; i--) {
+    		bfInsert[i].textContent = percentValue;
+    	}//there are multiple bfInserts so iterate thru them all to set. 
+
     	leanInsert.textContent = leanResults;
     	fatInsert.textContent = LbsBfResults
     	loseInsert.textContent = LbsToLoseToGoal;
@@ -193,6 +200,12 @@ document.addEventListener("DOMContentLoaded", function() {
     	calculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
     }
+
+    function getGoalBfPercentage() {
+    	userBfGoal = bfGoalInputBox.value;
+    }
+
+    
 
     function answerApple() {
     	let appleGuessValue = appleGuess.value;
@@ -277,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const bfPercentGenderInsert = document.getElementsByName('bfPercentGenderInsert');
     const weightInsert = document.getElementsByName('weightInsert');
-    const bfInsert = document.getElementById('bfInsert');
+    const bfInsert = document.getElementsByName('bfInsert');
     const leanInsert = document.getElementById('leanInsert');
     const fatInsert = document.getElementById('fatInsert');
     const loseInsert = document.getElementById('loseInsert');
@@ -353,6 +366,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const calorieBudgetInsert = document.getElementsByName('calorieBudgetInsert');
     const userPickedDeficitInsert = document.getElementsByName('userPickedDeficitInsert');
 
+    const bfGoalInputBox = document.getElementById('bfGoalInputBox');
+    let userBfGoal;
 
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
     	for (var bfPercentageIterator = percentValue ; bfPercentageIterator >= 5; bfPercentageIterator--) {
