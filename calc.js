@@ -1,5 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
-    function doTheCalc() {	   
+    function mainCalc() {
+    	calcCurrentWeightAndLean();
+    	calcGoalPercent();
+	    calcBmr();
+	    activeMultipler();
+	    calcGoalPercent();
+	    calcPercentDeficit();
+	    calcProteinNeed();
+	    createUser();
+    }
+
+    function createUser(){
+    	user = new Object();
+    	user.weight = weightValue;
+    	user.bodyFatPercentage = percentValue;
+    	user.leanBodyMass = leanResults;
+    	user.fatBodyMass = LbsBfResults;
+    	console.log('user weight =' + user.weight);
+    }
+
+    function reCalc(){
+    	mainCalc();
+    }
+
+    function calcCurrentWeightAndLean() {	   
 	   weightValue = weightInputBox2.value;
 	   percentValue = percentInputBox2.value
 
@@ -9,25 +33,18 @@ document.addEventListener("DOMContentLoaded", function() {
 	   leanResults = weightValue - LbsBfResults
 	   leanResultsDiv.textContent = leanResults;
 	   //calcDown(weightValue, percentValue, LbsBfResults, leanResults);
-	   calcGoalPercent();
-	   calcProteinNeed();
-	   calcBmr();
-	   calcGoalPercent();
-	   calcPercentDeficit();
-    }
-
-    function reCalc(){
-    	doTheCalc();
+	  
     }
 
     function calcBmr(){
     	//get male or female
-    	for (var i = sex.length - 1; i >= 0; i--) {
-    		let evaluatedSexOption = sex[i];
-    		if (evaluatedSexOption.checked == true) {
+
+    	sex.forEach( function(element, index) {
+    		let evaluatedSexOption = element;
+			if (evaluatedSexOption.checked == true) {
     			selectedSex = evaluatedSexOption.value;
     		} // end of if
-    	}
+    	}); //end of sex.forEach
 
     	//set male or female value
 		const maleSValue = 5;
@@ -65,18 +82,16 @@ document.addEventListener("DOMContentLoaded", function() {
     	//816.466266 + 1,079.5 - 165 + 5
     	//1,735.966266
     	bmrAnswer.textContent = bmrResult;
-    	activeMultipler();
     } //end function calc bmr
 
     function activeMultipler(){
-    	//get multiplier
-    	let pickedActivityMultiplier;
-    	for (var i = activityList.length - 1; i >= 0; i--) {
-    		let evaluatedActivityOption = activityList[i];
+
+    	activityList.forEach( function(element, index) {
+    		let evaluatedActivityOption = element;
     		if (evaluatedActivityOption.checked == true) {
     			pickedActivityMultiplier = evaluatedActivityOption.value;
     		} // end of if
-    	} // end of for loop
+    	}); //end of actibityList.forEach
 
     	//set values
     	const sedentaryValue = 1.15;
@@ -100,21 +115,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
     	bmrWithActivity = bmrResult * selectedActivityValue;
 
-    	for (var i = tdee.length - 1; i >= 0; i--) {
-    		tdee[i].textContent  = bmrWithActivity;
-    	} //multiple tdees fill em all out. 
+    	tdee.forEach( function(element, index) {
+    		element.textContent  = bmrWithActivity;
+    	});
 
-    	caloricDeficitValue = caloricDeficitValue +1;
-
-    	for (var i = userPickedDeficitInsert.length - 1; i >= 0; i--) {
-    		userPickedDeficitInsert[i].textContent  = caloricDeficitValue;
-    	} //multiple tdees fill em all out. 
+    	userPickedDeficitInsert.forEach( function(element, index) {
+    		element.textContent  = caloricDeficitValue;
+    	});
 
     	let caloriesADay = bmrWithActivity - caloricDeficitValue;
 
-    	for (var i = calorieBudgetInsert.length - 1; i >= 0; i--) {
-    		calorieBudgetInsert[i].textContent  = caloriesADay;
-    	} //multiple tdees fill em all out. 
+    	calorieBudgetInsert.forEach( function(element, index) {
+    		element.textContent  = caloriesADay;
+    	});
 
     } //end activieMultipler
 
@@ -125,23 +138,19 @@ document.addEventListener("DOMContentLoaded", function() {
     	GoalFatResults = userGoalPercentModifer * leanResults;
     	GoalTotalBodyWeight = GoalFatResults + leanResults;
 
-    	LbsToLoseToGoal = LbsBfResults - GoalFatResults;
+    	LbsToLoseToGoal = LbsBfResults - GoalFatResults; 
+    	
+    	bfPercentGenderInsert.forEach( function(element, index) {
+    		element.textContent = userBfGoal;
+    	});
 
-    	//set
+    	weightInsert.forEach( function(element, index) {
+    		element.textContent = weightValue;
+    	});
     	
-    	for (var i = bfPercentGenderInsert.length - 1; i >= 0; i--) {
-    		bfPercentGenderInsert[i].textContent = userBfGoal;
-    	}//there are multiple bfPercentGenerInserts so iterate thru them all to set. 
-    	
-    	//TODO
-    	for (var i = weightInsert.length - 1; i >= 0; i--) {
-    		weightInsert[i].textContent = weightValue;
-    	//instead of one weightInsert.textContent = weightValue;
-    	}//there are multiple weightInsert so iterate thru them all to set. 
-    	
-		for (var i = bfInsert.length - 1; i >= 0; i--) {
-    		bfInsert[i].textContent = percentValue;
-    	}//there are multiple bfInserts so iterate thru them all to set. 
+    	bfInsert.forEach( function(element, index) {
+    		element.textContent = percentValue;
+    	});
 
     	leanInsert.textContent = leanResults;
     	fatInsert.textContent = LbsBfResults
@@ -156,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function calcProteinNeed(){
     	gramsProteinNeeded = weightValue * .82;
 		gramsProteinInsert.textContent = gramsProteinNeeded;
+		console.log('Welcome to the matrix. Ready Player 2')
     } // end calcProteinNeed
 
     function calcDaysToGoalBf() {
@@ -165,9 +175,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / caloricDeficitValue;
 
-		for (var i = numberOfDaysTilGoalInsert.length - 1; i >= 0; i--) {
-    		numberOfDaysTilGoalInsert[i].textContent  = numberOfDaysTilGoal;
-    	} //multiple number of days till goal, fill em all out. 
+    	numberOfDaysTilGoalInsert.forEach( function(element, index) {
+    		element.textContent  = numberOfDaysTilGoal;
+    	});
 
 		numberOfWeeksTilGoal = numberOfDaysTilGoal / 7;
 
@@ -244,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	}
     }
 
+    let user;
 
     const calcButton = document.querySelector('.calcButton');
     const reCalcButton = document.getElementById('reCalcButton');
@@ -284,9 +295,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let tdee = document.getElementsByName('tdee');
 
     const activityList = document.getElementsByName('activity');
-    for (var i = activityList.length - 1; i >= 0; i--) {
-    	activityList[i],addEventListener('click', activeMultipler);
-    } // end of if
+    activityList.forEach( function(element, index) {
+    	element,addEventListener('click', activeMultipler);
+    });
 
     const bfPercentGenderInsert = document.getElementsByName('bfPercentGenderInsert');
     const weightInsert = document.getElementsByName('weightInsert');
@@ -331,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const fiveGuysBurgerGuessButton = document.getElementById('fiveGuysBurgerGuessButton')
     const fiveGuysBurgerCalories = 1060;
 
-	calcButton.addEventListener('click', doTheCalc);
+	calcButton.addEventListener('click', mainCalc);
 	reCalcButton.addEventListener('click', reCalc);
     calcBmrButton.addEventListener('click', calcBmr);
 
