@@ -281,7 +281,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const calcGoalPercentModifierFemale = .2658;
     const calcGoalPercentModifierMale = .1111111111;
 
-    const sex = document.getElementsByName('sex');//return node list. All the checkboxes. Careful. 
+    const sexElements = document.getElementsByClassName('sex');//return 'array like' list. All the checkboxes. Careful. 
+    const sex = Array.from(sexElements);
+
     const age = document.getElementById('age');
     const feet = document.getElementById('feet');
     const inches = document.getElementById('inches');
@@ -294,7 +296,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let tdee = document.getElementsByName('tdee');
 
-    const activityList = document.getElementsByName('activity');
+    const activityListElements = document.getElementsByClassName('activity');
+    const activityList = Array.from(activityListElements);
     activityList.forEach( function(element, index) {
     	element,addEventListener('click', activeMultipler);
     });

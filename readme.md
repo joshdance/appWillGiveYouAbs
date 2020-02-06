@@ -16,7 +16,7 @@ Next steps:
 18. Refactor the methods a bit to make them clearer. - Done
 19. Setup a user object to hold and access all the info. - Done
 
-17. switch name to class.
+17. switch name to class. - started. But a little harder than thoughts. 
 20. Get all the info and put it into the user object. 
 21. Use the user object to do the calculations?
 8. get the numbers to be correct. They are too floaty right now. Int? 
