@@ -10,11 +10,12 @@ Next steps:
 10. calc days till summer - Done. 
 11. Show what percentage your planned caloric deficit is. 13. add in what % is your caloric deficit. you enter it, it calculates it. - Done.
 12. add what day your goal will end on. 145 days away is -> Done. Not formatted great but done.
-14. let the user enter their own bf % goal - Done. 
-15. calc the calories per day - Done. 
+14. let the user enter their own bf % goal - Done
+15. calc the calories per day - Done
 16. change for loop to for each. - Done
 18. Refactor the methods a bit to make them clearer. - Done
 19. Setup a user object to hold and access all the info. - Done
+22. Actually use the user object to calculate something - Done
 
 17. switch name to class. - started. But a little harder than thoughts. 
 20. Get all the info and put it into the user object. 

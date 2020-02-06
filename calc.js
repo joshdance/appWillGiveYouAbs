@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     function mainCalc() {
+    	getUserInputs()
+    	createUser();
     	calcCurrentWeightAndLean();
     	calcGoalPercent();
 	    calcBmr();
@@ -7,7 +9,40 @@ document.addEventListener("DOMContentLoaded", function() {
 	    calcGoalPercent();
 	    calcPercentDeficit();
 	    calcProteinNeed();
-	    createUser();
+    }
+
+    function getUserInputs(){
+    	//weight
+    	weightValue = weightInputBox2.value;
+
+    	//body fat
+    	percentValue = percentInputBox2.value
+
+    	//gender
+	    sex.forEach( function(element, index) {
+			let evaluatedSexOption = element;
+			if (evaluatedSexOption.checked == true) {
+				selectedSex = evaluatedSexOption.value;
+			} // end of if
+		}); //end of sex.forEach
+
+		//bf goal
+		userBfGoal = bfGoalInputBox.value;
+
+		//age
+		ageValue = age.value;
+
+		//height
+		feetValue = feet.value;
+    	inchesValue = inches.value;
+
+		//activity level
+		activityList.forEach( function(element, index) {
+    		let evaluatedActivityOption = element;
+    		if (evaluatedActivityOption.checked == true) {
+    			pickedActivityMultiplier = evaluatedActivityOption.value;
+    		} // end of if
+    	}); //end of actibityList.forEach
     }
 
     function createUser(){
@@ -16,7 +51,11 @@ document.addEventListener("DOMContentLoaded", function() {
     	user.bodyFatPercentage = percentValue;
     	user.leanBodyMass = leanResults;
     	user.fatBodyMass = LbsBfResults;
-    	console.log('user weight =' + user.weight);
+    	user.bodyFatPercentageGoal = userBfGoal;
+    	user.age = ageValue;
+    	user.heightInInches = ((feetValue*12)+(inchesValue*1)); //magic number to cast it correctly. :(
+    	user.activityLevel = pickedActivityMultiplier;
+    	console.log('Player 1 ready');
     }
 
     function reCalc(){
@@ -24,10 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function calcCurrentWeightAndLean() {	   
-	   weightValue = weightInputBox2.value;
-	   percentValue = percentInputBox2.value
-
-	   LbsBfResults = (weightValue * (percentValue/100)); //lbs bf results
+	   LbsBfResults = (user.weight * (user.bodyFatPercentage /100)); //lbs bf results
 	   LbsBfResultsDiv.textContent = LbsBfResults;
 
 	   leanResults = weightValue - LbsBfResults
@@ -37,15 +73,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function calcBmr(){
-    	//get male or female
-
-    	sex.forEach( function(element, index) {
-    		let evaluatedSexOption = element;
-			if (evaluatedSexOption.checked == true) {
-    			selectedSex = evaluatedSexOption.value;
-    		} // end of if
-    	}); //end of sex.forEach
-
     	//set male or female value
 		const maleSValue = 5;
     	const femaleSValue = -161; //where s is +5 for males and -161 for females.
@@ -60,13 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     		bfPercentageGoalByGender = bfGoalMale;
     		calcGoalPercentModifier = calcGoalPercentModifierMale;
     	}
-
-    	let ageValue = age.value;
-    	let feetValue = feet.value;
-    	let inchesValue = inches.value;
-    	let weightValue = weight.value;
     	
-
     	//convert
     	let weightValueKilo = weightValue * 0.45359237;
     	//81.6466266
@@ -85,13 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
     } //end function calc bmr
 
     function activeMultipler(){
-
-    	activityList.forEach( function(element, index) {
-    		let evaluatedActivityOption = element;
-    		if (evaluatedActivityOption.checked == true) {
-    			pickedActivityMultiplier = evaluatedActivityOption.value;
-    		} // end of if
-    	}); //end of actibityList.forEach
 
     	//set values
     	const sedentaryValue = 1.15;
@@ -132,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function() {
     } //end activieMultipler
 
     function calcGoalPercent(){
-    	getGoalBfPercentage();
     	userGoalPercentModifer = userBfGoal/(100 - userBfGoal);
 
     	GoalFatResults = userGoalPercentModifer * leanResults;
@@ -209,13 +222,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function calcPercentDeficit() {
     	calculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
-    }
-
-    function getGoalBfPercentage() {
-    	userBfGoal = bfGoalInputBox.value;
-    }
-
-    
+    }    
 
     function answerApple() {
     	let appleGuessValue = appleGuess.value;
@@ -285,10 +292,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const sex = Array.from(sexElements);
 
     const age = document.getElementById('age');
+    let ageValue;
     const feet = document.getElementById('feet');
+    let feetValue;
     const inches = document.getElementById('inches');
-    const weight = document.getElementById('weight');
+	let inchesValue;
     const bmrAnswer = document.getElementById('bmrAnswer');
+
+
 
     let bmrResult;
 
