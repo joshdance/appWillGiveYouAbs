@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
     			pickedActivityMultiplier = evaluatedActivityOption.value;
     		} // end of if
     	}); //end of actibityList.forEach
+
+        //caloric deficit
+        caloricDeficitValue = parseInt(caloricDeficitInput.value);
     }
 
     function createUser(){
@@ -182,8 +185,6 @@ document.addEventListener("DOMContentLoaded", function() {
     } // end calcProteinNeed
 
     function calcDaysToGoalBf() {
-		caloricDeficitValue = parseInt(caloricDeficitInput.value);
-
 		totalCaloriesUntilBfGoal = LbsToLoseToGoal * 3500;
 
 		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / caloricDeficitValue;
@@ -193,11 +194,9 @@ document.addEventListener("DOMContentLoaded", function() {
     	});
 
 		numberOfWeeksTilGoal = numberOfDaysTilGoal / 7;
+        numberOfWeeksTilGoalInsert.textContent = numberOfWeeksTilGoal;
 
 		numberOfMonthsTilGoal = numberOfWeeksTilGoal / 4;
-
-		numberOfWeeksTilGoalInsert.textContent = numberOfWeeksTilGoal;
-
 		numberOfMonthsTilGoalInsert.textContent = numberOfMonthsTilGoal
 
 		//it will be in miliseconds. So have to convert to days. 
