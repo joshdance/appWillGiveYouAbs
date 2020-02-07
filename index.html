@@ -5,22 +5,31 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>This App Will Give You Abs</h1>
-<div>
+<div class="header">
+	<h1>This App Will Give You Abs</h1>
+</div>
+<div class="mainContainer">
+<p>
 	What is your current weight?
-</div>
+</p>
 <div>
-	<input type="number" id="weightInputBox" class="weightInputBox" value="180">
+	<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
 </div>
-<div>
+<p>
 	What is your current body fat percentage? If you don't know, you can estimate. Click to open the estimating section.
-</div>
+</p>
+
 <div>
-	<input type="number" id="percentInputBox" class="percentInputBox" placeholder="in whole percent. example 20 not .2" value="22">
+	<h2>How to estimate body fat percentage</h2>
+	<p>Here is section on how to estimate body fat percentage</p>
 </div>
 
 <div>
-	What is your gender?
+	<input type="number" id="percentInputBox" class="percentInputBox inputform" placeholder="in whole percent. example 20 not .2" value="22">
+</div>
+
+<div>
+	<div class="genderHeader">What is your gender?</div>
 	<input type="radio" class="sex" name="sex" id="female" value="female">
 	<label for="female">Female</label>
 	<input type="radio" class="sex" name="sex" id="male" value="male" checked>
@@ -28,13 +37,15 @@
 </div>
 
 <div>
-	<button type="button" class="calcButton">Calculate it!</button>
+	<button type="button" class="calcButton squareButton">Calculate it!</button>
 </div>
 
 <h2>What is your goal?</h2>
-<div>What is your goal body fat %? This is a better question that what is your goal weight.</div>
+<p>
+	What is your goal body fat %? This is a better question that what is your goal weight.
+</p>
 <div>
-	<input type="number" id="bfGoalInputBox" value="10">
+	<input type="number" class="inputform" id="bfGoalInputBox" value="10">
 </div>
 
 <h2>Starting Point</h2>
@@ -68,13 +79,13 @@
 <p>
 <div>
 	What is your age?
-	<input type="number" name="age" id="age" value="33">
+	<input type="number" class="inputform" name="age" id="age" value="33">
 </div>
 <div>
 	What is your height in feet?
-	<input type="number" name="feet" id="feet" value="5">
+	<input type="number" class="inputform" name="feet" id="feet" value="5">
 	and your remaining height in inches
-	<input type="number" name="inches" id="inches" value="8">
+	<input type="number" class="inputform" name="inches" id="inches" value="8">
 </div>
 
 <div>
@@ -83,7 +94,7 @@
 
 
 <div>
-	<button type="button" class="calcBmrButton" id="calcBmr">Calculate your BMR!</button>
+	<button type="button" class="calcBmrButton squareButton" id="calcBmr">Calculate your BMR!</button>
 </div>
 <p></p>
 
@@ -121,10 +132,10 @@ Then you will have <span id="newFatInsert">C</span> lbs of fat, and <span id="ne
 <p>
 <div>
 	Pick your caloric deficit: 
-	<input type="number" id="caloricDeficitInput" value="500">
+	<input type="number" class="inputform" id="caloricDeficitInput" value="500">
 </div>
 <div>
-	<button type="button" id="reCalcButton">Re-calculate</button>
+	<button type="button" class="squareButton" id="reCalcButton">Re-calculate</button>
 </div>
 <p></p>
 <div>
@@ -162,28 +173,10 @@ it will take you <span name="numberOfDaysTilGoalInsert">X</span> number of days 
 
 	At <span name="weightInsert">X</span>lbs total body weight, you need <span id='gramsProteinInsert'></span> grams of protein a day. 
 </div>
-
-<p> </p>
-<h1>Estimating Calories is Hard</h1>
-<div>
-<img src="images/tempApple.jpeg">
-<div id="appleGuessText">How many calories in an apple?</div>
-<input type="number" name="appleGuess" id="appleGuess">
-<button type="button" class="appleGuessButton" id="appleGuessButton">Guess!</button>
 </div>
+<div class="footer">
+	<a target="_blank" rel="noopener" class="joshdance-by" href="https://joshdance.me/"><img src="http://joshdance.me/images/example/adventure.png" /><p>by joshdance</p></a>
 
-<div>
-<img src="images/tempSnickers.jpeg">
-<div id="snickersGuessText">How many calories in a Snickers?</div>
-<input type="number" name="snickersGuess" id="snickersGuess">
-<button type="button" class="snickersGuessButton" id="snickersGuessButton">Guess!</button>
-</div>
-
-<div>
-<img src="images/5guysTemp.jpeg">
-<div id="fiveGuysBurgerGuessText">How many calories in a 5 guys burger?</div>
-<input type="number" name="fiveGuysBurgerGuess" id="fiveGuysBurgerGuess">
-<button type="button" class="fiveGuysBurgerGuessButton" id="fiveGuysBurgerGuessButton">Guess!</button>
 </div>
 
 

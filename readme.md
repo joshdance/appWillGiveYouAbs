@@ -18,12 +18,14 @@ Next steps:
 19. Setup a user object to hold and access all the info. - Done
 22. Actually use the user object to calculate something - Done
 20. Get all the info and put it into the user object. - Done
+26. Add enough CSS so it doesn't look horrible - Done.
+
 
 8. get the numbers to be correct. They are too floaty right now. Int? 
 23. add estimate bf % section
 24. add estimate your activity level section
 25. auto cal 25% reduction in calories for deficit
-26. Add enough CSS so it doesn't look horrible
+28. Make it look good with CSS
 
 3. add an equations section at the bottom.
 13. warn if planned deficit is greater than research says you can handle effectively. - 12. lbs fat * 31 per day = max caloric deficit possible. if planned > max - show warning. 
