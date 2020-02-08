@@ -19,7 +19,7 @@ Next steps:
 22. Actually use the user object to calculate something - Done
 20. Get all the info and put it into the user object. - Done
 26. Add enough CSS so it doesn't look horrible - Done.
-
+28. Style the male female radio button - https://freebiesupply.com/blog/css-radio-buttons/ and move it to the first question. 
 
 8. get the numbers to be correct. They are too floaty right now. Int? 
 23. add estimate bf % section

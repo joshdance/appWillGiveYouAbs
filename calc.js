@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
+    
+    function bootup() {
+        getUserInputs();
+        createUser();
+        generateEstimatingText();
+    }
+
     function mainCalc() {
     	getUserInputs()
     	createUser();
@@ -47,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         //caloric deficit
         caloricDeficitValue = parseInt(caloricDeficitInput.value);
+        createUser();
     }
 
     function createUser(){
@@ -59,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	user.age = ageValue;
     	user.heightInInches = ((feetValue*12)+(inchesValue*1)); //magic number to cast it correctly. :(
     	user.activityLevel = pickedActivityMultiplier;
+        user.sex = selectedSex;
     	console.log('Player 1 ready');
     }
 
@@ -110,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } //end function calc bmr
 
     function activeMultipler(){
+        getUserInputs();//if they change activity level before anything else. 
 
     	//set values
     	const sedentaryValue = 1.15;
@@ -233,6 +243,68 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('the table of power has been created');
     };
 
+    function toggleEstimates() {
+        console.log('toggleEstimates')
+        
+        if (estimateBodyFatSection.style.display == "block") {
+            estimateBodyFatSection.style.display = "none";
+            showEstimateSection.textContent = 'Click to show body fat estimating section.'
+        } else {
+            estimateBodyFatSection.style.display = "block";
+            showEstimateSection.textContent = 'Click to hide body fat estimating section.'
+        }
+    }
+
+    function generateEstimatingText(){
+        
+        let fourtyPercent = "40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
+        let thirtyfivePercent = "35% body fat: This percentage of body fat is more of the beer gut look. The waist circumference at this point can be about 40+ inches."
+        let thirtyPercent = "30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist."
+        let twentyfivePercent = "25% body fat: This is the start of average territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
+        let twentyPercent = "20% body fat: Low end of the average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
+        let fifteenPercent = "15% body fat: This percentage of body fat usually fits into the “lean and fit” category. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
+        let tenToTwelvePercent = "10-12% body fat: Very in shape. Your abs can be seen, but aren’t as deeply chiseled or defined as a man with 6-8% body fat. This is the body fat percentage that is the perfect beach body most people strive for. At this level is some defined veins in the arms and legs."; 
+        let sixToEightPercent = "6-8% body fat: Extremely low levels of body fat. Think Hollywood Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
+        let fivePercent = "5% body fat: Ridiculously (dangerously) lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin.";
+        let maleEstimateTextArray = [fourtyPercent, thirtyfivePercent, thirtyPercent, twentyfivePercent, twentyPercent, fifteenPercent, tenToTwelvePercent, sixToEightPercent, fivePercent];
+
+        let femaleFiftyPercent = "50% body fat: Significant fat accumulation in all body regions. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese. This skin will appear more dimple or “cottage cheese” like.";
+        let femaleFourtyfivePercent = "45% body fat: At this body weight, the hips become noticeably wider than the shoulders. The general hip circumference may reach 45+ inches and waist circumference 35+ inches. The skin may start to lose its smooth nature at this percentage level.";
+        let femaleFourty = "40% body fat: At this level a women is considered obese. This means there is not a very balanced muscle to fat ratio. Some women may not look like they have 40% body fat, but their muscle mass is lower, which brings their percentage to 40%.";
+        let femaleThirtyfive = "35% body fat: The body has more fat accumulations and the face and neck begin to appear fuller and more round. Belly fat is also more pronounced at this level as well.";
+        let femaleThirty = "30% body fat: At this level there is more accumulation of fat in the hips and butt region. 30% body fat is considered a high average for women.";
+        let femaleTwentyfive = "25% body fat: This percentage is on the lower end of what is average for women. Abs and other muscles are not as apparent at this level, and there is generally more fat around the hips and buttocks areas."; 
+        let femaleTwentyToTwentytwo = "20-22% body fat: This is the start of the “fit and lean” area. This level is the most common among female athletes. Some definition in the abs.";
+        let femaleFifteenToSeventeen = "15-17% body fat: At this level muscles are still visible. Abs, legs, and arms have definition. There is some separation between muscles there is also some vascularity. Women don’t have as much curvature in hips and buttocks because of the low body fat level. This is a common level of body fat among fitness models. Many women who are at this level may not be able to menstruate.";
+        let femaleTenToTwelve = "10-12% Body fat: This percentage is the lowest a woman should be. At this percentage the women’s vascularity and some striations are visible. The woman’s muscles are clearly separated. This level of body fat isn’t considered safe or healthy for women who menstruate.";
+        let femaleEstimateTextArray = [femaleFiftyPercent, femaleFourtyfivePercent, femaleFourty, femaleThirtyfive, femaleThirty, femaleTwentyfive, femaleTwentyToTwentytwo, femaleFifteenToSeventeen, femaleTenToTwelve];
+
+        let genderBodyFatEstimationArray;
+        if (user.sex == 'male') {
+            genderBodyFatEstimationArray = maleEstimateTextArray;
+        } else {
+            genderBodyFatEstimationArray = femaleEstimateTextArray;
+        }
+
+        //clear out the node if they click a gender
+        while (estimateBodyFatLevelDescriptions.firstChild) {
+            estimateBodyFatLevelDescriptions.firstChild.remove();
+        }
+
+        //generate a paragraph for each element and set it to the node
+        genderBodyFatEstimationArray.forEach( function(element, index) {
+            let textNode = document.createTextNode(element);
+            let paragraph = document.createElement("p");
+            paragraph.appendChild(textNode);
+            estimateBodyFatLevelDescriptions.appendChild(paragraph);
+        });
+    }
+
+    function genderPicked(){
+        getUserInputs();
+        generateEstimatingText();
+    }
+
     let user;
 
     const calcButton = document.querySelector('.calcButton');
@@ -262,6 +334,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const sexElements = document.getElementsByClassName('sex');//return 'array like' list. All the checkboxes. Careful. 
     const sex = Array.from(sexElements);
+    sex.forEach( function(element, index) {
+        element.addEventListener('change', genderPicked);
+    });
 
     const age = document.getElementById('age');
     let ageValue;
@@ -282,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const activityListElements = document.getElementsByClassName('activity');
     const activityList = Array.from(activityListElements);
     activityList.forEach( function(element, index) {
-    	element,addEventListener('click', activeMultipler);
+    	element,addEventListener('change', activeMultipler);
     });
 
     const bfPercentGenderInsert = document.getElementsByName('bfPercentGenderInsert');
@@ -347,6 +422,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
     let userBfGoal;
 
+    const showEstimateSection = document.getElementById('showEstimateSection');
+    showEstimateSection.addEventListener('click', toggleEstimates);
+    const estimateBodyFatSection = document.getElementById('estimateBodyFat');
+    const estimateBodyFatLevelDescriptions = document.getElementById('estimateBodyFatLevelDescriptions');
+
+
+    bootup();
+
     function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
     	for (var bfPercentageIterator = percentValue ; bfPercentageIterator >= 5; bfPercentageIterator--) {
     		console.log({bfPercentage: bfPercentageIterator, leanPercentage: 1});
@@ -357,12 +440,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     	bfRunDown.textContent = bfPercentageArray;
     	bfRunDown.textContent = displayBfRundownData;
-
     
+//<script src="countUp.js"></script>    
 //todo
 //1. Figure out Object. 
 //2. Figure out how to display a list of objects.
 //3. Do the proper calculations for the objects.
-
-    }
+}
 });

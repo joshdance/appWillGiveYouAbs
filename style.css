@@ -3,8 +3,20 @@ html {
 	font-size: 18px;
 }
 
-.estimateBodyFat {
+#estimateBodyFat {
 	display: none;
+	margin-top: 22px;
+    margin-bottom: 25px;
+    padding: 19px 18px 0 30px;
+    clear: both;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(76,183,221,.02);
+    border-radius: 2px;
+    background-color: #f8fcff;
+    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
+    color: #0e2430;
+    line-height: 29px;
 }
 
 #showEstimateSection {
@@ -35,6 +47,11 @@ p {
 	margin-bottom: 16px;
     font-family: Avenir,Tahoma,sans-serif;
     line-height: 25px;
+}
+
+div {
+	margin-bottom: 16px;
+
 }
 
 .genderHeader {
