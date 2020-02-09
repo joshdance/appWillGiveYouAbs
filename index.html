@@ -28,7 +28,10 @@
 	<p>There are many ways to estimate body fat, but one of the easiest and most straightforward ways is to just eyeball it with a comparison chart and descriptions.</p>
 	<p>I scoured the internet for the best body fat comparison charts. Fair warning lots of pictures of people with various levels of body fat ahead. You don't have to be exactly accurate. Be honest. Guys usually think they are leaner than they really are, girls the opposite.</p>
 	<h3>Body Fat Level Examples</h3>
-	picture goes here
+	<p>I have scoured the internet looking for all the best real life examples of body fat percentages. Sources in the footnote section. <a href="bodyfatpercentageexamples.html" target="_blank" rel="noopener noreferrer">Click here</a> or click the image to open full size in a new tab.</p>
+	<div class="imageContainer">
+		<a href="bodyfatpercentageexamples.html" target="_blank" rel="noopener noreferrer"><img src="images/menBodyFatExamples.png"></a>
+	</div>
 
 	<h3>Body Fat Level Descriptions</h3>
 	<div id="estimateBodyFatLevelDescriptions">
@@ -131,10 +134,34 @@
 <input type="radio" class="activity" name="activity" id="extremely" value="extremely">
 <label for="extremely">Extremely Active 1.95</label>
 </div>
-<p></p>
-<div>Your TDEE with Activity Multiple = <span name="tdee"></span></div>
-<p></p>
-<H2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</H2>
+<div>Need help picking your activity level? 👇🏻</div>
+<div>
+	<span id='buttonToggleActivityLevelSection'>Click to show the Estimating Activity Level Section</span>
+</div>
+<div id="activityLevelSection">
+	<h2>How to estimate your Activity Level</h2>
+	<p>Studies have shown that we all overestimate how much we are active. So read the descriptions, pick where you think you are, then move down one level. For example if you think you are Moderately Active, chose Lightly Active. Since it is an estimate it just needs to be close and then you can see what the results are and tweak it. </p>
+
+	<h4>Sedentary 1.15</h4>
+	<p>You don’t intentionally exercise at all. Get up, go to work, come home, eat dinner, relax.</p>
+
+	<h4>Lightly Active 1.2</h4>
+	<p>On average, you walk for exercise about 30 minutes a day. Or you are running or lifting weights fro 15 minutes a day.</p>
+
+	<h4>Moderately Active 1.4</h4>
+	<p>If I was looking for you on a weeknight, I would call the gym. 50 minutes of vigorous exercise a day. Or about one hour and 45 minutes of walking (for exercise, not going around your house) per day. Most people do not do this.</p>
+
+	<h4>Very Active 1.6</h4>
+	<p>You move vigorously for your work (think something like construction or yardwork), or you workout every single day for more than an hour. If you were to get this level of activity only walking, it would be a nearly impossible four hours and 15 minutes of walking (again, for intentional exercise) a day.
+
+	<h4>Extra Active 1.8</h4>
+	<p>Hey there Michael Phelps. Almost no one does this. This means every single day you are working out hard for an hour and a half. Or you are a professional speed walker. </p>
+</div>
+
+<div class="tdeeResults">Your TDEE with Activity Multiple = <span name="tdee"></span></div>
+
+<h2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</h2>
+
 With your current weight of <span name="weightInsert">X</span> and your current bf % of <span name="bfInsert">Y</span> you have <span id="leanInsert">Z</span> lbs of lean body mass and <span id="fatInsert">A</span> lbs of body fat. 
 <p></p>
 To get to <span name="bfPercentGenderInsert">gender</span> % bf, you need to lose <span id="loseInsert">B</span> lbs of fat. 

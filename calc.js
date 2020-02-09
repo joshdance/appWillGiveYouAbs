@@ -248,10 +248,22 @@ document.addEventListener("DOMContentLoaded", function() {
         
         if (estimateBodyFatSection.style.display == "block") {
             estimateBodyFatSection.style.display = "none";
-            showEstimateSection.textContent = 'Click to show body fat estimating section.'
+            showEstimateSection.textContent = 'Click to show body fat estimating section.';
         } else {
             estimateBodyFatSection.style.display = "block";
-            showEstimateSection.textContent = 'Click to hide body fat estimating section.'
+            showEstimateSection.textContent = 'Click to hide body fat estimating section.';
+        }
+    }
+
+    function toggleActivityLevelSection() {
+        console.log('toggle activity estimtes section');
+
+        if (activityLevelSection.style.display == 'block') {
+            activityLevelSection.style.display = "none";
+            buttonToggleActivityLevelSection.textContent = 'Click to show Activity estimating section.';
+        } else {
+            activityLevelSection.style.display = "block";
+            buttonToggleActivityLevelSection.textContent = 'Click to hide Activity estimating section.';
         }
     }
 
@@ -263,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let twentyfivePercent = "25% body fat: This is the start of average territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
         let twentyPercent = "20% body fat: Low end of the average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
         let fifteenPercent = "15% body fat: This percentage of body fat usually fits into the “lean and fit” category. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
-        let tenToTwelvePercent = "10-12% body fat: Very in shape. Your abs can be seen, but aren’t as deeply chiseled or defined as a man with 6-8% body fat. This is the body fat percentage that is the perfect beach body most people strive for. At this level is some defined veins in the arms and legs."; 
+        let tenToTwelvePercent = "10-12% body fat: Very in shape. Your abs can be seen, but aren’t as deeply chiseled or defined as a man with 6-8% body fat. This is the body fat percentage that is the perfect beach body most people strive for 🏝. At this level is some defined veins in the arms and legs."; 
         let sixToEightPercent = "6-8% body fat: Extremely low levels of body fat. Think Hollywood Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
         let fivePercent = "5% body fat: Ridiculously (dangerously) lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin.";
         let maleEstimateTextArray = [fourtyPercent, thirtyfivePercent, thirtyPercent, twentyfivePercent, twentyPercent, fifteenPercent, tenToTwelvePercent, sixToEightPercent, fivePercent];
@@ -427,6 +439,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const estimateBodyFatSection = document.getElementById('estimateBodyFat');
     const estimateBodyFatLevelDescriptions = document.getElementById('estimateBodyFatLevelDescriptions');
 
+    const buttonToggleActivityLevelSection = document.getElementById('buttonToggleActivityLevelSection');
+    buttonToggleActivityLevelSection.addEventListener('click', toggleActivityLevelSection);
+    const activityLevelSection = document.getElementById('activityLevelSection');
 
     bootup();
 

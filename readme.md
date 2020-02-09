@@ -20,19 +20,16 @@ Next steps:
 20. Get all the info and put it into the user object. - Done
 26. Add enough CSS so it doesn't look horrible - Done.
 28. Style the male female radio button - https://freebiesupply.com/blog/css-radio-buttons/ and move it to the first question. 
+23. add estimate bf % section - Done
+24. add estimate your activity level section - Done
 
 8. get the numbers to be correct. They are too floaty right now. Int? 
-23. add estimate bf % section
-24. add estimate your activity level section
 25. auto cal 25% reduction in calories for deficit
 28. Make it look good with CSS
 
 3. add an equations section at the bottom.
 13. warn if planned deficit is greater than research says you can handle effectively. - 12. lbs fat * 31 per day = max caloric deficit possible. if planned > max - show warning. 
-
 27. Show the table breaking down the dates and the progress. 
-
-
 
 Technical
 17. switch name to class. - started. But a little harder than thoughts. Do I really need to do this? 

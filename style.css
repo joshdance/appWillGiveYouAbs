@@ -3,7 +3,32 @@ html {
 	font-size: 18px;
 }
 
+.imageContainer {
+	max-width: 800px;
+}
+
+.imageContainer img {
+	width: 100%;
+	height: auto;
+}
+
 #estimateBodyFat {
+	display: none;
+	margin-top: 22px;
+    margin-bottom: 25px;
+    padding: 19px 18px 0 30px;
+    clear: both;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(76,183,221,.02);
+    border-radius: 2px;
+    background-color: #f8fcff;
+    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
+    color: #0e2430;
+    line-height: 29px;
+}
+
+#activityLevelSection {
 	display: none;
 	margin-top: 22px;
     margin-bottom: 25px;
@@ -21,6 +46,25 @@ html {
 
 #showEstimateSection {
 	color: green;
+}
+
+#buttonToggleActivityLevelSection {
+	color: green;
+}
+
+.tdeeResults {
+	margin-top: 22px;
+    margin-bottom: 25px;
+    padding: 19px 18px 0 30px;
+    clear: both;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(76,183,221,.02);
+    border-radius: 2px;
+    background-color: #f8fcff;
+    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
+    color: #0e2430;
+    line-height: 29px;
 }
 
 .mainContainer {
