@@ -1,10 +1,18 @@
-document.addEventListener("DOMContentLoaded", function() {
+//function name ();
+document.addEventListener("DOMContentLoaded", calculateUserBodyFat);
+
+//put each function no nested. 
+
+function calculateUserBodyFat() {
     
     function bootup() {
         getUserInputs();
         createUser();
         generateEstimatingText();
     }
+
+    //define user class
+    //define the fields it would have
 
     function mainCalc() {
     	getUserInputs()
@@ -87,8 +95,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function calcBmr(){
     	//set male or female value
-		const maleSValue = 5;
-    	const femaleSValue = -161; //where s is +5 for males and -161 for females.
 
     	let selectedSexSValue;
     	if (selectedSex == "female") {
@@ -112,9 +118,9 @@ document.addEventListener("DOMContentLoaded", function() {
     	//172.72
     	//BMR (kcal / day) = 10 * weight (kg) + 6.25 * height (cm) – 5 * age (y) + s (kcal / day)
 
-    	bmrResult = (10 * weightValueKilo) + (6.25 * heightValueCentimeteres) - (5 * ageValue) + selectedSexSValue;
-    	//816.466266 + 1,079.5 - 165 + 5
-    	//1,735.966266
+    	let unRoundedBmrResult = (10 * weightValueKilo) + (6.25 * heightValueCentimeteres) - (5 * ageValue) + selectedSexSValue;
+    	bmrResult = Math.round (unRoundedBmrResult * 10) / 10;
+
     	bmrAnswer.textContent = bmrResult;
     } //end function calc bmr
 
@@ -141,7 +147,8 @@ document.addEventListener("DOMContentLoaded", function() {
     		selectedActivityValue = extremelyActiveValue;
     	}
 
-    	bmrWithActivity = bmrResult * selectedActivityValue;
+    	let unRoundedBmrWithActivity = bmrResult * selectedActivityValue;
+        bmrWithActivity = Math.round (unRoundedBmrWithActivity * 10) / 10;
 
     	tdee.forEach( function(element, index) {
     		element.textContent  = bmrWithActivity;
@@ -191,7 +198,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function calcProteinNeed(){
     	gramsProteinNeeded = weightValue * .82;
-		gramsProteinInsert.textContent = gramsProteinNeeded;
+		gramsProteinNeeded = Math.round (gramsProteinNeeded * 10) / 10;
+        gramsProteinInsert.textContent = gramsProteinNeeded;
 		console.log('Welcome to the matrix. Ready Player 2')
     } // end calcProteinNeed
 
@@ -199,19 +207,24 @@ document.addEventListener("DOMContentLoaded", function() {
 		totalCaloriesUntilBfGoal = LbsToLoseToGoal * 3500;
 
 		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / caloricDeficitValue;
-
+        numberOfDaysTilGoal = Math.round (numberOfDaysTilGoal * 10) / 10;
     	numberOfDaysTilGoalInsert.forEach( function(element, index) {
     		element.textContent  = numberOfDaysTilGoal;
     	});
 
 		numberOfWeeksTilGoal = numberOfDaysTilGoal / 7;
+        numberOfWeeksTilGoal = Math.round (numberOfWeeksTilGoal * 10) / 10;
         numberOfWeeksTilGoalInsert.textContent = numberOfWeeksTilGoal;
 
 		numberOfMonthsTilGoal = numberOfWeeksTilGoal / 4;
+        numberOfMonthsTilGoal = Math.round (numberOfMonthsTilGoal * 10) / 10;
 		numberOfMonthsTilGoalInsert.textContent = numberOfMonthsTilGoal
 
 		//it will be in miliseconds. So have to convert to days. 
 		let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
+
+        numberOfDaysBetweenNowAndSummer = Math.round (numberOfDaysBetweenNowAndSummer * 10) / 10;
+
 
 		daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
 
@@ -230,7 +243,8 @@ document.addEventListener("DOMContentLoaded", function() {
     } //end function calcDaysToGoalBf
 
     function calcPercentDeficit() {
-    	calculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
+    	unroundedCalculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
+        calculatedPercentDeficit = (Math.round (unroundedCalculatedPercentDeficit * 100) / 100)*100;
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
     }
 
@@ -366,6 +380,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let tdee = document.getElementsByName('tdee');
 
+    //could turn this into a function getArrayOfElementsByClassName
     const activityListElements = document.getElementsByClassName('activity');
     const activityList = Array.from(activityListElements);
     activityList.forEach( function(element, index) {
@@ -404,15 +419,18 @@ document.addEventListener("DOMContentLoaded", function() {
 	reCalcButton.addEventListener('click', reCalc);
     calcBmrButton.addEventListener('click', calcBmr);
 
-    const averageMaleWeight = 197;
-    const averageMaleHeightInches = 69.0;
-    const averageMaleWaistInches = 40.3;
-    const averageMaleBodyFatPercentage = 28;
+    const kAverageMaleWeight = 197;
+    const kAverageMaleHeightInches = 69.0;
+    const kAverageMaleWaistInches = 40.3;
+    const kAverageMaleBodyFatPercentage = 28;
 
-    const averageFemaleWeight = 170;
-    const averageFemaleHeight = 63.6;
-    const averageFemaleWaistInches = 38.7;
-    const averageFemaleBodyFatPercentage = 41;
+    const kAverageFemaleWeight = 170;
+    const kAverageFemaleHeight = 63.6;
+    const kAverageFemaleWaistInches = 38.7;
+    const kAverageFemaleBodyFatPercentage = 41;
+
+    const maleSValue = 5;
+    const femaleSValue = -161; //where s is +5 for males and -161 for females.
 
     const firstDayOfSummer = new Date("06/20/2020");
     let todaysDate = new Date();
@@ -455,11 +473,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     	bfRunDown.textContent = bfPercentageArray;
     	bfRunDown.textContent = displayBfRundownData;
-    
+
+    }
+
 //<script src="countUp.js"></script>    
 //todo
 //1. Figure out Object. 
 //2. Figure out how to display a list of objects.
 //3. Do the proper calculations for the objects.
-}
-});
+
+} //end calculateUserBodyFat
+
+
+

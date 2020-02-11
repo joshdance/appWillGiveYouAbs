@@ -23,7 +23,7 @@ Next steps:
 23. add estimate bf % section - Done
 24. add estimate your activity level section - Done
 
-8. get the numbers to be correct. They are too floaty right now. Int? 
+8. get the numbers to be correct. They are too floaty right now. Round to one decimal. 
 25. auto cal 25% reduction in calories for deficit
 28. Make it look good with CSS
 

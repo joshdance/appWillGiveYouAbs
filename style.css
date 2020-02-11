@@ -3,6 +3,10 @@ html {
 	font-size: 18px;
 }
 
+.bmrInputForm {
+	flex; justify-content: flex-end;
+}
+
 .imageContainer {
 	max-width: 800px;
 }
@@ -210,4 +214,3 @@ ol {
 	font-weight:500;
 	font-size:14px;
 }
-

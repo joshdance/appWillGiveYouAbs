@@ -9,6 +9,17 @@
 	<h1>This App Will Give You Abs</h1>
 </div>
 <div class="mainContainer">
+
+<div>
+<div class="genderHeader">What is your gender?</div>
+	<div class="radio-group">
+		<input type="radio" class="sex toggle" name="sex" id="female" value="female">
+		<label for="female">Female</label>
+		<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
+		<label for="male">Male</label>
+	</div>
+</div>
+
 <p>
 	What is your current weight?
 </p>
@@ -43,16 +54,15 @@
 	<input type="number" id="percentInputBox" class="percentInputBox inputform" placeholder="in whole percent. example 20 not .2" value="22">
 </div>
 
-<div>
-	<div class="genderHeader">What is your gender?</div>
-	<input type="radio" class="sex" name="sex" id="female" value="female">
-	<label for="female">Female</label>
-	<input type="radio" class="sex" name="sex" id="male" value="male" checked>
-	<label for="male">Male</label>
-</div>
+
 
 <div>
 	<button type="button" class="calcButton squareButton">Calculate it!</button>
+</div>
+
+<h2>Starting Point</h2>
+<div>
+	You currently weigh <span name="weightInsert">A</span>lbs. With your current body fat percentage of <span name="bfInsert">Y</span>% you have <span id="LbsBfResultsDiv">B</span> of body fat and <span id="leanResultsDiv"></span> lbs of lean body mass.
 </div>
 
 <h2>What is your goal?</h2>
@@ -63,10 +73,6 @@
 	<input type="number" class="inputform" id="bfGoalInputBox" value="10">
 </div>
 
-<h2>Starting Point</h2>
-<div>
-	You currently weigh <span name="weightInsert">A</span>lbs. With your current body fat percentage of <span name="bfInsert">Y</span>% you have <span id="LbsBfResultsDiv">B</span> of body fat and <span id="leanResultsDiv"></span> lbs of lean body mass.
-</div>
 
 <div>You want to decrease your body fat, and keep your lean body mass.</div>
 <div>To do that, you need to do </div>
@@ -94,13 +100,13 @@
 <p>
 <div>
 	What is your age?
-	<input type="number" class="inputform" name="age" id="age" value="33">
+	<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
 </div>
 <div>
 	What is your height in feet?
-	<input type="number" class="inputform" name="feet" id="feet" value="5">
+	<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
 	and your remaining height in inches
-	<input type="number" class="inputform" name="inches" id="inches" value="8">
+	<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
 </div>
 
 <div>
@@ -188,19 +194,19 @@ Then you will have <span id="newFatInsert">C</span> lbs of fat, and <span id="ne
 <div>
 	Eating <span name="calorieBudgetInsert">Z</span> calories a day, 
 </div>
-it will take you <span name="numberOfDaysTilGoalInsert">X</span> number of days to reach your goal.
+it will take you <span name="numberOfDaysTilGoalInsert">X</span> days to reach your goal.
 <div>
-	It will take you <span id="numberOfWeeksTilGoalInsert">X</span> number of weeks to reach your goal. 
+	It will take you <span id="numberOfWeeksTilGoalInsert">X</span> weeks to reach your goal. 
 </div>
 <div>
-	It will take you <span id="numberOfMonthsTilGoalInsert">X</span> number of months to reach your goal. 
+	It will take you <span id="numberOfMonthsTilGoalInsert">X</span> months to reach your goal. 
 </div>
 <p></p>
 <div>
 	It will be <span id="dateFromCalculatedDaysAway">daysinsert</span> in <span name="numberOfDaysTilGoalInsert">X</span> days. 
 </div>
 <div>
-	There are <span id="daysTillSummerInsert">X</span> number of days until summer June 20, 2020 🏝. 
+	There are <span id="daysTillSummerInsert">X</span> days until summer June 20, 2020 🏝. 
 </div>
 <p></p>
 <div>
