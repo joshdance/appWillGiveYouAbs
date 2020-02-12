@@ -1,6 +1,8 @@
 I believe that everyone can be healthy, happy, and in great physical shape. 
 
-There is way too much half truths, falsehoods and mumbo jumbo thrown around as fitness advice. 
+There too many half truths, falsehoods and mumbo jumbo thrown around as fitness advice. Everyone wants to sell you their program, supplement or secrets that make getting in shape easy. 
+
+It is not easy. But it is simple.
 
 I have spent a lot of time researching and implmenting science based principles for getting in shape. 
 
