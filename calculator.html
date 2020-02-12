@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Abs Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="header">
+	<h1>This App Will Give You Abs - Calculator</h1>
+</div>
+<div class="mainContainer">
+<div>
+	What do we want? Abs. When do we want them? Now. This app will give you the map of how to get there. If you follow it, you will get abs.
+</div>
+<div>
+	<span class="calcOnlyWarning">This is the calculator only. </span>If you want the live essay that explains the concepts with the calculator built in, <a href="index.html">click here.</a>
+</div>
+
+<h2>Where are you at?</h2>
+
+<div class="genderHeader">
+	What is your gender?
+</div>
+
+<div class="radio-group">
+	<input type="radio" class="sex toggle" name="sex" id="female" value="female">
+	<label for="female">Female</label>
+	<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
+	<label for="male">Male</label>
+</div>
+
+<div>
+	What is your current weight?
+</div>
+
+<div>
+	<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
+</div>
+<div>
+	What is your current body fat percentage?
+</div>
+
+<div>
+	<span id="showEstimateSection">I don't know my body fat percentage. Help me estimate it.</span>
+</div>
+
+<div id="estimateBodyFat">
+	<h2>How to estimate body fat percentage</h2>
+	<p>
+		There are many ways to estimate body fat, but one of the easiest and most straightforward ways is to just eyeball it with a comparison chart and descriptions.
+	</p>
+	<p>
+		I scoured the internet for the best body fat comparison charts. Fair warning lots of pictures of people with various levels of body fat ahead. You don't have to be exactly accurate. Be honest. Guys usually think they are leaner than they really are, girls the opposite.
+	</p>
+	<h3>Body Fat Level Examples</h3>
+	<p>
+		I have scoured the internet looking for all the best real life examples of body fat percentages. Sources in the footnote section. <a href="bodyfatpercentageexamples.html" target="_blank" rel="noopener noreferrer">Click here</a> or click the image to open full size in a new tab.
+	</p>
+	<div class="imageContainer">
+		<a href="bodyfatpercentageexamples.html" target="_blank" rel="noopener noreferrer"><img src="images/menBodyFatExamples.png"></a>
+	</div>
+
+	<h3>Body Fat Level Descriptions</h3>
+	<div id="estimateBodyFatLevelDescriptions">
+		
+	</div>
+</div>
+
+<div>
+	<input type="number" id="percentInputBox" class="percentInputBox inputform" placeholder="in whole percent. example 20 not .2" value="22">
+</div>
+
+<div>
+	<button type="button" class="calcButton squareButton">Calculate my starting point!</button>
+</div>
+
+<h2>Starting Point</h2>
+<div>
+	You currently weigh <span name="weightInsert">A</span>lbs, with your body fat percentage of <span name="bfInsert">Y</span>%. That means you have <span id="LbsBfResultsDiv">B</span> of body fat and <span id="leanResultsDiv"></span> lbs of lean body mass.
+</div>
+
+<h2>What is your goal?</h2>
+<div>
+	What is your goal body fat %? This is a better question that what is your goal weight. Remember for <span class="gender">males</span> your abs pop at <span class="genderOptimalBfGoal">10%</span> body fat %. 
+</div>
+<div>
+	<input type="number" class="inputform" id="bfGoalInputBox" value="10">
+</div>
+
+<div>
+	<button type="button" id="getAbPlan" class="squareButton">Get me my plan to abs.</button>
+</div>
+
+<h2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</h2>
+<div>
+	You are at <span name="bfInsert">Y</span>%, with a current weight of <span name="weightInsert">X</span> with <span name="leanInsert">Z</span> lbs of lean body mass and <span name="fatInsert">A</span> lbs of body fat. 
+</div>
+<div>
+	Your goal is <span name="bfPercentGenderInsert">gender</span>% bf, with a goal weight of <span name="newTotalBodyWeightInsert"></span> with lbs of lean body mass and <span name="newFatInsert">C</span> lbs of fat.
+</div>
+<div>
+	To get to <span name="bfPercentGenderInsert">gender</span>% bf, you need to burn off <span name="loseInsert">B</span> lbs of fat. (Current <span name="fatInsert">A</span> - Goal <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> to lose)
+</div>
+
+<h2>How to decrease body fat</h2>
+
+<div>4 keys to body fat reduction: </div>
+<ol>
+	<li>Be in an energy deficit.</li>
+	<li>Lift weights to keep and gain muscle.</li>
+	<li>Eat enough protein to repair and build your muscles.</li>
+	<li>Sleep enough to repair and build your muscles and keep you stress hormones down..</li>
+</ol>
+
+<h3>Let's Calculate your BMR</h3>
+<div>
+	What is your age?
+	<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
+</div>
+<div>
+	What is your height in feet?
+	<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
+</div>
+<div>
+	and your remaining height in inches
+	<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
+</div>
+
+<div>
+	We will use the weight that you entered earlier, of <span name="weightInsert">weight fill</span>lbs.
+</div>
+
+<div>
+	<button type="button" class="calcBmrButton squareButton" id="calcBmr">Calculate your BMR!</button>
+</div>
+
+<div>Your estimated BMR is <span name="bmrAnswer">bmrAnswer</span></div>
+
+<div>
+	<h3>Let's pick your Activity Multiplier</h3>
+</div>
+
+<div>
+	<input type="radio" class="activity" name="activity" id="sedentary" value="sedentary" checked>
+	<label for="sedentary">Sedentary 1.15</label>
+	<input type="radio" class="activity" name="activity" id="light" value="light">
+	<label for="light">Light Activity 1.35</label>
+	<input type="radio" class="activity" name="activity" id="moderate" value="moderate">
+	<label for="moderate">Moderate Activity 1.55</label>
+	<input type="radio" class="activity" name="activity" id="veryactive" value="veryactive">
+	<label for="veryactive">Very Active 1.75</label>
+	<input type="radio" class="activity" name="activity" id="extremely" value="extremely">
+	<label for="extremely">Extremely Active 1.95</label>
+</div>
+
+<div>Need help picking your activity level? 👇🏻</div>
+<div>
+	<span id='buttonToggleActivityLevelSection'>Click to show the Estimating Activity Level Section</span>
+</div>
+
+<div id="activityLevelSection">
+	<h2>How to estimate your Activity Level</h2>
+	<p>
+		Studies have shown that we all overestimate how much we are active. So read the descriptions, pick where you think you are, then move down one level. For example if you think you are Moderately Active, chose Lightly Active. Since it is an estimate it just needs to be close and then you can see what the results are and tweak it.
+	</p>
+
+	<h4>Sedentary 1.15</h4>
+	<p>
+		You don’t intentionally exercise at all. Get up, go to work, come home, eat dinner, relax.
+	</p>
+
+	<h4>Lightly Active 1.2</h4>
+	<p>
+		On average, you walk for exercise about 30 minutes a day. Or you are running or lifting weights fro 15 minutes a day.
+	</p>
+
+	<h4>Moderately Active 1.4</h4>
+	<p>
+		If I was looking for you on a weeknight, I would call the gym. 50 minutes of vigorous exercise a day. Or about one hour and 45 minutes of walking (for exercise, not going around your house) per day. Most people do not do this.
+	</p>
+
+	<h4>Very Active 1.6</h4>
+	<p>
+		You move vigorously for your work (think something like construction or yardwork), or you workout every single day for more than an hour. If you were to get this level of activity only walking, it would be a nearly impossible four hours and 15 minutes of walking (again, for intentional exercise) a day.
+	</p>
+
+	<h4>Extra Active 1.8</h4>
+	<p>
+		Hey there Michael Phelps. Almost no one does this. This means every single day you are working out hard for an hour and a half. Or you are a professional speed walker.
+	</p>
+</div>
+
+<div>
+	Your BMR x Your Activity Multiplier gives your Total Daily Energy Expenditure or TDEE.
+</div>
+<div class="tdeeResults">
+	<div>
+		<span name="bmrAnswer">bmrAnswer</span> x Activity Multiple = <span name="tdee"></span>
+	</div>
+</div>
+
+<div>
+	Daily caloric deficit: 
+	<input type="number" class="inputform" id="caloricDeficitInput" value="500">
+	<div>
+		Your caloric deficit is <span id="percentDeficitInsert">not calculated</span>%. General advice is to pick a 25% deficit. 
+	</div>
+</div>
+
+<div>
+	Daily Calories you want to eat: 
+	<input type="number" class="inputform" id="caloricDeficitInput" value="500">
+	<div>
+		Your TDEE of <span name="tdee">X</span> minus your deficit of <span name="userPickedDeficitInsert">Y</span> gives you <span name="calorieBudgetInsert">Z</span> calories a day. 
+	</div>
+</div>
+
+<div>
+	Date you will hit your goal by: 
+	<input type="number" class="inputform" id="caloricDeficitInput" value="500">
+</div>
+
+<div>
+	<button type="button" class="squareButton" id="reCalcButton">Re-calculate the 🔥</button>
+</div>
+
+<div class="dateCalculationsSection">
+	<div>
+		It will take you <span name="numberOfDaysTilGoalInsert">X</span> days to reach your goal.
+	</div>
+
+	<div>
+		It will take you <span id="numberOfWeeksTilGoalInsert">X</span> weeks to reach your goal. 
+	</div>
+
+	<div>
+		It will take you <span id="numberOfMonthsTilGoalInsert">X</span> months to reach your goal. 
+	</div>
+</div>
+
+<div class="summerSection">
+	<div>
+		It will be <span id="dateFromCalculatedDaysAway">daysinsert</span> in <span name="numberOfDaysTilGoalInsert">X</span> days. 
+	</div>
+	<div>
+		There are <span id="daysTillSummerInsert">X</span> days until summer June 20, 2020 🏝. 
+	</div>
+</div>
+<h2>How much protein you need</h2>
+<div>
+	Research shows that you need .82 grams of protein per pound of total body mass. 
+
+	At <span name="weightInsert">X</span>lbs total body weight, you need <span id='gramsProteinInsert'></span> grams of protein a day. 
+</div>
+
+<h2>Don't forget to workout and sleep enough.</h2>
+<div>You have the map. Let's get it.</div>
+
+<h3>Trainers?</h3>
+<div>If you are a trainer and want a branded version of this page or calculator to share with your clients, please email me.</div>
+</div>
+
+<div class="footer">
+	<a target="_blank" rel="noopener" class="joshdance-by" href="https://joshdance.me/"><img src="http://joshdance.me/images/example/adventure.png" /><p>by joshdance</p></a>
+</div>
+
+<script src="calc.js"></script>
+</body>
+</html>

@@ -7,6 +7,10 @@ html {
 	flex; justify-content: flex-end;
 }
 
+.calcOnlyWarning {
+	color: orange;
+}
+
 .imageContainer {
 	max-width: 800px;
 }
@@ -49,11 +53,11 @@ html {
 }
 
 #showEstimateSection {
-	color: green;
+	color: red;
 }
 
 #buttonToggleActivityLevelSection {
-	color: green;
+	color: red;
 }
 
 .tdeeResults {

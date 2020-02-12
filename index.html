@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Calculator</title>
+	<title>This App Will Give You Abs</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -9,37 +9,71 @@
 	<h1>This App Will Give You Abs</h1>
 </div>
 <div class="mainContainer">
-
 <div>
-<div class="genderHeader">What is your gender?</div>
-	<div class="radio-group">
-		<input type="radio" class="sex toggle" name="sex" id="female" value="female">
-		<label for="female">Female</label>
-		<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
-		<label for="male">Male</label>
-	</div>
+	What do we want? Abs. When do we want them? Now. This app will give you the map of how to get there. If you follow it, you will get abs.
+</div>
+<div>
+	This is a live essay. And essay + a calculator. If you already understand the principles, <a href="calculator.html">click here to use the calculator only</a>. If this is your first time, Welcome! and ready player one.
 </div>
 
-<p>
+<h2>How to get abs</h2>
+<div>To have visible abs, you need two things. You need:
+</div>
+<ol>
+<li>Abdominal muscles</li>
+<li>A low enough body fat percentage so your abdominal fat is not completely covering you abdominal muscles.</li>
+</ol>
+<div>
+	That is it. You do not need to do specific exersizes or a thousand crunches or sit ups a day. Abs connect your ribs to your hips along your front and sides. When you use your abs, they pull your ribs and hips closer, bending your spine to the front or sides. If you can sit up or lean forward, you have abs. ✅ Check off the first item!
+</div>
+<div>
+	So if you have abs now you just need a low enough body fat percentage to see them. What is that percentage? It is different for females and males. 
+</div>
+<div>
+	For guys, abs start showing under 14% body fat, and for gals, under 22% body fat. These are estimates and every body is different but you need to have low levels of body fat compared to your levels of muscle to see your abs. Abs are clearly defined at 10% body fat for guys, and 20% body fat for gals. 
+</div>
+<div>So now that we know where we need to go, let's get the map of how to get there. Maps are only useful if you know where you are going, and you know where you are right now. </div>
+
+<h2>What is your starting point?</h2>
+
+<div class="genderHeader">
+	What is your gender?
+</div>
+
+<div class="radio-group">
+	<input type="radio" class="sex toggle" name="sex" id="female" value="female">
+	<label for="female">Female</label>
+	<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
+	<label for="male">Male</label>
+</div>
+
+<div>
 	What is your current weight?
-</p>
+</div>
+
 <div>
 	<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
 </div>
-<p>
-	What is your current body fat percentage? If you don't know, you can estimate. 
-</p>
 <div>
-	<span id="showEstimateSection">Click to open the estimating section.</span>
+	What is your current body fat percentage?
 </div>
 
+<div>
+	<span id="showEstimateSection">I don't know my body fat percentage. Help me estimate it.</span>
+</div>
 
 <div id="estimateBodyFat">
 	<h2>How to estimate body fat percentage</h2>
-	<p>There are many ways to estimate body fat, but one of the easiest and most straightforward ways is to just eyeball it with a comparison chart and descriptions.</p>
-	<p>I scoured the internet for the best body fat comparison charts. Fair warning lots of pictures of people with various levels of body fat ahead. You don't have to be exactly accurate. Be honest. Guys usually think they are leaner than they really are, girls the opposite.</p>
+	<p>
+		There are many ways to estimate body fat, but one of the easiest and most straightforward ways is to just eyeball it with a comparison chart and descriptions.
+	</p>
+	<p>
+		I scoured the internet for the best body fat comparison charts. Fair warning lots of pictures of people with various levels of body fat ahead. You don't have to be exactly accurate. Be honest. Guys usually think they are leaner than they really are, girls the opposite.
+	</p>
 	<h3>Body Fat Level Examples</h3>
-	<p>I have scoured the internet looking for all the best real life examples of body fat percentages. Sources in the footnote section. <a href="bodyfatpercentageexamples.html" target="_blank" rel="noopener noreferrer">Click here</a> or click the image to open full size in a new tab.</p>
+	<p>
+		I have scoured the internet looking for all the best real life examples of body fat percentages. Sources in the footnote section. <a href="bodyfatpercentageexamples.html" target="_blank" rel="noopener noreferrer">Click here</a> or click the image to open full size in a new tab.
+	</p>
 	<div class="imageContainer">
 		<a href="bodyfatpercentageexamples.html" target="_blank" rel="noopener noreferrer"><img src="images/menBodyFatExamples.png"></a>
 	</div>
@@ -55,30 +89,53 @@
 </div>
 
 
-
 <div>
-	<button type="button" class="calcButton squareButton">Calculate it!</button>
+	<button type="button" class="calcButton squareButton">Calculate my starting point!</button>
 </div>
 
 <h2>Starting Point</h2>
 <div>
-	You currently weigh <span name="weightInsert">A</span>lbs. With your current body fat percentage of <span name="bfInsert">Y</span>% you have <span id="LbsBfResultsDiv">B</span> of body fat and <span id="leanResultsDiv"></span> lbs of lean body mass.
+	You currently weigh <span name="weightInsert">A</span>lbs, with your body fat percentage of <span name="bfInsert">Y</span>%. That means you have <span id="LbsBfResultsDiv">B</span> of body fat and <span id="leanResultsDiv"></span> lbs of lean body mass.
 </div>
 
 <h2>What is your goal?</h2>
-<p>
-	What is your goal body fat %? This is a better question that what is your goal weight.
-</p>
+<div>
+	What is your goal body fat %? This is a better question that what is your goal weight. Remember for <span class="gender">males</span> your abs pop at <span class="genderOptimalBfGoal">10%</span> body fat %. 
+</div>
 <div>
 	<input type="number" class="inputform" id="bfGoalInputBox" value="10">
 </div>
 
+<div>
+	<button type="button" id="getAbPlan" class="squareButton">Get me my plan to abs.</button>
+</div>
 
-<div>You want to decrease your body fat, and keep your lean body mass.</div>
-<div>To do that, you need to do </div>
+<h2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</h2>
+<div>
+	You are at <span name="bfInsert">Y</span>%, with a current weight of <span name="weightInsert">X</span> with <span name="leanInsert">Z</span> lbs of lean body mass and <span name="fatInsert">A</span> lbs of body fat. 
+</div>
+<div>
+	Your goal is <span name="bfPercentGenderInsert">gender</span>% bf, with a goal weight of <span name="newTotalBodyWeightInsert"></span> with lbs of lean body mass and <span name="newFatInsert">C</span> lbs of fat.
+</div>
+<div>
+	To get to <span name="bfPercentGenderInsert">gender</span>% bf, you need to burn off <span name="loseInsert">B</span> lbs of fat. (Current <span name="fatInsert">A</span> - Goal <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> to lose)
+</div>
+<div>
+	The next two questions are "How can I decrease my body fat?" and "How long will this take?" Both of those questions we can answer with the formula to reduce body fat. 
+</div>
+
+<h2>How to decrease body fat</h2>
+<div>
+	You need to do 4 things to decrease your body fat, and therefore your body fat percentage.
+</div>
+
+<div>
+	An important note‼️ - You want to decrease your body fat, and keep your lean body mass. You don't want to 'lose weight'. You want to lose body fat. You can lose weight by not drinking water, or removing an extra body part, but that won't have the effect you want. You want to keep all your lean body mass, and lose an amount of body fat.
+</div>
+<div>To do that, you need to: </div>
 <ol>
 	<li>Be in an energy deficit.</li>
-	<li>Lift weights.</li>
+	<li>Lift weights to keep and gain muscle.</li>
 	<li>Eat enough protein to repair and build your muscles.</li>
 	<li>Sleep enough to repair and build your muscles and keep you stress hormones down..</li>
 </ol>
@@ -86,18 +143,32 @@
 <div id="bfRunDown"></div>
 <div>Let's tackle the first one.</div>
 
-<h2>Energy Deficit</h2>
-<div>This one is a simple concept, but difficult to do. You need to balance how much energy you consume, with home much energy you use.</div>
-<div>The energy you use needs to be consistently greater than the energy you consume.</div>
+<h2>How to be in an energy deficit</h2>
+<div>
+	This one is a simple concept, but difficult to do. You need to balance how much energy you consume, with home much energy you use.
+</div>
+<div>
+The energy you use needs to be consistently greater than the energy you consume.
+</div>
+<div>
+	Energy Expenditure > Energy Intake
+</div>
 
 <div>Let's first calculate how much energy you use on average. </div>
 
-<div>Your body uses or burns energy all the time to keep you alive and happy. If you did absolutely nothing in a day, your body would still burn a lot of energy keeping you healthy.</div>
-<div>This is called your base metabolic rate, or BMR.</div>
+<h3>How to calculate your energy expenditure</h3>
+
+<div>
+	Your body uses or burns energy all the time to keep you alive and happy. If you did absolutely nothing in a day, your body would still burn a lot of energy keeping you healthy, pumping your blood and repairing your cells.
+</div>
+<div>
+	This is called your base metabolic rate, or BMR.
+</div>
 
 <h3>Let's Calculate your BMR</h3>
-
-<p>
+<div>
+	We can use a formula to calculate what your BMR is. 
+</div>
 <div>
 	What is your age?
 	<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
@@ -105,28 +176,40 @@
 <div>
 	What is your height in feet?
 	<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
+</div>
+<div>
 	and your remaining height in inches
 	<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
 </div>
 
 <div>
-	Let's use our weight, that you entered earlier, of <span name="weightInsert">weight fill</span>lbs.
+	We will use the weight that you entered earlier, of <span name="weightInsert">weight fill</span>lbs.
 </div>
 
 
 <div>
 	<button type="button" class="calcBmrButton squareButton" id="calcBmr">Calculate your BMR!</button>
 </div>
-<p></p>
 
-<div>Your estimated BMR is <span id="bmrAnswer"></span></div>
-<p></p>
-<div>If you did nothing in a day, you body would burn that many calories keeping you alive. </div>
+<div>Your estimated BMR is <span name="bmrAnswer">bmrAnswer</span></div>
+
 <div>
-	However, we all do activites during the day. We multiple this BMR by an activity multipler to add in additional calories that we burn with our activity. 
+	If you did nothing in a day, you body would burn <span name="bmrAnswer">bmrAnswer</span> calories keeping you alive.
 </div>
 <div>
-<h3>Activity Multiplier</h3>
+	However, we don't just sit in bed all day. (Although sometimes we wish we could). 
+	We move and cook, and talk, and fidget. We also exersize. All the non-intentional exersize energy used is categorized as Non-Exercise Activity Thermogenesis or NEAT.
+
+	Intentional exersize like walking, lifting weights or playing soccer is categorized as Exercise Activity Thermogenesis or EAT. (Which is weird because it is like the opposite of eating, but whatever white labcoat scientists we are still listening.)
+
+	There is also some energy used as Thermic Effect of Food or TEF, but we are going to ignore that for right now. Click here to read an article that covers that in more depth. 
+
+	BMR is easy to calculate but NEAT and EAT and TEF are hard to calculate. So scientists have developed a series of activity multiplers. You take your nicely calculated BMR, and multiple it by an activity multiplier that wraps NEAT, EAT, and TEF up in one pretty bow. 
+
+	This gives us an estimatation of the additional calories that we burn in our normal everyday activity. 
+</div>
+<div>
+<h3>Let's pick your Activity Multiplier</h3>
 </div>
 <div>
 <input type="radio" class="activity" name="activity" id="sedentary" value="sedentary" checked>
@@ -146,82 +229,204 @@
 </div>
 <div id="activityLevelSection">
 	<h2>How to estimate your Activity Level</h2>
-	<p>Studies have shown that we all overestimate how much we are active. So read the descriptions, pick where you think you are, then move down one level. For example if you think you are Moderately Active, chose Lightly Active. Since it is an estimate it just needs to be close and then you can see what the results are and tweak it. </p>
+	<p>
+		Studies have shown that we all overestimate how much we are active. So read the descriptions, pick where you think you are, then move down one level. For example if you think you are Moderately Active, chose Lightly Active. Since it is an estimate it just needs to be close and then you can see what the results are and tweak it.
+	</p>
 
 	<h4>Sedentary 1.15</h4>
-	<p>You don’t intentionally exercise at all. Get up, go to work, come home, eat dinner, relax.</p>
+	<p>
+		You don’t intentionally exercise at all. Get up, go to work, come home, eat dinner, relax.
+	</p>
 
 	<h4>Lightly Active 1.2</h4>
-	<p>On average, you walk for exercise about 30 minutes a day. Or you are running or lifting weights fro 15 minutes a day.</p>
+	<p>
+		On average, you walk for exercise about 30 minutes a day. Or you are running or lifting weights fro 15 minutes a day.
+	</p>
 
 	<h4>Moderately Active 1.4</h4>
-	<p>If I was looking for you on a weeknight, I would call the gym. 50 minutes of vigorous exercise a day. Or about one hour and 45 minutes of walking (for exercise, not going around your house) per day. Most people do not do this.</p>
+	<p>
+		If I was looking for you on a weeknight, I would call the gym. 50 minutes of vigorous exercise a day. Or about one hour and 45 minutes of walking (for exercise, not going around your house) per day. Most people do not do this.
+	</p>
 
 	<h4>Very Active 1.6</h4>
-	<p>You move vigorously for your work (think something like construction or yardwork), or you workout every single day for more than an hour. If you were to get this level of activity only walking, it would be a nearly impossible four hours and 15 minutes of walking (again, for intentional exercise) a day.
+	<p>
+		You move vigorously for your work (think something like construction or yardwork), or you workout every single day for more than an hour. If you were to get this level of activity only walking, it would be a nearly impossible four hours and 15 minutes of walking (again, for intentional exercise) a day.
+	</p>
 
 	<h4>Extra Active 1.8</h4>
-	<p>Hey there Michael Phelps. Almost no one does this. This means every single day you are working out hard for an hour and a half. Or you are a professional speed walker. </p>
+	<p>
+		Hey there Michael Phelps. Almost no one does this. This means every single day you are working out hard for an hour and a half. Or you are a professional speed walker.
+	</p>
 </div>
 
-<div class="tdeeResults">Your TDEE with Activity Multiple = <span name="tdee"></span></div>
-
-<h2>How to get to <span name="bfPercentGenderInsert">gender </span> % bf</h2>
-
-With your current weight of <span name="weightInsert">X</span> and your current bf % of <span name="bfInsert">Y</span> you have <span id="leanInsert">Z</span> lbs of lean body mass and <span id="fatInsert">A</span> lbs of body fat. 
-<p></p>
-To get to <span name="bfPercentGenderInsert">gender</span> % bf, you need to lose <span id="loseInsert">B</span> lbs of fat. 
-
-Then you will have <span id="newFatInsert">C</span> lbs of fat, and <span id="newTotalBodyWeightInsert"></span> of total body weight, for a body fat % of <span name="bfPercentGenderInsert">gender</span> % bf.
-<div></div>
-<p>
 <div>
-	Pick your caloric deficit: 
+	Your BMR x Your Activity Multiplier gives your Total Daily Energy Expenditure or TDEE.
+</div>
+<div class="tdeeResults">
+	<div>
+		<span name="bmrAnswer">bmrAnswer</span> x Activity Multiple = <span name="tdee"></span>
+	</div>
+</div>
+<div>
+	Now that we have estimated your energy expenditure, we have look at the other side of the equation, your energy intake. 
+</div>
+
+<h2>How to estimate your energy intake</h2>
+<div>
+	Most people don't like this, but the best way to know your energy intake is to track how many calories you are eating. That is it. 
+</div>
+
+<h2>How being in a caloric defict burns body fat</h2>
+<div>
+	If you are consistently intaking less energy than you expend, your body will happily start using your stores of energy, aka your fat to fuel your daily function. Do this consistently and your body will use up the lbs of fat you want to get rid of. It does this by breaking the bonds that hold the fat molecules together and uses that energy.   
+</div>
+<div>Carbon, Oxygen, and Hydrogen make up a large part of our bodies.</div>
+<div>
+	Chemical formula for water is H2O. Chemical formula for carbon dioxide is CO2. The average chemical formula for human fat is C55H104O6. 
+</div>
+<div>
+	Fat + Oxygen = Carbon Dioxide + Water
+</div>
+
+<div class="imageContainer">
+	<img src="images/fatEquation.png">
+</div>
+
+<div>
+	10 lbs of fat becomes -> 8.4 lbs of CO2 gas, and 1.6 lbs of water. 
+</div>
+
+<div>Pure fat has 9 calories per gram. Meaning if you burn 1 gram of pure fat, it will put off 9 calories of energy, along with .84 grams of CO2 and .16 grams of H2O.
+</div>
+<div>
+	There are 453.59 grams per lb. So 452.5 * 9 = 4,072.5. The max number of calories a pound of fat can contain is 4073 calories. 
+</div>
+
+<div>
+	However body fat is not pure fat. You have lots of other stuff in there like cell walls, protein, fluid, cell nucli and other tissues. So the calorie content of body fat is going to be less than that of pure fat.
+</div>
+
+<div>
+	In 1958, a scientist named Max Wishnofsky concluded that the caloric equivalent of one pound of body weight lost or gained was 3,500 calories. In general, we can assume that:
+</div>
+<ul>
+	<li>One pound equals 454 grams.</li>
+	<li>Pure fat contains 8.7–9.5 calories per gram.</li>
+	<li>Body fat tissue is 87% fat.</li>
+</ul>
+<div>
+	Using those values, we can conclude that a pound of body fat  contains anywhere from 3,436 to 3,752 calories.
+</div>
+<div>
+	Since calories are estimates themselves, we can use 3,500 calories per pound of fat as the baseline. 
+</div>
+<div>
+	We know have all the information we need to figure out how long it will take you to get to <span name="bfPercentGenderInsert">bf goal</span>% body fat!
+</div>
+<div>
+	We know how many pounds of fat you currently have. 
+</div>
+<div>
+	We know how many pounds of fat will put you at <span name="bfPercentGenderInsert">bf goal</span>% body fat.
+</div>
+<div>
+	We know how many pounds of fat you have to burn off as energy and CO2 and H2O.
+</div>
+<div>
+	We know how many calories are in a pound of fat. 3,500
+</div>
+<div>
+	This means we know know how many calories you need to burn off. 
+</div>
+<div>
+	With that information now we just need to figure out what your caloric deficit will be. We can pick the date you want to achieve this goal by and it will calculate the deficit needed, or you can pick the deficit and it will tell you the date you will achieve that goal by. 
+</div>
+
+<div>
+	Daily caloric deficit: 
+	<input type="number" class="inputform" id="caloricDeficitInput" value="500">
+	<div>
+		Your caloric deficit is <span id="percentDeficitInsert">not calculated</span>%. General advice is to pick a 25% deficit. 
+	</div>
+</div>
+
+<div>
+	Daily Calories you want to eat: 
+	<input type="number" class="inputform" id="caloricDeficitInput" value="500">
+	<div>
+		Your TDEE of <span name="tdee">X</span> minus your deficit of <span name="userPickedDeficitInsert">Y</span> gives you <span name="calorieBudgetInsert">Z</span> calories a day. 
+	</div>
+</div>
+
+<div>
+	Date you will hit your goal by: 
 	<input type="number" class="inputform" id="caloricDeficitInput" value="500">
 </div>
+
 <div>
-	<button type="button" class="squareButton" id="reCalcButton">Re-calculate</button>
+	<button type="button" class="squareButton" id="reCalcButton">Re-calculate the 🔥</button>
 </div>
-<p></p>
+
+<div class="dateCalculationsSection">
+	<div>
+		It will take you <span name="numberOfDaysTilGoalInsert">X</span> days to reach your goal.
+	</div>
+
+	<div>
+		It will take you <span id="numberOfWeeksTilGoalInsert">X</span> weeks to reach your goal. 
+	</div>
+
+	<div>
+		It will take you <span id="numberOfMonthsTilGoalInsert">X</span> months to reach your goal. 
+	</div>
+</div>
+
+<div class="summerSection">
+	<div>
+		It will be <span id="dateFromCalculatedDaysAway">daysinsert</span> in <span name="numberOfDaysTilGoalInsert">X</span> days. 
+	</div>
+	<div>
+		There are <span id="daysTillSummerInsert">X</span> days until summer June 20, 2020 🏝. 
+	</div>
+</div>
+
 <div>
-	Your TDEE of <span name="tdee">X</span> minus your deficit of <span name="userPickedDeficitInsert">Y</span> gives you <span name="calorieBudgetInsert">Z</span> calories a day. 
+	But remember, there are 4 parts to reducing your body fat!
 </div>
-<p></p>
+<ol>
+	<li>Be in an energy deficit.</li>
+	<li>Lift weights.</li>
+	<li>Eat enough protein to repair and build your muscles.</li>
+	<li>Sleep enough to repair and build your muscles and keep you stress hormones down..</li>
+</ol>
 <div>
-	Your caloric deficit is <span id="percentDeficitInsert">not calculated</span>%. General advice is to pick a 25% deficit. 
-</div>
-<p></p>
-<div>
-	Eating <span name="calorieBudgetInsert">Z</span> calories a day, 
-</div>
-it will take you <span name="numberOfDaysTilGoalInsert">X</span> days to reach your goal.
-<div>
-	It will take you <span id="numberOfWeeksTilGoalInsert">X</span> weeks to reach your goal. 
+	Simply put, to lose just fat and not fat and muscle you need to workout, lifting weights, to remind your body you need the muscles. You need to eat enough protein to give the body fuel for building and maintaining muscles. And you need to sleep to allow your body to recover and keep your muscles. 
 </div>
 <div>
-	It will take you <span id="numberOfMonthsTilGoalInsert">X</span> months to reach your goal. 
+	If you only work on the energy deficit, you will lose muscle mass as well as body fat. This is not good as you will lose the very abs you are trying to get to show. 
 </div>
-<p></p>
-<div>
-	It will be <span id="dateFromCalculatedDaysAway">daysinsert</span> in <span name="numberOfDaysTilGoalInsert">X</span> days. 
-</div>
-<div>
-	There are <span id="daysTillSummerInsert">X</span> days until summer June 20, 2020 🏝. 
-</div>
-<p></p>
-<div>
-	To lose fat and not muscle you need to workout lifting weights to remind your body you need the muscles. You need to eat enough protein to give the body fuel for building and maintaining muscles. And you need to sleep to allow your body to recover and keep your muscles. 
-</div>
-<p></p>
+<h2>How to lift weights</h2>
+<div>Here are links to 2 basic weight lifting programs.</div>
+
+<h2>How to eat enough protein</h2>
 <div>
 	Research shows that you need .82 grams of protein per pound of total body mass. 
 
 	At <span name="weightInsert">X</span>lbs total body weight, you need <span id='gramsProteinInsert'></span> grams of protein a day. 
 </div>
-</div>
+
+<h2>How to get enough sleep</h2>
+<div>Sleep is critical to losing weight and gaining muscle, and having an enjoyable and productive life. If you are not getting enough sleep, you need to get more of it.</div>
+<div>Link to John Medina's research</div>
+
+<h2>Now is the time to take action</h2>
+<div>You now have the map. You have the knowledge you need to reach your goal of having abs. Now you just need to execute.</div>
+
+<h3>Trainers?</h3>
+<div>If you are a trainer and want a branded version of this page or calculator to share with your clients, please email me.</div>
+
 <div class="footer">
 	<a target="_blank" rel="noopener" class="joshdance-by" href="https://joshdance.me/"><img src="http://joshdance.me/images/example/adventure.png" /><p>by joshdance</p></a>
-
 </div>
 
 <script src="calc.js"></script>

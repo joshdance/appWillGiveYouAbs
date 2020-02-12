@@ -94,8 +94,9 @@ function calculateUserBodyFat() {
     }
 
     function calcBmr(){
-    	//set male or female value
+    	calcGoalPercent();
 
+        //set male or female value
     	let selectedSexSValue;
     	if (selectedSex == "female") {
     		selectedSexSValue = femaleSValue;
@@ -121,7 +122,9 @@ function calculateUserBodyFat() {
     	let unRoundedBmrResult = (10 * weightValueKilo) + (6.25 * heightValueCentimeteres) - (5 * ageValue) + selectedSexSValue;
     	bmrResult = Math.round (unRoundedBmrResult * 10) / 10;
 
-    	bmrAnswer.textContent = bmrResult;
+        bmrAnswer.forEach( function(element, index) {
+            element.textContent = bmrResult;
+        });
     } //end function calc bmr
 
     function activeMultipler(){
@@ -186,11 +189,25 @@ function calculateUserBodyFat() {
     		element.textContent = percentValue;
     	});
 
-    	leanInsert.textContent = leanResults;
-    	fatInsert.textContent = LbsBfResults
-    	loseInsert.textContent = LbsToLoseToGoal;
-    	newFatInsert.textContent = GoalFatResults;
-    	newTotalBodyWeightInsert.textContent = GoalTotalBodyWeight;
+        leanInsert.forEach( function(element, index) {
+            element.textContent = leanResults;
+        });
+
+        fatInsert.forEach( function(element, index) {
+            element.textContent = LbsBfResults;
+        });
+
+        loseInsert.forEach( function(element, index) {
+            element.textContent = LbsToLoseToGoal;
+        });
+
+        newFatInsert.forEach( function(element, index) {
+            element.textContent = GoalFatResults;
+        });
+
+        newTotalBodyWeightInsert.forEach( function(element, index) {
+            element.textContent = GoalTotalBodyWeight;
+        });
 
     	calcDaysToGoalBf();
 
@@ -326,9 +343,26 @@ function calculateUserBodyFat() {
         });
     }
 
+    function generateOptimalBodyFatText(){
+        let genderBfGoalFrom100;
+        if (user.sex == 'male') {
+            genderBfGoalFrom100 = bfGoalMale*100
+        } else {
+            genderBfGoalFrom100 = bfGoalFemale*100;
+        }
+
+        genderOptimalBfGoal.forEach( function(element, index) {
+            element.textContent = genderBfGoalFrom100;
+        });
+
+        //set the body fat goal input box to the gender suggestion
+        bfGoalInputBox.value = genderBfGoalFrom100;
+    }
+
     function genderPicked(){
         getUserInputs();
         generateEstimatingText();
+        generateOptimalBodyFatText();
     }
 
     let user;
@@ -352,11 +386,16 @@ function calculateUserBodyFat() {
 
     let selectedSex;
     let bfPercentageGoalByGender;
-    const bfGoalMale = .1;
-    const bfGoalFemale = .21;
+    const bfGoalMale = .10;
+    const bfGoalFemale = .20;
     let calcGoalPercentModifier;
     const calcGoalPercentModifierFemale = .2658;
     const calcGoalPercentModifierMale = .1111111111;
+
+    const tempGenderOptimalBfGoal = document.getElementsByClassName('genderOptimalBfGoal');
+    const genderOptimalBfGoal = Array.from(tempGenderOptimalBfGoal);
+
+
 
     const sexElements = document.getElementsByClassName('sex');//return 'array like' list. All the checkboxes. Careful. 
     const sex = Array.from(sexElements);
@@ -370,7 +409,7 @@ function calculateUserBodyFat() {
     let feetValue;
     const inches = document.getElementById('inches');
 	let inchesValue;
-    const bmrAnswer = document.getElementById('bmrAnswer');
+    const bmrAnswer = document.getElementsByName('bmrAnswer');
 
 
 
@@ -388,13 +427,14 @@ function calculateUserBodyFat() {
     });
 
     const bfPercentGenderInsert = document.getElementsByName('bfPercentGenderInsert');
+
     const weightInsert = document.getElementsByName('weightInsert');
     const bfInsert = document.getElementsByName('bfInsert');
-    const leanInsert = document.getElementById('leanInsert');
-    const fatInsert = document.getElementById('fatInsert');
-    const loseInsert = document.getElementById('loseInsert');
-    const newFatInsert = document.getElementById('newFatInsert');
-    const newTotalBodyWeightInsert = document.getElementById('newTotalBodyWeightInsert')
+    const leanInsert = document.getElementsByName('leanInsert');
+    const fatInsert = document.getElementsByName('fatInsert');
+    const loseInsert = document.getElementsByName('loseInsert');
+    const newFatInsert = document.getElementsByName('newFatInsert');
+    const newTotalBodyWeightInsert = document.getElementsByName('newTotalBodyWeightInsert');
     
     
     let leanResults;
@@ -460,6 +500,9 @@ function calculateUserBodyFat() {
     const buttonToggleActivityLevelSection = document.getElementById('buttonToggleActivityLevelSection');
     buttonToggleActivityLevelSection.addEventListener('click', toggleActivityLevelSection);
     const activityLevelSection = document.getElementById('activityLevelSection');
+
+    const getAbPlanButton = document.getElementById('getAbPlan');
+    getAbPlanButton.addEventListener('click', mainCalc);
 
     bootup();
 
