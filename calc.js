@@ -254,7 +254,7 @@ function calculateUserBodyFat() {
 		let mm = goalEndDate.getMonth() + 1; //javascript is weird. 
 		let yyyy = goalEndDate.getFullYear();
 
-		let goalEndDateFormatted = dd + '/' + mm + '/' + yyyy;
+		let goalEndDateFormatted = mm + '/' + dd + '/' + yyyy;
 		dateFromCalculatedDaysAway.textContent = goalEndDateFormatted;
 
     } //end function calcDaysToGoalBf
@@ -341,6 +341,22 @@ function calculateUserBodyFat() {
             paragraph.appendChild(textNode);
             estimateBodyFatLevelDescriptions.appendChild(paragraph);
         });
+
+        if (user.sex == 'male') {
+            maleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "block";// statements
+            });
+            femaleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "none";// statements
+            });
+        } else {
+            maleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "none";// statements
+            });
+            femaleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "block";// statements
+            });
+        }
     }
 
     function generateOptimalBodyFatText(){
@@ -395,6 +411,11 @@ function calculateUserBodyFat() {
     const tempGenderOptimalBfGoal = document.getElementsByClassName('genderOptimalBfGoal');
     const genderOptimalBfGoal = Array.from(tempGenderOptimalBfGoal);
 
+    const tempmaleExampleImageLinks = document.getElementsByClassName('maleExampleImageLinks');
+    const maleExampleImageLinks = Array.from(tempmaleExampleImageLinks);
+
+    const tempfemaleExampleImageLinks = document.getElementsByClassName('femaleExampleImageLinks');
+    const femaleExampleImageLinks = Array.from(tempfemaleExampleImageLinks);
 
 
     const sexElements = document.getElementsByClassName('sex');//return 'array like' list. All the checkboxes. Careful. 
@@ -488,6 +509,8 @@ function calculateUserBodyFat() {
 
     const calorieBudgetInsert = document.getElementsByName('calorieBudgetInsert');
     const userPickedDeficitInsert = document.getElementsByName('userPickedDeficitInsert');
+
+
 
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
     let userBfGoal;
