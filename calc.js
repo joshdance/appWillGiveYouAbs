@@ -164,7 +164,7 @@ function calculateUserBodyFat() {
     		element.textContent  = caloricDeficitValue;
     	});
 
-    	let caloriesADay = bmrWithActivity - caloricDeficitValue;
+    	caloriesADay = bmrWithActivity - caloricDeficitValue;
 
     	calorieBudgetInsert.forEach( function(element, index) {
     		element.textContent  = caloriesADay;
@@ -392,6 +392,7 @@ function calculateUserBodyFat() {
     }
 
     function threePartCalc(){
+        caloricBudgetInput.value = caloriesADay;
     }
 
     let user;
@@ -488,6 +489,10 @@ function calculateUserBodyFat() {
     const numberOfDaysTilGoalInsert = document.getElementsByName('numberOfDaysTilGoalInsert');
     const numberOfWeeksTilGoalInsert = document.getElementById('numberOfWeeksTilGoalInsert');
     const numberOfMonthsTilGoalInsert = document.getElementById('numberOfMonthsTilGoalInsert');
+
+    const caloricBudgetInput =  document.getElementById('caloricBudgetInput');
+
+    let caloriesADay;
 
 	calcButton.addEventListener('click', mainCalc);
 	reCalcButton.addEventListener('click', reCalc);
