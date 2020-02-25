@@ -25,6 +25,7 @@ function calculateUserBodyFat() {
 	    calcPercentDeficit();
 	    calcProteinNeed();
         generateTable();
+        threePartCalc();
     }
 
     function getUserInputs(){
@@ -85,9 +86,11 @@ function calculateUserBodyFat() {
 
     function calcCurrentWeightAndLean() {	   
 	   LbsBfResults = (user.weight * (user.bodyFatPercentage /100)); //lbs bf results
-	   LbsBfResultsDiv.textContent = LbsBfResults;
+	   LbsBfResults = roundNumPlace(LbsBfResults,1);
+       LbsBfResultsDiv.textContent = LbsBfResults;
 
-	   leanResults = weightValue - LbsBfResults
+	   leanResults = weightValue - LbsBfResults;
+       leanResults = roundNumPlace(leanResults,1);
 	   leanResultsDiv.textContent = leanResults;
 	   //calcDown(weightValue, percentValue, LbsBfResults, leanResults);
 	  
@@ -173,7 +176,10 @@ function calculateUserBodyFat() {
     	userGoalPercentModifer = userBfGoal/(100 - userBfGoal);
 
     	GoalFatResults = userGoalPercentModifer * leanResults;
+        GoalFatResults = roundNumPlace(GoalFatResults,2);
+
     	GoalTotalBodyWeight = GoalFatResults + leanResults;
+        GoalTotalBodyWeight = roundNumPlace(GoalTotalBodyWeight,2);
 
     	LbsToLoseToGoal = LbsBfResults - GoalFatResults; 
     	
@@ -379,6 +385,13 @@ function calculateUserBodyFat() {
         getUserInputs();
         generateEstimatingText();
         generateOptimalBodyFatText();
+    }
+
+    function roundNumPlace(num, places) {
+        return +(Math.round(num + "e+" + places)  + "e-" + places);
+    }
+
+    function threePartCalc(){
     }
 
     let user;
