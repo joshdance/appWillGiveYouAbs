@@ -23,17 +23,21 @@
 <div>
 	What do we want? Abs. When do we want them? Now. This app will give you the map of how to get there. If you follow it, you will get abs.
 </div>
+
 <div>
 	This is a live essay, or an essay + calculators. If you already understand the principles, <a href="calculator.html">click here to use the calculator only</a>. If this is your first time, Welcome! and ready player one.
 </div>
 
 <h2>How to get abs</h2>
-<div>To have visible abs, you need two things. You need:
+<div>
+	To have visible abs, you need two things. You need:
 </div>
+
 <ol>
 <li>Abdominal muscles</li>
 <li>A low enough body fat percentage so your abdominal fat is not completely covering you abdominal muscles.</li>
 </ol>
+
 <div>
 	That is it. You do not need to do specific exersizes or a thousand crunches or sit ups a day. Abs connect your ribs to your hips along your front and sides. When you use your abs, they pull your ribs and hips closer, bending your spine to the front or sides. If you can sit up or lean forward, you have abs. ✅ Check off the first item!
 </div>
@@ -43,7 +47,10 @@
 <div>
 	For guys, abs start showing under 14% body fat, and for gals, under 22% body fat. These are estimates and every body is different but you need to have low levels of body fat compared to your levels of muscle to see your abs. Abs are clearly defined at 10% body fat for guys, and 20% body fat for gals. 
 </div>
-<div>So now that we know where we need to go, let's get the map of how to get there. Maps are only useful if you know where you are going, and you know where you are right now. </div>
+
+<div>
+	So now that we know where we need to go, let's get the map of how to get there. Maps are only useful if you know where you are going, and you know where you are right now.
+</div>
 
 <h2>What is your starting point?</h2>
 
@@ -65,6 +72,7 @@
 <div>
 	<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
 </div>
+
 <div>
 	What is your current body fat percentage?
 </div>
@@ -92,8 +100,7 @@
 	</div>
 
 	<h3>Body Fat Level Descriptions</h3>
-	<div id="estimateBodyFatLevelDescriptions">
-		
+	<div id="estimateBodyFatLevelDescriptions">	
 	</div>
 </div>
 
@@ -115,6 +122,7 @@
 <div>
 	What is your goal body fat %? This is a better question that what is your goal weight. Remember for <span class="gender">males</span> your abs pop at <span class="genderOptimalBfGoal">10%</span> body fat %. 
 </div>
+
 <div>
 	<input type="number" class="inputform" id="bfGoalInputBox" value="10">
 </div>
@@ -145,7 +153,9 @@
 <div>
 	An important note‼️ - You want to decrease your body fat, and keep your lean body mass. You don't want to 'lose weight'. You want to lose body fat. You can lose weight by not drinking water, or removing an extra body part, but that won't have the effect you want. You want to keep all your lean body mass, and lose an amount of body fat.
 </div>
-<div>To do that, you need to: </div>
+<div>
+	To do that, you need to:
+</div>
 <ol>
 	<li>Be in an energy deficit.</li>
 	<li>Lift weights to keep and gain muscle.</li>
@@ -167,7 +177,9 @@ The energy you use needs to be consistently greater than the energy you consume.
 	Energy Expenditure > Energy Intake
 </div>
 
-<div>Let's first calculate how much energy you use on average. </div>
+<div>
+	Let's first calculate how much energy you use on average.
+</div>
 
 <h3>How to calculate your energy expenditure</h3>
 
@@ -204,7 +216,9 @@ The energy you use needs to be consistently greater than the energy you consume.
 	<button type="button" class="calcBmrButton squareButton" id="calcBmr">Calculate your BMR!</button>
 </div>
 
-<div>Your estimated BMR is <span name="bmrAnswer">bmrAnswer</span></div>
+<div>
+	Your estimated BMR is <span name="bmrAnswer">bmrAnswer</span>
+</div>
 
 <div>
 	If you did nothing in a day, you body would burn <span name="bmrAnswer">bmrAnswer</span> calories keeping you alive.
@@ -225,6 +239,7 @@ The energy you use needs to be consistently greater than the energy you consume.
 	</div>
 	<div>
 	This gives us an estimatation of the additional calories that we burn in our normal everyday activity. 
+	</div>
 </div>
 <div>
 <h3>Let's pick your Activity Multiplier</h3>
@@ -357,7 +372,22 @@ The energy you use needs to be consistently greater than the energy you consume.
 	This means we know know how many calories you need to burn off. 
 </div>
 <div>
-	With that information now we just need to figure out what your caloric deficit will be. We can pick the date you want to achieve this goal by and it will calculate the deficit needed, or you can pick the deficit and it will tell you the date you will achieve that goal by. 
+	With that information now we just need to figure out how much you want to eat each day, and what your caloric deficit will be.
+</div>
+<div>
+	Since these 3 are linked, we can pick the amount of energy you want to eat and it will calculate the deficit and the date you will reach your goal by. Or you can pick a date you want to achieve this goal by and it will calculate the deficit needed, or you can pick the deficit and it will tell you the daily energy intake and the ateyou will achieve that goal by. 
+</div>
+
+<div>
+	A very important question, do you know how much energy you are eating each day?
+</div>
+
+<div>
+	Daily Calories you eat / want to eat: 
+	<input type="number" class="inputform" id="caloricBudgetInput" value="1500">
+	<div>
+		Your TDEE of <span name="tdee">X</span> minus your deficit of <span name="userPickedDeficitInsert">Y</span> gives you <span name="calorieBudgetInsert">Z</span> calories a day. 
+	</div>
 </div>
 
 <div>
@@ -368,13 +398,7 @@ The energy you use needs to be consistently greater than the energy you consume.
 	</div>
 </div>
 
-<div>
-	Daily Calories you want to eat: 
-	<input type="number" class="inputform" id="caloricBudgetInput" value="1500">
-	<div>
-		Your TDEE of <span name="tdee">X</span> minus your deficit of <span name="userPickedDeficitInsert">Y</span> gives you <span name="calorieBudgetInsert">Z</span> calories a day. 
-	</div>
-</div>
+
 
 <div>
 	Date you will hit your goal by: 
@@ -409,21 +433,40 @@ The energy you use needs to be consistently greater than the energy you consume.
 	</div>
 </div>
 
+<h3>
+	Max Fat Loss
+</h3>
+<div>
+	There is a upper limit to how fast you can lost body fat. Your body doesn't take all the fat from one cell or one pound of fat, it takes a little bit of energy from everywhere. Studies show that the max amount of energy you can use is 31 calories from each pound of fat. 
+</div>
+<div>
+	This means that you can multiple your pounds of fat x 31, to get the max caloric deficit your body can sustain and not start using lean mass as energy as well. 
+</div>
+<div>For you this max caloric deficit is <span id="maxCaloricDeficitInsert">X</span> calories per day.
+</div>
+<div>
+	Warning, this is your MAX. This is not normal. This is probably not healthy. But it is the most aggressive caloric deficit you can sustain while not having your body metabolize your own muscles for energy. Remember also that as you fat mass decreases, this max caloric deficit decreases, which is one of the reasons why losing fat when you have less fat mass can be tricky. 
+</div>
+
 <div>
 	But remember, there are 4 parts to reducing your body fat!
 </div>
+
 <ol>
 	<li>Be in an energy deficit.</li>
 	<li>Lift weights.</li>
 	<li>Eat enough protein to repair and build your muscles.</li>
 	<li>Sleep enough to repair and build your muscles and keep you stress hormones down..</li>
 </ol>
+
 <div>
 	Simply put, to lose just fat and not fat and muscle you need to workout, lifting weights, to remind your body you need the muscles. You need to eat enough protein to give the body fuel for building and maintaining muscles. And you need to sleep to allow your body to recover and keep your muscles. 
 </div>
+
 <div>
 	If you only work on the energy deficit, you will lose muscle mass as well as body fat. This is not good as you will lose the very abs you are trying to get to show. 
 </div>
+
 <h2>How to lift weights</h2>
 <div>Here are links to 2 basic weight lifting programs.</div>
 
@@ -431,16 +474,21 @@ The energy you use needs to be consistently greater than the energy you consume.
 <div>
 	Research shows that you need .82 grams of protein per pound of total body mass. 
 
-	At <span name="weightInsert">X</span>pounds total body weight, you need <span id='gramsProteinInsert'></span> grams of protein a day. 
+	At <span name="weightInsert">X</span> pounds total body weight, you need <span id='gramsProteinInsert'></span> grams of protein a day. 
 </div>
 
 <h2>How to get enough sleep</h2>
-<div>Sleep is critical to losing weight and gaining muscle, and having an enjoyable and productive life. If you are not getting enough sleep, you need to get more of it.</div>
-<div>	John Medina wrote the book Brain Rules. <a href="https://www.slideshare.net/pearpress/brain-rule-7-sleep"> Here is a link to some of his research about sleep.</a>
+<div>
+	Sleep is critical to losing weight and gaining muscle, and having an enjoyable and productive life. If you are not getting enough sleep, you need to get more of it.
+</div>
+<div>
+	John Medina wrote the book Brain Rules. <a href="https://www.slideshare.net/pearpress/brain-rule-7-sleep"> Here is a link to some of his research about sleep.</a>
 </div>
 
 <h2>Now is the time to take action</h2>
-<div>You now have the map. You have the knowledge you need to reach your goal of having abs. Now you just need to execute.</div>
+<div>
+	You now have the map. You have the knowledge you need to reach your goal of having abs. Now you just need to execute.
+</div>
 
 <h3>Trainers?</h3>
 <div>
@@ -449,39 +497,44 @@ The energy you use needs to be consistently greater than the energy you consume.
 
 <div id="signupform">
 	<!-- Begin Mailchimp Signup Form -->
-<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-</style>
-<div id="mc_embed_signup">
-<form action="https://twitter.us4.list-manage.com/subscribe/post?u=13626cb7e2c997963b598756e&amp;id=2c57e7e0ca" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div id="mc_embed_signup_scroll">
-	<h2>Want new calculators as I release them?</h2>
-<div class="mc-field-group">
-	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
-</label>
-	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-</div>
-	<div id="mce-responses" class="clear">
-		<div class="response" id="mce-error-response" style="display:none"></div>
-		<div class="response" id="mce-success-response" style="display:none"></div>
-	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_13626cb7e2c997963b598756e_2c57e7e0ca" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button squareButton"></div>
-    </div>
-</form>
-</div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-<!--End mc_embed_signup-->
+	<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+		/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+		   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+	</style>
+	<div id="mc_embed_signup">
+		<form action="https://twitter.us4.list-manage.com/subscribe/post?u=13626cb7e2c997963b598756e&amp;id=2c57e7e0ca" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			<div id="mc_embed_signup_scroll">
+				<h2>Want new calculators as I release them?</h2>
+				<div class="mc-field-group">
+				<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+				</label>
+				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+				</div>
+
+			<div id="mce-responses" class="clear">
+				<div class="response" id="mce-error-response" style="display:none"></div>
+				<div class="response" id="mce-success-response" style="display:none"></div>
+			</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_13626cb7e2c997963b598756e_2c57e7e0ca" tabindex="-1" value="">
+			</div>
+
+			<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button squareButton">
+			</div>
+
+			</div>
+		</form>
+	</div>
+	<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+	<!--End mc_embed_signup-->
 </div>
 
 <div>
 		<a href="about.html">About me</a>
 </div>
 
-</div>
+</div> <!--End main container-->
 
 <div class="footer">
 	

@@ -23,6 +23,7 @@ function calculateUserBodyFat() {
 	    activeMultipler();
 	    calcGoalPercent();
 	    calcPercentDeficit();
+        calcMaxCaloricDeficit();
 	    calcProteinNeed();
         generateTable();
         threePartCalc();
@@ -269,6 +270,12 @@ function calculateUserBodyFat() {
     	unroundedCalculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
         calculatedPercentDeficit = (Math.round (unroundedCalculatedPercentDeficit * 100) / 100)*100;
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
+    }
+
+    function calcMaxCaloricDeficit() {
+        maxCaloricDeficit = user.fatBodyMass * 31;
+        maxCaloricDeficit = roundNumPlace(maxCaloricDeficit,1);
+        maxCaloricDeficitInsert.textContent = maxCaloricDeficit;
     }
 
     function generateTable() {
@@ -528,6 +535,7 @@ function calculateUserBodyFat() {
     const calorieBudgetInsert = document.getElementsByName('calorieBudgetInsert');
     const userPickedDeficitInsert = document.getElementsByName('userPickedDeficitInsert');
 
+    const maxCaloricDeficitInsert = document.getElementById('maxCaloricDeficitInsert');
 
 
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
