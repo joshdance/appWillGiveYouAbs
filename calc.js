@@ -25,6 +25,8 @@ function calculateUserBodyFat() {
 	    calcPercentDeficit();
         calcMaxCaloricDeficit();
 	    calcProteinNeed();
+        calcCalsFromProtein();
+        calcCalsFromCarbsAndFatAtMaxDeficit();
         generateTable();
         threePartCalc();
     }
@@ -272,12 +274,6 @@ function calculateUserBodyFat() {
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
     }
 
-    function calcMaxCaloricDeficit() {
-        maxCaloricDeficit = user.fatBodyMass * 31;
-        maxCaloricDeficit = roundNumPlace(maxCaloricDeficit,1);
-        maxCaloricDeficitInsert.textContent = maxCaloricDeficit;
-    }
-
     function generateTable() {
         //get days till goal
         //iterate through each day til goal
@@ -400,6 +396,40 @@ function calculateUserBodyFat() {
 
     function threePartCalc(){
         caloricBudgetInput.value = caloriesADay;
+    }
+
+    function calcCalsFromProtein(){
+        calsFromProtein = gramsProteinNeeded * 4;
+        calsFromProtein = roundNumPlace(calsFromProtein,1);
+
+        calsFromProteinInsert.forEach( function(element, index) {
+            element.textContent = calsFromProtein;
+        });
+    }
+
+    function calcCalsFromCarbsAndFatAtMaxDeficit(){
+        let dailyCalsAtMax = bmrWithActivity - maxCaloricDeficit;
+        dailyCalsAtMax = roundNumPlace(dailyCalsAtMax,1);
+
+        dailyCaloriesAtMaxInsert.forEach( function(element, index) {
+            element.textContent = dailyCalsAtMax;
+        });
+
+        calsFromCarbsAndFatAtMaxCaloricDeficit = dailyCalsAtMax - calsFromProtein;
+        calsFromCarbsAndFatAtMaxCaloricDeficit = roundNumPlace(calsFromCarbsAndFatAtMaxCaloricDeficit,1);
+
+        calsFromCarbsAndFatAtMaxCaloricDeficitInsert.forEach( function(element, index) {
+            element.textContent = calsFromCarbsAndFatAtMaxCaloricDeficit;
+        });
+    }
+
+      function calcMaxCaloricDeficit() {
+        maxCaloricDeficit = user.fatBodyMass * 31;
+        maxCaloricDeficit = roundNumPlace(maxCaloricDeficit,1);
+
+        maxCaloricDeficitInsert.forEach( function(element, index) {
+            element.textContent = maxCaloricDeficit;
+        });
     }
 
     let user;
@@ -535,8 +565,15 @@ function calculateUserBodyFat() {
     const calorieBudgetInsert = document.getElementsByName('calorieBudgetInsert');
     const userPickedDeficitInsert = document.getElementsByName('userPickedDeficitInsert');
 
-    const maxCaloricDeficitInsert = document.getElementById('maxCaloricDeficitInsert');
+    const maxCaloricDeficitInsert = document.getElementsByName('maxCaloricDeficitInsert');
 
+    const calsFromProteinInsert = document.getElementsByName('calsFromProteinInsert');
+    let calsFromProtein;
+
+    const calsFromCarbsAndFatAtMaxCaloricDeficitInsert = document.getElementsByName('calsFromCarbsAndFatAtMaxCaloricDeficitInsert');
+    let calsFromCarbsAndFatAtMaxCaloricDeficit;
+
+    const dailyCaloriesAtMaxInsert = document.getElementsByName('dailyCaloriesAtMaxInsert');
 
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
     let userBfGoal;
