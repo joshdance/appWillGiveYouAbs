@@ -369,7 +369,6 @@ function calculateUserBodyFat() {
     }
 
     function generateOptimalBodyFatText(){
-        let genderBfGoalFrom100;
         if (user.sex == 'male') {
             genderBfGoalFrom100 = bfGoalMale*100
         } else {
@@ -388,6 +387,15 @@ function calculateUserBodyFat() {
         getUserInputs();
         generateEstimatingText();
         generateOptimalBodyFatText();
+        generateOptimalBodyFatText();
+
+        selectedGenderInsert.forEach( function(element, index) {
+            element.textContent = user.sex;
+        });
+
+        genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
+            element.textContent = genderBfGoalFrom100;
+        });
     }
 
     function roundNumPlace(num, places) {
@@ -423,7 +431,7 @@ function calculateUserBodyFat() {
         });
     }
 
-      function calcMaxCaloricDeficit() {
+    function calcMaxCaloricDeficit() {
         maxCaloricDeficit = user.fatBodyMass * 31;
         maxCaloricDeficit = roundNumPlace(maxCaloricDeficit,1);
 
@@ -433,6 +441,13 @@ function calculateUserBodyFat() {
     }
 
     let user;
+
+    const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
+
+    const genderGoalBodyFatPercentageInsert = document.getElementsByName('genderGoalBodyFatPercentageInsert');
+
+    let genderBfGoalFrom100;
+
 
     const calcButton = document.querySelector('.calcButton');
     const reCalcButton = document.getElementById('reCalcButton');
