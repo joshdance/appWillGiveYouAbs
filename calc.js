@@ -32,7 +32,10 @@ function calculateUserBodyFat() {
     }
 
     function getUserInputs(){
-    	//weight
+    	
+        name = nameInputBox.value;
+
+        //weight
     	weightValue = weightInputBox2.value;
 
     	//body fat
@@ -71,6 +74,7 @@ function calculateUserBodyFat() {
 
     function createUser(){
     	user = new Object();
+        user.name = name;
     	user.weight = weightValue;
     	user.bodyFatPercentage = percentValue;
     	user.leanBodyMass = leanResults;
@@ -81,6 +85,13 @@ function calculateUserBodyFat() {
     	user.activityLevel = pickedActivityMultiplier;
         user.sex = selectedSex;
     	console.log('Player 1 ready');
+    }
+
+    function customizeEssayWithName(){
+        
+        userNameInsert.forEach( function(element, index) {
+            element.textContent = user.name;
+        });
     }
 
     function reCalc(){
@@ -441,10 +452,19 @@ function calculateUserBodyFat() {
     }
 
     let user;
+    let name;
 
     const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
 
+    const nameInputBox = document.getElementById('nameInputBox');
+    const nameButton = document.getElementById('nameButton');
+    nameButton.addEventListener('click', customizeEssayWithName);
+    const userNameInsert = document.getElementsByName('userNameInsert');
+
     const genderGoalBodyFatPercentageInsert = document.getElementsByName('genderGoalBodyFatPercentageInsert');
+
+
+
 
     let genderBfGoalFrom100;
 
