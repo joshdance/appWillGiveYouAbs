@@ -84,6 +84,7 @@ function calculateUserBodyFat() {
     	user.heightInInches = ((feetValue*12)+(inchesValue*1)); //magic number to cast it correctly. :(
     	user.activityLevel = pickedActivityMultiplier;
         user.sex = selectedSex;
+        user.caloricDeficit = caloricDeficitValue;
     	console.log('Player 1 ready');
     }
 
@@ -173,6 +174,10 @@ function calculateUserBodyFat() {
     	tdee.forEach( function(element, index) {
     		element.textContent  = bmrWithActivity;
     	});
+
+        //if user picked a deficit, leave that, if 
+        //userManuallyPickedDeficit = true
+        //if not calc 25%
 
     	userPickedDeficitInsert.forEach( function(element, index) {
     		element.textContent  = caloricDeficitValue;
@@ -453,6 +458,7 @@ function calculateUserBodyFat() {
 
     let user;
     let name;
+    let userManuallyPickedDeficit = false;
 
     const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
 
