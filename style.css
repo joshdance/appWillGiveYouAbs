@@ -3,6 +3,14 @@ html {
 	font-size: 18px;
 }
 
+#femaleBodyFatExampleCalculation {
+	display: none;
+}
+
+#maleBodyFatExampleCalculation {
+	display: none;
+}
+
 #betaBanner {
 	background-color: yellow;
   	text-align: center;
