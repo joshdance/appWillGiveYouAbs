@@ -9,14 +9,16 @@ function calculateUserBodyFat() {
         getUserInputs();
         createUser();
         generateEstimatingText();
+        genderPicked();
     }
 
     //define user class
     //define the fields it would have
 
     function mainCalc() {
-    	getUserInputs()
+    	getUserInputs();
     	createUser();
+        genderPicked();
     	calcCurrentWeightAndLean();
     	calcGoalPercent();
 	    calcBmr();
@@ -381,7 +383,7 @@ function calculateUserBodyFat() {
             femaleExampleImageLinks.forEach( function(element, index) {
                 element.style.display = "block";// statements
             });
-        }
+        } maleBodyFatExampleCalculation
     }
 
     function generateOptimalBodyFatText(){
@@ -412,6 +414,14 @@ function calculateUserBodyFat() {
         genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
             element.textContent = genderBfGoalFrom100;
         });
+
+        if (user.sex == 'male') {
+            maleBodyFatExampleCalculation.style.display = "block";
+            femaleBodyFatExampleCalculation.style.display = "none";
+        } else {
+            maleBodyFatExampleCalculation.style.display = "none";
+            femaleBodyFatExampleCalculation.style.display = "block";
+        }
     }
 
     function roundNumPlace(num, places) {
@@ -469,7 +479,8 @@ function calculateUserBodyFat() {
 
     const genderGoalBodyFatPercentageInsert = document.getElementsByName('genderGoalBodyFatPercentageInsert');
 
-
+    const maleBodyFatExampleCalculation = document.getElementById('maleBodyFatExampleCalculation');
+    const femaleBodyFatExampleCalculation = document.getElementById('femaleBodyFatExampleCalculation');
 
 
     let genderBfGoalFrom100;
