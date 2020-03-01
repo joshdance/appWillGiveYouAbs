@@ -529,7 +529,11 @@ function calculateUserBodyFat() {
             spotReduceDetails.style.display = "block";
         }
     }
-    
+
+    function clearNameBox() {
+        nameInputBox.value = '';
+    }
+
     let user;
     let name;
     let userManuallyPickedDeficit = false;
@@ -537,6 +541,9 @@ function calculateUserBodyFat() {
     const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
 
     const nameInputBox = document.getElementById('nameInputBox');
+    if (nameInputBox != null) {
+        nameInputBox.addEventListener('focus', clearNameBox)
+    }
     const nameButton = document.getElementById('nameButton');
     if (nameButton != null) {
         nameButton.addEventListener('click', customizeEssayWithName);
