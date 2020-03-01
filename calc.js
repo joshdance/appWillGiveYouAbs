@@ -243,7 +243,9 @@ function calculateUserBodyFat() {
     function calcProteinNeed(){
     	gramsProteinNeeded = weightValue * .82;
 		gramsProteinNeeded = Math.round (gramsProteinNeeded * 10) / 10;
-        gramsProteinInsert.textContent = gramsProteinNeeded;
+        gramsProteinInsert.forEach( function(element, index) {
+            element.textContent = gramsProteinNeeded;
+        });
 		console.log('Welcome to the matrix. Ready Player 2')
     } // end calcProteinNeed
 
@@ -743,7 +745,7 @@ function calculateUserBodyFat() {
     const daysTillSummer = document.getElementById('daysTillSummerInsert');
 
     let gramsProteinNeeded;
-    const gramsProteinInsert = document.getElementById('gramsProteinInsert');
+    const gramsProteinInsert = document.getElementsByName('gramsProteinInsert');
 
     const percentDeficitInsert = document.getElementById('percentDeficitInsert');
     let calculatedPercentDeficit;
