@@ -11,6 +11,14 @@ html {
 	border: 1px solid gray;
 }
 
+.bold {
+	font-weight:
+}
+
+#weightDoesntMatterDetails {
+	display: none;
+}
+
 #spotReduceDetails {
 	display: none;
 }
