@@ -35,7 +35,9 @@ function calculateUserBodyFat() {
 
     function getUserInputs(){
     	
-        name = nameInputBox.value;
+        if (nameInputBox != null) {
+            name = nameInputBox.value;
+        }
 
         //weight
     	weightValue = weightInputBox2.value;
@@ -415,13 +417,16 @@ function calculateUserBodyFat() {
             element.textContent = genderBfGoalFrom100;
         });
 
-        if (user.sex == 'male') {
-            maleBodyFatExampleCalculation.style.display = "block";
-            femaleBodyFatExampleCalculation.style.display = "none";
-        } else {
-            maleBodyFatExampleCalculation.style.display = "none";
-            femaleBodyFatExampleCalculation.style.display = "block";
+        if (maleBodyFatExampleCalculation != null) {
+            if (user.sex == 'male') {
+                maleBodyFatExampleCalculation.style.display = "block";
+                femaleBodyFatExampleCalculation.style.display = "none";
+            } else {
+                maleBodyFatExampleCalculation.style.display = "none";
+                femaleBodyFatExampleCalculation.style.display = "block";
+            }
         }
+
     }
 
     function roundNumPlace(num, places) {
@@ -466,6 +471,65 @@ function calculateUserBodyFat() {
         });
     }
 
+    function weightButtonClicked() {
+        let genderAverageWeight;
+        if (user.sex == 'male') {
+            genderAverageWeight = kAverageMaleWeight;
+        } else {
+            genderAverageWeight = kAverageFemaleWeight;
+        }
+
+        averageGenderMassInsert.forEach( function(element, index) {
+            element.textContent = genderAverageWeight;
+        });
+
+        let overUnder;
+
+        if (user.weight > genderAverageWeight) {
+            overUnder = 'over';
+        } else if ((user.weight < genderAverageWeight)) {
+            overUnder = 'under';
+        } else {
+            overUnder = 'right at';
+        }
+
+        overUnderAverageGenderMassInsert.forEach( function(element, index) {
+            element.textContent = overUnder;
+        });
+    }
+
+    function toggleSideNotesForScience() {
+        if (scienceUnderDevelopedCore.style.display == "block") {
+            scienceUnderDevelopedCore.style.display = "none";
+        } else {
+            scienceUnderDevelopedCore.style.display = "block";
+        }
+    }
+
+    function toggleSideNotesForScienceFattyAcidBreakdown() {
+        if (fattyAcidBreakdown.style.display == "block") {
+            fattyAcidBreakdown.style.display = "none";
+        } else {
+            fattyAcidBreakdown.style.display = "block";
+        }
+    }
+
+    function toggleSideNotesForScienceFatCellDetail() {
+        if (fatCellDetails.style.display == "block") {
+            fatCellDetails.style.display = "none";
+        } else {
+            fatCellDetails.style.display = "block";
+        }
+    }
+
+    function toggleSideNotesForScienceSpotReduceDetails() {
+        if (spotReduceDetails.style.display == "block") {
+            spotReduceDetails.style.display = "none";
+        } else {
+            spotReduceDetails.style.display = "block";
+        }
+    }
+    
     let user;
     let name;
     let userManuallyPickedDeficit = false;
@@ -474,7 +538,9 @@ function calculateUserBodyFat() {
 
     const nameInputBox = document.getElementById('nameInputBox');
     const nameButton = document.getElementById('nameButton');
-    nameButton.addEventListener('click', customizeEssayWithName);
+    if (nameButton != null) {
+        nameButton.addEventListener('click', customizeEssayWithName);
+    }
     const userNameInsert = document.getElementsByName('userNameInsert');
 
     const genderGoalBodyFatPercentageInsert = document.getElementsByName('genderGoalBodyFatPercentageInsert');
@@ -482,6 +548,37 @@ function calculateUserBodyFat() {
     const maleBodyFatExampleCalculation = document.getElementById('maleBodyFatExampleCalculation');
     const femaleBodyFatExampleCalculation = document.getElementById('femaleBodyFatExampleCalculation');
 
+    const enterWeightButton = document.getElementById('enterWeightButton');
+    if (enterWeightButton != null) {
+        enterWeightButton.addEventListener('click', weightButtonClicked);
+    }
+
+    const averageGenderMassInsert = document.getElementsByName('averageGenderMassInsert');
+    const overUnderAverageGenderMassInsert = document.getElementsByName('overUnderAverageGenderMassInsert');
+
+    const showScienceUnderDevelopedCore = document.getElementById('showScienceUnderDevelopedCore');
+    const scienceUnderDevelopedCore = document.getElementById('scienceUnderDevelopedCore');
+    if (showScienceUnderDevelopedCore != null) {
+            showScienceUnderDevelopedCore.addEventListener('click', toggleSideNotesForScience);
+    }
+
+    const showFattyAcidBreakdown = document.getElementById('showFattyAcidBreakdown');
+    if (showFattyAcidBreakdown != null) {
+            showFattyAcidBreakdown.addEventListener('click', toggleSideNotesForScienceFattyAcidBreakdown);
+    }
+    const fattyAcidBreakdown = document.getElementById('fattyAcidBreakdown');
+
+    const showFatCellDetails = document.getElementById('showFatCellDetails');
+    if (showFatCellDetails != null) {
+            showFatCellDetails.addEventListener('click', toggleSideNotesForScienceFatCellDetail);
+    }
+    const fatCellDetails = document.getElementById('fatCellDetails');
+
+    const showSpotReduceDetails = document.getElementById('showSpotReduceDetails');
+    if (showSpotReduceDetails != null) {
+            showSpotReduceDetails.addEventListener('click', toggleSideNotesForScienceSpotReduceDetails);
+    }
+    const spotReduceDetails = document.getElementById('spotReduceDetails');
 
     let genderBfGoalFrom100;
 

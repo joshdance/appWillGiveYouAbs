@@ -3,6 +3,30 @@ html {
 	font-size: 18px;
 }
 
+.scienceSideNote {
+	background-color: #ccffcc
+}
+
+.scienceSideNoteBody {
+	border: 1px solid gray;
+}
+
+#spotReduceDetails {
+	display: none;
+}
+
+#fatCellDetails {
+	display: none;
+}
+
+#fattyAcidBreakdown {
+	display: none;
+}
+
+#scienceUnderDevelopedCore {
+	display: none;
+}
+
 #femaleBodyFatExampleCalculation {
 	display: none;
 }
