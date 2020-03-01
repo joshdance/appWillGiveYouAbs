@@ -15,6 +15,10 @@ html {
 	font-weight:
 }
 
+#poundMassPoundForceDetails {
+	display: none;
+}
+
 #weightDoesntMatterDetails {
 	display: none;
 }

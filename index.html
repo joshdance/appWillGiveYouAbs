@@ -320,10 +320,10 @@
 	Now you might be saying to yourself, "OK I get it. Weight doesn't factor into if I can see my abs, body composition, as measured by body fat percentage does. So how can I see my abs? What body fat percentage do I need?"
 </div>
 <div>
-	For most guys, abs begin to start showing under 14% body fat, and for most gals, under 22% body fat.
+	For guys, abs begin to showing when they get under 14% body fat, and for gals, abs begin showing under 22% body fat.
 </div>
 <div>
-	👉🏼Abs are clearly visible and well defined at 10% body fat for guys, and 20% body fat for gals.👈🏼
+	If you want killer abs, they are clearly visible and well defined at 10% body fat for guys, and at 20% body fat for gals.
 </div>
 </div>
 <div>
@@ -338,24 +338,7 @@
 	<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
 	<label for="male">Male</label>
 </div>
-<div id="femaleBodyFatExampleCalculation">
-	<div>
-		Let's take a 150 pound female. If she has 30 pounds of fat, and 120 pounds of lean body mass, she would have 30 / 150 = 20% body fat. She would be ripped with great abs. 
-	</div>
-	<div>
-		Take the same 200 pound woman. If she had 60 pounds of fat, and 90 pounds of lean body mass, she would have 60 / 150 = 40% body fat. She would be obese. 
-	</div>
-</div>
 
-<div id="maleBodyFatExampleCalculation">
-	<div>
-		Let's take a 200 pound man. If he has 20 pounds of fat, and 180 pounds of lean body mass he would have 20 / 200 = 10% body fat. He would be large and ripped with great abs. 
-	</div>
-	<div>
-		Take the same 200 pound man. If he had 80 pounds of fat, and 120 pounds of lean body mass, he would have 80 / 200 = 40% body fat. He would be obese. 
-	</div>
-</div>
-</div>
 <div>
 	Want great looking abs? Since you are <span name="selectedGenderInsert">?</span>, you should shoot for <span name="genderGoalBodyFatPercentageInsert">?</span>% body fat. 
 </div>
@@ -370,19 +353,21 @@
 	We now have our destination. <span name="genderGoalBodyFatPercentageInsert">?</span>% body fat. We know where we need to go, so let's create your map of how to get there. Maps are only useful if you know a.) where you are going, and b.) where you are right now. We need to calculate your starting point. 
 </div>
 
-<h2>What is your starting point?</h2>
+<h2>What is your current body fat percentage point?</h2>
 <div>
-	We need to measure your body fat percentage. That way we can figure out how much fat you need to use up to get to <span name="genderGoalBodyFatPercentageInsert">?</span>% body fat. 
+	We need to measure your body fat percentage. That way we can figure out how much stored fat you need to use up to get to <span name="genderGoalBodyFatPercentageInsert">?</span>% body fat. 
 </div>
 <div>
-	Remember body fat percentage is (	 fat mass / total mass ) * 100
+	Remember body fat percentage is ( fat mass / total mass ) * 100
 </div>
 <h3>How to measure total mass</h3>
 <div>
 	This one is easy. Step on any scale and it will calculate your mass by taking the force you are putting on the scale due to gravity and use that to calculate your mass. 
 </div>
 <div>
-	This can be a bit confusing so lets talk science 🧪. A pound can refer to a unit of mass and a unit of weight. To get more specific a pound-force is a unit of weight, used to measure your weigh on Earth with gravity providing the force. A pound-mass is a unit of mass, as defined by the kilogram. So you still have mass in space, even if you have no weight because there is no gravity. Because we humans are usually in earth gravity we refer to pounds interchangable. When your scale says 150 that could be either weight or mass since they are the same. Back to the abs!
+	<span id="showPoundMassPoundForceDetails" class="scienceSideNote">Sidenote for Science 🧪</span>
+	<div id="poundMassPoundForceDetails" class="scienceSideNote scienceSideNoteBody">
+	A pound can refer to both a unit of mass and a unit of weight. A pound-force is a unit of weight, commonly used to measure your weigh on Earth with gravity providing the force. A pound-mass is a unit of mass, as defined by the kilogram. So if you are in space you still have mass, even while you have no weight because there is no gravity. Because we humans are usually in earth gravity we refer to pounds interchangably. When your scale says 150 that could be either weight or mass since they are the same. Back to the abs!
 </div>
 <div>
 	To measure your total mass, step on the scale and you are ready to go.
@@ -490,7 +475,7 @@
 
 <h2>What is your goal?</h2>
 <div>
-	What is your goal body fat %? This is a better question that what is your goal weight. Remember for <span class="gender">males</span> your abs pop at <span class="genderOptimalBfGoal">10%</span> body fat %. 
+	What is your goal body fat %? This is a better question that what is your goal weight. Remember for <span class="gender">males</span> your abs pop at <span class="genderOptimalBfGoal">10%</span> body fat %, but you can set any goal you desire. 
 </div>
 
 <div>
@@ -498,7 +483,7 @@
 </div>
 
 <div>
-	<button type="button" id="getAbPlan" class="squareButton">Get me my plan to abs.</button>
+	<button type="button" id="getAbPlan" class="squareButton">Calculate my starting point</button>
 </div>
 
 <h2>How to get to <span name="bfPercentGenderInsert">gender </span> % body fat</h2>

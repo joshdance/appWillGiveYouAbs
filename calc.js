@@ -538,6 +538,14 @@ function calculateUserBodyFat() {
         }
     }
 
+    function toggleSideNotesForScienceShowPoundMassPoundForceDetails() {
+        if (poundMassPoundForceDetails.style.display == "block") {
+            poundMassPoundForceDetails.style.display = "none";
+        } else {
+            poundMassPoundForceDetails.style.display = "block";
+        }
+    }
+
     function clearNameBox() {
         nameInputBox.value = '';
     }
@@ -600,6 +608,12 @@ function calculateUserBodyFat() {
             showWeightDoesntMatterDetails.addEventListener('click', toggleSideNotesForScienceShowWeightDoesntMatterDetails);
     }
     const weightDoesntMatterDetails = document.getElementById('weightDoesntMatterDetails');
+
+    const showPoundMassPoundForceDetails = document.getElementById('showPoundMassPoundForceDetails');
+    if (showPoundMassPoundForceDetails != null) {
+            showPoundMassPoundForceDetails.addEventListener('click', toggleSideNotesForScienceShowPoundMassPoundForceDetails);
+    }
+    const poundMassPoundForceDetails = document.getElementById('poundMassPoundForceDetails');
 
     let genderBfGoalFrom100;
 
