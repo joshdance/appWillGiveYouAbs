@@ -110,9 +110,7 @@ function calculateUserBodyFat() {
 
 	   leanResults = weightValue - LbsBfResults;
        leanResults = roundNumPlace(leanResults,1);
-	   leanResultsDiv.textContent = leanResults;
-	   //calcDown(weightValue, percentValue, LbsBfResults, leanResults);
-	  
+	   leanResultsDiv.textContent = leanResults;	  
     }
 
     function calcBmr(){
@@ -215,7 +213,7 @@ function calculateUserBodyFat() {
     	});
     	
     	bfInsert.forEach( function(element, index) {
-    		element.textContent = percentValue;
+    		element.textContent = user.bodyFatPercentage;
     	});
 
         leanInsert.forEach( function(element, index) {
@@ -619,6 +617,12 @@ function calculateUserBodyFat() {
 
 
     const calcButton = document.querySelector('.calcButton');
+    const calcStartingPointButton = document.getElementById('calcStartingPointButton');
+
+    if (calcStartingPointButton != null) {
+        calcStartingPointButton.addEventListener('click', mainCalc);
+    }
+
     const reCalcButton = document.getElementById('reCalcButton');
     //remember to use the correct selector! Or just id. 
     const calcBmrButton = document.getElementById('calcBmr');
@@ -716,6 +720,7 @@ function calculateUserBodyFat() {
     let caloriesADay;
 
 	calcButton.addEventListener('click', mainCalc);
+
 	reCalcButton.addEventListener('click', reCalc);
     calcBmrButton.addEventListener('click', calcBmr);
 
@@ -775,19 +780,6 @@ function calculateUserBodyFat() {
     getAbPlanButton.addEventListener('click', mainCalc);
 
     bootup();
-
-    function calcDown(weightValue, percentValue, LbsBfResults, leanResults) {
-    	for (var bfPercentageIterator = percentValue ; bfPercentageIterator >= 5; bfPercentageIterator--) {
-    		console.log({bfPercentage: bfPercentageIterator, leanPercentage: 1});
-    		{bfPercentage: bfPercentageIterator}
-    		bfPercentageArray.push({bfPercentage: bfPercentageIterator, leanPercentage: 1});
-    		displayBfRundownData += bfPercentageArray[bfPercentageIterator] + "\n";
-    	} //end of for statement
-
-    	bfRunDown.textContent = bfPercentageArray;
-    	bfRunDown.textContent = displayBfRundownData;
-
-    }
 
 //<script src="countUp.js"></script>    
 //todo
