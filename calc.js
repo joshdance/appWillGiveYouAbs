@@ -17,7 +17,6 @@ function calculateUserBodyFat() {
 
     function mainCalc() {
     	getUserInputs();
-    	createUser();
         genderPicked();
     	calcCurrentWeightAndLean();
     	calcGoalPercent();
@@ -73,7 +72,6 @@ function calculateUserBodyFat() {
 
         //caloric deficit
         caloricDeficitValue = parseInt(caloricDeficitInput.value);
-        createUser();
     }
 
     function createUser(){
@@ -89,6 +87,7 @@ function calculateUserBodyFat() {
     	user.activityLevel = pickedActivityMultiplier;
         user.sex = selectedSex;
         user.caloricDeficit = caloricDeficitValue;
+        user.setOwnBodyFatGoal = false;
     	console.log('Player 1 ready');
     }
 
@@ -194,7 +193,7 @@ function calculateUserBodyFat() {
     } //end activieMultipler
 
     function calcGoalPercent(){
-    	userGoalPercentModifer = userBfGoal/(100 - userBfGoal);
+    	userGoalPercentModifer = user.bodyFatPercentageGoal/(100 - user.bodyFatPercentageGoal);
 
     	GoalFatResults = userGoalPercentModifer * leanResults;
         GoalFatResults = roundNumPlace(GoalFatResults,2);
@@ -203,9 +202,10 @@ function calculateUserBodyFat() {
         GoalTotalBodyWeight = roundNumPlace(GoalTotalBodyWeight,2);
 
     	LbsToLoseToGoal = LbsBfResults - GoalFatResults; 
+        LbsToLoseToGoal = roundNumPlace(LbsToLoseToGoal,1);
     	
     	bfPercentGenderInsert.forEach( function(element, index) {
-    		element.textContent = userBfGoal;
+    		element.textContent = user.bodyFatPercentageGoal;
     	});
 
     	weightInsert.forEach( function(element, index) {
@@ -251,6 +251,11 @@ function calculateUserBodyFat() {
 
     function calcDaysToGoalBf() {
 		totalCaloriesUntilBfGoal = LbsToLoseToGoal * 3500;
+        totalCaloriesUntilBfGoal = roundNumPlace(totalCaloriesUntilBfGoal,1);
+
+        caloriesToUseUp.forEach( function(element, index) {
+            element.textContent = totalCaloriesUntilBfGoal;
+        });
 
 		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / caloricDeficitValue;
         numberOfDaysTilGoal = Math.round (numberOfDaysTilGoal * 10) / 10;
@@ -292,6 +297,7 @@ function calculateUserBodyFat() {
     	unroundedCalculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
         calculatedPercentDeficit = (Math.round (unroundedCalculatedPercentDeficit * 100) / 100)*100;
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
+        calcDeficitExample();
     }
 
     function generateTable() {
@@ -308,10 +314,8 @@ function calculateUserBodyFat() {
         
         if (estimateBodyFatSection.style.display == "block") {
             estimateBodyFatSection.style.display = "none";
-            showEstimateSection.textContent = 'Click to show body fat estimating section.';
         } else {
             estimateBodyFatSection.style.display = "block";
-            showEstimateSection.textContent = 'Click to hide body fat estimating section.';
         }
     }
 
@@ -400,7 +404,9 @@ function calculateUserBodyFat() {
         });
 
         //set the body fat goal input box to the gender suggestion
-        bfGoalInputBox.value = genderBfGoalFrom100;
+        if (user.setOwnBodyFatGoal === false) {
+            bfGoalInputBox.value = genderBfGoalFrom100;
+        }
     }
 
     function genderPicked(){
@@ -468,6 +474,22 @@ function calculateUserBodyFat() {
 
         maxCaloricDeficitInsert.forEach( function(element, index) {
             element.textContent = maxCaloricDeficit;
+        });
+    }
+
+    function calcDeficitExample() {
+        let tdeeDeficitExample = (bmrWithActivity * .25);
+        tdeeDeficitExample = roundNumPlace(tdeeDeficitExample,1);
+
+        let tdeeDeficitExampleResult = bmrWithActivity - tdeeDeficitExample;
+        tdeeDeficitExampleResult = roundNumPlace(tdeeDeficitExampleResult,1);
+
+        tdeeDeficitExampleInsert.forEach( function(element, index) {
+            element.textContent = tdeeDeficitExample;
+        });
+
+        tdeeDeficitExampleResultInsert.forEach( function(element, index) {
+            element.textContent = tdeeDeficitExampleResult;
         });
     }
 
@@ -550,6 +572,22 @@ function calculateUserBodyFat() {
         nameInputBox.value = '';
     }
 
+    function getAbPlan() {
+        let valueToCheckAgainst
+
+        if (user.sex == 'male') {
+            valueToCheckAgainst = bfGoalMale*100;
+        } else {
+            valueToCheckAgainst = bfGoalFemale*100;
+        }
+
+        if (bfGoalInputBox.value != valueToCheckAgainst) {
+            user.bodyFatPercentageGoal = bfGoalInputBox.value;
+            user.setOwnBodyFatGoal = true;
+        }
+        mainCalc();
+    }
+
     let user;
     let name;
     let userManuallyPickedDeficit = false;
@@ -614,6 +652,13 @@ function calculateUserBodyFat() {
             showPoundMassPoundForceDetails.addEventListener('click', toggleSideNotesForScienceShowPoundMassPoundForceDetails);
     }
     const poundMassPoundForceDetails = document.getElementById('poundMassPoundForceDetails');
+
+    const doYouKnowBodyFatQuestionAnswers = document.getElementsByName('bodyFatKnowledge');//return 'array like' list. All the checkboxes. Careful. 
+    if (doYouKnowBodyFatQuestionAnswers != null) {
+        doYouKnowBodyFatQuestionAnswers.forEach( function(element, index) {
+        element.addEventListener('change', toggleEstimates);
+    });
+    };
 
     let genderBfGoalFrom100;
 
@@ -769,17 +814,21 @@ function calculateUserBodyFat() {
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
     let userBfGoal;
 
-    const showEstimateSection = document.getElementById('showEstimateSection');
-    showEstimateSection.addEventListener('click', toggleEstimates);
     const estimateBodyFatSection = document.getElementById('estimateBodyFat');
+    estimateBodyFatSection.style.display = "block";
     const estimateBodyFatLevelDescriptions = document.getElementById('estimateBodyFatLevelDescriptions');
 
     const buttonToggleActivityLevelSection = document.getElementById('buttonToggleActivityLevelSection');
     buttonToggleActivityLevelSection.addEventListener('click', toggleActivityLevelSection);
     const activityLevelSection = document.getElementById('activityLevelSection');
 
-    const getAbPlanButton = document.getElementById('getAbPlan');
-    getAbPlanButton.addEventListener('click', mainCalc);
+    const getAbPlanButton = document.getElementById('getAbPlanButton');
+    getAbPlanButton.addEventListener('click', getAbPlan);
+
+    const tdeeDeficitExampleInsert = document.getElementsByName('tdeeDeficitExampleInsert');
+    const tdeeDeficitExampleResultInsert = document.getElementsByName('tdeeDeficitExampleResultInsert');
+
+    const caloriesToUseUp = document.getElementsByName('caloriesToUseUp');
 
     bootup();
 

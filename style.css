@@ -93,7 +93,7 @@ html {
 }
 
 #estimateBodyFat {
-	display: none;
+	display: block;
 	margin-top: 22px;
     margin-bottom: 25px;
     padding: 19px 18px 0 30px;
