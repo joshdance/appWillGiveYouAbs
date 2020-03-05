@@ -5,15 +5,31 @@ document.addEventListener("DOMContentLoaded", calculateUserBodyFat);
 
 function calculateUserBodyFat() {
     
+    let user = new Object;
+
     function bootup() {
         getUserInputs();
-        createUser();
+        setUser();
         generateEstimatingText();
         genderPicked();
     }
 
-    //define user class
-    //define the fields it would have
+    function setUser(){
+        user.name = name;
+        user.weight = weightValue;
+        user.bodyFatPercentage = percentValue;
+        user.leanBodyMass = leanResults;
+        user.fatBodyMass = LbsBfResults;
+        user.bodyFatPercentageGoal = userBfGoal;
+        user.age = ageValue;
+        user.heightInInches = ((feetValue*12)+(inchesValue*1)); //magic number to cast it correctly. :(
+        user.activityLevel = pickedActivityMultiplier;
+        user.sex = selectedSex;
+        user.caloricDeficit = caloricDeficitValue;
+        user.setOwnBodyFatGoal = false;
+        console.log('Player 1 ready');
+    }
+
 
     function mainCalc() {
     	getUserInputs();
@@ -32,25 +48,27 @@ function calculateUserBodyFat() {
         threePartCalc();
     }
 
-    function getUserInputs(){
-    	
-        if (nameInputBox != null) {
-            name = nameInputBox.value;
+
+
+    function calcBodyFatLevels(){
+        percentValue = percentInputBox2.value
+        if (user != null) {
+            user.bodyFatPercentage = percentValue;
         }
+    }
+
+    function getUserInputs(){
+
+        getUserName();
 
         //weight
-    	weightValue = weightInputBox2.value;
+        getUserWeight();
 
     	//body fat
-    	percentValue = percentInputBox2.value
+        calcBodyFatLevels();
 
     	//gender
-	    sex.forEach( function(element, index) {
-			let evaluatedSexOption = element;
-			if (evaluatedSexOption.checked == true) {
-				selectedSex = evaluatedSexOption.value;
-			} // end of if
-		}); //end of sex.forEach
+	    getUserGender();
 
 		//bf goal
 		userBfGoal = bfGoalInputBox.value;
@@ -74,25 +92,36 @@ function calculateUserBodyFat() {
         caloricDeficitValue = parseInt(caloricDeficitInput.value);
     }
 
-    function createUser(){
-    	user = new Object();
+    function getUserName(){
+        if (nameInputBox != null) {
+            name = nameInputBox.value;
+        }
         user.name = name;
-    	user.weight = weightValue;
-    	user.bodyFatPercentage = percentValue;
-    	user.leanBodyMass = leanResults;
-    	user.fatBodyMass = LbsBfResults;
-    	user.bodyFatPercentageGoal = userBfGoal;
-    	user.age = ageValue;
-    	user.heightInInches = ((feetValue*12)+(inchesValue*1)); //magic number to cast it correctly. :(
-    	user.activityLevel = pickedActivityMultiplier;
-        user.sex = selectedSex;
-        user.caloricDeficit = caloricDeficitValue;
-        user.setOwnBodyFatGoal = false;
-    	console.log('Player 1 ready');
     }
 
+    function getUserGender(){
+        sex.forEach( function(element, index) {
+            let evaluatedSexOption = element;
+            if (evaluatedSexOption.checked == true) {
+                selectedSex = evaluatedSexOption.value;
+            } // end of if
+        }); //end of sex.forEach
+
+        if (user != null) {
+            user.sex = selectedSex;
+        }
+    }
+
+    function getUserWeight(){
+        weightValue = weightInputBox2.value;
+        user.weight = weightValue;
+    }
+
+
+
     function customizeEssayWithName(){
-        
+        name = nameInputBox.value;
+        user.name = name;
         userNameInsert.forEach( function(element, index) {
             element.textContent = user.name;
         });
@@ -204,7 +233,7 @@ function calculateUserBodyFat() {
     	LbsToLoseToGoal = LbsBfResults - GoalFatResults; 
         LbsToLoseToGoal = roundNumPlace(LbsToLoseToGoal,1);
     	
-    	bfPercentGenderInsert.forEach( function(element, index) {
+    	genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
     		element.textContent = user.bodyFatPercentageGoal;
     	});
 
@@ -410,7 +439,7 @@ function calculateUserBodyFat() {
     }
 
     function genderPicked(){
-        getUserInputs();
+        getUserGender();
         generateEstimatingText();
         generateOptimalBodyFatText();
         generateOptimalBodyFatText();
@@ -494,6 +523,7 @@ function calculateUserBodyFat() {
     }
 
     function weightButtonClicked() {
+        getUserWeight();
         let genderAverageWeight;
         if (user.sex == 'male') {
             genderAverageWeight = kAverageMaleWeight;
@@ -588,7 +618,6 @@ function calculateUserBodyFat() {
         mainCalc();
     }
 
-    let user;
     let name;
     let userManuallyPickedDeficit = false;
 
@@ -667,7 +696,7 @@ function calculateUserBodyFat() {
     const calcStartingPointButton = document.getElementById('calcStartingPointButton');
 
     if (calcStartingPointButton != null) {
-        calcStartingPointButton.addEventListener('click', mainCalc);
+        calcStartingPointButton.addEventListener('click', calcBodyFatLevels);
     }
 
     const reCalcButton = document.getElementById('reCalcButton');
@@ -733,7 +762,7 @@ function calculateUserBodyFat() {
     	element,addEventListener('change', activeMultipler);
     });
 
-    const bfPercentGenderInsert = document.getElementsByName('bfPercentGenderInsert');
+    const goalBodyFatPercentageInsert = document.getElementsByName('goalBodyFatPercentageInsert');
 
     const weightInsert = document.getElementsByName('weightInsert');
     const bfInsert = document.getElementsByName('bfInsert');
