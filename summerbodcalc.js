@@ -262,6 +262,7 @@ function calculateUserBodyFat() {
     	userPickedDeficitInsert.forEach( function(element, index) {
     		element.textContent  = caloricDeficitValue;
     	});
+        calcCaloricDeficitValue();
     } //end activieMultipler
 
     function calcTwentyFivePercentDeficit(){
@@ -494,7 +495,7 @@ function calculateUserBodyFat() {
         });
 
         //set the body fat goal input box to the gender suggestion
-        if (user.setOwnBodyFatGoal === false) {
+        if (userDidSetBodyFatPercentageGoal === false) {
             bfGoalInputBox.value = genderBfGoalFrom100;
         }
     }
@@ -508,6 +509,9 @@ function calculateUserBodyFat() {
         selectedGenderInsert.forEach( function(element, index) {
             element.textContent = user.sex;
         });
+
+
+
 
         genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
             element.textContent = genderBfGoalFrom100;
@@ -663,18 +667,13 @@ function calculateUserBodyFat() {
         userDidSetDailyCalories = true;
     }
 
+    function userPickedBodyFatPercentageGoal(){
+        userDidSetBodyFatPercentageGoal = true;
+    }
+
     function getAbPlan() {
-        let valueToCheckAgainst
-
-        if (user.sex == 'male') {
-            valueToCheckAgainst = bfGoalMale*100;
-        } else {
-            valueToCheckAgainst = bfGoalFemale*100;
-        }
-
-        if (bfGoalInputBox.value != valueToCheckAgainst) {
+        if (userDidSetBodyFatPercentageGoal == true) {
             user.bodyFatPercentageGoal = bfGoalInputBox.value;
-            user.setOwnBodyFatGoal = true;
         }
         mainCalc();
     }
@@ -909,6 +908,9 @@ function calculateUserBodyFat() {
     const dailyCaloriesAtMaxInsert = document.getElementsByName('dailyCaloriesAtMaxInsert');
 
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
+    bfGoalInputBox.addEventListener('focusin',userPickedBodyFatPercentageGoal);
+
+
     let userBfGoal;
 
     const estimateBodyFatSection = document.getElementById('estimateBodyFat');
@@ -935,6 +937,7 @@ function calculateUserBodyFat() {
     let userSelectedDailyCalories;
 
     let userDidSetDailyCalories = false;
+    let userDidSetBodyFatPercentageGoal = false;
 
     bootup();
 
