@@ -3,6 +3,27 @@ html {
 	font-size: 18px;
 }
 
+h1 {
+    background-image: linear-gradient(45deg, #EE27E9, #06ECFF);
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    background-size: 120% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    -ms-background-clip: text;
+    -ms-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    transition: all 0.15s cubic-bezier(0.68, -0.25, 0.265, 1.25);
+}
+
+.radiobuttonstack {
+    display: block;
+}
+
 .totalbodyweight {
   text-decoration: underline #26EAA2;
 }
@@ -15,10 +36,13 @@ html {
   text-decoration: underline #06ECFF;
 }
 
+.bmrAnswer {
+    text-decoration: underline #06ECFF;
+}
+
 
 .highlight{
     border: 1px solid #EE27E9;
-    font-size: 20px;
     padding-top: 10px;
     padding-left: 10px;
 }
