@@ -3,15 +3,32 @@ html {
 	font-size: 18px;
 }
 
+.totalbodyweight {
+  text-decoration: underline #26EAA2;
+}
+
+.totalfatmass {
+  text-decoration: underline #EE27E9;
+}
+
+.totalleanmass {
+  text-decoration: underline #06ECFF;
+}
+
+
 .highlight{
     border: 1px solid #EE27E9;
     font-size: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 .summerSection{
     border: 2px solid #EE27E9;
     text-align: center;
     font-size: 24px;
+    padding-top: 10px;
+    padding-left: 10;
 }
 
 .scienceSideNote {
