@@ -10,6 +10,10 @@ This is a live essay + calculator that can get anyone abs, if they put the princ
 
 "When level of intensity doesn't move the needle, consistency is where all the power comes from."
 
+So far I have built 3 versions of the essay + calculator. 
+https://thisappwillgiveyouabs.com/summerbod2020
 
+And a macros to calories calculator.
+https://thisappwillgiveyouabs.com/macrostocalories
 
-
+I want to add a better TDEE calculator as well as a macro calculator.
