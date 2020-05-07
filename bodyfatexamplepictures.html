@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Summer Bod 2020</title>
+	<link rel="stylesheet" type="text/css" href="summerbodstyle.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158081909-1"></script>
+	<script>
+  	window.dataLayer = window.dataLayer || [];
+  	function gtag(){dataLayer.push(arguments);}
+  	gtag('js', new Date());
+
+  	gtag('config', 'UA-158081909-1');
+	</script>
+</head>
+<body>
+<div class="topHeader">
+	<div class="innerHeader">
+		<div class="logoContainer">
+			ThisAppWillGiveYouAbs
+		</div>
+
+		<ul class="nav">
+			<a href="summerbod2020.html"><li>SummerBod</li></a>
+			<a href="calculator.html"><li>Calculator</li></a>
+			<a href="macrostocalories.html"><li>Macros to Calories Calculator</li></a>
+			<a href="index.html"><li>Essay</li></a>
+			<a href="about.html"><li>About</li></a>
+		</ul>
+	</div>
+</div>
+
+<div class="mainContainer">
+
+<div class="header">
+	<h1>Body Fat Example Pictures</h1>
+</div>
+
+<div class="highlight">
+	<div>
+		Guys: At 10% body fat you will have awesome abs.
+	</div>
+	<div>
+		Gals: At 20% body fat you will have awesome abs.
+	</div>
+</div>
+
+
+<h3 class="genderHeader">What is your gender?</h3>
+
+<div class="radio-group">
+	<input type="radio" class="sex toggle" name="sex" id="female" value="female">
+	<label for="female">Female</label>
+	<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
+	<label for="male">Male</label>
+</div>
+
+<h3>
+	What is your current mass in pounds? ⚡️
+</h3>
+
+<div>
+	<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
+</div>
+
+<div>
+	<button type="button" id="enterWeightButton" class="calcButton squareButton">Make it so Mr. Sulu 🖖🏻</button>
+</div>
+
+<h3>Do you know your current body fat percentage?</h3>
+<div class="radio-group">
+	<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="No" value="No" checked>
+	<label for="No">No</label>
+	<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="Yes" value="Yes">
+	<label for="Yes">Yes</label>
+</div>
+
+<div id="estimateBodyFat">
+	<h2>How to visually estimate body fat percentage with pictures 📸</h2>
+	<div>
+		If you don't know your current body fat percentage, you can estimate it pretty accurately by looking at comparison photos and reading the description of different levels. 
+	</div>
+	<div>
+		I scoured the internet for the best body fat comparison charts.
+	</div>
+	<div>
+		Fair warning lots of pictures of people with various levels of body fat ahead. You don't have to be exactly accurate. Be honest. Guys usually think they are leaner than they really are, girls the opposite.
+	</div>
+	<h3>Body Fat Level Examples</h3>
+	<div>
+		<a href="bodyfatpercentageexamples.html" class="maleExampleImageLinks" target="_blank" rel="noopener noreferrer">Click here to see the full sized image in a new tab.</a><a href="femalebodyfatpercentageexamples.html" class="femaleExampleImageLinks" target="_blank" rel="noopener noreferrer">Click here to see the full sized image in a new tab.</a>
+		Or just click the image.
+	</div>
+	<div class="imageContainer">
+		<a href="bodyfatpercentageexamples.html" class="maleExampleImageLinks" target="_blank" rel="noopener noreferrer"><img src="images/menBodyFatExamples.png"></a>
+		<a href="femalebodyfatpercentageexamples.html" class="femaleExampleImageLinks" target="_blank" rel="noopener noreferrer"><img src="images/femaleBodyFatEamples.png"></a>
+	</div>
+
+	<h3>Body Fat Level Descriptions</h3>
+	<div id="estimateBodyFatLevelDescriptions">	
+	</div>
+</div>
+
+<h3>What is your current body fat percentage?</h3>
+
+<div>
+	<input type="number" id="percentInputBox" class="percentInputBox inputform" placeholder="in whole percent. example 20 not .2" value="22">
+</div>
+
+
+<div>
+	<button type="button" id="calcStartingPointButton" class="calcButton squareButton">Set body fat percentage!</button>
+</div>
+
+<div>
+	At <span class="totalbodyweight" name="weightInsert">A</span> pounds, with a body fat percentage of <span name="bfInsert">Y</span>%, you have <span class="totalfatmass" id="LbsBfResultsDiv">B</span> of body fat and <span class="totalleanmass" id="leanResultsDiv"></span> pounds of lean body mass for a total of <span name="weightInsert">A</span> pounds of total mass. 
+</div>
+
+<h3>What is your goal body fat %?</h3>
+<div>
+	Remember, as a <span name="selectedGenderInsert">male</span>, your abs really pop at <span class="genderOptimalBfGoal">10</span>% body fat, but you can set any goal you desire here. 
+</div>
+
+<div>
+	<input type="number" class="inputform" id="bfGoalInputBox" value="10">
+</div>
+
+<div>
+	<button type="button" id="getAbPlanButton" class="squareButton">Set my goal!</button>
+</div>
+
+<h2>How to get to <span name="goalBodyFatPercentageInsert">goal </span> % body fat</h2>
+<div>
+	You are at a body fat percentage of <span name="bfInsert">Y</span>%. With your current weight of <span name="weightInsert">X</span> pounds, that means you have <span name="leanInsert">Z</span> pounds of lean body mass and <span name="fatInsert">A</span> pounds of body fat. 
+</div>
+<div class="highlight">
+	<div>
+		With your goal body fat percentage of <span name="goalBodyFatPercentageInsert">goal</span>%, you would have a goal weight of <span name="newTotalBodyWeightInsert"></span> pounds, with <span name="leanInsert">Z</span> pounds of lean body mass and <span name="newFatInsert">C</span> pounds of fat.
+	</div>
+	<div>
+		<span name="newFatInsert">C</span> fat mass / <span name="newTotalBodyWeightInsert"></span> total mass = <span name="goalBodyFatPercentageInsert">goal</span>% body fat.
+	</div>
+</div>
+<div>
+	To make this calculation we assume you keep all of your <span name="leanInsert">Z</span> pounds of lean mass. We just decrease your fat mass by <span name="loseInsert">B</span> pounds, and you are at <span name="goalBodyFatPercentageInsert">gender</span>% body fat. 
+</div>
+<div>
+	(Current fat mass of <span name="fatInsert">A</span> - Goal fat mass of <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> pounds of fat to lose)
+</div>
+<div>
+	This is a totally achievable goal. More on how to keep your muscle mass later! 
+</div>
+
+<div>Let's update your checklist! What you need for abs.</div>
+	<ol>
+		<li>✅ Abdominal muscles</li>
+		<li>Go from <span name="bfInsert">Y</span>% body fat to <span name="goalBodyFatPercentageInsert">?</span>% body fat, by using up <span name="loseInsert">B</span> pounds of fat.</li>
+	</ol>
+<div>
+	The next question is "How can I decrease my body fat percentage?" quickly followed by "How long will this take?". We will calculate both of these. 
+</div>
+
+<h2>How to decrease body fat percentage</h2>
+<div>
+	The primary way to decrease body fat percentage is to reduce the amount of fat your body is storing. You can also change the ratio by gaining more muscle, but reducing fat is by far the easier and quicker route. 
+</div>
+<div>
+	A pound of fat has about 3,500 calories of energy stored in it. 
+</div>
+<div>
+	To remove a pound of fat, you body needs to burn 3,500 calories that you do not replace thru eating energy aka food. 
+</div>
+<div>
+	This is known as an energy deficit. If you take in less energy than you output, your body will burn fat to make up the difference, converting the fat into CO2, water, and energy. 
+</div>
+<div>
+	If Energy Expenditure is greater than Energy Intake = Fat Loss occurs
+</div>
+
+<h3>How to calculate your energy expenditure</h3>
+
+<div>
+	Your body uses or burns energy all the time to keep you alive and happy. If you did absolutely nothing in a day, your body would still burn a lot of energy keeping you healthy, pumping your blood and repairing your cells. This is known as your Base Metabolic Rate or BMR.
+</div>
+<div>
+	You use additional energy moving, talking, eating.  
+</div>
+<div>
+	You use additional energy exercising.
+</div>
+<div>
+	All of this together is known as your Total Daily Energy Expenditure or TDEE.
+</div>
+<div>
+	TDEE = BMR * Activity Multiplier
+</div>
+<div>
+	We can estimate your BMR with calculations, then estimate your Activity Multipler and put them together to figure out how much energy you burn in a day. 
+</div>
+
+<h3>Let's Calculate your BMR</h3>
+<div>
+	We can use a formula to calculate what your BMR is. 
+</div>
+<div>
+	What is your age?
+	<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
+</div>
+<div>
+	What is your height in feet?
+	<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
+</div>
+<div>
+	and your remaining height in inches
+	<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
+</div>
+
+<div>
+	We will use the weight that you entered earlier, of <span name="weightInsert">weight fill</span> pounds.
+</div>
+
+<div>
+	<button type="button" class="calcBmrButton squareButton" id="calcBmr">Calculate your BMR!</button>
+</div>
+
+<div>
+	Your estimated BMR is <span class="bmrAnswer" name="bmrAnswer">bmrAnswer</span> calories per day. 
+</div>
+
+<div>
+<h3>What is your level of Activity?</h3>
+</div>
+<div>
+<label for="sedentary" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="sedentary" value="sedentary" checked> Sedentary (x 1.15)</label>
+<label for="light" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="light" value="light"> Light Activity (x 1.35)</label>
+<label for="moderate" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="moderate" value="moderate"> Moderate Activity (x 1.55)</label>
+<label for="veryactive" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="veryactive" value="veryactive"> Very Active (x 1.75)</label>
+<label for="extremely" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="extremely" value="extremely"> Extremely Active (x 1.95)</label>
+</div>
+<div>Need help picking your activity level? 👇🏻</div>
+<div>
+	<span id='buttonToggleActivityLevelSection'>Click to show the Estimating Activity Level Section</span>
+</div>
+<div id="activityLevelSection">
+	<h2>How to estimate your Activity Level</h2>
+	<p>
+		Studies have shown that we all overestimate how much we are active. So read the descriptions, pick where you think you are, then move down one level. For example if you think you are Moderately Active, chose Lightly Active. Since it is an estimate it just needs to be close and then you can see what the results are and tweak it.
+	</p>
+
+	<h4>Sedentary 1.15</h4>
+	<p>
+		You don’t intentionally exercise at all. Get up, go to work, come home, eat dinner, relax.
+	</p>
+
+	<h4>Lightly Active 1.2</h4>
+	<p>
+		On average, you walk for exercise about 30 minutes a day. Or you are running or lifting weights fro 15 minutes a day.
+	</p>
+
+	<h4>Moderately Active 1.4</h4>
+	<p>
+		If I was looking for you on a weeknight, I would call the gym. 50 minutes of vigorous exercise a day. Or about one hour and 45 minutes of walking (for exercise, not going around your house) per day. Most people do not do this.
+	</p>
+
+	<h4>Very Active 1.6</h4>
+	<p>
+		You move vigorously for your work (think something like construction or yardwork), or you workout every single day for more than an hour. If you were to get this level of activity only walking, it would be a nearly impossible four hours and 15 minutes of walking (again, for intentional exercise) a day.
+	</p>
+
+	<h4>Extra Active 1.8</h4>
+	<p>
+		Hey there Michael Phelps. Almost no one does this. This means every single day you are working out hard for an hour and a half. Or you are a professional speed walker.
+	</p>
+</div>
+
+<div>
+	Your BMR x Your Activity Multiplier gives your Total Daily Energy Expenditure or TDEE.
+</div>
+<div class="highlight">
+	<div>
+		<span name="bmrAnswer">bmrAnswer</span> x Activity Multiple = <span name="tdee"></span> calories per day.
+	</div>
+</div>
+<div>We have estimated your energy output. Now you need to know how to measure your energy intake.</div>
+
+<h2>How to measure your energy intake</h2>
+<div>
+	Luckily we don't have to estimate your energy intake. We can track it precicely simply by monitoring everything you eat.
+</div>
+<div>
+	We measure the amount of energy we output and intake in calories. A calorie is the amount of energy it takes to heat a kilgram of water 1 degree.
+</div>
+<div>
+	The best way to know your energy intake is to track how many calories you are eating. That is the only way to know for sure how much energy your are taking into your body. 
+</div>
+<div>
+	This does not mean that you are going to have to track everything you eat for the rest of your life like some food accountant. But it does mean that you need to track it for a while. Recording everything (and I mean everything) you eat or drink is the single best way to accurately gauge your energy intake.
+</div>
+<div>
+	You can use an app like MyFitnessPal or record it in a paper notebook.
+</div>
+
+<div class="highlight">
+	We now have all the information we need to figure out how long it will take you to get to <span name="goalBodyFatPercentageInsert">?</span>% body fat!
+</div>
+<div>
+	You currently have <span name="fatInsert">A</span> pounds of fat.
+</div>
+<div>
+	At <span name="goalBodyFatPercentageInsert">?</span>% body fat, you will have <span name="newFatInsert">C</span> pounds of fat.
+</div>
+<div>
+	You have to burn off <span name="loseInsert">B</span> pounds of fat. 
+</div>
+<div>
+	There are 3,500 calories in 1 pound of fat. 
+</div>
+<div>
+	This means we know know how many calories you need to burn off by eating less. 3,500 * <span name="loseInsert">B</span> = <span name="caloriesToUseUp">calories</span> calories to use up.
+</div>
+
+<h3>
+	How much energy will you eat per day?
+</h3>
+<div>
+	How much energy you eat per day will determine your caloric deficit and how fast you will lose fat. Eat too much energy and your caloric deficit will be so small it will take forever to hit your goal. Eat too little and your body won't be able to cover that caloric deficit through just fat, so it will use up muscle for energy as well as fat. We don't want that.
+</div>
+<div>
+	Research says a 25% deficit is most effective at losing fat and perserving muscle (more on that later).
+</div>
+<div>
+	With your TDEE of <span name="tdee">X</span> a 25% deficit would = <span name="twentyFivePercentCalorieDeficitInsert">a number</span> calories per day. 
+</div>
+<div>
+	<span name="tdee">X</span> - <span name="twentyFivePercentCalorieDeficitInsert">a number</span> = <span name="theoreticalCalorieIntakeInsert">25% deficit</span> recommended calories of energy intake per day. 
+</div>
+
+<div>
+	Daily calories you will eat:  <input type="number" class="inputform" id="caloricBudgetInput" value="1500">
+</div>
+
+<div>
+	With your chosen energy intake of <span name="calorieBudgetInsert">calories a day you chose</span>, your caloric deficit is <span id="percentDeficitInsert">not calculated</span>%. 
+</div>
+
+<div>
+	<button type="button" class="squareButton" id="reCalcButton">Calc time to goal 🔥</button>
+</div>
+
+<div class="dateCalculationsSection">
+	<div>
+		It will take you <span name="numberOfDaysTilGoalInsert">X</span> days to reach <span name="goalBodyFatPercentageInsert">?</span>%.
+	</div>
+
+	<div>
+		It will take you <span name="numberOfWeeksTilGoalInsert">X</span> weeks to reach <span name="goalBodyFatPercentageInsert">?</span>%. 
+	</div>
+
+	<div>
+		It will take you <span id="numberOfMonthsTilGoalInsert">X</span> months to reach <span name="goalBodyFatPercentageInsert">?</span>%. 
+	</div>
+</div>
+
+<div>
+	It will be <span id="dateFromCalculatedDaysAway">daysinsert</span> in <span name="numberOfDaysTilGoalInsert">X</span> days. 
+</div>
+<div>
+	We need to calculate one last thing. How much protein you need to eat to maintain your muscles.
+</div>
+
+<h2>How to maintain your muscle</h2>
+
+<div>When your body needs energy, it doesn't really care where it comes from. In order to keep your muscle, and lose fat, you have to tell your body you want to preserve your muscle. You do this by </div>
+
+<ol>
+	<li>Lifting weights.</li>
+	<li>Eating enough protein to repair and build your muscles.</li>
+	<li>Sleeping enough to repair and build your muscles and keep your stress hormones down.</li>
+</ol>
+
+<h3>How much protein do I need?</h3>
+<div>
+	Research shows that you need .82 grams of protein per pound of total body mass. 
+
+	At <span name="weightInsert">X</span> pounds total body weight, you need <span name='gramsProteinInsert'></span> grams of protein a day. 
+</div>
+
+<h3>What kind of weight training do I need to do?</h3>
+<div>
+	You don't need to go crazy. Just do a full body workout a couple times a week.
+</div>
+<div>
+	<a href="https://www.nerdfitness.com/blog/strength-training-101-where-do-i-start/"> Here is a link to a good beginner weight lifting routine.</a>
+</div>
+
+<h3>How much sleep do I need?</h3>
+<div>
+	Sleep is critical to losing weight and gaining muscle, and having an enjoyable and productive life. If you are not getting 7 - 9 hours of sleep, you need to get more of it.
+</div>
+<div>
+	John Medina wrote the book Brain Rules. <a href="https://www.slideshare.net/pearpress/brain-rule-7-sleep"> Here is a link to some of his research about sleep.</a>
+</div>
+<div>
+Most people think they can get away with less sleep. You make it much harder, if not nearly impossible to gain muscle if you are not allowing your body to recover. Sleep more.
+</div>
+
+<h2>Final Results: Here is <span name="userNameInsert">there</span>'s plan for abs</h2>
+<div>Here is your completely calculated and filled out checklist to get abs.</div>
+	<ol>
+		<li>✅ Abdominal muscles</li>
+		<li>Go from <span name="bfInsert">Y</span>% body fat to <span name="goalBodyFatPercentageInsert">?</span>% body fat, by using up <span name="loseInsert">B</span> pounds of fat, by consistently eating <span name="calorieBudgetInsert">this many</span> calories a day.</li>
+		<li>Lift weights to keep and gain muscle.</li>
+		<li>Eat <span name='gramsProteinInsert'>much protein</span> grams of protein a day.</li>
+		<li>Sleep 7-9 hours a night.</li>
+	</ol>
+<div>If you do the above steps, re-calculating as your body mass changes, you will get abs in <span name="numberOfWeeksTilGoalInsert">X</span> weeks.</div>
+
+<h2>Now is the time to take action</h2>
+<div>
+	You now have the map. You have the knowledge you need to reach your goal of having abs. Now you just need to execute.
+</div>
+<div>
+	You can do this! 🔥⚡️👊🏼
+</div>
+
+<div id="signupform">
+	<!-- Begin Mailchimp Signup Form -->
+	<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+		/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+		   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+	</style>
+	<div id="mc_embed_signup">
+		<form action="https://twitter.us4.list-manage.com/subscribe/post?u=13626cb7e2c997963b598756e&amp;id=2c57e7e0ca" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			<div id="mc_embed_signup_scroll">
+				<h2>Want new calculators and updates as I release them?</h2>
+				<div class="mc-field-group">
+				<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+				</label>
+				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+				</div>
+
+			<div id="mce-responses" class="clear">
+				<div class="response" id="mce-error-response" style="display:none"></div>
+				<div class="response" id="mce-success-response" style="display:none"></div>
+			</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_13626cb7e2c997963b598756e_2c57e7e0ca" tabindex="-1" value="">
+			</div>
+
+			<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button squareButton">
+			</div>
+
+			</div>
+		</form>
+	</div>
+	<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+	<!--End mc_embed_signup-->
+</div>
+
+<h3>Trainers?</h3>
+<div>
+	If you are a trainer and want a branded version of this page or calculator to share with your clients, please email me
+</div>
+<div>
+	version 1.02
+</div>
+<div>
+	Most recent changes: Fixed typos. 
+</div>
+
+<div>
+		<a href="about.html">About me</a>
+</div>
+
+</div> <!--End main container-->
+
+<div class="footer">
+	
+	<a target="_blank" rel="noopener" class="joshdance-by" href="https://twitter.com/JoshDance"><img src="https://thisappwillgiveyouabs.com/images/adventure.png" /><p>by joshdance</p></a>
+</div>
+
+<script src="summerbodcalc.js"></script>
+</body>
+</html>
