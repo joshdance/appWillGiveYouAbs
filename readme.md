@@ -17,3 +17,9 @@ And a macros to calories calculator.
 https://thisappwillgiveyouabs.com/macrostocalories
 
 I want to add a better TDEE calculator as well as a macro calculator.
+
+Todo List:
+1. add metric (kg baby)
+2. Make a 'how to get in shape by date' calculator
+3. Standardize the header
+4. 
