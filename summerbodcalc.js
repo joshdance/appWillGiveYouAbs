@@ -880,7 +880,7 @@ function calculateUserBodyFat() {
     const maleSValue = 5;
     const femaleSValue = -161; //where s is +5 for males and -161 for females.
 
-    const firstDayOfSummer = new Date("06/20/2021");
+    const firstDayOfSummer = new Date("06/20/2022");
     let todaysDate = new Date();
 
     const daysTillSummer = document.getElementById('daysTillSummerInsert');
