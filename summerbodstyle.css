@@ -1,7 +1,71 @@
 html {
-	font-family: Avenir,Tahoma,sans-serif;
-	font-size: 18px;
+    font-family: Avenir,Tahoma,sans-serif;
+    font-size: 18px;
 }
+
+
+/* --------- Nav Bar ------------------ */
+nav {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    text-decoration: none;
+    float: left;
+}
+
+nav ul li a {
+    text-decoration: none;
+    text-align: center;
+    padding: 14px;
+}
+
+nav ul li a:hover {
+    background-color: #fcfcfc;
+}
+
+.topNavRight {
+    float: right;
+}
+
+.hamburgerIcon {
+    display: none;
+}
+
+.mainContainer {
+    display: block;
+    width: 100%;
+    max-width: 645px;
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+}
+
+/*---- Mobile ------*/
+/*not yet minion, not yet! - Megamind*/
+/*@media screen and (max-width: 680px) {
+    nav ul li{
+        display: none;
+    }
+
+    .hamburgerIcon {
+        display: block;
+    }
+
+    .topNavRight {
+        display: block;
+    }
+}*/
+
+/* Main Calculator*/
 
 h1 {
     background-image: linear-gradient(45deg, #EE27E9, #06ECFF);
@@ -56,81 +120,81 @@ h1 {
 }
 
 .scienceSideNote {
-	background-color: #ccffcc
+    background-color: #ccffcc
 }
 
 .scienceSideNoteBody {
-	border: 1px solid gray;
+    border: 1px solid gray;
 }
 
 .bold {
-	font-weight:
+    font-weight:
 }
 
 #poundMassPoundForceDetails {
-	display: none;
+    display: none;
 }
 
 #weightDoesntMatterDetails {
-	display: none;
+    display: none;
 }
 
 #spotReduceDetails {
-	display: none;
+    display: none;
 }
 
 #fatCellDetails {
-	display: none;
+    display: none;
 }
 
 #fattyAcidBreakdown {
-	display: none;
+    display: none;
 }
 
 #scienceUnderDevelopedCore {
-	display: none;
+    display: none;
 }
 
 #femaleBodyFatExampleCalculation {
-	display: none;
+    display: none;
 }
 
 #maleBodyFatExampleCalculation {
-	display: none;
+    display: none;
 }
 
 #betaBanner {
-	background-color: yellow;
-  	text-align: center;
+    background-color: yellow;
+    text-align: center;
 }
 
 .maleExampleImageLinks {
-	display: none;
+    display: none;
 }
 
 .femaleExampleImageLinks {
-	display: none;
+    display: none;
 }
 
 .bmrInputForm {
-	flex; justify-content: flex-end;
+    flex; justify-content: flex-end;
 }
 
 .calcOnlyWarning {
-	color: orange;
+    color: orange;
 }
 
 .imageContainer {
-	max-width: 800px;
+    max-width: 800px;
 }
 
 .imageContainer img {
-	width: 100%;
-	height: auto;
+    width: 100%;
+    height: auto;
 }
 
 #signupform {
-	margin-top: 22px;
+    margin-top: 22px;
     margin-bottom: 25px;
     padding: 19px 18px 0 30px;
     clear: both;
@@ -145,8 +209,8 @@ h1 {
 }
 
 #estimateBodyFat {
-	display: block;
-	margin-top: 22px;
+    display: block;
+    margin-top: 22px;
     margin-bottom: 25px;
     padding: 19px 18px 0 30px;
     clear: both;
@@ -161,8 +225,8 @@ h1 {
 }
 
 #activityLevelSection {
-	display: none;
-	margin-top: 22px;
+    display: none;
+    margin-top: 22px;
     margin-bottom: 25px;
     padding: 19px 18px 0 30px;
     clear: both;
@@ -177,15 +241,15 @@ h1 {
 }
 
 #showEstimateSection {
-	color: red;
+    color: red;
 }
 
 #buttonToggleActivityLevelSection {
-	color: red;
+    color: red;
 }
 
 .tdeeResults {
-	margin-top: 22px;
+    margin-top: 22px;
     margin-bottom: 25px;
     padding: 19px 18px 0 30px;
     clear: both;
@@ -199,61 +263,41 @@ h1 {
     line-height: 29px;
 }
 
-.mainContainer {
-	display: block;
-    width: 100%;
-    max-width: 645px;
-    margin-right: auto;
-    margin-left: auto;
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-}
-
-.header {
-	display: block;
-    width: 100%;
-    max-width: 645px;
-    margin-right: auto;
-    margin-left: auto;
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-}
-
 p {
-	margin-bottom: 16px;
+    margin-bottom: 16px;
     font-family: Avenir,Tahoma,sans-serif;
     line-height: 25px;
 }
 
 div {
-	margin-bottom: 16px;
+    margin-bottom: 16px;
 
 }
 
 .genderHeader {
-	margin-bottom: 16px;
+    margin-bottom: 16px;
     font-family: Avenir,Tahoma,sans-serif;
     line-height: 25px;
 }
 
 h1 {
     font-family: Avenir,Tahoma,sans-serif;
-	color: #EE27E9;
+    color: #EE27E9;
 }
 
 h2 {
     font-family: Avenir,Tahoma,sans-serif;
-	color: #06ECFF;
-	padding-bottom: 11px;
+    color: #06ECFF;
+    padding-bottom: 11px;
 }
 
 body {
-	background-color: #ffffff;
-	
+    background-color: #ffffff;
+    margin: 0;
 }
 
 ol {
-	margin-top: 22px;
+    margin-top: 22px;
     margin-bottom: 25px;
     padding: 19px 18px 0 30px;
     clear: both;
@@ -269,31 +313,31 @@ ol {
 
 
 .squareButton {
-	margin-top: 16px;
-	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
-	background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
-	background-color:#637aad;
-	border:1px solid #314179;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
+    margin-top: 16px;
+    box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+    background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+    background-color:#637aad;
+    border:1px solid #314179;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
     font-family: Avenir,Tahoma,sans-serif;
-	font-size:18px;
-	font-weight:bold;
-	padding:6px 12px;
-	text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
+    padding:6px 12px;
+    text-decoration:none;
 }
 .squareButton:hover {
-	background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
-	background-color:#5972a7;
+    background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
+    background-color:#5972a7;
 }
 .squareButton:active {
-	position:relative;
-	top:1px;
+    position:relative;
+    top:1px;
 }
 
 .inputform {
-	-webkit-appearance: none;
+    -webkit-appearance: none;
     -webkit-border-radius: 0px;
     width: 100%;
     max-width: 350px;
@@ -313,33 +357,33 @@ ol {
 }
 
 .joshdance-by {
-	font-family:"Helvetica Neue",sans-serif;
-	right:0;
-	bottom:0;
-	position:fixed;
-	z-index:100;
-	border-top-left-radius: 5px;
-	padding: 6px;
-	border-top:1px solid #efefef;
-	border-left:1px solid #efefef;
-	background:#fff;
-	color:#6f6f6f;
-	text-decoration:none;
+    font-family:"Helvetica Neue",sans-serif;
+    right:0;
+    bottom:0;
+    position:fixed;
+    z-index:100;
+    border-top-left-radius: 5px;
+    padding: 6px;
+    border-top:1px solid #efefef;
+    border-left:1px solid #efefef;
+    background:#fff;
+    color:#6f6f6f;
+    text-decoration:none;
 }
 .joshdance-by:hover {
-	background:#fff;
-	color:rgb(255, 71, 66); /* change to your main brand color */
+    background:#fff;
+    color:rgb(255, 71, 66); /* change to your main brand color */
 }
 .joshdance-by img {
-	border-radius:100%;
-	width:22px;
-	vertical-align:middle;
+    border-radius:100%;
+    width:22px;
+    vertical-align:middle;
 }
 .joshdance-by p {
-	margin:0;
-	vertical-align:middle;
-	display:inline;
-	margin-left:7px;
-	font-weight:500;
-	font-size:14px;
+    margin:0;
+    vertical-align:middle;
+    display:inline;
+    margin-left:7px;
+    font-weight:500;
+    font-size:14px;
 }
