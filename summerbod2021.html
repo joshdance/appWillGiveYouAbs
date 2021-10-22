@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Abs Calculator</title>
+	<title>Summer Bod 2022</title>
 	<link rel="stylesheet" type="text/css" href="summerbodstyle.css">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -15,28 +15,54 @@
 	</script>
 </head>
 <body>
-<nav>
-	<ul>
-		<li><a href="summerbod2021.html">SummerBod</a></li>
-		<li><a href="calculator.html">Calculator</a></li>
-		<li><a href="macrostocalories.html">Macros to Calories Calculator</a></li>
-		<li><a href="index.html">Essay</a></li>
-		<li><a href="howtolose10pounds.html">How to Lose 10 Pounds</a></li>
-		<li><a href="about.html">About</a></li>
-		<li class="topNavRight"><a href="login.html">Login</a></li>
-		<li class="hamburgerIcon"><a href="">&#9776</a></li>
-	</ul>
-</nav>
+<div class="topHeader">
+	<div class="innerHeader">
+		<div class="logoContainer">
+			ThisAppWillGiveYouAbs
+		</div>
+
+		<ul class="nav">
+			<a href="summerbod2021.html"><li>SummerBod</li></a>
+			<a href="calculator.html"><li>Calculator</li></a>
+			<a href="macrostocalories.html"><li>Macros to Calories Calculator</li></a>
+			<a href="index.html"><li>Essay</li></a>
+			<a href="about.html"><li>About</li></a>
+		</ul>
+	</div>
+</div>
 
 <div class="mainContainer">
 
-<h1>Abs Calculator</h1>
-
-<div>
-	<span class="calcOnlyWarning">This is the calculator only. </span>If you want the live essay that explains the concepts with the calculators built in, <a href="index.html">click here.</a>
+<div class="imageContainer">
+	<img src="images/SummerBod2020.gif">
 </div>
 
-<h3>What's your name? </h3>
+<div class="header">
+	<h1>Summer Bod 2022</h1>
+</div>
+
+<div>
+	What do we want? Abs. When do we want them? Now. This calculator will give you the plan of how to get there. If you follow it, you will get abs.
+</div>
+
+<div class="summerSection">
+	<div>
+		There are <span id="daysTillSummerInsert">X</span> days until the first day of summer 
+	</div>
+	<div>
+		June 20, 2022 🏝
+	</div>
+</div>
+<div>
+	When is the best time to start on your summer bod? Last summer.
+</div>
+<div>
+	Next best time? Right now. Let's do this. ⚡️
+</div>
+
+<div>
+	What's your name? 
+</div>
 
 <div>
 	<input type="text" id="nameInputBox" class="inputform" value="Player One">
@@ -45,6 +71,38 @@
 	<button type="button" id="nameButton" class="squareButton">I shall be known by 👆🏻</button>
 </div>
 
+<div>
+	Hey <span name="userNameInsert">there</span>, thanks for being here. On to the calculator.
+</div>
+
+<h2>How to get abs</h2>
+<div>
+	To have visible abs, you need two things. You need:
+</div>
+
+<ol>
+<li>Abdominal muscles</li>
+<li>A low enough level of body fat so your abdominal muscles are not completely covered by your abdominal fat.</li>
+</ol>
+
+<div>
+	That is it. Abs connect your ribs to your hips and pelvis along your front and sides. When you contract your abs, they pull your ribs and hips closer, bending your spine to the front or sides. If you can sit up or lean forward, you have abs. Check the first item off the list. ✅ 
+</div>
+
+<h3>What level of body fat is needed to see abs?</h3>
+<div>
+	For guys, abs begin showing under 14% body fat, and for gals, abs begin showing under 22% body fat.
+</div>
+<div class="highlight">
+	<div>
+		Guys: At 10% body fat you will have awesome abs.
+	</div>
+	<div>
+		Gals: At 20% body fat you will have awesome abs.
+	</div>
+</div>
+
+
 <h3 class="genderHeader">What is your gender?</h3>
 
 <div class="radio-group">
@@ -52,6 +110,38 @@
 	<label for="female">Female</label>
 	<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
 	<label for="male">Male</label>
+</div>
+
+<div>
+	So for you, <span name="userNameInsert">there</span>, as a <span name="selectedGenderInsert">male</span>, you need:
+	<ol>
+		<li>✅ Abdominal muscles</li>
+		<li><span name="genderGoalBodyFatPercentageInsert">?</span>% body fat.</li>
+	</ol>
+</div>
+
+<h2>How to calculate and measure body fat percentage</h2>
+<div>
+	We use body fat percentage instead of just weight because every body is different. Your weight doesn't matter for abs, just the ratio of fat mass compared to lean mass. 
+</div>
+<div>
+	To calculate: 
+</div>
+<div>
+	( fat mass / total body mass ) = body fat %
+</div>
+<div class="imageContainer">
+	<img src="images/bodyfatcalc.png">
+</div>
+
+<div>
+	Remember the only thing that matters is the ratio of fat to muscle.
+</div>
+<div>
+	⭐️It doesn't matter how much you weigh.⭐️ 
+</div>
+<div>
+	For abs, the only things that matters is what your ratio of fat mass to lean mass is.
 </div>
 
 <h3>
@@ -64,6 +154,10 @@
 
 <div>
 	<button type="button" id="enterWeightButton" class="calcButton squareButton">Make it so Mr. Sulu 🖖🏻</button>
+</div>
+
+<div>
+	(The average <span name="selectedGenderInsert">?</span> weight/mass in the US 🇺🇸 is <span name="averageGenderMassInsert">?</span>. At <span name="weightInsert">A</span>, you are <span name="overUnderAverageGenderMassInsert">?</span> the average.)
 </div>
 
 <h3>Do you know your current body fat percentage?</h3>
@@ -146,8 +240,61 @@
 <div>
 	(Current fat mass of <span name="fatInsert">A</span> - Goal fat mass of <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> pounds of fat to lose)
 </div>
+<div>
+	This is a totally achievable goal. More on how to keep your muscle mass later! 
+</div>
+
+<div>Let's update your checklist! What you need for abs.</div>
+	<ol>
+		<li>✅ Abdominal muscles</li>
+		<li>Go from <span name="bfInsert">Y</span>% body fat to <span name="goalBodyFatPercentageInsert">?</span>% body fat, by using up <span name="loseInsert">B</span> pounds of fat.</li>
+	</ol>
+<div>
+	The next question is "How can I decrease my body fat percentage?" quickly followed by "How long will this take?". We will calculate both of these. 
+</div>
+
+<h2>How to decrease body fat percentage</h2>
+<div>
+	The primary way to decrease body fat percentage is to reduce the amount of fat your body is storing. You can also change the ratio by gaining more muscle, but reducing fat is by far the easier and quicker route. 
+</div>
+<div>
+	A pound of fat has about 3,500 calories of energy stored in it. 
+</div>
+<div>
+	To remove a pound of fat, you body needs to burn 3,500 calories that you do not replace thru eating energy aka food. 
+</div>
+<div>
+	This is known as an energy deficit. If you take in less energy than you output, your body will burn fat to make up the difference, converting the fat into CO2, water, and energy. 
+</div>
+<div>
+	If Energy Expenditure is greater than Energy Intake = Fat Loss occurs
+</div>
+
+<h3>How to calculate your energy expenditure</h3>
+
+<div>
+	Your body uses or burns energy all the time to keep you alive and happy. If you did absolutely nothing in a day, your body would still burn a lot of energy keeping you healthy, pumping your blood and repairing your cells. This is known as your Base Metabolic Rate or BMR.
+</div>
+<div>
+	You use additional energy moving, talking, eating.  
+</div>
+<div>
+	You use additional energy exercising.
+</div>
+<div>
+	All of this together is known as your Total Daily Energy Expenditure or TDEE.
+</div>
+<div>
+	TDEE = BMR * Activity Multiplier
+</div>
+<div>
+	We can estimate your BMR with calculations, then estimate your Activity Multipler and put them together to figure out how much energy you burn in a day. 
+</div>
 
 <h3>Let's Calculate your BMR</h3>
+<div>
+	We can use a formula to calculate what your BMR is. 
+</div>
 <div>
 	What is your age?
 	<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
@@ -227,8 +374,28 @@
 		<span name="bmrAnswer">bmrAnswer</span> x Activity Multiple = <span name="tdee"></span> calories per day.
 	</div>
 </div>
+<div>We have estimated your energy output. Now you need to know how to measure your energy intake.</div>
 
-<h2>Breakdown:</h2>
+<h2>How to measure your energy intake</h2>
+<div>
+	Luckily we don't have to estimate your energy intake. We can track it precicely simply by monitoring everything you eat.
+</div>
+<div>
+	We measure the amount of energy we output and intake in calories. A calorie is the amount of energy it takes to heat a kilgram of water 1 degree.
+</div>
+<div>
+	The best way to know your energy intake is to track how many calories you are eating. That is the only way to know for sure how much energy your are taking into your body. 
+</div>
+<div>
+	This does not mean that you are going to have to track everything you eat for the rest of your life like some food accountant. But it does mean that you need to track it for a while. Recording everything (and I mean everything) you eat or drink is the single best way to accurately gauge your energy intake.
+</div>
+<div>
+	You can use an app like MyFitnessPal or record it in a paper notebook.
+</div>
+
+<div class="highlight">
+	We now have all the information we need to figure out how long it will take you to get to <span name="goalBodyFatPercentageInsert">?</span>% body fat!
+</div>
 <div>
 	You currently have <span name="fatInsert">A</span> pounds of fat.
 </div>
@@ -248,7 +415,12 @@
 <h3>
 	How much energy will you eat per day?
 </h3>
-
+<div>
+	How much energy you eat per day will determine your caloric deficit and how fast you will lose fat. Eat too much energy and your caloric deficit will be so small it will take forever to hit your goal. Eat too little and your body won't be able to cover that caloric deficit through just fat, so it will use up muscle for energy as well as fat. We don't want that.
+</div>
+<div>
+	Research says a 25% deficit is most effective at losing fat and perserving muscle (more on that later).
+</div>
 <div>
 	With your TDEE of <span name="tdee">X</span> a 25% deficit would = <span name="twentyFivePercentCalorieDeficitInsert">a number</span> calories per day. 
 </div>
@@ -268,8 +440,6 @@
 	<button type="button" class="squareButton" id="reCalcButton">Calc time to goal 🔥</button>
 </div>
 
-<h2>Time breakdown: </h2>
-
 <div class="dateCalculationsSection">
 	<div>
 		It will take you <span name="numberOfDaysTilGoalInsert">X</span> days to reach <span name="goalBodyFatPercentageInsert">?</span>%.
@@ -287,6 +457,19 @@
 <div>
 	It will be <span id="dateFromCalculatedDaysAway">daysinsert</span> in <span name="numberOfDaysTilGoalInsert">X</span> days. 
 </div>
+<div>
+	We need to calculate one last thing. How much protein you need to eat to maintain your muscles.
+</div>
+
+<h2>How to maintain your muscle</h2>
+
+<div>When your body needs energy, it doesn't really care where it comes from. In order to keep your muscle, and lose fat, you have to tell your body you want to preserve your muscle. You do this by </div>
+
+<ol>
+	<li>Lifting weights.</li>
+	<li>Eating enough protein to repair and build your muscles.</li>
+	<li>Sleeping enough to repair and build your muscles and keep your stress hormones down.</li>
+</ol>
 
 <h3>How much protein do I need?</h3>
 <div>
@@ -295,10 +478,29 @@
 	At <span name="weightInsert">X</span> pounds total body weight, you need <span name='gramsProteinInsert'></span> grams of protein a day. 
 </div>
 
+<h3>What kind of weight training do I need to do?</h3>
+<div>
+	You don't need to go crazy. Just do a full body workout a couple times a week.
+</div>
+<div>
+	<a href="https://www.nerdfitness.com/blog/strength-training-101-where-do-i-start/"> Here is a link to a good beginner weight lifting routine.</a>
+</div>
+
+<h3>How much sleep do I need?</h3>
+<div>
+	Sleep is critical to losing weight and gaining muscle, and having an enjoyable and productive life. If you are not getting 7 - 9 hours of sleep, you need to get more of it.
+</div>
+<div>
+	John Medina wrote the book Brain Rules. <a href="https://www.slideshare.net/pearpress/brain-rule-7-sleep"> Here is a link to some of his research about sleep.</a>
+</div>
+<div>
+Most people think they can get away with less sleep. You make it much harder, if not nearly impossible to gain muscle if you are not allowing your body to recover. Sleep more.
+</div>
+
 <h2>Final Results: Here is <span name="userNameInsert">there</span>'s plan for abs</h2>
 <div>Here is your completely calculated and filled out checklist to get abs.</div>
 	<ol>
-		<li>✅ Have abdominal muscles</li>
+		<li>✅ Abdominal muscles</li>
 		<li>Go from <span name="bfInsert">Y</span>% body fat to <span name="goalBodyFatPercentageInsert">?</span>% body fat, by using up <span name="loseInsert">B</span> pounds of fat, by consistently eating <span name="calorieBudgetInsert">this many</span> calories a day.</li>
 		<li>Lift weights to keep and gain muscle.</li>
 		<li>Eat <span name='gramsProteinInsert'>much protein</span> grams of protein a day.</li>
@@ -349,11 +551,15 @@
 	<!--End mc_embed_signup-->
 </div>
 
+<h3>Trainers?</h3>
 <div>
-	version 1.01
+	If you are a trainer and want a branded version of this page or calculator to share with your clients, please email me
 </div>
 <div>
-	Updating the header. 
+	version 1.02
+</div>
+<div>
+	Most recent changes: Fixed typos. 
 </div>
 
 <div>
