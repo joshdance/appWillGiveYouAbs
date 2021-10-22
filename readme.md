@@ -21,5 +21,6 @@ I want to add a better TDEE calculator as well as a macro calculator.
 Todo List:
 1. add metric (kg baby)
 2. Make a 'how to get in shape by date' calculator
-3. Standardize the header
-4. 
+3. Standardize the header (getting closer on this)
+4. Create a table that will show progress over time. 
+5. Create a login and account system so you don't have to type in your info each and every time. 
