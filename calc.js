@@ -55,6 +55,20 @@ function calculateUserBodyFat() {
         if (user != null) {
             user.bodyFatPercentage = percentValue;
         }
+
+        calcCurrentWeightAndLean();
+
+        weightInsert.forEach( function(element, index) {
+            element.textContent = weightValue;
+        });
+
+        bfInsert.forEach( function(element, index) {
+            element.textContent = user.bodyFatPercentage;
+        });
+
+        LbsBfResultsDiv.textContent = LbsBfResults;
+
+        leanResultsDiv.textContent = leanResults;  
     }
 
     function getUserInputs(){
