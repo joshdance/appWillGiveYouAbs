@@ -19,8 +19,9 @@ https://thisappwillgiveyouabs.com/macrostocalories
 I want to add a better TDEE calculator as well as a macro calculator.
 
 Todo List:
-1. add metric (kg baby)
-2. Make a 'how to get in shape by date' calculator
-3. Standardize the header (getting closer on this)
+1. Standardize the header (getting closer on this)
+2. add the ability to use the metric system (kg baby)
+3. Make a 'how to get in shape by date' calculator
 4. Create a table that will show progress over time. 
-5. Create a login and account system so you don't have to type in your info each and every time. 
+5. Create a login and account system so you don't have to type in your info each and every time.
+
