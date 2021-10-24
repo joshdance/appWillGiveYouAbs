@@ -248,8 +248,12 @@ function calculateUserBodyFat() {
         LbsToLoseToGoal = roundNumPlace(LbsToLoseToGoal,1);
     	
     	genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
-    		element.textContent = user.bodyFatPercentageGoal;
+    		element.textContent = genderBfGoalFrom100;
     	});
+
+        goalBodyFatPercentageInsert.forEach( function(element, index) {
+            element.textContent = user.bodyFatPercentageGoal;
+        });
 
     	weightInsert.forEach( function(element, index) {
     		element.textContent = weightValue;
@@ -645,9 +649,12 @@ function calculateUserBodyFat() {
     if (nameButton != null) {
         nameButton.addEventListener('click', customizeEssayWithName);
     }
-    const userNameInsert = document.getElementsByName('userNameInsert');
 
+    //Get arrays of all the places I need to insert the results
+    const userNameInsert = document.getElementsByName('userNameInsert');
     const genderGoalBodyFatPercentageInsert = document.getElementsByName('genderGoalBodyFatPercentageInsert');
+    const goalBodyFatPercentageInsert = document.getElementsByName('goalBodyFatPercentageInsert');
+
 
     const maleBodyFatExampleCalculation = document.getElementById('maleBodyFatExampleCalculation');
     const femaleBodyFatExampleCalculation = document.getElementById('femaleBodyFatExampleCalculation');
@@ -776,8 +783,6 @@ function calculateUserBodyFat() {
     	element,addEventListener('change', activeMultipler);
     });
 
-    const goalBodyFatPercentageInsert = document.getElementsByName('goalBodyFatPercentageInsert');
-
     const weightInsert = document.getElementsByName('weightInsert');
     const bfInsert = document.getElementsByName('bfInsert');
     const leanInsert = document.getElementsByName('leanInsert');
@@ -827,7 +832,7 @@ function calculateUserBodyFat() {
     const maleSValue = 5;
     const femaleSValue = -161; //where s is +5 for males and -161 for females.
 
-    const firstDayOfSummer = new Date("06/20/2020");
+    const firstDayOfSummer = new Date("06/20/2022");
     let todaysDate = new Date();
 
     const daysTillSummer = document.getElementById('daysTillSummerInsert');
