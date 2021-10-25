@@ -1,7 +1,7 @@
 //function name ();
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 
-//put each function no nested. 
+//todo - refactor to have each function separate, not nested in one giant function.
 
 function startUpTheCalculator() {
     
@@ -18,21 +18,23 @@ function startUpTheCalculator() {
     function setUser(){
         // user.name
         // user.bodyFatPercentage
+        // user.weightInPounds
         user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
+        // user.WeightComparedToNationalAverage
         // user.leanBodyMass
-        user.fatBodyMass = LbsBfResults;
-        user.bodyFatPercentageGoal = userBfGoal;
+        // user.fatBodyMass
+        // user.bodyFatPercentageGoal
         // user.heightFeet
         // user.heightInches
         user.heightInInches = convertFeetAndInchesToTotalInches(user.heightFeet,user.heightInches);
         user.heightInCentimeters = convertInchesToCentimeters(user.heightInInches);
-        user.activityLevel = pickedActivityMultiplier;
-        user.sex = selectedSex;
-        user.caloricDeficit = caloricDeficitValue;
+        // user.activityLevel
+        // user.caloricDeficit
         user.setOwnBodyFatGoal = false;
+        //todo refactor selected sex area
+        user.sex = selectedSex;
         console.log('Player 1 ready');
     }
-
 
     function mainCalc() {
     	getUserInputs();
@@ -52,8 +54,6 @@ function startUpTheCalculator() {
         setDailyCaloriesInputField();
     }
 
-
-
     function calcBodyFatLevels(){
 
         calcCurrentWeightAndLean();
@@ -66,7 +66,7 @@ function startUpTheCalculator() {
             element.textContent = user.bodyFatPercentage;
         });
 
-        LbsBfResultsDiv.textContent = LbsBfResults;
+        LbsBfResultsDiv.textContent = user.fatBodyMass;
 
         leanResultsDiv.textContent = user.leanBodyMass;
     }
@@ -88,7 +88,7 @@ function startUpTheCalculator() {
 	    getUserGender();
 
 		//bf goal
-		userBfGoal = bfGoalInputBox.value;
+		user.bodyFatPercentageGoal = bfGoalInputBox.value;
 
 		//age
 		user.age = age.value;
@@ -101,7 +101,7 @@ function startUpTheCalculator() {
 		activityList.forEach( function(element, index) {
     		let evaluatedActivityOption = element;
     		if (evaluatedActivityOption.checked == true) {
-    			pickedActivityMultiplier = evaluatedActivityOption.value;
+    			user.activityLevel = evaluatedActivityOption.value;
     		} // end of if
     	}); //end of actibityList.forEach
 
@@ -112,8 +112,8 @@ function startUpTheCalculator() {
     function calcCaloricDeficitValue(){
         getUserCalorieIntake();
 
-        caloricDeficitValue = bmrWithActivity - userSelectedDailyCalories; 
-        caloricDeficitValue = roundNumPlace(caloricDeficitValue,1);
+        user.caloricDeficit = bmrWithActivity - userSelectedDailyCalories; 
+        user.caloricDeficit = roundNumPlace(user.caloricDeficit,1);
     }
     
     function getUserCalorieIntake(){
@@ -156,7 +156,9 @@ function startUpTheCalculator() {
     }
 
     function getUserWeight(){
+        //get and set user weight from input
         user.weightInPounds = weightInputBox2.value;
+        //convert and set user weight in kilograms
         user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
     }
 
@@ -171,11 +173,11 @@ function startUpTheCalculator() {
     }
 
     function calcCurrentWeightAndLean() {	   
-	   LbsBfResults = (user.weightInPounds * (user.bodyFatPercentage /100)); //lbs bf results
-	   LbsBfResults = roundNumPlace(LbsBfResults,1);
-       LbsBfResultsDiv.textContent = LbsBfResults;
+	   user.fatBodyMass = (user.weightInPounds * (user.bodyFatPercentage /100)); //lbs bf results
+	   user.fatBodyMass = roundNumPlace(user.fatBodyMass,1);
+       LbsBfResultsDiv.textContent = user.fatBodyMass;
 
-	   user.leanBodyMass = user.weightInPounds - LbsBfResults;
+	   user.leanBodyMass = user.weightInPounds - user.fatBodyMass;
        user.leanBodyMass = roundNumPlace(user.leanBodyMass,1);
 	   leanResultsDiv.textContent = user.leanBodyMass;	  
     }
@@ -223,15 +225,15 @@ function startUpTheCalculator() {
 		const extremelyActiveValue = 1.95;
 
     	let selectedActivityValue;
-    	if (pickedActivityMultiplier == "sedentary") {
+    	if (user.activityLevel == "sedentary") {
     		selectedActivityValue = sedentaryValue;
-    	} else if (pickedActivityMultiplier == "light") {
+    	} else if (user.activityLevel == "light") {
     		selectedActivityValue = lightActivityValue;
-    	} else if (pickedActivityMultiplier == "moderate") {
+    	} else if (user.activityLevel == "moderate") {
     		selectedActivityValue = moderateActivityValue;
-    	} else if (pickedActivityMultiplier == "veryactive") {
+    	} else if (user.activityLevel == "veryactive") {
     		selectedActivityValue = veryActiveValue;
-    	} else if (pickedActivityMultiplier == "extremely") {
+    	} else if (user.activityLevel == "extremely") {
     		selectedActivityValue = extremelyActiveValue;
     	}
 
@@ -249,7 +251,7 @@ function startUpTheCalculator() {
         //if not calc 25%
 
     	userPickedDeficitInsert.forEach( function(element, index) {
-    		element.textContent  = caloricDeficitValue;
+    		element.textContent  = user.caloricDeficit;
     	});
         calcCaloricDeficitValue();
     } //end activieMultipler
@@ -282,7 +284,7 @@ function startUpTheCalculator() {
     	GoalTotalBodyWeight = GoalFatResults + user.leanBodyMass;
         GoalTotalBodyWeight = roundNumPlace(GoalTotalBodyWeight,2);
 
-    	LbsToLoseToGoal = LbsBfResults - GoalFatResults; 
+    	LbsToLoseToGoal = user.fatBodyMass - GoalFatResults; 
         LbsToLoseToGoal = roundNumPlace(LbsToLoseToGoal,1);
     	
     	genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
@@ -306,7 +308,7 @@ function startUpTheCalculator() {
         });
 
         fatInsert.forEach( function(element, index) {
-            element.textContent = LbsBfResults;
+            element.textContent = user.fatBodyMass;
         });
 
         loseInsert.forEach( function(element, index) {
@@ -342,7 +344,7 @@ function startUpTheCalculator() {
             element.textContent = totalCaloriesUntilBfGoal;
         });
 
-		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / caloricDeficitValue;
+		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / user.caloricDeficit;
         numberOfDaysTilGoal = Math.round (numberOfDaysTilGoal * 10) / 10;
     	numberOfDaysTilGoalInsert.forEach( function(element, index) {
     		element.textContent  = numberOfDaysTilGoal;
@@ -374,13 +376,14 @@ function startUpTheCalculator() {
     } //end function calcDaysToGoalBf
 
     function calcPercentDeficit() {
-    	unroundedCalculatedPercentDeficit = caloricDeficitValue / bmrWithActivity;
+    	unroundedCalculatedPercentDeficit = user.caloricDeficit / bmrWithActivity;
         calculatedPercentDeficit = (Math.round (unroundedCalculatedPercentDeficit * 100) / 100)*100;
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
         calcDeficitExample();
     }
 
     function generateTable() {
+        //todo 
         //get days till goal
         //iterate through each day til goal
         //calc the needed values for each day. 
@@ -566,7 +569,11 @@ function startUpTheCalculator() {
     }
 
     function weightButtonClicked() {
-        getUserWeight();
+        getUserWeight(); //make sure we have the latest weight
+        checkUserWeightAgainstNationalAverage(); //check and insert results
+    }
+
+    function checkUserWeightAgainstNationalAverage() {
         let genderAverageWeight;
         if (user.sex == 'male') {
             genderAverageWeight = kAverageMaleWeight;
@@ -578,18 +585,16 @@ function startUpTheCalculator() {
             element.textContent = genderAverageWeight;
         });
 
-        let overUnder;
-
         if (user.weightInPounds > genderAverageWeight) {
-            overUnder = 'over';
+            user.WeightComparedToNationalAverage = 'over';
         } else if ((user.weightInPounds < genderAverageWeight)) {
-            overUnder = 'under';
+            user.WeightComparedToNationalAverage = 'under';
         } else {
-            overUnder = 'right at';
+            user.WeightComparedToNationalAverage = 'right at';
         }
 
         overUnderAverageGenderMassInsert.forEach( function(element, index) {
-            element.textContent = overUnder;
+            element.textContent = user.WeightComparedToNationalAverage;
         });
     }
 
@@ -612,7 +617,7 @@ function startUpTheCalculator() {
         mainCalc();
     }
 
-    // ###### Math Functions
+    // #Math Functions
 
     function roundNumPlace(num, places) {
         return +(Math.round(num + "e+" + places)  + "e-" + places);
@@ -630,7 +635,7 @@ function startUpTheCalculator() {
         return (parseFloat(totalInches)*2.54);
     }
 
-    // ################################### Essay Functions
+    // #Essay Functions
 
     function toggleSideNotesForScience() {
         if (scienceUnderDevelopedCore.style.display == "block") {
@@ -680,7 +685,7 @@ function startUpTheCalculator() {
         }
     }
 
-    // ################################### Summer Bod Functions
+    // #Summer Bod Functions
 
     function calcDaysTilSummer(){
         //it will be in miliseconds. So have to convert to days. 
@@ -693,7 +698,7 @@ function startUpTheCalculator() {
         }
     }
 
-    // ################################# Setting up everything
+    // #Set Up
     let userManuallyPickedDeficit = false;
 
     const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
@@ -766,7 +771,6 @@ function startUpTheCalculator() {
 
     let genderBfGoalFrom100;
 
-
     const calcButton = document.querySelector('.calcButton');
     const calcStartingPointButton = document.getElementById('calcStartingPointButton');
 
@@ -785,9 +789,6 @@ function startUpTheCalculator() {
     const weightInputBox2 = document.getElementById('weightInputBox');
     const percentInputBox2 = document.getElementById('percentInputBox');
     const LbsBfResultsDiv = document.getElementById('LbsBfResultsDiv');
-
-	//let weightCount = new CountUp("LbsBfResultsDiv", 22, 99.99);
-    //weightCount.start();
 
     const leanResultsDiv = document.getElementById('leanResultsDiv');
     let bfPercentageArray = [];
@@ -823,8 +824,6 @@ function startUpTheCalculator() {
     const inches = document.getElementById('inches');
     const bmrAnswer = document.getElementsByName('bmrAnswer');
 
-
-
     let bmrResult;
 
     let bmrWithActivity;
@@ -848,12 +847,10 @@ function startUpTheCalculator() {
     const newFatInsert = document.getElementsByName('newFatInsert');
     const newTotalBodyWeightInsert = document.getElementsByName('newTotalBodyWeightInsert');
     
-    let LbsBfResults;
     let GoalFatResults;
     let GoalTotalBodyWeight;
     let LbsToLoseToGoal;
 
-    let caloricDeficitValue; 
     let totalCaloriesUntilBfGoal;
     let numberOfDaysTilGoal;
     let numberOfWeeksTilGoal;
@@ -915,9 +912,6 @@ function startUpTheCalculator() {
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
     bfGoalInputBox.addEventListener('focusin',userPickedBodyFatPercentageGoal);
 
-
-    let userBfGoal;
-
     const estimateBodyFatSection = document.getElementById('estimateBodyFat');
     estimateBodyFatSection.style.display = "block";
     const estimateBodyFatLevelDescriptions = document.getElementById('estimateBodyFatLevelDescriptions');
@@ -947,6 +941,4 @@ function startUpTheCalculator() {
     bootup();
 
 } //end startUpTheCalculator
-
-
-
+//file length Oct 25, 2021 = 950 lines
