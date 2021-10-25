@@ -1,9 +1,9 @@
 //function name ();
-document.addEventListener("DOMContentLoaded", calculateUserBodyFat);
+document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 
 //put each function no nested. 
 
-function calculateUserBodyFat() {
+function startUpTheCalculator() {
     
     let user = new Object;
 
@@ -15,26 +15,17 @@ function calculateUserBodyFat() {
         calcDaysTilSummer();
     }
 
-    function calcDaysTilSummer(){
-        //it will be in miliseconds. So have to convert to days. 
-        let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
-
-        numberOfDaysBetweenNowAndSummer = (Math.round (numberOfDaysBetweenNowAndSummer * 10) / 10) + 1;
-
-        if (daysTillSummer != null) {
-            daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
-        }
-    }
-
     function setUser(){
-        user.name = name;
-        user.weight = weightValue;
-        user.bodyFatPercentage = percentValue;
-        user.leanBodyMass = leanResults;
+        // user.name
+        // user.bodyFatPercentage
+        user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
+        // user.leanBodyMass
         user.fatBodyMass = LbsBfResults;
         user.bodyFatPercentageGoal = userBfGoal;
-        user.age = ageValue;
-        user.heightInInches = ((feetValue*12)+(inchesValue*1)); //magic number to cast it correctly. :(
+        // user.heightFeet
+        // user.heightInches
+        user.heightInInches = convertFeetAndInchesToTotalInches(user.heightFeet,user.heightInches);
+        user.heightInCentimeters = convertInchesToCentimeters(user.heightInInches);
         user.activityLevel = pickedActivityMultiplier;
         user.sex = selectedSex;
         user.caloricDeficit = caloricDeficitValue;
@@ -64,15 +55,11 @@ function calculateUserBodyFat() {
 
 
     function calcBodyFatLevels(){
-        percentValue = percentInputBox2.value
-        if (user != null) {
-            user.bodyFatPercentage = percentValue;
-        }
 
         calcCurrentWeightAndLean();
 
         weightInsert.forEach( function(element, index) {
-            element.textContent = weightValue;
+            element.textContent = user.weightInPounds;
         });
 
         bfInsert.forEach( function(element, index) {
@@ -81,7 +68,7 @@ function calculateUserBodyFat() {
 
         LbsBfResultsDiv.textContent = LbsBfResults;
 
-        leanResultsDiv.textContent = leanResults;
+        leanResultsDiv.textContent = user.leanBodyMass;
     }
 
     function getUserInputs(){
@@ -90,6 +77,9 @@ function calculateUserBodyFat() {
 
         //weight
         getUserWeight();
+
+        //body fat percentage
+        getUserBodyFatPercentage();
 
     	//body fat
         calcBodyFatLevels();
@@ -101,11 +91,11 @@ function calculateUserBodyFat() {
 		userBfGoal = bfGoalInputBox.value;
 
 		//age
-		ageValue = age.value;
+		user.age = age.value;
 
 		//height
-		feetValue = feet.value;
-    	inchesValue = inches.value;
+		user.heightFeet = feet.value;
+    	user.heightInches = inches.value;
 
 		//activity level
 		activityList.forEach( function(element, index) {
@@ -142,9 +132,14 @@ function calculateUserBodyFat() {
 
     function getUserName(){
         if (nameInputBox != null) {
-            name = nameInputBox.value;
+            user.name = nameInputBox.value;
         }
-        user.name = name;
+    }
+
+    function getUserBodyFatPercentage(){
+        if (user != null) {
+            user.bodyFatPercentage = percentInputBox2.value;
+        }
     }
 
     function getUserGender(){
@@ -161,15 +156,11 @@ function calculateUserBodyFat() {
     }
 
     function getUserWeight(){
-        weightValue = weightInputBox2.value;
-        user.weight = weightValue;
+        user.weightInPounds = weightInputBox2.value;
+        user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
     }
 
-
-
     function customizeEssayWithName(){
-        name = nameInputBox.value;
-        user.name = name;
         userNameInsert.forEach( function(element, index) {
             element.textContent = user.name;
         });
@@ -180,13 +171,13 @@ function calculateUserBodyFat() {
     }
 
     function calcCurrentWeightAndLean() {	   
-	   LbsBfResults = (user.weight * (user.bodyFatPercentage /100)); //lbs bf results
+	   LbsBfResults = (user.weightInPounds * (user.bodyFatPercentage /100)); //lbs bf results
 	   LbsBfResults = roundNumPlace(LbsBfResults,1);
        LbsBfResultsDiv.textContent = LbsBfResults;
 
-	   leanResults = weightValue - LbsBfResults;
-       leanResults = roundNumPlace(leanResults,1);
-	   leanResultsDiv.textContent = leanResults;	  
+	   user.leanBodyMass = user.weightInPounds - LbsBfResults;
+       user.leanBodyMass = roundNumPlace(user.leanBodyMass,1);
+	   leanResultsDiv.textContent = user.leanBodyMass;	  
     }
 
     function calcBmr(){
@@ -204,19 +195,15 @@ function calculateUserBodyFat() {
     		calcGoalPercentModifier = calcGoalPercentModifierMale;
     	}
     	
-    	//convert
-    	let weightValueKilo = weightValue * 0.45359237;
-    	//81.6466266
-    	
-    	let totalInches = ((feetValue*12)+(inchesValue*1));//multiplying by other numbers case to number?
-    	//could use parseFloat if needed. 
-    	//68
-    	let heightValueCentimeteres = ((feetValue*12)+parseFloat(inchesValue))*2.54;
-    	//172.72
+        //200 pounds to kg = 90.7185
+    	//68 inches to cm = 172.72
+
     	//BMR (kcal / day) = 10 * weight (kg) + 6.25 * height (cm) – 5 * age (y) + s (kcal / day)
 
-    	let unRoundedBmrResult = (10 * weightValueKilo) + (6.25 * heightValueCentimeteres) - (5 * ageValue) + selectedSexSValue;
+    	let unRoundedBmrResult = (10 * user.weightInKilograms) + (6.25 * user.heightInCentimeters) - (5 * user.age) + selectedSexSValue;
     	bmrResult = Math.round (unRoundedBmrResult * 10) / 10;
+
+        //BMR result for 200 pounds and 68 inches is = 1826.68
 
         bmrAnswer.forEach( function(element, index) {
             element.textContent = bmrResult;
@@ -289,10 +276,10 @@ function calculateUserBodyFat() {
     function calcGoalPercent(){
     	userGoalPercentModifer = user.bodyFatPercentageGoal/(100 - user.bodyFatPercentageGoal);
 
-    	GoalFatResults = userGoalPercentModifer * leanResults;
+    	GoalFatResults = userGoalPercentModifer * user.leanBodyMass;
         GoalFatResults = roundNumPlace(GoalFatResults,2);
 
-    	GoalTotalBodyWeight = GoalFatResults + leanResults;
+    	GoalTotalBodyWeight = GoalFatResults + user.leanBodyMass;
         GoalTotalBodyWeight = roundNumPlace(GoalTotalBodyWeight,2);
 
     	LbsToLoseToGoal = LbsBfResults - GoalFatResults; 
@@ -307,7 +294,7 @@ function calculateUserBodyFat() {
         });
 
     	weightInsert.forEach( function(element, index) {
-    		element.textContent = weightValue;
+    		element.textContent = user.weightInPounds;
     	});
     	
     	bfInsert.forEach( function(element, index) {
@@ -315,7 +302,7 @@ function calculateUserBodyFat() {
     	});
 
         leanInsert.forEach( function(element, index) {
-            element.textContent = leanResults;
+            element.textContent = user.leanBodyMass;
         });
 
         fatInsert.forEach( function(element, index) {
@@ -339,7 +326,7 @@ function calculateUserBodyFat() {
     } //end calcGoalPercent
 
     function calcProteinNeed(){
-    	gramsProteinNeeded = weightValue * .82;
+    	gramsProteinNeeded = user.weightInPounds * .82;
 		gramsProteinNeeded = Math.round (gramsProteinNeeded * 10) / 10;
         gramsProteinInsert.forEach( function(element, index) {
             element.textContent = gramsProteinNeeded;
@@ -483,7 +470,7 @@ function calculateUserBodyFat() {
                 element.style.display = "block";// statements
             });
         } maleBodyFatExampleCalculation
-    }
+    } // end generateEstimatingText
 
     function generateOptimalBodyFatText(){
         if (user.sex == 'male') {
@@ -526,10 +513,6 @@ function calculateUserBodyFat() {
             }
         }
 
-    }
-
-    function roundNumPlace(num, places) {
-        return +(Math.round(num + "e+" + places)  + "e-" + places);
     }
 
     function calcCalsFromProtein(){
@@ -597,9 +580,9 @@ function calculateUserBodyFat() {
 
         let overUnder;
 
-        if (user.weight > genderAverageWeight) {
+        if (user.weightInPounds > genderAverageWeight) {
             overUnder = 'over';
-        } else if ((user.weight < genderAverageWeight)) {
+        } else if ((user.weightInPounds < genderAverageWeight)) {
             overUnder = 'under';
         } else {
             overUnder = 'right at';
@@ -609,6 +592,45 @@ function calculateUserBodyFat() {
             element.textContent = overUnder;
         });
     }
+
+    function clearNameBox() {
+        nameInputBox.value = '';
+    }
+
+    function userPickedCaloriesSwitch(){
+        userDidSetDailyCalories = true;
+    }
+
+    function userPickedBodyFatPercentageGoal(){
+        userDidSetBodyFatPercentageGoal = true;
+    }
+
+    function getAbPlan() {
+        if (userDidSetBodyFatPercentageGoal == true) {
+            user.bodyFatPercentageGoal = bfGoalInputBox.value;
+        }
+        mainCalc();
+    }
+
+    // ###### Math Functions
+
+    function roundNumPlace(num, places) {
+        return +(Math.round(num + "e+" + places)  + "e-" + places);
+    }
+
+    function convertPoundsToKilograms(pounds) {
+        return (pounds * 0.45359237);
+    }
+
+    function convertFeetAndInchesToTotalInches(feetValue,inchesValue) {
+        return ((feetValue*12)+(parseFloat(inchesValue*1)));
+    }
+
+    function convertInchesToCentimeters(totalInches) {
+        return (parseFloat(totalInches)*2.54);
+    }
+
+    // ################################### Essay Functions
 
     function toggleSideNotesForScience() {
         if (scienceUnderDevelopedCore.style.display == "block") {
@@ -658,26 +680,20 @@ function calculateUserBodyFat() {
         }
     }
 
-    function clearNameBox() {
-        nameInputBox.value = '';
-    }
+    // ################################### Summer Bod Functions
 
-    function userPickedCaloriesSwitch(){
-        userDidSetDailyCalories = true;
-    }
+    function calcDaysTilSummer(){
+        //it will be in miliseconds. So have to convert to days. 
+        let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
 
-    function userPickedBodyFatPercentageGoal(){
-        userDidSetBodyFatPercentageGoal = true;
-    }
+        numberOfDaysBetweenNowAndSummer = (Math.round (numberOfDaysBetweenNowAndSummer * 10) / 10) + 1;
 
-    function getAbPlan() {
-        if (userDidSetBodyFatPercentageGoal == true) {
-            user.bodyFatPercentageGoal = bfGoalInputBox.value;
+        if (daysTillSummer != null) {
+            daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
         }
-        mainCalc();
     }
 
-    let name;
+    // ################################# Setting up everything
     let userManuallyPickedDeficit = false;
 
     const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
@@ -803,11 +819,8 @@ function calculateUserBodyFat() {
     });
 
     const age = document.getElementById('age');
-    let ageValue;
     const feet = document.getElementById('feet');
-    let feetValue;
     const inches = document.getElementById('inches');
-	let inchesValue;
     const bmrAnswer = document.getElementsByName('bmrAnswer');
 
 
@@ -835,10 +848,6 @@ function calculateUserBodyFat() {
     const newFatInsert = document.getElementsByName('newFatInsert');
     const newTotalBodyWeightInsert = document.getElementsByName('newTotalBodyWeightInsert');
     
-    
-    let leanResults;
-    let weightValue;
-    let percentValue;
     let LbsBfResults;
     let GoalFatResults;
     let GoalTotalBodyWeight;
@@ -937,7 +946,7 @@ function calculateUserBodyFat() {
 
     bootup();
 
-} //end calculateUserBodyFat
+} //end startUpTheCalculator
 
 
 

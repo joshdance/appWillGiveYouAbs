@@ -12,6 +12,16 @@ function calculateUserBodyFat() {
         setUser();
         generateEstimatingText();
         genderPicked();
+        calcDaysTilSummer();
+    }
+
+    function calcDaysTilSummer(){
+        //it will be in miliseconds. So have to convert to days. 
+        let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
+
+        numberOfDaysBetweenNowAndSummer = (Math.round (numberOfDaysBetweenNowAndSummer * 10) / 10) + 1;
+
+        daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
     }
 
     function setUser(){
@@ -68,7 +78,7 @@ function calculateUserBodyFat() {
 
         LbsBfResultsDiv.textContent = LbsBfResults;
 
-        leanResultsDiv.textContent = leanResults;  
+        leanResultsDiv.textContent = leanResults;
     }
 
     function getUserInputs(){
@@ -318,14 +328,6 @@ function calculateUserBodyFat() {
         numberOfMonthsTilGoal = Math.round (numberOfMonthsTilGoal * 10) / 10;
 		numberOfMonthsTilGoalInsert.textContent = numberOfMonthsTilGoal
 
-		//it will be in miliseconds. So have to convert to days. 
-		let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
-
-        numberOfDaysBetweenNowAndSummer = Math.round (numberOfDaysBetweenNowAndSummer * 10) / 10;
-
-
-		daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
-
 		let today = new Date();
 		let goalEndDate = new Date();
 		//numberOfDaysTilGoal is the days to add
@@ -386,8 +388,8 @@ function calculateUserBodyFat() {
         let twentyfivePercent = "25% body fat: This is the start of average territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
         let twentyPercent = "20% body fat: Low end of the average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
         let fifteenPercent = "15% body fat: This percentage of body fat usually fits into the “lean and fit” category. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
-        let tenToTwelvePercent = "10-12% body fat: Very in shape. Your abs can be seen, but aren’t as deeply chiseled or defined as a man with 6-8% body fat. This is the body fat percentage that is the perfect beach body most people strive for 🏝. At this level is some defined veins in the arms and legs."; 
-        let sixToEightPercent = "6-8% body fat: Extremely low levels of body fat. Think Hollywood Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
+        let tenToTwelvePercent = "10-12% body fat: Very in shape. This is the beach body fat percentage that most people strive for 🏝. Your abs can be clearly seen. At this level is some defined veins in the arms and legs."; 
+        let sixToEightPercent = "6-8% body fat: Extremely low levels of body fat. Absolutely chiseled from stone. Think Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
         let fivePercent = "5% body fat: Ridiculously (dangerously) lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin.";
         let maleEstimateTextArray = [fourtyPercent, thirtyfivePercent, thirtyPercent, twentyfivePercent, twentyPercent, fifteenPercent, tenToTwelvePercent, sixToEightPercent, fivePercent];
 
@@ -397,9 +399,9 @@ function calculateUserBodyFat() {
         let femaleThirtyfive = "35% body fat: The body has more fat accumulations and the face and neck begin to appear fuller and more round. Belly fat is also more pronounced at this level as well.";
         let femaleThirty = "30% body fat: At this level there is more accumulation of fat in the hips and butt region. 30% body fat is considered a high average for women.";
         let femaleTwentyfive = "25% body fat: This percentage is on the lower end of what is average for women. Abs and other muscles are not as apparent at this level, and there is generally more fat around the hips and buttocks areas."; 
-        let femaleTwentyToTwentytwo = "20-22% body fat: This is the start of the “fit and lean” area. This level is the most common among female athletes. Some definition in the abs.";
+        let femaleTwentyToTwentytwo = "20-22% body fat: This is the beach body fat percentage that most people strive for 🏝. This level is the most common among female athletes. Some definition in the abs.";
         let femaleFifteenToSeventeen = "15-17% body fat: At this level muscles are still visible. Abs, legs, and arms have definition. There is some separation between muscles there is also some vascularity. Women don’t have as much curvature in hips and buttocks because of the low body fat level. This is a common level of body fat among fitness models. Many women who are at this level may not be able to menstruate.";
-        let femaleTenToTwelve = "10-12% Body fat: This percentage is the lowest a woman should be. At this percentage the women’s vascularity and some striations are visible. The woman’s muscles are clearly separated. This level of body fat isn’t considered safe or healthy for women who menstruate.";
+        let femaleTenToTwelve = "10-12% Body fat: Ridiculously (dangerously) lean. At this percentage the women’s vascularity and some striations are visible. The woman’s muscles are clearly separated. This level of body fat isn’t considered safe or healthy for women who menstruate.";
         let femaleEstimateTextArray = [femaleFiftyPercent, femaleFourtyfivePercent, femaleFourty, femaleThirtyfive, femaleThirty, femaleTwentyfive, femaleTwentyToTwentytwo, femaleFifteenToSeventeen, femaleTenToTwelve];
 
         let genderBodyFatEstimationArray;
