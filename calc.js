@@ -350,7 +350,7 @@ function calculateUserBodyFat() {
     function generateTable() {
         //get days till goal
         //iterate through each day til goal
-            //calc the needed values for each day. 
+        //calc the needed values for each day. 
         //put each value in a table row
         //display the table
         console.log('the table of power has been created');
@@ -879,12 +879,6 @@ function calculateUserBodyFat() {
     const caloriesToUseUp = document.getElementsByName('caloriesToUseUp');
 
     bootup();
-
-//<script src="countUp.js"></script>    
-//todo
-//1. Figure out Object. 
-//2. Figure out how to display a list of objects.
-//3. Do the proper calculations for the objects.
 
 } //end calculateUserBodyFat
 
