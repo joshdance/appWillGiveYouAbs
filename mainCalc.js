@@ -1,126 +1,196 @@
 //function name ();
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 
-//todo - refactor to have each function separate, not nested in one giant function.
+//todo #9 - refactor to have each function separate, not nested in one giant function.
 
 function startUpTheCalculator() {
     
     let user = new Object;
-
-    function bootup() {
-        getUserInputs();
-        setUser();
-        generateEstimatingText();
-        genderPicked();
-        calcDaysTilSummer();
-    }
-
-    function setUser(){
         // user.name
         // user.bodyFatPercentage
         // user.weightInPounds
-        user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
+        // user.weightInKilograms
         // user.WeightComparedToNationalAverage
         // user.leanBodyMass
         // user.fatBodyMass
         // user.bodyFatPercentageGoal
         // user.heightFeet
         // user.heightInches
-        user.heightInInches = convertFeetAndInchesToTotalInches(user.heightFeet,user.heightInches);
-        user.heightInCentimeters = convertInchesToCentimeters(user.heightInInches);
+        // user.heightInOnlyInches 
+        // user.heightInCentimeters
         // user.activityLevel
+        // user.selectedActivityLevelNumericValue
         // user.caloricDeficit
-        user.setOwnBodyFatGoal = false;
-        //todo refactor selected sex area
-        user.sex = selectedSex;
+        // user.selectedDailyCalories
+        // user.setOwnBodyFatGoal
+        // user.sex
+        // user.selectedSexSValue
+        // user.gramsProteinNeeded
+
+    function bootup() {
+        //functions that only run once
+        generateBodyFatEstimatingText();
+        calcDaysTilSummer();
+
+        //functions the can run more than once
+        getUserName();
+        getUserGender();
+        setUpForSelectedGender();
+
+        getUserWeight();
+        getUserHeight();
+        
+        getUserBodyFatPercentage();
+        getBodyFatPercentageGoal();
+        getUserAge();
+        getUserActivityLevel();
+        getUserCalorieIntake();
+        updatePageWithUserCalorieIntake();
+        calcBodyFatLevels();
+        calcCaloricDeficitValue();
         console.log('Player 1 ready');
     }
 
     function mainCalc() {
-    	getUserInputs();
-        genderPicked();
+        console.log('entered main calc');
+        getUserGender();
+        getUserWeight();
+        getUserHeight();
+
+        getUserBodyFatPercentage();
+        getBodyFatPercentageGoal();
+
+        getUserAge();
+        getUserActivityLevel();
+        getUserCalorieIntake();
+        updatePageWithUserCalorieIntake();
+
+        calcBodyFatLevels();
+        calcCaloricDeficitValue();
+
     	calcCurrentWeightAndLean();
     	calcGoalPercent();
 	    calcBmr();
-	    activeMultipler();
+	    calcTDEE();
 	    calcGoalPercent();
 	    calcPercentDeficit();
         calcMaxCaloricDeficit();
 	    calcProteinNeed();
+        setProteinNeed();
         calcCalsFromProtein();
         calcCalsFromCarbsAndFatAtMaxDeficit();
-        generateTable();
         calcTwentyFivePercentDeficit();
         setDailyCaloriesInputField();
+        generateTable();
+    }
+
+    function getUserGender(){
+        sex.forEach( function(element, index) {
+            let evaluatedSexOption = element;
+            if (evaluatedSexOption.checked == true) {
+                user.sex = evaluatedSexOption.value;
+            } // end of if
+        }); //end of sex.forEach
+    }
+
+    function setUpForSelectedGender(){
+        let genderBodyFatEstimationArray;
+
+        if (user.sex == "female") {
+            genderBfGoalFrom100 = bfGoalFemale*100;
+            user.selectedSexSValue = femaleSValue; //Mifflin St Jeor female value
+            bfPercentageGoalByGender = bfGoalFemale; //society standard goal
+            calcGoalPercentModifier = calcGoalPercentModifierFemale; //equation constant
+            genderBodyFatEstimationArray = femaleEstimateTextArray; //female estimate body fat text
+
+            maleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "none";// hide male
+            });
+            femaleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "block";// show female
+            });
+        } else { //user.sex == "male"
+            genderBfGoalFrom100 = bfGoalMale*100
+            user.selectedSexSValue = maleSValue //Mifflin St Jeor male value
+            bfPercentageGoalByGender = bfGoalMale; //society standard goal
+            calcGoalPercentModifier = calcGoalPercentModifierMale; //equation constant
+            genderBodyFatEstimationArray = maleEstimateTextArray; //male estimate body fat text
+
+            maleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "block";// show male
+            });
+            femaleExampleImageLinks.forEach( function(element, index) {
+                element.style.display = "none";// hide female
+            });
+        }
+
+        //clear out the node if they click a gender
+        while (estimateBodyFatLevelDescriptions.firstChild) {
+            estimateBodyFatLevelDescriptions.firstChild.remove();
+        }
+
+        //generate a paragraph for each element and set it to the node
+        genderBodyFatEstimationArray.forEach( function(element, index) {
+            let textNode = document.createTextNode(element);
+            let paragraph = document.createElement("p");
+            paragraph.appendChild(textNode);
+            estimateBodyFatLevelDescriptions.appendChild(paragraph);
+        });
+
+        genderOptimalBfGoal.forEach( function(element, index) {
+            element.textContent = genderBfGoalFrom100;
+        });
+
+        selectedGenderInsert.forEach( function(element, index) {
+            element.textContent = user.sex;
+        });
+
+        genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
+            element.textContent = genderBfGoalFrom100;
+        });
+
+        //set the body fat goal input box to the gender suggestion
+        if (userDidSetBodyFatPercentageGoal === false) {
+            bfGoalInputBox.value = genderBfGoalFrom100;
+        }
+    }
+
+    function genderPicked(){
+        getUserGender();
+        setUpForSelectedGender();
     }
 
     function calcBodyFatLevels(){
-
+        getUserBodyFatPercentage();//get the updated body fat %
         calcCurrentWeightAndLean();
 
-        weightInsert.forEach( function(element, index) {
-            element.textContent = user.weightInPounds;
-        });
+        updatePageWithUserWeight();
 
+        updatePageWithBodyFatLevels();
+
+        updatePageWithBodyFatMass();
+
+        updatePageWithLeanBodyMass();
+    }
+
+    function updatePageWithBodyFatLevels(){
         bfInsert.forEach( function(element, index) {
             element.textContent = user.bodyFatPercentage;
         });
-
-        LbsBfResultsDiv.textContent = user.fatBodyMass;
-
-        leanResultsDiv.textContent = user.leanBodyMass;
-    }
-
-    function getUserInputs(){
-
-        getUserName();
-
-        //weight
-        getUserWeight();
-
-        //body fat percentage
-        getUserBodyFatPercentage();
-
-    	//body fat
-        calcBodyFatLevels();
-
-    	//gender
-	    getUserGender();
-
-		//bf goal
-		user.bodyFatPercentageGoal = bfGoalInputBox.value;
-
-		//age
-		user.age = age.value;
-
-		//height
-		user.heightFeet = feet.value;
-    	user.heightInches = inches.value;
-
-		//activity level
-		activityList.forEach( function(element, index) {
-    		let evaluatedActivityOption = element;
-    		if (evaluatedActivityOption.checked == true) {
-    			user.activityLevel = evaluatedActivityOption.value;
-    		} // end of if
-    	}); //end of actibityList.forEach
-
-        //caloric deficit
-        calcCaloricDeficitValue();
     }
 
     function calcCaloricDeficitValue(){
-        getUserCalorieIntake();
-
-        user.caloricDeficit = bmrWithActivity - userSelectedDailyCalories; 
+        user.caloricDeficit = bmrWithActivity - user.selectedDailyCalories; 
         user.caloricDeficit = roundNumPlace(user.caloricDeficit,1);
     }
     
     function getUserCalorieIntake(){
-        userSelectedDailyCalories = parseInt(caloricBudgetInput.value);
+        user.selectedDailyCalories = parseInt(caloricBudgetInput.value);
+    }
 
+    function updatePageWithUserCalorieIntake(){
         calorieBudgetInsert.forEach( function(element, index) {
-            element.textContent  = userSelectedDailyCalories;
+            element.textContent  = user.selectedDailyCalories;
         });
     }
 
@@ -136,125 +206,123 @@ function startUpTheCalculator() {
         }
     }
 
+    function updatePageWithUserName(){
+        userNameInsert.forEach( function(element, index) {
+            element.textContent = user.name;
+        });
+    }
+
     function getUserBodyFatPercentage(){
         if (user != null) {
             user.bodyFatPercentage = percentInputBox2.value;
         }
     }
 
-    function getUserGender(){
-        sex.forEach( function(element, index) {
-            let evaluatedSexOption = element;
-            if (evaluatedSexOption.checked == true) {
-                selectedSex = evaluatedSexOption.value;
-            } // end of if
-        }); //end of sex.forEach
+    function getBodyFatPercentageGoal(){
+        user.bodyFatPercentageGoal = bfGoalInputBox.value; 
+    }
 
-        if (user != null) {
-            user.sex = selectedSex;
+    function getUserAge(){
+        user.age = age.value;
+    }
+
+    function getUserActivityLevel(){
+        activityList.forEach( function(element, index) {
+            let evaluatedActivityOption = element;
+            if (evaluatedActivityOption.checked == true) {
+                user.activityLevel = evaluatedActivityOption.value;
+            }
+        }); //end of activityList.forEach
+
+        if (user.activityLevel == "sedentary") {
+            user.selectedActivityLevelNumericValue = sedentaryValue;
+        } else if (user.activityLevel == "light") {
+            user.selectedActivityLevelNumericValue = lightActivityValue;
+        } else if (user.activityLevel == "moderate") {
+            user.selectedActivityLevelNumericValue = moderateActivityValue;
+        } else if (user.activityLevel == "veryactive") {
+            user.selectedActivityLevelNumericValue = veryActiveValue;
+        } else if (user.activityLevel == "extremely") {
+            user.selectedActivityLevelNumericValue = extremelyActiveValue;
         }
     }
 
     function getUserWeight(){
-        //get and set user weight from input
         user.weightInPounds = weightInputBox2.value;
-        //convert and set user weight in kilograms
         user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
     }
 
-    function customizeEssayWithName(){
-        userNameInsert.forEach( function(element, index) {
-            element.textContent = user.name;
+    function updatePageWithUserWeight(){
+        weightInsert.forEach( function(element, index) {
+            element.textContent = user.weightInPounds;
         });
     }
 
-    function reCalc(){
-    	mainCalc();
+    function getUserHeight(){
+        user.heightFeet = feet.value;
+        user.heightInches = inches.value;
+        convertUserHeightToCentimeters(user.heightFeet,user.heightInches);
+    }
+
+    function convertUserHeightToCentimeters(feet, inches) {
+        user.heightInOnlyInches = convertFeetAndInchesToTotalInches(feet,inches);
+        user.heightInCentimeters = convertInchesToCentimeters(user.heightInOnlyInches);
     }
 
     function calcCurrentWeightAndLean() {	   
 	   user.fatBodyMass = (user.weightInPounds * (user.bodyFatPercentage /100)); //lbs bf results
 	   user.fatBodyMass = roundNumPlace(user.fatBodyMass,1);
-       LbsBfResultsDiv.textContent = user.fatBodyMass;
+       updatePageWithBodyFatMass();
 
 	   user.leanBodyMass = user.weightInPounds - user.fatBodyMass;
        user.leanBodyMass = roundNumPlace(user.leanBodyMass,1);
-	   leanResultsDiv.textContent = user.leanBodyMass;	  
+
+       updatePageWithLeanBodyMass();  
     }
 
     function calcBmr(){
+        getUserAge();
     	calcGoalPercent();
 
-        //set male or female value
-    	let selectedSexSValue;
-    	if (selectedSex == "female") {
-    		selectedSexSValue = femaleSValue;
-			bfPercentageGoalByGender = bfGoalFemale;
-			calcGoalPercentModifier = calcGoalPercentModifierFemale;
-    	} else {
-    		selectedSexSValue = maleSValue
-    		bfPercentageGoalByGender = bfGoalMale;
-    		calcGoalPercentModifier = calcGoalPercentModifierMale;
-    	}
-    	
-        //200 pounds to kg = 90.7185
-    	//68 inches to cm = 172.72
-
     	//BMR (kcal / day) = 10 * weight (kg) + 6.25 * height (cm) – 5 * age (y) + s (kcal / day)
-
-    	let unRoundedBmrResult = (10 * user.weightInKilograms) + (6.25 * user.heightInCentimeters) - (5 * user.age) + selectedSexSValue;
+        //testing data 200 pounds to kg = 90.7185, 68 inches to cm = 172.72
+    	let unRoundedBmrResult = (10 * user.weightInKilograms) + (6.25 * user.heightInCentimeters) - (5 * user.age) + user.selectedSexSValue;
     	bmrResult = Math.round (unRoundedBmrResult * 10) / 10;
-
         //BMR result for 200 pounds and 68 inches is = 1826.68
 
         bmrAnswer.forEach( function(element, index) {
             element.textContent = bmrResult;
         });
-
-        activeMultipler();
     } //end function calc bmr
 
-    function activeMultipler(){
-        getUserInputs();//if they change activity level before anything else. 
+    function userSetActiveMultipler(){
+        getUserActivityLevel();
+        calcTDEE();
+        updatePageWithTDEE();
+    }
 
-    	//set values
-    	const sedentaryValue = 1.15;
-		const lightActivityValue = 1.35;
-		const moderateActivityValue = 1.55;
-		const veryActiveValue = 1.75;
-		const extremelyActiveValue = 1.95;
-
-    	let selectedActivityValue;
-    	if (user.activityLevel == "sedentary") {
-    		selectedActivityValue = sedentaryValue;
-    	} else if (user.activityLevel == "light") {
-    		selectedActivityValue = lightActivityValue;
-    	} else if (user.activityLevel == "moderate") {
-    		selectedActivityValue = moderateActivityValue;
-    	} else if (user.activityLevel == "veryactive") {
-    		selectedActivityValue = veryActiveValue;
-    	} else if (user.activityLevel == "extremely") {
-    		selectedActivityValue = extremelyActiveValue;
-    	}
-
-    	let unRoundedBmrWithActivity = bmrResult * selectedActivityValue;
-        bmrWithActivity = Math.round (unRoundedBmrWithActivity * 10) / 10;
-
-    	tdee.forEach( function(element, index) {
-    		element.textContent  = bmrWithActivity;
-    	});
+    function calcTDEE(){
+    	let unRoundedBmrWithActivity = bmrResult * user.selectedActivityLevelNumericValue;
+        bmrWithActivity = roundNumPlace(unRoundedBmrWithActivity,1);
 
         calcTwentyFivePercentDeficit();
 
-        //if user picked a deficit, leave that, if 
-        //userManuallyPickedDeficit = true
-        //if not calc 25%
+    	updatePageWithUserPickedDeficit();
 
-    	userPickedDeficitInsert.forEach( function(element, index) {
-    		element.textContent  = user.caloricDeficit;
-    	});
         calcCaloricDeficitValue();
-    } //end activieMultipler
+    }
+
+    function updatePageWithUserPickedDeficit(){
+        userPickedDeficitInsert.forEach( function(element, index) {
+            element.textContent  = user.caloricDeficit;
+        });
+    }
+
+    function updatePageWithTDEE(){
+        tdee.forEach( function(element, index) {
+            element.textContent  = bmrWithActivity;
+        });
+    }
 
     function calcTwentyFivePercentDeficit(){
         twentyFivePercentDeficit = bmrWithActivity - (bmrWithActivity*.25);
@@ -295,21 +363,15 @@ function startUpTheCalculator() {
             element.textContent = user.bodyFatPercentageGoal;
         });
 
-    	weightInsert.forEach( function(element, index) {
-    		element.textContent = user.weightInPounds;
-    	});
+    	updatePageWithUserWeight();
     	
     	bfInsert.forEach( function(element, index) {
     		element.textContent = user.bodyFatPercentage;
     	});
 
-        leanInsert.forEach( function(element, index) {
-            element.textContent = user.leanBodyMass;
-        });
+        updatePageWithLeanBodyMass();
 
-        fatInsert.forEach( function(element, index) {
-            element.textContent = user.fatBodyMass;
-        });
+        updatePageWithBodyFatMass();
 
         loseInsert.forEach( function(element, index) {
             element.textContent = LbsToLoseToGoal;
@@ -327,14 +389,28 @@ function startUpTheCalculator() {
 
     } //end calcGoalPercent
 
-    function calcProteinNeed(){
-    	gramsProteinNeeded = user.weightInPounds * .82;
-		gramsProteinNeeded = Math.round (gramsProteinNeeded * 10) / 10;
-        gramsProteinInsert.forEach( function(element, index) {
-            element.textContent = gramsProteinNeeded;
+    function updatePageWithBodyFatMass(){
+        fatInsert.forEach( function(element, index) {
+            element.textContent = user.fatBodyMass;
         });
-		console.log('Welcome to the matrix. Ready Player 2')
+    }
+
+    function updatePageWithLeanBodyMass(){
+        leanInsert.forEach( function(element, index) {
+            element.textContent = user.leanBodyMass;
+        });
+    }
+
+
+    function calcProteinNeed(){
+    	user.gramsProteinNeeded = roundNumPlace((user.weightInPounds * gramsProteinPerPoundRecommended),1);
     } // end calcProteinNeed
+
+    function setProteinNeed(){
+        gramsProteinInsert.forEach( function(element, index) {
+            element.textContent = user.gramsProteinNeeded;
+        });
+    }
 
     function calcDaysToGoalBf() {
 		totalCaloriesUntilBfGoal = LbsToLoseToGoal * 3500;
@@ -383,7 +459,7 @@ function startUpTheCalculator() {
     }
 
     function generateTable() {
-        //todo 
+        //todo #5
         //get days till goal
         //iterate through each day til goal
         //calc the needed values for each day. 
@@ -412,110 +488,6 @@ function startUpTheCalculator() {
             activityLevelSection.style.display = "block";
             buttonToggleActivityLevelSection.textContent = 'Click to hide Activity estimating section.';
         }
-    }
-
-    function generateEstimatingText(){
-        
-        let fourtyPercent = "40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
-        let thirtyfivePercent = "35% body fat: This percentage of body fat is more of the beer gut look. The waist circumference at this point can be about 40+ inches."
-        let thirtyPercent = "30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist."
-        let twentyfivePercent = "25% body fat: This is the start of average territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
-        let twentyPercent = "20% body fat: Low end of the average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
-        let fifteenPercent = "15% body fat: This percentage of body fat usually fits into the “lean and fit” category. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
-        let tenToTwelvePercent = "10-12% body fat: Very in shape. This is the beach body fat percentage that most people strive for 🏝. Your abs can be clearly seen. At this level is some defined veins in the arms and legs."; 
-        let sixToEightPercent = "6-8% body fat: Extremely low levels of body fat. Absolutely chiseled from stone. Think Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
-        let fivePercent = "5% body fat: Ridiculously (dangerously) lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin.";
-        let maleEstimateTextArray = [fourtyPercent, thirtyfivePercent, thirtyPercent, twentyfivePercent, twentyPercent, fifteenPercent, tenToTwelvePercent, sixToEightPercent, fivePercent];
-
-        let femaleFiftyPercent = "50% body fat: Significant fat accumulation in all body regions. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese. This skin will appear more dimple or “cottage cheese” like.";
-        let femaleFourtyfivePercent = "45% body fat: At this body weight, the hips become noticeably wider than the shoulders. The general hip circumference may reach 45+ inches and waist circumference 35+ inches. The skin may start to lose its smooth nature at this percentage level.";
-        let femaleFourty = "40% body fat: At this level a women is considered obese. This means there is not a very balanced muscle to fat ratio. Some women may not look like they have 40% body fat, but their muscle mass is lower, which brings their percentage to 40%.";
-        let femaleThirtyfive = "35% body fat: The body has more fat accumulations and the face and neck begin to appear fuller and more round. Belly fat is also more pronounced at this level as well.";
-        let femaleThirty = "30% body fat: At this level there is more accumulation of fat in the hips and butt region. 30% body fat is considered a high average for women.";
-        let femaleTwentyfive = "25% body fat: This percentage is on the lower end of what is average for women. Abs and other muscles are not as apparent at this level, and there is generally more fat around the hips and buttocks areas."; 
-        let femaleTwentyToTwentytwo = "20-22% body fat: This is the beach body fat percentage that most people strive for 🏝. This level is the most common among female athletes. Some definition in the abs.";
-        let femaleFifteenToSeventeen = "15-17% body fat: At this level muscles are still visible. Abs, legs, and arms have definition. There is some separation between muscles there is also some vascularity. Women don’t have as much curvature in hips and buttocks because of the low body fat level. This is a common level of body fat among fitness models. Many women who are at this level may not be able to menstruate.";
-        let femaleTenToTwelve = "10-12% Body fat: Ridiculously (dangerously) lean. At this percentage the women’s vascularity and some striations are visible. The woman’s muscles are clearly separated. This level of body fat isn’t considered safe or healthy for women who menstruate.";
-        let femaleEstimateTextArray = [femaleFiftyPercent, femaleFourtyfivePercent, femaleFourty, femaleThirtyfive, femaleThirty, femaleTwentyfive, femaleTwentyToTwentytwo, femaleFifteenToSeventeen, femaleTenToTwelve];
-
-        let genderBodyFatEstimationArray;
-        if (user.sex == 'male') {
-            genderBodyFatEstimationArray = maleEstimateTextArray;
-        } else {
-            genderBodyFatEstimationArray = femaleEstimateTextArray;
-        }
-
-        //clear out the node if they click a gender
-        while (estimateBodyFatLevelDescriptions.firstChild) {
-            estimateBodyFatLevelDescriptions.firstChild.remove();
-        }
-
-        //generate a paragraph for each element and set it to the node
-        genderBodyFatEstimationArray.forEach( function(element, index) {
-            let textNode = document.createTextNode(element);
-            let paragraph = document.createElement("p");
-            paragraph.appendChild(textNode);
-            estimateBodyFatLevelDescriptions.appendChild(paragraph);
-        });
-
-        if (user.sex == 'male') {
-            maleExampleImageLinks.forEach( function(element, index) {
-                element.style.display = "block";// statements
-            });
-            femaleExampleImageLinks.forEach( function(element, index) {
-                element.style.display = "none";// statements
-            });
-        } else {
-            maleExampleImageLinks.forEach( function(element, index) {
-                element.style.display = "none";// statements
-            });
-            femaleExampleImageLinks.forEach( function(element, index) {
-                element.style.display = "block";// statements
-            });
-        } maleBodyFatExampleCalculation
-    } // end generateEstimatingText
-
-    function generateOptimalBodyFatText(){
-        if (user.sex == 'male') {
-            genderBfGoalFrom100 = bfGoalMale*100
-        } else {
-            genderBfGoalFrom100 = bfGoalFemale*100;
-        }
-
-        genderOptimalBfGoal.forEach( function(element, index) {
-            element.textContent = genderBfGoalFrom100;
-        });
-
-        //set the body fat goal input box to the gender suggestion
-        if (userDidSetBodyFatPercentageGoal === false) {
-            bfGoalInputBox.value = genderBfGoalFrom100;
-        }
-    }
-
-    function genderPicked(){
-        getUserGender();
-        generateEstimatingText();
-        generateOptimalBodyFatText();
-        generateOptimalBodyFatText();
-
-        selectedGenderInsert.forEach( function(element, index) {
-            element.textContent = user.sex;
-        });
-
-        genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
-            element.textContent = genderBfGoalFrom100;
-        });
-
-        if (maleBodyFatExampleCalculation != null) {
-            if (user.sex == 'male') {
-                maleBodyFatExampleCalculation.style.display = "block";
-                femaleBodyFatExampleCalculation.style.display = "none";
-            } else {
-                maleBodyFatExampleCalculation.style.display = "none";
-                femaleBodyFatExampleCalculation.style.display = "block";
-            }
-        }
-
     }
 
     function calcCalsFromProtein(){
@@ -568,9 +540,11 @@ function startUpTheCalculator() {
         });
     }
 
-    function weightButtonClicked() {
-        getUserWeight(); //make sure we have the latest weight
-        checkUserWeightAgainstNationalAverage(); //check and insert results
+    function userClickedSetWeightButton() {
+        console.log('userClickedSetWeightButton, getting user weight, then updating page with user weight');
+        getUserWeight();
+        // checkUserWeightAgainstNationalAverage(); //check and insert results
+        updatePageWithUserWeight();
     }
 
     function checkUserWeightAgainstNationalAverage() {
@@ -596,10 +570,6 @@ function startUpTheCalculator() {
         overUnderAverageGenderMassInsert.forEach( function(element, index) {
             element.textContent = user.WeightComparedToNationalAverage;
         });
-    }
-
-    function clearNameBox() {
-        nameInputBox.value = '';
     }
 
     function userPickedCaloriesSwitch(){
@@ -699,28 +669,50 @@ function startUpTheCalculator() {
     }
 
     // #Set Up
+    let maleEstimateTextArray;
+    let femaleEstimateTextArray;
+
+    function generateBodyFatEstimatingText(){
+        let fourtyPercent = "40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
+        let thirtyfivePercent = "35% body fat: This percentage of body fat is more of the beer gut look. The waist circumference at this point can be about 40+ inches."
+        let thirtyPercent = "30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist."
+        let twentyfivePercent = "25% body fat: This is the start of average territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
+        let twentyPercent = "20% body fat: Low end of the average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
+        let fifteenPercent = "15% body fat: This percentage of body fat usually fits into the “lean and fit” category. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
+        let tenToTwelvePercent = "10-12% body fat: Very in shape. This is the beach body fat percentage that most people strive for 🏝. Your abs can be clearly seen. At this level is some defined veins in the arms and legs."; 
+        let sixToEightPercent = "6-8% body fat: Extremely low levels of body fat. Absolutely chiseled from stone. Think Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
+        let fivePercent = "5% body fat: Ridiculously (dangerously) lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin.";
+        maleEstimateTextArray = [fourtyPercent, thirtyfivePercent, thirtyPercent, twentyfivePercent, twentyPercent, fifteenPercent, tenToTwelvePercent, sixToEightPercent, fivePercent];
+
+        let femaleFiftyPercent = "50% body fat: Significant fat accumulation in all body regions. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese. This skin will appear more dimple or “cottage cheese” like.";
+        let femaleFourtyfivePercent = "45% body fat: At this body weight, the hips become noticeably wider than the shoulders. The general hip circumference may reach 45+ inches and waist circumference 35+ inches. The skin may start to lose its smooth nature at this percentage level.";
+        let femaleFourty = "40% body fat: At this level a women is considered obese. This means there is not a very balanced muscle to fat ratio. Some women may not look like they have 40% body fat, but their muscle mass is lower, which brings their percentage to 40%.";
+        let femaleThirtyfive = "35% body fat: The body has more fat accumulations and the face and neck begin to appear fuller and more round. Belly fat is also more pronounced at this level as well.";
+        let femaleThirty = "30% body fat: At this level there is more accumulation of fat in the hips and butt region. 30% body fat is considered a high average for women.";
+        let femaleTwentyfive = "25% body fat: This percentage is on the lower end of what is average for women. Abs and other muscles are not as apparent at this level, and there is generally more fat around the hips and buttocks areas."; 
+        let femaleTwentyToTwentytwo = "20-22% body fat: This is the beach body fat percentage that most people strive for 🏝. This level is the most common among female athletes. Some definition in the abs.";
+        let femaleFifteenToSeventeen = "15-17% body fat: At this level muscles are still visible. Abs, legs, and arms have definition. There is some separation between muscles there is also some vascularity. Women don’t have as much curvature in hips and buttocks because of the low body fat level. This is a common level of body fat among fitness models. Many women who are at this level may not be able to menstruate.";
+        let femaleTenToTwelve = "10-12% Body fat: Ridiculously (dangerously) lean. At this percentage the women’s vascularity and some striations are visible. The woman’s muscles are clearly separated. This level of body fat isn’t considered safe or healthy for women who menstruate.";
+        femaleEstimateTextArray = [femaleFiftyPercent, femaleFourtyfivePercent, femaleFourty, femaleThirtyfive, femaleThirty, femaleTwentyfive, femaleTwentyToTwentytwo, femaleFifteenToSeventeen, femaleTenToTwelve];
+    }
+
     let userManuallyPickedDeficit = false;
 
     const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
 
     const nameInputBox = document.getElementById('nameInputBox');
-    if (nameInputBox != null) {
-        nameInputBox.addEventListener('focus', clearNameBox)
-    }
+
     const nameButton = document.getElementById('nameButton');
     if (nameButton != null) {
-        nameButton.addEventListener('click', customizeEssayWithName);
+        nameButton.addEventListener('click', updatePageWithUserName);
     }
     const userNameInsert = document.getElementsByName('userNameInsert');
 
     const genderGoalBodyFatPercentageInsert = document.getElementsByName('genderGoalBodyFatPercentageInsert');
 
-    const maleBodyFatExampleCalculation = document.getElementById('maleBodyFatExampleCalculation');
-    const femaleBodyFatExampleCalculation = document.getElementById('femaleBodyFatExampleCalculation');
-
-    const enterWeightButton = document.getElementById('enterWeightButton');
-    if (enterWeightButton != null) {
-        enterWeightButton.addEventListener('click', weightButtonClicked);
+    const setWeightButton = document.getElementById('setWeightButton');
+    if (setWeightButton != null) {
+        setWeightButton.addEventListener('click', userClickedSetWeightButton);
     }
 
     const averageGenderMassInsert = document.getElementsByName('averageGenderMassInsert');
@@ -771,37 +763,34 @@ function startUpTheCalculator() {
 
     let genderBfGoalFrom100;
 
+    //get all the calculation buttons by class
     const calcButton = document.querySelector('.calcButton');
+    calcButton.addEventListener('click', mainCalc);
+
+
     const calcStartingPointButton = document.getElementById('calcStartingPointButton');
 
     if (calcStartingPointButton != null) {
         calcStartingPointButton.addEventListener('click', calcBodyFatLevels);
     }
 
+    //todo why the 2 event listeners?
     const reCalcButton = document.getElementById('reCalcButton');
+    reCalcButton.addEventListener('click', calcDaysToGoalBf);
+    reCalcButton.addEventListener('click', mainCalc);
 
     const calcTimeToGoalButton = document.getElementById('calcTimeToGoalButton');
-    reCalcButton.addEventListener('click', calcDaysToGoalBf);
 
     //remember to use the correct selector! Or just id. 
-    const calcBmrButton = document.getElementById('calcBmr');
+    const calcBmrButton = document.getElementById('calcBmrButton');
+    calcBmrButton.addEventListener('click',calcBmr);
 
     const weightInputBox2 = document.getElementById('weightInputBox');
     const percentInputBox2 = document.getElementById('percentInputBox');
-    const LbsBfResultsDiv = document.getElementById('LbsBfResultsDiv');
 
-    const leanResultsDiv = document.getElementById('leanResultsDiv');
     let bfPercentageArray = [];
     const bfRunDown = document.getElementById('bfRunDown');
     let displayBfRundownData = "";
-
-    let selectedSex;
-    let bfPercentageGoalByGender;
-    const bfGoalMale = .10;
-    const bfGoalFemale = .20;
-    let calcGoalPercentModifier;
-    const calcGoalPercentModifierFemale = .2658;
-    const calcGoalPercentModifierMale = .1111111111;
 
     const tempGenderOptimalBfGoal = document.getElementsByClassName('genderOptimalBfGoal');
     const genderOptimalBfGoal = Array.from(tempGenderOptimalBfGoal);
@@ -834,7 +823,7 @@ function startUpTheCalculator() {
     const activityListElements = document.getElementsByClassName('activity');
     const activityList = Array.from(activityListElements);
     activityList.forEach( function(element, index) {
-    	element,addEventListener('change', activeMultipler);
+    	element,addEventListener('change', userSetActiveMultipler);
     });
 
     const goalBodyFatPercentageInsert = document.getElementsByName('goalBodyFatPercentageInsert');
@@ -864,11 +853,36 @@ function startUpTheCalculator() {
 
     let caloriesADay;
 
-	calcButton.addEventListener('click', mainCalc);
 
-	reCalcButton.addEventListener('click', reCalc);
-    calcBmrButton.addEventListener('click', calcBmr);
 
+
+    //The Mifflin St Jeor equation constants
+    const maleSValue = 5;
+    const femaleSValue = -161; //where s is +5 for males and -161 for females.
+
+    //body fat norms by gender
+    let bfPercentageGoalByGender;
+    const bfGoalMale = .10;
+    const bfGoalFemale = .20;
+    let calcGoalPercentModifier;
+    const calcGoalPercentModifierFemale = .2658;
+    const calcGoalPercentModifierMale = .1111111111;
+
+    //activity modifiers
+    const sedentaryValue = 1.15;
+    const lightActivityValue = 1.35;
+    const moderateActivityValue = 1.55;
+    const veryActiveValue = 1.75;
+    const extremelyActiveValue = 1.95;
+
+    //grams of protein recommended
+    gramsProteinPerPoundRecommended = .82;
+
+    //todo calc first day of summer based on if it is after 6/20 of each year
+    const firstDayOfSummer = new Date("06/20/2022");
+    let todaysDate = new Date();
+
+    //average weight, height, waist, and body fat %
     const kAverageMaleWeight = 197;
     const kAverageMaleHeightInches = 69.0;
     const kAverageMaleWaistInches = 40.3;
@@ -878,12 +892,6 @@ function startUpTheCalculator() {
     const kAverageFemaleHeight = 63.6;
     const kAverageFemaleWaistInches = 38.7;
     const kAverageFemaleBodyFatPercentage = 41;
-
-    const maleSValue = 5;
-    const femaleSValue = -161; //where s is +5 for males and -161 for females.
-
-    const firstDayOfSummer = new Date("06/20/2022");
-    let todaysDate = new Date();
 
     const daysTillSummer = document.getElementById('daysTillSummerInsert');
 
@@ -933,12 +941,31 @@ function startUpTheCalculator() {
     const twentyFivePercentCalorieDeficitInsert = document.getElementsByName('twentyFivePercentCalorieDeficitInsert');
 
     let recommendedDailyCalories;
-    let userSelectedDailyCalories;
 
     let userDidSetDailyCalories = false;
     let userDidSetBodyFatPercentageGoal = false;
 
     bootup();
+
+    function testEverything() {
+        user.name = 'Joshua';
+        user.weightInPounds = 200;
+        user.bodyFatPercentage = 20;
+        user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
+        user.bodyFatPercentageGoal = 10;
+        user.heightFeet = 5;
+        user.heightInches = 8;
+        user.heightInOnlyInches = convertFeetAndInchesToTotalInches(user.heightFeet,user.heightInches);
+        user.heightInCentimeters = convertInchesToCentimeters(user.heightInOnlyInches);
+        user.activityLevel = 1.35 //light
+        user.selectedDailyCalories = 2000
+        user.sex = "male";
+        user.selectedSexSValue = 5; //because male
+
+        //run all the needed functions
+        //check the results against what I know is right
+        //output the results to the console
+    }
 
 } //end startUpTheCalculator
 //file length Oct 25, 2021 = 950 lines
