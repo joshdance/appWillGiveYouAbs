@@ -245,6 +245,11 @@ function startUpTheCalculator() {
         });
     }
 
+    function userSetTheirName(){
+        getUserName();
+        updatePageWithUserName();
+    }
+
     function getUserBodyFatPercentage(){
         if (user != null) {
             user.bodyFatPercentage = percentInputBox2.value;
@@ -730,7 +735,7 @@ function startUpTheCalculator() {
 
     const nameButton = document.getElementById('nameButton');
     if (nameButton != null) {
-        nameButton.addEventListener('click', updatePageWithUserName);
+        nameButton.addEventListener('click', userSetTheirName);
     }
     const userNameInsert = document.getElementsByName('userNameInsert');
 
