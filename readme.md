@@ -27,13 +27,23 @@ Todo List:
 5. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845
 
 port the new main calculator back over to the essay.
+
 Create a table that will show projected progress over time. 
+
 Make a 'how to get in shape by date' calculator.
+
 add the ability to use the metric system (kg baby).
+
 Create a login and account system so you don't have to type in your info each and every time.
+
 refactor to have each function separate not a giant nest.
+
 port the new main calculator to Summer Body Calculator.
+
 Redo SummerBod branding
+
 Make it so the first day of Summer automatically updates each year.
+
 Make a new calculator - How Much Fat Can You Lose In One Week?
+
 
