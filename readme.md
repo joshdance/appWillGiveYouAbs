@@ -23,15 +23,17 @@ Todo List:
 2. Refactor main calculator js - ✅ Oct 2021
 3. Add a testing method or framework. - 👨🏻‍🍳 In progress
 3.5 Refactor to make the testing easier - In progress
-4. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845
-5. port the new main calculator back over to the essay.
-6. Create a table that will show projected progress over time. 
-7. Make a 'how to get in shape by date' calculator.
-8. add the ability to use the metric system (kg baby).
-9. Create a login and account system so you don't have to type in your info each and every time.
-10. refactor to have each function separate not a giant nest.
-11. port the new main calculator to Summer Body Calculator.
-12. Redo SummerBod branding
-13. Make it so the first day of Summer automatically updates each year.
-14. Make a new calculator - How Much Fat Can You Lose In One Week?
+4.todo feels like calcBodyFatLevels() and calcCurrentWeightAndLean() are the same?
+5. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845
+
+port the new main calculator back over to the essay.
+Create a table that will show projected progress over time. 
+Make a 'how to get in shape by date' calculator.
+add the ability to use the metric system (kg baby).
+Create a login and account system so you don't have to type in your info each and every time.
+refactor to have each function separate not a giant nest.
+port the new main calculator to Summer Body Calculator.
+Redo SummerBod branding
+Make it so the first day of Summer automatically updates each year.
+Make a new calculator - How Much Fat Can You Lose In One Week?
 
