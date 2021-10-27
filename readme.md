@@ -21,10 +21,10 @@ I want to add a better TDEE calculator as well as a macro calculator.
 Todo List:
 1. Standardize the header ✅ Oct 2021
 2. Refactor main calculator js - ✅ Oct 2021
-4. Refactor to make the testing easier - In progress
-3. Add a testing method or framework. - 👨🏻‍🍳 In progress
-5. todo feels like calcBodyFatLevels() and calcCurrentWeightAndLean() are the same?
-6. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845
+4. Refactor to make the testing easier - ✅ Oct 2021
+3. Add a testing method or framework. - ✅ Oct 2021
+5. todo feels like calcBodyFatLevels() and calcCurrentWeightAndLean() are the same? ✅ Oct 2021
+6. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845 ✅ Oct 2021
 
 port the new main calculator back over to the essay.
 

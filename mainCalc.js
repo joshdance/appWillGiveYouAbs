@@ -1024,3 +1024,4 @@ function startUpTheCalculator() {
 
 } //end startUpTheCalculator
 //file length Oct 25, 2021 = 950 lines
+//file length Oct 27, 2021 = 1027 lines`
