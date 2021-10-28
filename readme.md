@@ -25,6 +25,7 @@ Todo List:
 3. Add a testing method or framework. - ✅ Oct 2021
 5. todo feels like calcBodyFatLevels() and calcCurrentWeightAndLean() are the same? ✅ Oct 2021
 6. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845 ✅ Oct 2021
+7. Make it so the first day of Summer automatically updates each year. ✅ Oct 2021
 
 port the new main calculator back over to the essay.
 
@@ -40,9 +41,11 @@ refactor to have each function separate not a giant nest.
 
 port the new main calculator to Summer Body Calculator.
 
+replace the hard coded dates Summer Dates with auto calculated dates
+
 Redo SummerBod branding
 
-Make it so the first day of Summer automatically updates each year.
+Use Moment.js?
 
 Make a new calculator - How Much Fat Can You Lose In One Week?
 

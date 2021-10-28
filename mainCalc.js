@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 //todo #9 - refactor to have each function separate, not nested in one giant function.
 function startUpTheCalculator() {
     
-    let testing = false;
+    let testing = true;
 
     let user = new Object;
         // user.name
@@ -32,6 +32,7 @@ function startUpTheCalculator() {
         //functions that only run once
         generateBodyFatEstimatingText();
         calcDaysTilSummer();
+        updatePageWithNumberOfDaysUntilSummer();
 
         //functions the can run more than once
         getUserName();
@@ -689,11 +690,37 @@ function startUpTheCalculator() {
 
     // #Summer Bod Functions
     function calcDaysTilSummer(){
+         //todo calc first day of summer based on if it is after 6/20 of each year
+        let firstDayOfSummer;
+        let firstDayOfSummerString;
+
+        let currentYear = todaysDate.getFullYear();
+        let currentMonth = todaysDate.getMonth() + 1;//javascript returns 0 index so plus 1
+        let currentDay = todaysDate.getDate();
+
+        if (currentMonth <= 6) {
+            if (currentDay < 20) {
+                //make a string from numbers 6/20/ currentYear
+                firstDayOfSummerString = "06/20/" + currentYear.toString();
+                firstDayOfSummer = new Date(firstDayOfSummerString);
+            } else {
+                //make string from numbers 6/20/(currentYear+1)
+                firstDayOfSummerString = "06/20/" + (currentYear+1).toString();
+                firstDayOfSummer = new Date(firstDayOfSummerString);
+            }
+        } else {
+            //make string from numbers 6/20/(currentYear+1)
+            firstDayOfSummerString = "06/20/" + (currentYear+1).toString();
+            firstDayOfSummer = new Date(firstDayOfSummerString);
+        }
+
         //it will be in miliseconds. So have to convert to days. 
-        let numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
+        numberOfDaysBetweenNowAndSummer = (firstDayOfSummer.getTime() - todaysDate.getTime())/(1000 * 3600 * 24);
 
-        numberOfDaysBetweenNowAndSummer = (Math.round (numberOfDaysBetweenNowAndSummer * 10) / 10) + 1;
+        numberOfDaysBetweenNowAndSummer = (roundNumPlace(numberOfDaysBetweenNowAndSummer,1) + 1);
+    }
 
+    function updatePageWithNumberOfDaysUntilSummer(){
         if (daysTillSummer != null) {
             daysTillSummer.textContent = numberOfDaysBetweenNowAndSummer;
         }
@@ -901,9 +928,9 @@ function startUpTheCalculator() {
     //grams of protein recommended
     gramsProteinPerPoundRecommended = .82;
 
-    //todo calc first day of summer based on if it is after 6/20 of each year
-    const firstDayOfSummer = new Date("06/20/2022");
+    //date stuff
     let todaysDate = new Date();
+    let numberOfDaysBetweenNowAndSummer;
 
     //average weight, height, waist, and body fat %
     const kAverageMaleWeight = 197;
