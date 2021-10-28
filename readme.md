@@ -10,11 +10,7 @@ This is a live essay + calculator that can get anyone abs, if they put the princ
 
 "When level of intensity doesn't move the needle, consistency is where all the power comes from."
 
-So far I have built 3 versions of the essay + calculator. 
-https://thisappwillgiveyouabs.com/summerbod2020
-
-And a macros to calories calculator.
-https://thisappwillgiveyouabs.com/macrostocalories
+Launched on March 12, 2019.
 
 I want to add a better TDEE calculator as well as a macro calculator.
 
@@ -26,6 +22,7 @@ Todo List:
 5. todo feels like calcBodyFatLevels() and calcCurrentWeightAndLean() are the same? ✅ Oct 2021
 6. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845 ✅ Oct 2021
 7. Make it so the first day of Summer automatically updates each year. ✅ Oct 2021
+8. Unify all the stylesheets. ✅ Oct 2021
 
 port the new main calculator back over to the essay.
 
