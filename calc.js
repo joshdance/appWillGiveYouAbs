@@ -438,7 +438,7 @@ function calculateUserBodyFat() {
             femaleExampleImageLinks.forEach( function(element, index) {
                 element.style.display = "block";// statements
             });
-        } maleBodyFatExampleCalculation
+        }
     }
 
     function generateOptimalBodyFatText(){
@@ -471,16 +471,6 @@ function calculateUserBodyFat() {
         genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
             element.textContent = genderBfGoalFrom100;
         });
-
-        if (maleBodyFatExampleCalculation != null) {
-            if (user.sex == 'male') {
-                maleBodyFatExampleCalculation.style.display = "block";
-                femaleBodyFatExampleCalculation.style.display = "none";
-            } else {
-                maleBodyFatExampleCalculation.style.display = "none";
-                femaleBodyFatExampleCalculation.style.display = "block";
-            }
-        }
 
     }
 
@@ -656,10 +646,6 @@ function calculateUserBodyFat() {
     const userNameInsert = document.getElementsByName('userNameInsert');
     const genderGoalBodyFatPercentageInsert = document.getElementsByName('genderGoalBodyFatPercentageInsert');
     const goalBodyFatPercentageInsert = document.getElementsByName('goalBodyFatPercentageInsert');
-
-
-    const maleBodyFatExampleCalculation = document.getElementById('maleBodyFatExampleCalculation');
-    const femaleBodyFatExampleCalculation = document.getElementById('femaleBodyFatExampleCalculation');
 
     const enterWeightButton = document.getElementById('enterWeightButton');
     if (enterWeightButton != null) {
