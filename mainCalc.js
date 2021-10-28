@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 //todo #9 - refactor to have each function separate, not nested in one giant function.
 function startUpTheCalculator() {
     
-    let testing = true;
+    let testing = false;
 
     let user = new Object;
         // user.name
