@@ -97,7 +97,7 @@ function startUpTheCalculator() {
         calcCalsFromCarbsAndFatAtMaxDeficit();
         calcTwentyFivePercentDeficit();
         setDailyCaloriesInputField();
-        generateTable();
+        generateProgressTable();
     }
 
     function getUserGender(){
@@ -493,15 +493,54 @@ function startUpTheCalculator() {
         calcDeficitExample();
     }
 
-    function generateTable() {
+    function generateProgressTable() {
         //todo #5
         //get days till goal
         //iterate through each day til goal
         //calc the needed values for each day. 
         //put each value in a table row
         //display the table
-        console.log('the table of power has been created');
-    };
+        let generatedTable = document.createElement('table');
+        generatedTable.id = "progressTable";
+
+        // generatedTable.style.width = '100px';
+        // generatedTable.style.border = '1px solid black';
+
+        let data = ["Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", todaysDate.toLocaleDateString("en-US"), user.bodyFatPercentage, user.fatBodyMass, user.leanBodyMass, user.weightInPounds];
+
+        // (B) CREATE HTML TABLE OBJECT
+        let perrow = 5, // 2 CELLS PER ROW
+        row = generatedTable.insertRow();
+
+        // LOOP THROUGH ARRAY AND ADD TABLE CELLS
+        for (var i = 0; i < data.length; i++) {
+            // ADD "BASIC" CELL
+            var cell = row.insertCell();
+            cell.innerHTML = data[i];
+            
+            // ATTACH A RUNNING NUMBER OR CUSTOM DATA
+            // cell.dataset.id = i;
+
+            /* ATTACH ONCLICK LISTENER IF REQUIRED
+            cell.addEventListener("click", function(){
+              console.log(this.dataset.id); 
+            });
+            */
+
+            // BREAK INTO NEXT ROW
+            var next = i + 1;
+            if (next%perrow==0 && next!=data.length) {
+              row = generatedTable.insertRow();
+            }
+        }
+
+        const body = document.body;
+        body.appendChild(generatedTable);
+
+        let progressTable = document.getElementById('progressTable');
+        progressTable.replaceWith(generatedTable);
+        console.log('the table of power has been created!');
+    }
 
     function toggleEstimates() {
         console.log('toggleEstimates')
@@ -690,7 +729,7 @@ function startUpTheCalculator() {
 
     // #Summer Bod Functions
     function calcDaysTilSummer(){
-         //todo calc first day of summer based on if it is after 6/20 of each year
+        //calc first day of summer based on if it is after 6/20 of each year
         let firstDayOfSummer;
         let firstDayOfSummerString;
 

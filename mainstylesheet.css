@@ -50,6 +50,20 @@ nav ul li a:hover {
     clear: both;
 }
 
+/* Table */
+table { 
+    border-collapse: collapse;
+}
+
+table tr td {
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+table tr:nth-child(odd) {
+    background: #f4f4f4;
+}
+
 /*---- Mobile ------*/
 /*not yet minion, not yet! - Megamind*/
 /*@media screen and (max-width: 680px) {
