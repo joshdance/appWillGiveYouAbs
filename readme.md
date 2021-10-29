@@ -23,14 +23,17 @@ Todo List:
 6. Make the buttons prettier - https://twitter.com/d__raptis/status/1400092255659171845 ✅ Oct 2021
 7. Make it so the first day of Summer automatically updates each year. ✅ Oct 2021
 8. Unify all the stylesheets. ✅ Oct 2021
+9. Create a table that will show projected progress over time. - ✅ Oct 2021
+
+Add a 'how to get in shape by date' to the calculator.
+
+Make the 'how to get in shape by date' its own page.
 
 port the new main calculator back over to the essay.
 
-Create a table that will show projected progress over time. 
-
-Make a 'how to get in shape by date' calculator.
-
 add the ability to use the metric system (kg baby).
+
+Figure out how to calculate BMR based on new weight each day.
 
 Create a login and account system so you don't have to type in your info each and every time.
 
@@ -38,12 +41,14 @@ refactor to have each function separate not a giant nest.
 
 port the new main calculator to Summer Body Calculator.
 
-replace the hard coded dates Summer Dates with auto calculated dates
-
 Redo SummerBod branding
 
 Use Moment.js?
 
 Make a new calculator - How Much Fat Can You Lose In One Week?
+
+Why the 2 event listeners on const reCalcButton?
+
+
 
 
