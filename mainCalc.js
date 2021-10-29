@@ -19,11 +19,13 @@ function startUpTheCalculator() {
         // user.heightInOnlyInches 
         // user.heightInCentimeters
         // user.BMR
+        // user.TDEE
         // user.activityLevel
         // user.selectedActivityLevelNumericValue
         // user.caloricDeficit
         // user.selectedDailyCalories
         // user.setOwnBodyFatGoal
+        // user.numberOfDaysTilGoal
         // user.sex
         // user.selectedSexSValue
         // user.gramsProteinNeeded
@@ -212,7 +214,7 @@ function startUpTheCalculator() {
 
     function calcCaloricDeficitValue(){
         console.log('start calcCaloricDeficitValue');
-        user.caloricDeficit = bmrWithActivity - user.selectedDailyCalories; 
+        user.caloricDeficit = user.TDEE - user.selectedDailyCalories; 
         user.caloricDeficit = roundNumPlace(user.caloricDeficit,1);
         console.log('user.caloricDeficit = ' + user.caloricDeficit);
         console.log('end calcCaloricDeficitValue')
@@ -342,7 +344,7 @@ function startUpTheCalculator() {
 
     function calcTDEE(){
     	let unRoundedBmrWithActivity = user.BMR * user.selectedActivityLevelNumericValue;
-        bmrWithActivity = roundNumPlace(unRoundedBmrWithActivity,1);
+        user.TDEE = roundNumPlace(unRoundedBmrWithActivity,1);
 
         calcTwentyFivePercentDeficit();
 
@@ -359,18 +361,18 @@ function startUpTheCalculator() {
 
     function updatePageWithTDEE(){
         tdee.forEach( function(element, index) {
-            element.textContent  = bmrWithActivity;
+            element.textContent  = user.TDEE;
         });
     }
 
     function calcTwentyFivePercentDeficit(){
-        twentyFivePercentDeficit = bmrWithActivity - (bmrWithActivity*.25);
+        twentyFivePercentDeficit = user.TDEE - (user.TDEE*.25);
         twentyFivePercentDeficit = roundNumPlace(twentyFivePercentDeficit,1);
 
         recommendedDailyCalories = twentyFivePercentDeficit;
         setDailyCaloriesInputField();
 
-        twentyFivePercentCalorieDeficitOnly = bmrWithActivity*.25;
+        twentyFivePercentCalorieDeficitOnly = user.TDEE*.25;
         twentyFivePercentCalorieDeficitOnly = roundNumPlace(twentyFivePercentCalorieDeficitOnly,1);
 
         twentyFivePercentCalorieDeficitInsert.forEach( function(element, index) {
@@ -455,13 +457,13 @@ function startUpTheCalculator() {
             element.textContent = totalCaloriesUntilBfGoal;
         });
 
-		numberOfDaysTilGoal = totalCaloriesUntilBfGoal / user.caloricDeficit;
-        numberOfDaysTilGoal = roundNumPlace(numberOfDaysTilGoal,1);
+		user.numberOfDaysTilGoal = totalCaloriesUntilBfGoal / user.caloricDeficit;
+        user.numberOfDaysTilGoal = roundNumPlace(user.numberOfDaysTilGoal,1);
     	numberOfDaysTilGoalInsert.forEach( function(element, index) {
-    		element.textContent  = numberOfDaysTilGoal;
+    		element.textContent  = user.numberOfDaysTilGoal;
     	});
 
-		numberOfWeeksTilGoal = numberOfDaysTilGoal / 7;
+		numberOfWeeksTilGoal = user.numberOfDaysTilGoal / 7;
         numberOfWeeksTilGoal = Math.round (numberOfWeeksTilGoal * 10) / 10;
 
         numberOfWeeksTilGoalInsert.forEach( function(element, index) {
@@ -475,7 +477,7 @@ function startUpTheCalculator() {
 		let today = new Date();
 		let goalEndDate = new Date();
 		//numberOfDaysTilGoal is the days to add
-		goalEndDate.setDate(today.getDate() + numberOfDaysTilGoal);
+		goalEndDate.setDate(today.getDate() + user.numberOfDaysTilGoal);
 
 		let dd = goalEndDate.getDate();
 		let mm = goalEndDate.getMonth() + 1; //javascript is weird. 
@@ -487,36 +489,54 @@ function startUpTheCalculator() {
     } //end function calcDaysToGoalBf
 
     function calcPercentDeficit() {
-    	unroundedCalculatedPercentDeficit = user.caloricDeficit / bmrWithActivity;
+    	unroundedCalculatedPercentDeficit = user.caloricDeficit / user.TDEE;
         calculatedPercentDeficit = (Math.round (unroundedCalculatedPercentDeficit * 100) / 100)*100;
     	percentDeficitInsert.textContent = calculatedPercentDeficit;
         calcDeficitExample();
     }
 
     function generateProgressTable() {
-        //todo #5
-        //get days till goal
-        //iterate through each day til goal
-        //calc the needed values for each day. 
-        //put each value in a table row
-        //display the table
         let generatedTable = document.createElement('table');
         generatedTable.id = "progressTable";
 
-        // generatedTable.style.width = '100px';
-        // generatedTable.style.border = '1px solid black';
+        let exampleData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", 0, todaysDate.toLocaleDateString("en-US"), user.bodyFatPercentage, user.fatBodyMass, user.leanBodyMass, user.weightInPounds];
+        //todo make this a proper table header
+        let progressData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight"];
 
-        let data = ["Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", todaysDate.toLocaleDateString("en-US"), user.bodyFatPercentage, user.fatBodyMass, user.leanBodyMass, user.weightInPounds];
+        for (var i = user.numberOfDaysTilGoal; i >= 0; i--) {
+            let xDays = user.numberOfDaysTilGoal - i; //start at 0.
+            let weightOnXDay = user.weightInPounds - (xDays*(((user.TDEE-user.selectedDailyCalories))/caloriesPerPound));
+            weightOnXDay = roundNumPlace(weightOnXDay,1);
+            console.log('day =' + xDays + ' and weight =' + weightOnXDay);
+
+            //xDays
+            let dateOnDay = new Date();
+            console.log(dateOnDay)
+            dateOnDay.setDate(dateOnDay.getDate() + xDays);
+            console.log(dateOnDay)
+
+            let bodyFatPercentageOnDay = roundNumPlace((((weightOnXDay - user.leanBodyMass)/weightOnXDay)*100),2);
+            let fatMassOnDay = roundNumPlace((weightOnXDay - user.leanBodyMass),1);
+            let leanMassOnDay = roundNumPlace(user.leanBodyMass,1); //doesn't change right now
+            //weightOnXDay
+
+            progressData.push(xDays);
+            progressData.push(dateOnDay.toLocaleDateString("en-US"));
+            progressData.push(bodyFatPercentageOnDay);
+            progressData.push(fatMassOnDay);
+            progressData.push(leanMassOnDay);
+            progressData.push(weightOnXDay);
+        }
 
         // (B) CREATE HTML TABLE OBJECT
-        let perrow = 5, // 2 CELLS PER ROW
+        let perrow = 6, // 2 CELLS PER ROW
         row = generatedTable.insertRow();
 
         // LOOP THROUGH ARRAY AND ADD TABLE CELLS
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < progressData.length; i++) {
             // ADD "BASIC" CELL
             var cell = row.insertCell();
-            cell.innerHTML = data[i];
+            cell.innerHTML = progressData[i];
             
             // ATTACH A RUNNING NUMBER OR CUSTOM DATA
             // cell.dataset.id = i;
@@ -529,8 +549,9 @@ function startUpTheCalculator() {
 
             // BREAK INTO NEXT ROW
             var next = i + 1;
-            if (next%perrow==0 && next!=data.length) {
+            if (next%perrow==0 && next!=progressData.length) {
               row = generatedTable.insertRow();
+              console.log('generatedTable now has ' + generatedTable.rows.length);
             }
         }
 
@@ -574,7 +595,7 @@ function startUpTheCalculator() {
     }
 
     function calcCalsFromCarbsAndFatAtMaxDeficit(){
-        let dailyCalsAtMax = bmrWithActivity - maxCaloricDeficit;
+        let dailyCalsAtMax = user.TDEE - maxCaloricDeficit;
         dailyCalsAtMax = roundNumPlace(dailyCalsAtMax,1);
 
         dailyCaloriesAtMaxInsert.forEach( function(element, index) {
@@ -599,10 +620,10 @@ function startUpTheCalculator() {
     }
 
     function calcDeficitExample() {
-        let tdeeDeficitExample = (bmrWithActivity * .25);
+        let tdeeDeficitExample = (user.TDEE * .25);
         tdeeDeficitExample = roundNumPlace(tdeeDeficitExample,1);
 
-        let tdeeDeficitExampleResult = bmrWithActivity - tdeeDeficitExample;
+        let tdeeDeficitExampleResult = user.TDEE - tdeeDeficitExample;
         tdeeDeficitExampleResult = roundNumPlace(tdeeDeficitExampleResult,1);
 
         tdeeDeficitExampleInsert.forEach( function(element, index) {
@@ -907,8 +928,6 @@ function startUpTheCalculator() {
     const inches = document.getElementById('inches');
     const bmrAnswer = document.getElementsByName('bmrAnswer');
 
-    let bmrWithActivity;
-
     let tdee = document.getElementsByName('tdee');
 
     //could turn this into a function getArrayOfElementsByClassName
@@ -933,7 +952,6 @@ function startUpTheCalculator() {
     let LbsToLoseToGoal;
 
     let totalCaloriesUntilBfGoal;
-    let numberOfDaysTilGoal;
     let numberOfWeeksTilGoal;
     let numberOfMonthsTilGoal;
     const numberOfDaysTilGoalInsert = document.getElementsByName('numberOfDaysTilGoalInsert');
@@ -966,6 +984,9 @@ function startUpTheCalculator() {
 
     //grams of protein recommended
     gramsProteinPerPoundRecommended = .82;
+
+    //calories per pound
+    const caloriesPerPound = 3500;
 
     //date stuff
     let todaysDate = new Date();
@@ -1077,7 +1098,7 @@ function startUpTheCalculator() {
 
         //check the results against the correct answer
 
-        if (numberOfDaysTilGoal == 171.7) {
+        if (user.numberOfDaysTilGoal == 171.7) {
             testSuccess = true;
         } else {
             testSuccess = false;
