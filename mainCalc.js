@@ -62,7 +62,6 @@ function startUpTheCalculator() {
     }
 
     function mainCalc() {
-        console.log('entered main calc');
         getUserGender();
         getUserWeight();
         getUserHeight();
@@ -90,6 +89,7 @@ function startUpTheCalculator() {
 	    calcBmr();
         updatePageWithBMR();
 	    calcTDEE();
+        updatePageWithUserPickedDeficit();
 	    calcGoalPercent();
 	    calcPercentDeficit();
         calcMaxCaloricDeficit();
@@ -189,15 +189,11 @@ function startUpTheCalculator() {
     }
 
     function calcCurrentBodyFatMassAndLeanMass() {
-        console.log('start calcCurrentBodyFatMassAndLeanMass');
         user.fatBodyMass = (user.weightInPounds * (user.bodyFatPercentage /100)); //lbs bf results
         user.fatBodyMass = roundNumPlace(user.fatBodyMass,1);
-        console.log('user.fatBodyMass =' + user.fatBodyMass);
 
         user.leanBodyMass = user.weightInPounds - user.fatBodyMass;
         user.leanBodyMass = roundNumPlace(user.leanBodyMass,1);
-        console.log('user.leanBodyMass =' + user.leanBodyMass);
-        console.log('end calcCurrentBodyFatMassAndLeanMass');
     }
 
     function updatePageWithBodyFatPercentage(){
@@ -213,11 +209,8 @@ function startUpTheCalculator() {
     }
 
     function calcCaloricDeficitValue(){
-        console.log('start calcCaloricDeficitValue');
         user.caloricDeficit = user.TDEE - user.selectedDailyCalories; 
         user.caloricDeficit = roundNumPlace(user.caloricDeficit,1);
-        console.log('user.caloricDeficit = ' + user.caloricDeficit);
-        console.log('end calcCaloricDeficitValue')
     }
     
     function getUserCalorieIntake(){
@@ -507,13 +500,10 @@ function startUpTheCalculator() {
             let xDays = user.numberOfDaysTilGoal - i; //start at 0.
             let weightOnXDay = user.weightInPounds - (xDays*(((user.TDEE-user.selectedDailyCalories))/caloriesPerPound));
             weightOnXDay = roundNumPlace(weightOnXDay,1);
-            console.log('day =' + xDays + ' and weight =' + weightOnXDay);
 
             //xDays
             let dateOnDay = new Date();
-            console.log(dateOnDay)
             dateOnDay.setDate(dateOnDay.getDate() + xDays);
-            console.log(dateOnDay)
 
             let bodyFatPercentageOnDay = roundNumPlace((((weightOnXDay - user.leanBodyMass)/weightOnXDay)*100),2);
             let fatMassOnDay = roundNumPlace((weightOnXDay - user.leanBodyMass),1);
@@ -537,9 +527,6 @@ function startUpTheCalculator() {
             // ADD "BASIC" CELL
             var cell = row.insertCell();
             cell.innerHTML = progressData[i];
-            
-            // ATTACH A RUNNING NUMBER OR CUSTOM DATA
-            // cell.dataset.id = i;
 
             /* ATTACH ONCLICK LISTENER IF REQUIRED
             cell.addEventListener("click", function(){
@@ -551,7 +538,6 @@ function startUpTheCalculator() {
             var next = i + 1;
             if (next%perrow==0 && next!=progressData.length) {
               row = generatedTable.insertRow();
-              console.log('generatedTable now has ' + generatedTable.rows.length);
             }
         }
 
