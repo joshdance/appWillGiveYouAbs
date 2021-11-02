@@ -24,8 +24,8 @@ Todo List:
 7. Make it so the first day of Summer automatically updates each year. ✅ Oct 2021
 8. Unify all the stylesheets. ✅ Oct 2021
 9. Create a table that will show projected progress over time. - ✅ Oct 2021
-
-Add a 'how to get in shape by date' to the calculator.
+10. Add a 'how to get in shape by date' to the calculator.
+11. Export the table to csv
 
 Make the 'how to get in shape by date' its own page.
 

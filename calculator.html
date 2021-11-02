@@ -7,6 +7,8 @@
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158081909-1"></script>
+	<!-- import jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
   	window.dataLayer = window.dataLayer || [];
   	function gtag(){dataLayer.push(arguments);}
@@ -294,6 +296,10 @@
 <h2><a id="progressTableAnchorLink"></a>Progress Table</h2>
 <div>Here is how your journey to abs will look over time:</div>
 <table id="progressTable"><tr><td>Enter your information to generate your progress table</td></tr></table>
+<div>
+	<button type="button" id="exportTableButton" class="squareButton">Download Progress Table data as CSV</button>
+</div>
+<div>Use your plan to track your progress in Excel, Google Sheets etc!</div>
 
 <h2>Don't forget Protein and Sleep</h2>
 <div>A calorie deficit isn't the only thing you need to get abs. You also need to try to maintain or increase your lean muscle mass. You do this through getting enough protein, working out your muscles, and getting enough sleep.</div>
@@ -378,5 +384,6 @@
 </div>
 
 <script src="mainCalc.js"></script>
+<script src="exporttocsv.js"></script>
 </body>
 </html>

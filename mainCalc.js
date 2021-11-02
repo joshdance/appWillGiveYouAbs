@@ -472,11 +472,12 @@ function startUpTheCalculator() {
 		//numberOfDaysTilGoal is the days to add
 		goalEndDate.setDate(today.getDate() + user.numberOfDaysTilGoal);
 
-		let dd = goalEndDate.getDate();
-		let mm = goalEndDate.getMonth() + 1; //javascript is weird. 
-		let yyyy = goalEndDate.getFullYear();
+        let goalEndDateFormatted = formatDate(goalEndDate);
+		// let dd = goalEndDate.getDate();
+		// let mm = goalEndDate.getMonth() + 1; //javascript is weird. 
+		// let yyyy = goalEndDate.getFullYear();
 
-		let goalEndDateFormatted = mm + '/' + dd + '/' + yyyy;
+		// let goalEndDateFormatted = mm + '/' + dd + '/' + yyyy;
 		dateFromCalculatedDaysAway.textContent = goalEndDateFormatted;
 
     } //end function calcDaysToGoalBf
@@ -685,6 +686,15 @@ function startUpTheCalculator() {
         return (parseFloat(totalInches)*2.54);
     }
 
+    function formatDate(date,separationCharacter){
+        let dd = date.getDate();
+        let mm = date.getMonth() + 1; //javascript is weird. 
+        let yyyy = date.getFullYear();
+
+        let goalEndDateFormatted = mm + separationCharacter + dd + separationCharacter + yyyy;
+        return goalEndDateFormatted;
+    }
+
     // #Essay Functions
     function toggleSideNotesForScience() {
         if (scienceUnderDevelopedCore.style.display == "block") {
@@ -800,7 +810,26 @@ function startUpTheCalculator() {
         femaleEstimateTextArray = [femaleFiftyPercent, femaleFourtyfivePercent, femaleFourty, femaleThirtyfive, femaleThirty, femaleTwentyfive, femaleTwentyToTwentytwo, femaleFifteenToSeventeen, femaleTenToTwelve];
     }
 
+    // #Export to Table
+    function exportButtonClicked(){
+        // $(".export").on('click', function(event) { - the jQuery way
+        console.log('let us export');
+
+        let todaysDateFormatted = new Date();
+        todaysDateFormatted = formatDate(todaysDateFormatted, '-');
+
+        let fileName = user.name + " " + todaysDateFormatted + " Abs Plan Progress Table.csv";
+    
+        //table ID, and file name are passed in
+        exportTableToCSV('progressTable', fileName);
+    }
+
     let userManuallyPickedDeficit = false;
+
+    const exportTableButton = document.getElementById('exportTableButton');
+    if (exportTableButton != null) {
+        exportTableButton.addEventListener('click', exportButtonClicked);
+    }
 
     const selectedGenderInsert = document.getElementsByName('selectedGenderInsert');
 
