@@ -25,7 +25,7 @@ Todo List:
 8. Unify all the stylesheets. ✅ Oct 2021
 9. Create a table that will show projected progress over time. - ✅ Oct 2021
 10. Add a 'how to get in shape by date' to the calculator.
-11. Export the table to csv
+11. Export the table to csv - [idea from diana_overproof on Twitter](https://twitter.com/JoshDance/status/145555507697035264) ✅ Nov 2021
 
 Make the 'how to get in shape by date' its own page.
 
