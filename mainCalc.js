@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 
-//todo #9 - refactor to have each function separate, not nested in one giant function.
+//todo - refactor to have each function separate, not nested in one giant function.
 function startUpTheCalculator() {
     
     let testing = false;
@@ -81,16 +81,18 @@ function startUpTheCalculator() {
         updatePageWithBodyFatPercentage();
         updatePageWithLeanBodyMass();
 
-        calcCaloricDeficitValue();
-
     	calcCurrentBodyFatMassAndLeanMass();
-    	calcGoalPercent();
+    	calcGoalForNewBodyFatMassAndToTalBodyWeight();
 
+        
 	    calcBmr();
         updatePageWithBMR();
 	    calcTDEE();
+        updatePageWithTDEE();
+        calcCaloricDeficitValue();
+
+        calcDaysToGoalBf();
         updatePageWithUserPickedDeficit();
-	    calcGoalPercent();
 	    calcPercentDeficit();
         calcMaxCaloricDeficit();
 	    calcProteinNeed();
@@ -163,9 +165,7 @@ function startUpTheCalculator() {
             element.textContent = user.sex;
         });
 
-        genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
-            element.textContent = genderBfGoalFrom100;
-        });
+        updatePageWithStandardGenderBodyFatPercentageGoal();
 
         //set the body fat goal input box to the gender suggestion
         if (userDidSetBodyFatPercentageGoal === false) {
@@ -176,6 +176,27 @@ function startUpTheCalculator() {
     function genderPicked(){
         getUserGender();
         setUpForSelectedGender();
+    }
+
+    function getUserWeight(){
+        user.weightInPounds = weightInputBox2.value;
+        user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
+    }
+
+    function updatePageWithUserWeight(){
+        weightInsert.forEach( function(element, index) {
+            element.textContent = user.weightInPounds;
+        });
+    }
+
+    function getUserBodyFatPercentage(){
+        if (user != null) {
+            user.bodyFatPercentage = percentInputBox2.value;
+        }
+    }
+
+    function getBodyFatPercentageGoal(){
+        user.bodyFatPercentageGoal = bfGoalInputBox.value; 
     }
 
     function setBodyFatPercentage(){
@@ -208,13 +229,13 @@ function startUpTheCalculator() {
         });
     }
 
+    function getUserCalorieIntake(){
+        user.selectedDailyCalories = parseInt(caloricBudgetInput.value);
+    }
+
     function calcCaloricDeficitValue(){
         user.caloricDeficit = user.TDEE - user.selectedDailyCalories; 
         user.caloricDeficit = roundNumPlace(user.caloricDeficit,1);
-    }
-    
-    function getUserCalorieIntake(){
-        user.selectedDailyCalories = parseInt(caloricBudgetInput.value);
     }
 
     function updatePageWithUserCalorieIntake(){
@@ -246,16 +267,6 @@ function startUpTheCalculator() {
         updatePageWithUserName();
     }
 
-    function getUserBodyFatPercentage(){
-        if (user != null) {
-            user.bodyFatPercentage = percentInputBox2.value;
-        }
-    }
-
-    function getBodyFatPercentageGoal(){
-        user.bodyFatPercentageGoal = bfGoalInputBox.value; 
-    }
-
     function getUserAge(){
         user.age = age.value;
     }
@@ -267,33 +278,21 @@ function startUpTheCalculator() {
                 user.activityLevel = evaluatedActivityOption.value;
             }
         }); //end of activityList.forEach
-
         setUserActivityLevelNumeric();
     }
 
     function setUserActivityLevelNumeric(){
         if (user.activityLevel == "sedentary") {
-            user.selectedActivityLevelNumericValue = sedentaryValue;
+            user.selectedActivityLevelNumericValue = sedentaryValueConstant;
         } else if (user.activityLevel == "light") {
-            user.selectedActivityLevelNumericValue = lightActivityValue;
+            user.selectedActivityLevelNumericValue = lightActivityValueConstant;
         } else if (user.activityLevel == "moderate") {
-            user.selectedActivityLevelNumericValue = moderateActivityValue;
+            user.selectedActivityLevelNumericValue = moderateActivityValueConstant;
         } else if (user.activityLevel == "veryactive") {
-            user.selectedActivityLevelNumericValue = veryActiveValue;
+            user.selectedActivityLevelNumericValue = veryActiveValueConstant;
         } else if (user.activityLevel == "extremely") {
-            user.selectedActivityLevelNumericValue = extremelyActiveValue;
+            user.selectedActivityLevelNumericValue = extremelyActiveValueConstant;
         }
-    }
-
-    function getUserWeight(){
-        user.weightInPounds = weightInputBox2.value;
-        user.weightInKilograms = convertPoundsToKilograms(user.weightInPounds);
-    }
-
-    function updatePageWithUserWeight(){
-        weightInsert.forEach( function(element, index) {
-            element.textContent = user.weightInPounds;
-        });
     }
 
     function getUserHeight(){
@@ -309,7 +308,8 @@ function startUpTheCalculator() {
 
     function calcBmrButtonClicked(){
         getUserAge();
-        calcGoalPercent();
+        calcGoalForNewBodyFatMassAndToTalBodyWeight();
+        calcDaysToGoalBf();
         calcBmr();
         updatePageWithBMR();
     }
@@ -319,6 +319,16 @@ function startUpTheCalculator() {
         //testing data 200 pounds to kg = 90.7185, 68 inches to cm = 172.72
     	let unRoundedBmrResult = (10 * user.weightInKilograms) + (6.25 * user.heightInCentimeters) - (5 * user.age) + user.selectedSexSValue;
     	user.BMR = Math.round (unRoundedBmrResult * 10) / 10;
+        //BMR result for 200 pounds and 68 inches is = 1826.68
+    }
+
+    function calcBmrAtWeight(weightInKilograms){
+        //BMR (kcal / day) = 10 * weight (kg) + 6.25 * height (cm) – 5 * age (y) + s (kcal / day)
+        //testing data 200 pounds to kg = 90.7185, 68 inches to cm = 172.72
+        let BMRAtWeight;
+        let unRoundedBmrResult = (10 * weightInKilograms) + (6.25 * user.heightInCentimeters) - (5 * user.age) + user.selectedSexSValue;
+        BMRAtWeight = Math.round (unRoundedBmrResult * 10) / 10;
+        return BMRAtWeight;
         //BMR result for 200 pounds and 68 inches is = 1826.68
     }
 
@@ -377,53 +387,70 @@ function startUpTheCalculator() {
         });
     }
 
-    function calcGoalPercent(){
-    	userGoalPercentModifer = user.bodyFatPercentageGoal/(100 - user.bodyFatPercentageGoal);
+    function updatePageWithStandardGenderBodyFatPercentageGoal(){
+        genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
+            element.textContent = genderBfGoalFrom100;
+        }); 
+    }
 
-    	GoalFatResults = userGoalPercentModifer * user.leanBodyMass;
-        GoalFatResults = roundNumPlace(GoalFatResults,2);
-
-    	GoalTotalBodyWeight = GoalFatResults + user.leanBodyMass;
-        GoalTotalBodyWeight = roundNumPlace(GoalTotalBodyWeight,2);
-
-    	LbsToLoseToGoal = user.fatBodyMass - GoalFatResults; 
-        LbsToLoseToGoal = roundNumPlace(LbsToLoseToGoal,1);
-    	
-    	genderGoalBodyFatPercentageInsert.forEach( function(element, index) {
-    		element.textContent = genderBfGoalFrom100;
-    	});
-
+    function updatePageWithUserBodyFatPercentageGoal(){
         goalBodyFatPercentageInsert.forEach( function(element, index) {
             element.textContent = user.bodyFatPercentageGoal;
+        }); 
+    }
+
+    function updatePageWithUserCurrentBodyFatPercentage(){
+        bfInsert.forEach( function(element, index) {
+            element.textContent = user.bodyFatPercentage;
         });
+    }
+
+    function updatePageWithPoundsToLoseToGoalBodyFatMass(){
+        loseInsert.forEach( function(element, index) {
+            element.textContent = user.LbsToLoseToGoal;
+        });
+    }
+
+    function updatePageWithUserGoalForPoundsOfBodyFat(){
+        newFatInsert.forEach( function(element, index) {
+            element.textContent = user.GoalForPoundsOfBodyFat;
+        });
+    }
+
+    function updatePageWithUserGoalForTotalBodyWeight(){
+        newTotalBodyWeightInsert.forEach( function(element, index) {
+            element.textContent = user.GoalTotalBodyWeight;
+        });
+    }
+
+    function calcGoalForNewBodyFatMassAndToTalBodyWeight(){
+    	userGoalPercentModifer = user.bodyFatPercentageGoal/(100 - user.bodyFatPercentageGoal);
+
+    	user.GoalForPoundsOfBodyFat = userGoalPercentModifer * user.leanBodyMass;
+        user.GoalForPoundsOfBodyFat = roundNumPlace(user.GoalForPoundsOfBodyFat,2);
+
+    	user.GoalTotalBodyWeight = user.GoalForPoundsOfBodyFat + user.leanBodyMass;
+        user.GoalTotalBodyWeight = roundNumPlace(user.GoalTotalBodyWeight,2);
+
+    	user.LbsToLoseToGoal = user.fatBodyMass - user.GoalForPoundsOfBodyFat; 
+        user.LbsToLoseToGoal = roundNumPlace(user.LbsToLoseToGoal,1);
+
+        updatePageWithUserBodyFatPercentageGoal();
 
     	updatePageWithUserWeight();
-    	
-    	bfInsert.forEach( function(element, index) {
-    		element.textContent = user.bodyFatPercentage;
-    	});
+
+        updatePageWithUserCurrentBodyFatPercentage();
 
         updatePageWithLeanBodyMass();
 
         updatePageWithBodyFatMass();
 
-        loseInsert.forEach( function(element, index) {
-            element.textContent = LbsToLoseToGoal;
-        });
+        updatePageWithPoundsToLoseToGoalBodyFatMass();
 
-        newFatInsert.forEach( function(element, index) {
-            element.textContent = GoalFatResults;
-        });
+        updatePageWithUserGoalForPoundsOfBodyFat();
 
-        newTotalBodyWeightInsert.forEach( function(element, index) {
-            element.textContent = GoalTotalBodyWeight;
-        });
-
-    	calcDaysToGoalBf();
-
-    } //end calcGoalPercent
-
-
+        updatePageWithUserGoalForTotalBodyWeight();
+    }
 
     function updatePageWithLeanBodyMass(){
         leanInsert.forEach( function(element, index) {
@@ -443,7 +470,7 @@ function startUpTheCalculator() {
     }
 
     function calcDaysToGoalBf() {
-		totalCaloriesUntilBfGoal = LbsToLoseToGoal * 3500;
+		totalCaloriesUntilBfGoal = user.LbsToLoseToGoal * 3500;
         totalCaloriesUntilBfGoal = roundNumPlace(totalCaloriesUntilBfGoal,1);
 
         caloriesToUseUp.forEach( function(element, index) {
@@ -495,7 +522,7 @@ function startUpTheCalculator() {
 
         let exampleData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", 0, todaysDate.toLocaleDateString("en-US"), user.bodyFatPercentage, user.fatBodyMass, user.leanBodyMass, user.weightInPounds];
         //todo make this a proper table header
-        let progressData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight"];
+        let progressData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", "Pounds Lost"];
 
         for (var i = user.numberOfDaysTilGoal; i >= 0; i--) {
             let xDays = user.numberOfDaysTilGoal - i; //start at 0.
@@ -509,6 +536,7 @@ function startUpTheCalculator() {
             let bodyFatPercentageOnDay = roundNumPlace((((weightOnXDay - user.leanBodyMass)/weightOnXDay)*100),2);
             let fatMassOnDay = roundNumPlace((weightOnXDay - user.leanBodyMass),1);
             let leanMassOnDay = roundNumPlace(user.leanBodyMass,1); //doesn't change right now
+            let poundsLostSoFar = roundNumPlace((user.weightInPounds - weightOnXDay),2);
             //weightOnXDay
 
             progressData.push(xDays);
@@ -517,10 +545,11 @@ function startUpTheCalculator() {
             progressData.push(fatMassOnDay);
             progressData.push(leanMassOnDay);
             progressData.push(weightOnXDay);
+            progressData.push(poundsLostSoFar);
         }
 
         // (B) CREATE HTML TABLE OBJECT
-        let perrow = 6, // 2 CELLS PER ROW
+        let perrow = 7, // CELLS PER ROW
         row = generatedTable.insertRow();
 
         // LOOP THROUGH ARRAY AND ADD TABLE CELLS
@@ -961,10 +990,6 @@ function startUpTheCalculator() {
     const loseInsert = document.getElementsByName('loseInsert');
     const newFatInsert = document.getElementsByName('newFatInsert');
     const newTotalBodyWeightInsert = document.getElementsByName('newTotalBodyWeightInsert');
-    
-    let GoalFatResults;
-    let GoalTotalBodyWeight;
-    let LbsToLoseToGoal;
 
     let totalCaloriesUntilBfGoal;
     let numberOfWeeksTilGoal;
@@ -991,11 +1016,11 @@ function startUpTheCalculator() {
     const calcGoalPercentModifierMale = .1111111111;
 
     //activity modifiers
-    const sedentaryValue = 1.15;
-    const lightActivityValue = 1.35;
-    const moderateActivityValue = 1.55;
-    const veryActiveValue = 1.75;
-    const extremelyActiveValue = 1.95;
+    const sedentaryValueConstant = 1.15;
+    const lightActivityValueConstant = 1.35;
+    const moderateActivityValueConstant = 1.55;
+    const veryActiveValueConstant = 1.75;
+    const extremelyActiveValueConstant = 1.95;
 
     //grams of protein recommended
     gramsProteinPerPoundRecommended = .82;
@@ -1099,11 +1124,11 @@ function startUpTheCalculator() {
         console.log('running the tests');
 
         calcCurrentBodyFatMassAndLeanMass();
-        calcGoalPercent();
+        calcGoalForNewBodyFatMassAndToTalBodyWeight();
         calcBmr();
         calcTDEE();
-        calcGoalPercent();
         calcCaloricDeficitValue();
+        calcDaysToGoalBf();
         calcPercentDeficit();
         calcMaxCaloricDeficit();
         calcProteinNeed();
@@ -1111,14 +1136,20 @@ function startUpTheCalculator() {
         calcCalsFromCarbsAndFatAtMaxDeficit();
         calcTwentyFivePercentDeficit();
 
-        //check the results against the correct answer
-
+        //check the results
         if (user.numberOfDaysTilGoal == 171.7) {
             testSuccess = true;
         } else {
             testSuccess = false;
         }
         
+        //check more results if needed here?
+        // if (otherNumber == otherKnownResult) {
+        //     testSuccess = true;
+        // } else {
+        //     testSuccess = false;
+        // }
+
         //show the results
         if (testSuccess == true) {
             testResultH3.style.backgroundColor = "green";
@@ -1131,4 +1162,5 @@ function startUpTheCalculator() {
 
 } //end startUpTheCalculator
 //file length Oct 25, 2021 = 950 lines
-//file length Oct 27, 2021 = 1027 lines`
+//file length Oct 27, 2021 = 1027 lines
+//file length Nov 3, 2021 = 1166
