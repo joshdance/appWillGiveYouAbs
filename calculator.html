@@ -7,14 +7,12 @@
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158081909-1"></script>
-	<!-- import jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-  	window.dataLayer = window.dataLayer || [];
-  	function gtag(){dataLayer.push(arguments);}
-  	gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-  	gtag('config', 'UA-158081909-1');
+		gtag('config', 'UA-158081909-1');
 	</script>
 </head>
 <body>
@@ -294,11 +292,11 @@
 
 
 <h2><a id="progressTableAnchorLink"></a>Progress Table</h2>
-<div>Here is how your journey to abs will look over time: <a href="#bottomOfProgressTable">(Jump to bottom of table)</a></div>
+<div>Here is how your journey to abs will look over time: <a href="#" id="scrollToBottomLink">(Jump to bottom of table)</a></div>
 
 <table id="progressTable"><tr><td>Enter your information to generate your progress table</td></tr></table>
 
-<div id="bottomOfProgressTable">
+<div>
 	<button type="button" id="exportTableButton" class="squareButton">Download Progress Table data as CSV</button>
 </div>
 <div>Use your plan to track your progress in Excel, Google Sheets etc!</div>

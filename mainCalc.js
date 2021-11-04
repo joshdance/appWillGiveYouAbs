@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 //todo - refactor to have each function separate, not nested in one giant function.
 function startUpTheCalculator() {
     
-    let testing = false;
+    let testing = true;
 
     let user = new Object;
         // user.name
@@ -853,7 +853,18 @@ function startUpTheCalculator() {
         exportTableToCSV('progressTable', fileName);
     }
 
+    function scrollToEndOfTable(){
+        document.getElementById('exportTableButton').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'start'
+          });
+    }
+
     let userManuallyPickedDeficit = false;
+
+
+    document.getElementById("scrollToBottomLink").addEventListener('click', scrollToEndOfTable);
 
     const exportTableButton = document.getElementById('exportTableButton');
     if (exportTableButton != null) {
