@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 //todo - refactor to have each function separate, not nested in one giant function.
 function startUpTheCalculator() {
     
-    let testing = true;
+    let testing = false;
 
     let user = new Object;
         // user.name
@@ -338,7 +338,6 @@ function startUpTheCalculator() {
         });
     }
 
-
     function userSetActiveMultipler(){
         getUserActivityLevel();
         calcTDEE();
@@ -499,13 +498,9 @@ function startUpTheCalculator() {
 		//numberOfDaysTilGoal is the days to add
 		goalEndDate.setDate(today.getDate() + user.numberOfDaysTilGoal);
 
-        let goalEndDateFormatted = formatDate(goalEndDate);
-		// let dd = goalEndDate.getDate();
-		// let mm = goalEndDate.getMonth() + 1; //javascript is weird. 
-		// let yyyy = goalEndDate.getFullYear();
+        let goalEndDateFormatted = formatDate(goalEndDate, '/');
 
-		// let goalEndDateFormatted = mm + '/' + dd + '/' + yyyy;
-		dateFromCalculatedDaysAway.textContent = goalEndDateFormatted;
+        dateFromCalculatedDaysAway.textContent = goalEndDateFormatted;
 
     } //end function calcDaysToGoalBf
 
