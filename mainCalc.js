@@ -853,8 +853,16 @@ function startUpTheCalculator() {
         exportTableToCSV('progressTable', fileName);
     }
 
-    function scrollToEndOfTable(){
-        document.getElementById('exportTableButton').scrollIntoView({
+    function scrollToBottomOfTable(){
+        document.getElementById('jumptoTopOfTableButton').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'start'
+          });
+    }
+
+    function scrollToTopOfTable(){
+        document.getElementById('jumptoBottomOfTableButton').scrollIntoView({
             behavior: 'smooth',
             block: 'center',
             inline: 'start'
@@ -864,7 +872,8 @@ function startUpTheCalculator() {
     let userManuallyPickedDeficit = false;
 
 
-    document.getElementById("scrollToBottomLink").addEventListener('click', scrollToEndOfTable);
+    document.getElementById("jumptoBottomOfTableButton").addEventListener('click', scrollToBottomOfTable);
+    document.getElementById("jumptoTopOfTableButton").addEventListener('click', scrollToTopOfTable);
 
     const exportTableButton = document.getElementById('exportTableButton');
     if (exportTableButton != null) {
