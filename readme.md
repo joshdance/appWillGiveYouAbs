@@ -35,7 +35,8 @@ Todo List:
 19. Improve text boxes so they select all the text inside them when clicked
 20. Add Holiday emoji to the table 🎄🎊 etc
 21. Add milestones to the table. "10 pounds down" "15% body fat achieved"
-22. Try "oninput" event and update results
+22. Try "oninput" or onchange event and update results without having to click the button
+23. add a little toast message when it recalculated in case you can't see the changes
 
 Make the 'how to get in shape by date' its own page.
 
