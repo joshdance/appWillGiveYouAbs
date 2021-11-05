@@ -22,13 +22,13 @@ Todo List:
 7. ✅ Oct 2021 - Make it so the first day of Summer automatically updates each year. 
 8. ✅ Oct 2021 - Unify all the stylesheets. 
 9. ✅ Oct 2021 - Create a table that will show projected progress over time.
-10. Add a 'how to get in shape by date' to the calculator. 
 11. ✅ Nov 2021 - Export the table to csv - [idea from diana_overproof on Twitter](https://twitter.com/JoshDance/status/145555507697035264) 
 12. ✅ Nov 2021 - Add 'pounds lost' to the table
 13. ✅ Nov 2021 - Break apart the calcGoalPercent function that is doing too much work. 
-14. Make the calculation take into account your new BMR at your new weight. 
 15. ✅ Nov 2021 - Add a button to jump to end of table
 16. ✅ Nov 2021 - Improve the jump to end of table button so the last part of the table is visible. [Maybe scroll with javascript](https://stackoverflow.com/questions/24836798/anchor-hash-to-the-bottom-of-the-page/24836869)
+14. Make the calculation take into account your new BMR at your new weight. 
+10. Add a 'how to get in shape by date' to the calculator. 
 17. Improve text boxes so they select all the text inside them when clicked
 18. Add Holiday emoji to the table 🎄🎊 etc
 19. Add milestones to the table. "10 pounds down" "15% body fat achieved"
