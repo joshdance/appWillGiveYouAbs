@@ -28,18 +28,17 @@ Todo List:
 15. ✅ Nov 2021 - Add a button to jump to end of table
 16. ✅ Nov 2021 - Improve the jump to end of table button so the last part of the table is visible. [Maybe scroll with javascript](https://stackoverflow.com/questions/24836798/anchor-hash-to-the-bottom-of-the-page/24836869)
 14. ✅ Nov 2021 - Make the calculation take into account your new BMR at your new weight. 
-15. Update the table to use the new more accurate calcuations
-16. Update the whole page to use the new more accurate calcuations
-17. Add a 'how to get in shape by date' to the calculator. 
-18. Improve text boxes so they select all the text inside them when clicked
-19. Add Holiday emoji to the table 🎄🎊 etc
-20. Add milestones to the table. "10 pounds down" "15% body fat achieved"
+15. add the ability to use the metric system (kg baby).
+16. Update the table to use the new more accurate calcuations
+17. Update the whole page to use the new more accurate calcuations
+18. Add a 'how to get in shape by date' to the calculator. 
+19. Improve text boxes so they select all the text inside them when clicked
+20. Add Holiday emoji to the table 🎄🎊 etc
+21. Add milestones to the table. "10 pounds down" "15% body fat achieved"
 
 Make the 'how to get in shape by date' its own page.
 
 port the new main calculator back over to the essay.
-
-add the ability to use the metric system (kg baby).
 
 Create a login and account system so you don't have to type in your info each and every time.
 
