@@ -322,14 +322,29 @@ function startUpTheCalculator() {
         //BMR result for 200 pounds and 68 inches is = 1826.68
     }
 
-    function calcBmrAtWeight(weightInKilograms){
+    //#Calculating with a given weight
+
+    function calcBmrAtWeightInPounds(weightInPounds){
         //BMR (kcal / day) = 10 * weight (kg) + 6.25 * height (cm) – 5 * age (y) + s (kcal / day)
         //testing data 200 pounds to kg = 90.7185, 68 inches to cm = 172.72
+        let weightInKilograms = convertPoundsToKilograms(weightInPounds);
         let BMRAtWeight;
         let unRoundedBmrResult = (10 * weightInKilograms) + (6.25 * user.heightInCentimeters) - (5 * user.age) + user.selectedSexSValue;
         BMRAtWeight = Math.round (unRoundedBmrResult * 10) / 10;
         return BMRAtWeight;
         //BMR result for 200 pounds and 68 inches is = 1826.68
+    }
+
+    function calcTDEEAtBMR(BMR){
+    	let unRoundedBmrWithActivity = BMR * user.selectedActivityLevelNumericValue;
+        let TDEEAtBMR = roundNumPlace(unRoundedBmrWithActivity,1);
+        return TDEEAtBMR;
+    }
+
+    function calcCaloricDeficitValueAtTDEE(TDEE,caloriesOnDay){
+        let caloricDeficitOnDay = TDEE - caloriesOnDay; 
+        caloricDeficitOnDay = roundNumPlace(caloricDeficitOnDay,1);
+        return caloricDeficitOnDay;
     }
 
     function updatePageWithBMR(){
@@ -469,6 +484,85 @@ function startUpTheCalculator() {
     }
 
     function calcDaysToGoalBf() {
+        //#here
+        //todo fix calcDaysToGoalBf so it uses a changing BMR
+
+        let projectedWeightOnDay = user.weightInPounds;
+        let numberOfDaysToGoal = 0;
+
+        console.log('goal weight = '+ user.GoalTotalBodyWeight);
+
+        let progressData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", "Pounds Lost","TDEE on Day", "caloric deficit"];
+        let generatedTable = document.createElement('table');
+        generatedTable.id = "progressTable2";
+        //while projected weight is greater than goal weight
+        while (projectedWeightOnDay >= user.GoalTotalBodyWeight){
+            //calc BMR
+            let BMROnDay = calcBmrAtWeightInPounds(projectedWeightOnDay);
+
+            //calc TDEE
+            let TDEEOnDay = calcTDEEAtBMR(BMROnDay);
+
+            //calc caloric deficit
+            let caloricDeficitOnDay = calcCaloricDeficitValueAtTDEE(TDEEOnDay,user.selectedDailyCalories)
+
+            //calc pounds lost
+            let poundsLostThatDay = caloricDeficitOnDay/caloriesPerPound;
+            
+            //subtrack that from projected weight
+            projectedWeightOnDay = projectedWeightOnDay - poundsLostThatDay;
+
+            //console.log('projected weight of ' + projectedWeightOnDay + 'on day ' + numberOfDaysToGoal);
+
+            let dateOnDay = new Date(); //day 0 is today
+            dateOnDay.setDate(dateOnDay.getDate() + numberOfDaysToGoal);
+    
+            let bodyFatPercentageOnDay = roundNumPlace((((projectedWeightOnDay - user.leanBodyMass)/projectedWeightOnDay)*100),2);
+            let fatMassOnDay = roundNumPlace((projectedWeightOnDay - user.leanBodyMass),1);
+            let leanMassOnDay = roundNumPlace(user.leanBodyMass,1); //doesn't change right now
+            let poundsLostSoFar = roundNumPlace((user.weightInPounds - projectedWeightOnDay),2);
+    
+            progressData.push(numberOfDaysToGoal);
+            progressData.push(dateOnDay.toLocaleDateString("en-US"));
+            progressData.push(bodyFatPercentageOnDay);
+            progressData.push(fatMassOnDay);
+            progressData.push(leanMassOnDay);
+            progressData.push(roundNumPlace(projectedWeightOnDay,1));
+            progressData.push(poundsLostSoFar);
+            progressData.push(TDEEOnDay);
+            progressData.push(caloricDeficitOnDay);
+
+            //add one to days required to reach goal
+            numberOfDaysToGoal = numberOfDaysToGoal +1; 
+        }
+
+        // (B) CREATE HTML TABLE OBJECT
+        let perrow = 9, // CELLS PER ROW
+        row = generatedTable.insertRow();
+
+        // LOOP THROUGH ARRAY AND ADD TABLE CELLS
+        for (var i = 0; i < progressData.length; i++) {
+            // ADD "BASIC" CELL
+            var cell = row.insertCell();
+            cell.innerHTML = progressData[i];
+
+            /* ATTACH ONCLICK LISTENER IF REQUIRED
+            cell.addEventListener("click", function(){
+                console.log(this.dataset.id); 
+            });
+            */
+
+            // BREAK INTO NEXT ROW
+            var next = i + 1;
+            if (next%perrow==0 && next!=progressData.length) {
+                row = generatedTable.insertRow();
+            }
+        }
+        //console.log('to go from ' + user.weightInPounds + ' to ' + user.GoalTotalBodyWeight + ' will take ' + numberOfDaysToGoal + ' days');
+        // let progressTable = document.getElementById('progressTable2');
+        // progressTable.replaceWith(generatedTable);
+        // console.log('the table2 of power has been created!');
+
 		totalCaloriesUntilBfGoal = user.LbsToLoseToGoal * 3500;
         totalCaloriesUntilBfGoal = roundNumPlace(totalCaloriesUntilBfGoal,1);
 
@@ -836,7 +930,6 @@ function startUpTheCalculator() {
 
     // #Export to Table
     function exportButtonClicked(){
-        // $(".export").on('click', function(event) { - the jQuery way
         console.log('let us export');
 
         let todaysDateFormatted = new Date();
