@@ -28,7 +28,10 @@ Todo List:
 13. ✅ Nov 2021 - Break apart the calcGoalPercent function that is doing too much work. 
 14. Make the calculation take into account your new BMR at your new weight. 
 15. ✅ Nov 2021 - Add a button to jump to end of table
-16. ✅ Nov 2021 - Improve the jump to end of table button so the last part of the table is visible. [Maybe scroll with javascript](https://stackoverflow.com/questions/24836798/anchor-hash-to-the-bottom-of-the-page/24836869) 
+16. ✅ Nov 2021 - Improve the jump to end of table button so the last part of the table is visible. [Maybe scroll with javascript](https://stackoverflow.com/questions/24836798/anchor-hash-to-the-bottom-of-the-page/24836869)
+17. Improve text boxes so they select all the text inside them when clicked
+18. Add Holiday emoji to the table 🎄🎊 etc
+19. Add milestones to the table. "10 pounds down" "15% body fat achieved"
 
 Make the 'how to get in shape by date' its own page.
 
@@ -62,5 +65,11 @@ Try to add animation on the count up again?
 
 Make a function that you can hand an id to and it will scroll to that id. 
 
+//todo fix calcDaysToGoalBf so it uses a changing BMR
 
+Swap calcBmr for the more accurate calcBmrAtWeight
+
+Read and implement[https://www.valentinog.com/blog/html-table/](https://www.valentinog.com/blog/html-table/)
+
+Read and implement[https://javascript.plainenglish.io/building-html-tables-with-javascript-15c79a0055ff](https://javascript.plainenglish.io/building-html-tables-with-javascript-15c79a0055ff)
 
