@@ -957,8 +957,43 @@ function startUpTheCalculator() {
           });
     }
 
-    let userManuallyPickedDeficit = false;
+    function updatePageWithSelectedUnitsOfMeasurement(){
+        selectedMassUnitOfMeasurement.forEach( function(element, index) {
+            element.textContent = user.selectedMassUnit;
+        });
+    }
 
+    function getAndSetUserSelectedUnitOfMeasurement(){
+        arrayOfUnitsOfMeasurement.forEach( function(element, index) {
+            let evaluatedUnitOption = element;
+            if (evaluatedUnitOption.checked == true) {
+                user.selectedMassUnitOfMeasurement = evaluatedUnitOption.value;
+            }
+        }); //end of arrayOfUnitsOfMeasurement.forEach
+    }
+
+    function userPickedUnitOfMeasurement(){
+        getAndSetUserSelectedUnitOfMeasurement();
+        if (user.selectedMassUnitOfMeasurement == "Metric") {
+            user.selectedMassUnit = "kilogram"
+        } else { //=="Imperial"
+            user.selectedMassUnit = "pound"
+        }
+
+        updatePageWithSelectedUnitsOfMeasurement();
+    }
+
+    let userManuallyPickedDeficit = false;
+    
+    //#Unit of Measurement Setup
+    const unitOfMeasurementElements = document.getElementsByClassName('unitOfMeasurementToggle');//return 'array like' list. All the checkboxes. Careful. 
+    const arrayOfUnitsOfMeasurement = Array.from(unitOfMeasurementElements);
+    arrayOfUnitsOfMeasurement.forEach( function(element, index) {
+        element.addEventListener('change', userPickedUnitOfMeasurement);
+    });
+
+    const selectedMassUnitOfMeasurement = document.getElementsByName('selectedMassUnitOfMeasurement');
+    
 
     document.getElementById("jumptoBottomOfTableButton").addEventListener('click', scrollToBottomOfTable);
     document.getElementById("jumptoTopOfTableButton").addEventListener('click', scrollToTopOfTable);

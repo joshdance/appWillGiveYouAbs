@@ -22,7 +22,7 @@
 		<li><a href="calculator.html">Abs Calculator</a></li>
 		<li><a href="macrostocalories.html">Macros to Calories Calculator</a></li>
 		<li><a href="index.html">Essay</a></li>
-		<li><a href="howtolose10pounds.html">How to Lose 10 Pounds</a></li>
+		<li><a href="howtolose10pounds.html">How to Lose 10 <span name="selectedMassUnitOfMeasurement">pounds</span></a></li>
 		<li><a href="about.html">About</a></li>
 		<li class="topNavRight"><a href="login.html">Login</a></li>
 		<li class="hamburgerIcon"><a href="">&#9776</a></li>
@@ -57,12 +57,21 @@
 </div>
 
 <h3>
-	What is your current mass in pounds? ⚡️ (kg switch coming soon)
+	What is your current mass in <span name="selectedMassUnitOfMeasurement">pounds</span>? ⚡️
 </h3>
 
-<div>
-	<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
+<div class="flex-container"> 
+	<div><input type="number" id="weightInputBox" class="weightInputBox inputform" value="180"></div>
+	<div class="radio-group">
+		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Imperial" value="Imperial" checked>
+		<label for="Imperial">Imperial</label>
+		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Metric" value="Metric">
+		<label for="Metric">Metric</label>
+	</div>
 </div>
+<div>🚨Note! - Metric switch doesn't work yet. The text of the page updates, the the math is still Imperial. Coming soon!</div>
+
+
 
 <div>
 	<button type="button" id="setWeightButton" class="calcButton squareButton">Set Weight. Make it so Mr. Sulu 🖖🏻</button>
@@ -114,7 +123,7 @@
 </div>
 
 <div>
-	At <span class="totalbodyweight" name="weightInsert">A</span> pounds, with a body fat percentage of <span name="bfInsert">Y</span>%, you have <span name="fatInsert">A</span> pounds of body fat and <span name="leanInsert">Z</span> pounds of lean body mass for a total of <span name="weightInsert">A</span> pounds of total mass. 
+	At <span class="totalbodyweight" name="weightInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, with a body fat percentage of <span name="bfInsert">Y</span>%, you have <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of body fat and <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass for a total of <span name="weightInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of total mass. 
 </div>
 
 <h3>What is your goal body fat %?</h3>
@@ -143,10 +152,10 @@
 	</div>
 </div>
 <div>
-	To make this calculation we assume you keep all of your <span name="leanInsert">Z</span> pounds of lean mass. We just decrease your fat mass by <span name="loseInsert">B</span> pounds, and you are at <span name="goalBodyFatPercentageInsert">gender</span>% body fat. 
+	To make this calculation we assume you keep all of your <span name="leanInsert">Z</span> pounds of lean mass. We just decrease your fat mass by <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, and you are at <span name="goalBodyFatPercentageInsert">gender</span>% body fat. 
 </div>
 <div>
-	(Current fat mass of <span name="fatInsert">A</span> - Goal fat mass of <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> pounds of fat to lose)
+	(Current fat mass of <span name="fatInsert">A</span> - Goal fat mass of <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat to lose)
 </div>
 
 <h3>Let's Calculate your BMR</h3>
@@ -232,16 +241,16 @@
 
 <h2>Breakdown:</h2>
 <div>
-	You currently have <span name="fatInsert">A</span> pounds of fat.
+	You currently have <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat.
 </div>
 <div>
-	At <span name="goalBodyFatPercentageInsert">?</span>% body fat, you will have <span name="newFatInsert">C</span> pounds of fat.
+	At <span name="goalBodyFatPercentageInsert">?</span>% body fat, you will have <span name="newFatInsert">C</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat.
 </div>
 <div>
-	You have to burn off <span name="loseInsert">B</span> pounds of fat. 
+	You have to burn off <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat. 
 </div>
 <div>
-	There are 3,500 calories in 1 pound of fat. 
+	There are 3,500 calories in 1 <span name="selectedMassUnitOfMeasurement">pounds</span> of fat. 
 </div>
 <div>
 	This means we know know how many calories you need to burn off by eating less. 3,500 * <span name="loseInsert">B</span> = <span name="caloriesToUseUp">calories</span> calories to use up.
@@ -312,7 +321,7 @@
 <div>
 	Research shows that you need .82 grams of protein per pound of total body mass. 
 
-	At <span name="weightInsert">X</span> pounds total body weight, you need <span name='gramsProteinInsert'></span> grams of protein a day. 
+	At <span name="weightInsert">X</span> <span name="selectedMassUnitOfMeasurement">pounds</span> total body weight, you need <span name='gramsProteinInsert'></span> grams of protein a day. 
 </div>
 
 <h3>How much sleep do I need?</h3>
@@ -325,7 +334,7 @@
 <div>Here is your completely calculated and filled out checklist to get abs.</div>
 	<ol>
 		<li>✅ Have abdominal muscles</li>
-		<li>Go from <span name="bfInsert">Y</span>% body fat to <span name="goalBodyFatPercentageInsert">?</span>% body fat, by using up <span name="loseInsert">B</span> pounds of fat, by consistently eating <span name="calorieBudgetInsert">this many</span> calories a day.</li>
+		<li>Go from <span name="bfInsert">Y</span>% body fat to <span name="goalBodyFatPercentageInsert">?</span>% body fat, by using up <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat, by consistently eating <span name="calorieBudgetInsert">this many</span> calories a day.</li>
 		<li>Lift weights to keep and gain muscle.</li>
 		<li>Eat <span name='gramsProteinInsert'>much protein</span> grams of protein a day.</li>
 		<li>Sleep 7-9 hours a night.</li>
