@@ -41,9 +41,13 @@ Todo List:
 25. Try "oninput" or onchange event and update results without having to click the button
 26. add a little toast message when it recalculated in case you can't see the changes
 
+Stop using user.GoalForPoundsOfBodyFat
+
 Make the 'how to get in shape by date' its own page.
 
 port the new main calculator back over to the essay.
+
+Add section explaining the difference between calories to use up divided by caloric deficit and the actual answer. 
 
 Create a login and account system so you don't have to type in your info each and every time.
 

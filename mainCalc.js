@@ -416,8 +416,8 @@ function startUpTheCalculator() {
             user.GoalTotalBodyWeight = user.GoalForPoundsOfBodyFat + user.leanBodyMass;
             user.GoalTotalBodyWeight = roundNumPlace(user.GoalTotalBodyWeight,2);
     
-            user.LbsToLoseToGoal = user.fatBodyMass - user.GoalForPoundsOfBodyFat; 
-            user.LbsToLoseToGoal = roundNumPlace(user.LbsToLoseToGoal,1);
+            user.UnitsOfWeightToLoseToGoal = user.fatBodyMass - user.GoalForPoundsOfBodyFat; 
+            user.UnitsOfWeightToLoseToGoal = roundNumPlace(user.UnitsOfWeightToLoseToGoal,1);
         }
 
         updatePageWithUserBodyFatPercentageGoal();
@@ -443,7 +443,7 @@ function startUpTheCalculator() {
                 element.textContent = user.UnitsOfWeightToLoseToGoal;
             } else { //=="Imperial"
                 //do imperial stuff
-                element.textContent = user.LbsToLoseToGoal;
+                element.textContent = user.UnitsOfWeightToLoseToGoal;
             }
         });
     }
