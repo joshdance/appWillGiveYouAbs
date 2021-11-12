@@ -64,9 +64,9 @@
 	<div><input type="number" id="weightInputBox" class="weightInputBox inputform" value="180"></div>
 	<div class="radio-group">
 		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Imperial" value="Imperial" checked>
-		<label for="Imperial">Imperial</label>
+		<label for="Imperial">Imperial (US)</label>
 		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Metric" value="Metric">
-		<label for="Metric">Metric</label>
+		<label for="Metric">Metric (World)</label>
 	</div>
 </div>
 <div>🚨Note! - Metric switch doesn't work yet. The text of the page updates, the the math is still Imperial. Coming soon!</div>
@@ -141,18 +141,18 @@
 
 <h2>How to get to <span name="goalBodyFatPercentageInsert">goal </span> % body fat</h2>
 <div>
-	You are at a body fat percentage of <span name="bfInsert">Y</span>%. With your current weight of <span name="weightInsert">X</span> pounds, that means you have <span name="leanInsert">Z</span> pounds of lean body mass and <span name="fatInsert">A</span> pounds of body fat. 
+	You are at a body fat percentage of <span name="bfInsert">Y</span>%. With your current weight of <span name="weightInsert">X</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, that means you have <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass and <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of body fat. 
 </div>
 <div class="highlight">
 	<div>
-		With your goal body fat percentage of <span name="goalBodyFatPercentageInsert">goal</span>%, you would have a goal weight of <span name="newTotalBodyWeightInsert"></span> pounds, with <span name="leanInsert">Z</span> pounds of lean body mass and <span name="newFatInsert">C</span> pounds of fat.
+		With your goal body fat percentage of <span name="goalBodyFatPercentageInsert">goal</span>%, you would have a goal weight of <span name="newTotalBodyWeightInsert"></span> <span name="selectedMassUnitOfMeasurement">pounds</span>, with <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass and <span name="newFatInsert">C</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat.
 	</div>
 	<div>
 		<span name="newFatInsert">C</span> fat mass / <span name="newTotalBodyWeightInsert"></span> total mass = <span name="goalBodyFatPercentageInsert">goal</span>% body fat.
 	</div>
 </div>
 <div>
-	To make this calculation we assume you keep all of your <span name="leanInsert">Z</span> pounds of lean mass. We just decrease your fat mass by <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, and you are at <span name="goalBodyFatPercentageInsert">gender</span>% body fat. 
+	To make this calculation we assume you keep all of your <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean mass. We just decrease your fat mass by <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, and you are at <span name="goalBodyFatPercentageInsert">gender</span>% body fat. 
 </div>
 <div>
 	(Current fat mass of <span name="fatInsert">A</span> - Goal fat mass of <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat to lose)
@@ -163,6 +163,11 @@
 	What is your age?
 	<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
 </div>
+<div id="metricHeightSection">
+	What is your height in centimeters?
+	<input type="number" class="inputform" name="userHeightInCentimetersInputBox" id="userHeightInCentimetersInputBox" value="172.72">
+</div>
+<div id="imperialHeightSection">
 <div>
 	What is your height in feet?
 	<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
@@ -171,9 +176,10 @@
 	and your remaining height in inches
 	<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
 </div>
+</div>
 
 <div>
-	We will use the weight that you entered earlier, of <span name="weightInsert">weight fill</span> pounds.
+	We will use the weight that you entered earlier, of <span name="weightInsert">weight fill</span> <span name="selectedMassUnitOfMeasurement">pounds</span>.
 </div>
 
 <div>
@@ -250,10 +256,10 @@
 	You have to burn off <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat. 
 </div>
 <div>
-	There are 3,500 calories in 1 <span name="selectedMassUnitOfMeasurement">pounds</span> of fat. 
+	There are <span name="numberOfCaloriesInSelectedMassUnitOfMeasurement">3500</span> calories in 1 <span name="selectedMassUnitOfMeasurement">pounds</span> of fat. 
 </div>
 <div>
-	This means we know know how many calories you need to burn off by eating less. 3,500 * <span name="loseInsert">B</span> = <span name="caloriesToUseUp">calories</span> calories to use up.
+	This means we know know how many calories you need to burn off by eating less. <span name="numberOfCaloriesInSelectedMassUnitOfMeasurement">3500</span> * <span name="loseInsert">B</span> = <span name="caloriesToUseUp">calories</span> calories to use up.
 </div>
 
 <h3>
@@ -319,7 +325,7 @@
 
 <h3>How much protein do I need?</h3>
 <div>
-	Research shows that you need .82 grams of protein per pound of total body mass. 
+	Research shows that you need <span name="proteinPerUnit">.82</span> grams of protein per <span name="selectedMassUnitOfMeasurement">pound</span> of total body mass. 
 
 	At <span name="weightInsert">X</span> <span name="selectedMassUnitOfMeasurement">pounds</span> total body weight, you need <span name='gramsProteinInsert'></span> grams of protein a day. 
 </div>

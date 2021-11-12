@@ -420,3 +420,8 @@ div #metricLabel{
     margin-right: 5px;
     margin-bottom: 5px;
 }
+
+#metricHeightSection {
+    /* start with metric box hidden */
+    display: none; 
+}

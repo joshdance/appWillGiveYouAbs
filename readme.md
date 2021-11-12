@@ -71,3 +71,6 @@ Read and implement[https://www.valentinog.com/blog/html-table/](https://www.vale
 
 Read and implement[https://javascript.plainenglish.io/building-html-tables-with-javascript-15c79a0055ff](https://javascript.plainenglish.io/building-html-tables-with-javascript-15c79a0055ff)
 
+Improve the 'what is your age input. Box is too big for a 3 digit max number.
+
+Fix 'recommendedDailyCalories' make it a user variable.
