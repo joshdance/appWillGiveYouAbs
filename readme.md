@@ -1,3 +1,5 @@
+To use this calculator live - https://thisappwillgiveyouabs.com/calculator
+
 I believe that everyone can be healthy, happy, and in great physical shape. For a lot of people being in shape means having abs.
 
 There too many half truths, falsehoods and mumbo jumbo thrown around as fitness advice. Everyone wants to sell you their program, supplement or secrets that make getting in shape easy. 
