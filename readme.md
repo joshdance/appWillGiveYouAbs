@@ -26,7 +26,7 @@ Todo List:
 12. ✅ Nov 2021 - Add 'pounds lost' to the table
 13. ✅ Nov 2021 - Break apart the calcGoalPercent function that is doing too much work. 
 15. ✅ Nov 2021 - Add a button to jump to end of table
-16. ✅ Nov 2021 - Improve the jump to end of table button so the last part of the table is visible. [Maybe scroll with javascript](https://stackoverflow.com/questions/24836798/anchor-hash-to-the-bottom-of-the-page/24836869)
+16. ✅ Nov 2021 - Improve the jump to end of table so the last of the table is visible. [Maybe scroll with JS](https://stackoverflow.com/questions/24836798/anchor-hash-to-the-bottom-of-the-page/24836869)
 14. ✅ Nov 2021 - Make the calculation take into account your new BMR at your new weight. 
 15. ✅ Nov 2021 - Add a switch to change the whole calculator to the metric system (kg baby).
 16. ✅ Nov 2021 - Fixed the 2 event listeners on const reCalcButton.
