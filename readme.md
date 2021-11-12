@@ -30,15 +30,16 @@ Todo List:
 14. ✅ Nov 2021 - Make the calculation take into account your new BMR at your new weight. 
 15. ✅ Nov 2021 - Add a switch to change the whole calculator to the metric system (kg baby).
 16. ✅ Nov 2021 - Fixed the 2 event listeners on const reCalcButton.
-16. [Clean up all the radio buttons.](https://yogeshchauhan.com/how-to-convert-an-html-radio-buttons-into-a-toggle-switch-using-css/)
-17. Update the table to use the new more accurate calcuations
-18. Update the whole page to use the new more accurate calcuations
-19. Add a 'how to get in shape by date' to the calculator. 
-20. Improve text boxes so they select all the text inside them when clicked
-21. Add Holiday emoji to the table 🎄🎊 etc
-22. Add milestones to the table. "10 pounds down" "15% body fat achieved"
-23. Try "oninput" or onchange event and update results without having to click the button
-24. add a little toast message when it recalculated in case you can't see the changes
+17. Add guidance around picking your caloric intake.
+18. [Clean up all the radio buttons.](https://yogeshchauhan.com/how-to-convert-an-html-radio-buttons-into-a-toggle-switch-using-css/)
+19. ✅ Nov 2021 - Update the table to use the new more accurate calcuations
+20. ✅ Nov 2021 - Update the whole page to use the new more accurate calcuations
+21. Add a 'how to get in shape by date' to the calculator. 
+22. Improve text boxes so they select all the text inside them when clicked
+23. Add Holiday emoji to the table 🎄🎊 etc
+24. Add milestones to the table. "10 pounds down" "15% body fat achieved"
+25. Try "oninput" or onchange event and update results without having to click the button
+26. add a little toast message when it recalculated in case you can't see the changes
 
 Make the 'how to get in shape by date' its own page.
 
