@@ -28,7 +28,8 @@ Todo List:
 15. ✅ Nov 2021 - Add a button to jump to end of table
 16. ✅ Nov 2021 - Improve the jump to end of table button so the last part of the table is visible. [Maybe scroll with javascript](https://stackoverflow.com/questions/24836798/anchor-hash-to-the-bottom-of-the-page/24836869)
 14. ✅ Nov 2021 - Make the calculation take into account your new BMR at your new weight. 
-15. Add a switch to change the whole calculator to the metric system (kg baby). - In Progress
+15. ✅ Nov 2021 - Add a switch to change the whole calculator to the metric system (kg baby).
+16. ✅ Nov 2021 - Fixed the 2 event listeners on const reCalcButton.
 16. [Clean up all the radio buttons.](https://yogeshchauhan.com/how-to-convert-an-html-radio-buttons-into-a-toggle-switch-using-css/)
 17. Update the table to use the new more accurate calcuations
 18. Update the whole page to use the new more accurate calcuations
@@ -54,8 +55,6 @@ Redo SummerBod branding
 Use Moment.js?
 
 Make a new calculator - How Much Fat Can You Lose In One Week?
-
-Why the 2 event listeners on const reCalcButton?
 
 Add a straight TDEE calculator
 

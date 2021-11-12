@@ -106,7 +106,6 @@ function startUpTheCalculator() {
         calcCalsFromCarbsAndFatAtMaxDeficit();
         calcTwentyFivePercentDeficit();
         setDailyCaloriesInputField();
-        generateProgressTable();
     }
 
     function getUserName(){
@@ -271,7 +270,6 @@ function startUpTheCalculator() {
 
     //#Weight Section
     function userClickedSetWeightButton() {
-        console.log('userClickedSetWeightButton, getting user weight, then updating page with user weight');
         getUserWeight();
         // checkUserWeightAgainstNationalAverage(); //check and insert results
         updatePageWithUserWeight();
@@ -288,7 +286,6 @@ function startUpTheCalculator() {
     }
 
     function updatePageWithUserWeight(){
-        console.log(getFuncName());
         weightInsert.forEach( function(element, index) {
             if (user.selectedMassUnitOfMeasurement == "Metric") {
                 //do metric stuff
@@ -386,7 +383,6 @@ function startUpTheCalculator() {
 
     function toggleEstimates() {
         console.log('toggleEstimates')
-        
         if (estimateBodyFatSection.style.display == "block") {
             estimateBodyFatSection.style.display = "none";
         } else {
@@ -513,7 +509,6 @@ function startUpTheCalculator() {
         let realFeet = ((heightInCentimeters*0.393700) / 12);
         let feet = Math.floor(realFeet);
         let inches = Math.round((realFeet - feet) * 12);
-        console.log(feet + "&prime;" + inches + '&Prime;');
         
         user.heightFeet = feet;
         user.heightInches = inches;
@@ -607,7 +602,6 @@ function startUpTheCalculator() {
 
     function toggleActivityLevelSection() {
         console.log('toggle activity estimtes section');
-
         if (activityLevelSection.style.display == 'block') {
             activityLevelSection.style.display = "none";
             buttonToggleActivityLevelSection.textContent = 'Click to show Activity estimating section.';
@@ -796,8 +790,6 @@ function startUpTheCalculator() {
             }
         }
 
-        console.log('to go from ' + user.weightInPounds + 'pounds or ' + user.weightInKilograms + ' to ' + user.GoalTotalBodyWeight + ' will take ' + numberOfDaysToGoal + ' days');
-
         // (B) CREATE HTML TABLE OBJECT
         let perrow = 9, // CELLS PER ROW
         row = generatedTable.insertRow();
@@ -824,18 +816,6 @@ function startUpTheCalculator() {
         //show the table
         let progressTable = document.getElementById('progressTable');
         progressTable.replaceWith(generatedTable);
-        console.log('the updating BMR table of power has been created!');
-
-        //the old way of doing it
-		// totalCaloriesUntilBfGoal = user.LbsToLoseToGoal * 3500;
-        // totalCaloriesUntilBfGoal = roundNumPlace(totalCaloriesUntilBfGoal,1);
-
-        // caloriesToUseUp.forEach( function(element, index) {
-        //     element.textContent = totalCaloriesUntilBfGoal;
-        // });
-
-		// user.numberOfDaysTilGoal = totalCaloriesUntilBfGoal / user.caloricDeficit;
-        // user.numberOfDaysTilGoal = roundNumPlace(user.numberOfDaysTilGoal,1);
 
         //new way of doing it
         if (user.selectedMassUnitOfMeasurement == "Metric") {
@@ -898,71 +878,6 @@ function startUpTheCalculator() {
         calsFromProteinInsert.forEach( function(element, index) {
             element.textContent = calsFromProtein;
         });
-    }
-
-    // #Progress Table Section
-    function generateProgressTable() {
-        //todo use the table I generated above
-        // let generatedTable = document.createElement('table');
-        // generatedTable.id = "progressTable";
-
-        // let exampleData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", 0, todaysDate.toLocaleDateString("en-US"), user.bodyFatPercentage, user.fatBodyMass, user.leanBodyMass, user.weightInPounds];
-        // //todo make this a proper table header
-        // let progressData = ["Day", "Date", "Body Fat %", "Fat Mass", "Lean Mass", "Weight", "Pounds Lost"];
-
-        // for (var i = user.numberOfDaysTilGoal; i >= 0; i--) {
-        //     let xDays = user.numberOfDaysTilGoal - i; //start at 0.
-        //     let weightOnXDay = user.weightInPounds - (xDays*(((user.TDEE-user.selectedDailyCalories))/caloriesPerPoundOfFat));
-        //     weightOnXDay = roundNumPlace(weightOnXDay,1);
-
-        //     //xDays
-        //     let dateOnDay = new Date();
-        //     dateOnDay.setDate(dateOnDay.getDate() + xDays);
-
-        //     let bodyFatPercentageOnDay = roundNumPlace((((weightOnXDay - user.leanBodyMass)/weightOnXDay)*100),2);
-        //     let fatMassOnDay = roundNumPlace((weightOnXDay - user.leanBodyMass),1);
-        //     let leanMassOnDay = roundNumPlace(user.leanBodyMass,1); //doesn't change right now
-        //     let poundsLostSoFar = roundNumPlace((user.weightInPounds - weightOnXDay),2);
-        //     //weightOnXDay
-
-        //     progressData.push(xDays);
-        //     progressData.push(dateOnDay.toLocaleDateString("en-US"));
-        //     progressData.push(bodyFatPercentageOnDay);
-        //     progressData.push(fatMassOnDay);
-        //     progressData.push(leanMassOnDay);
-        //     progressData.push(weightOnXDay);
-        //     progressData.push(poundsLostSoFar);
-        // }
-
-        // // (B) CREATE HTML TABLE OBJECT
-        // let perrow = 7, // CELLS PER ROW
-        // row = generatedTable.insertRow();
-
-        // // LOOP THROUGH ARRAY AND ADD TABLE CELLS
-        // for (var i = 0; i < progressData.length; i++) {
-        //     // ADD "BASIC" CELL
-        //     var cell = row.insertCell();
-        //     cell.innerHTML = progressData[i];
-
-        //     /* ATTACH ONCLICK LISTENER IF REQUIRED
-        //     cell.addEventListener("click", function(){
-        //       console.log(this.dataset.id); 
-        //     });
-        //     */
-
-        //     // BREAK INTO NEXT ROW
-        //     var next = i + 1;
-        //     if (next%perrow==0 && next!=progressData.length) {
-        //       row = generatedTable.insertRow();
-        //     }
-        // }
-
-        // const body = document.body;
-        // body.appendChild(generatedTable);
-
-        // let progressTable = document.getElementById('progressTable');
-        // progressTable.replaceWith(generatedTable);
-        // console.log('the table of power has been created!');
     }
 
     function scrollToBottomOfTable(){
@@ -1257,10 +1172,9 @@ function startUpTheCalculator() {
         setBodyFatPercentageButton.addEventListener('click', setBodyFatPercentage);
     }
 
-    //todo why the 2 event listeners?
-    const reCalcButton = document.getElementById('reCalcButton');
-    reCalcButton.addEventListener('click', calcDaysToGoalBf);
-    reCalcButton.addEventListener('click', mainCalc);
+    //#here todo why the 2 event listeners?
+    const timeToGoalButton = document.getElementById('timeToGoalButton');
+    timeToGoalButton.addEventListener('click', mainCalc);
 
     const calcTimeToGoalButton = document.getElementById('calcTimeToGoalButton');
 
@@ -1531,7 +1445,8 @@ function startUpTheCalculator() {
 
     function getFuncName() {
         return getFuncName.caller.name;
-     }
+    }
+    //how to use - console.log(getFuncName());
 
 } //end startUpTheCalculator
 //file length Oct 25, 2021 = 950 lines
