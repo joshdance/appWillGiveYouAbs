@@ -42,6 +42,8 @@ Todo List:
 24. Add milestones to the table. "10 pounds down" "15% body fat achieved"
 25. Try "oninput" or onchange event and update results without having to click the button
 26. add a little toast message when it recalculated in case you can't see the changes
+27. Mobile first version. Idea from https://twitter.com/Victor_Stark7/status/1459249160050335747
+
 
 Stop using user.GoalForPoundsOfBodyFat
 
@@ -82,3 +84,7 @@ Improve the 'what is your age input. Box is too big for a 3 digit max number.
 Fix 'recommendedDailyCalories' make it a user variable.
 
 Update the version number to auto increment. 
+
+Add a how much fat is 1% body fat lost calc. 
+
+Add the ability to pick when you want to be at a certain body fat % or weight and see what it would take to get there.
