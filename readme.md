@@ -37,7 +37,7 @@ Todo List:
 19. ✅ Nov 2021 - Update the table to use the new more accurate calcuations
 20. ✅ Nov 2021 - Update the whole page to use the new more accurate calcuations
 21. Add a 'how to get in shape by date' to the calculator. 
-22. Improve text boxes so they select all the text inside them when clicked
+22. Add a 'how to lose 1% body fat' calculator - in Progress
 23. Add Holiday emoji to the table 🎄🎊 etc
 24. Add milestones to the table. "10 pounds down" "15% body fat achieved"
 25. Try "oninput" or onchange event and update results without having to click the button

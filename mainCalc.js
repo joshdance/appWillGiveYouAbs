@@ -66,6 +66,7 @@ function startUpTheCalculator() {
     }
 
     function mainCalc() {
+        console.log('Entered mainCalcu');
         getUserGender();
         userPickedUnitOfMeasurement();
         getUserWeight();
@@ -1090,8 +1091,10 @@ function startUpTheCalculator() {
     const metricHeightSection = document.getElementById("metricHeightSection");
     
     //#tableofProgress Setup
-    document.getElementById("jumptoBottomOfTableButton").addEventListener('click', scrollToBottomOfTable);
-    document.getElementById("jumptoTopOfTableButton").addEventListener('click', scrollToTopOfTable);
+    if (document.getElementById("jumptoBottomOfTableButton") != null) {
+        document.getElementById("jumptoBottomOfTableButton").addEventListener('click', scrollToBottomOfTable);
+        document.getElementById("jumptoTopOfTableButton").addEventListener('click', scrollToTopOfTable);
+    }
 
     const exportTableButton = document.getElementById('exportTableButton');
     if (exportTableButton != null) {
@@ -1165,7 +1168,9 @@ function startUpTheCalculator() {
 
     //get all the calculation buttons by class
     const calcButton = document.querySelector('.calcButton');
-    calcButton.addEventListener('click', mainCalc);
+    if (calcButton != null) {
+        calcButton.addEventListener('click', mainCalc);
+    }
 
     const setBodyFatPercentageButton = document.getElementById('setBodyFatPercentageButton');
     if (setBodyFatPercentageButton != null) {
@@ -1174,13 +1179,17 @@ function startUpTheCalculator() {
 
     //#here todo why the 2 event listeners?
     const timeToGoalButton = document.getElementById('timeToGoalButton');
-    timeToGoalButton.addEventListener('click', mainCalc);
+    if (timeToGoalButton != null) {
+        timeToGoalButton.addEventListener('click', mainCalc);
+    }
 
     const calcTimeToGoalButton = document.getElementById('calcTimeToGoalButton');
 
     //remember to use the correct selector! Or just id. 
     const calcBmrButton = document.getElementById('calcBmrButton');
-    calcBmrButton.addEventListener('click',calcBmrButtonClicked);
+    if (calcBmrButton != null) {
+        calcBmrButton.addEventListener('click',calcBmrButtonClicked);
+    }
 
     const weightInputBox2 = document.getElementById('weightInputBox');
     const percentInputBox2 = document.getElementById('percentInputBox');
@@ -1236,7 +1245,9 @@ function startUpTheCalculator() {
     const numberOfMonthsTilGoalInsert = document.getElementById('numberOfMonthsTilGoalInsert');
 
     const caloricBudgetInput =  document.getElementById('caloricBudgetInput');
-    caloricBudgetInput.addEventListener('focusin',userPickedCaloriesSwitch);
+    if (caloricBudgetInput != null) {
+        caloricBudgetInput.addEventListener('focusin',userPickedCaloriesSwitch);
+    }
 
     let caloriesADay;
 
@@ -1309,18 +1320,27 @@ function startUpTheCalculator() {
     const dailyCaloriesAtMaxInsert = document.getElementsByName('dailyCaloriesAtMaxInsert');
 
     const bfGoalInputBox = document.getElementById('bfGoalInputBox');
-    bfGoalInputBox.addEventListener('focusin',userPickedBodyFatPercentageGoal);
+    if (bfGoalInputBox != null) {
+        bfGoalInputBox.addEventListener('focusin',userPickedBodyFatPercentageGoal);
+    }
 
     const estimateBodyFatSection = document.getElementById('estimateBodyFat');
-    estimateBodyFatSection.style.display = "block";
+    if (estimateBodyFatSection != null) {
+        estimateBodyFatSection.style.display = "block";
+    }
     const estimateBodyFatLevelDescriptions = document.getElementById('estimateBodyFatLevelDescriptions');
 
     const buttonToggleActivityLevelSection = document.getElementById('buttonToggleActivityLevelSection');
-    buttonToggleActivityLevelSection.addEventListener('click', toggleActivityLevelSection);
+    if (buttonToggleActivityLevelSection != null) {
+        buttonToggleActivityLevelSection.addEventListener('click', toggleActivityLevelSection);
+    }
+
     const activityLevelSection = document.getElementById('activityLevelSection');
 
     const getAbPlanButton = document.getElementById('getAbPlanButton');
-    getAbPlanButton.addEventListener('click', getAbPlan);
+    if (getAbPlanButton != null) {
+        getAbPlanButton.addEventListener('click', getAbPlan);
+    }
 
     const tdeeDeficitExampleInsert = document.getElementsByName('tdeeDeficitExampleInsert');
     const tdeeDeficitExampleResultInsert = document.getElementsByName('tdeeDeficitExampleResultInsert');
@@ -1336,13 +1356,72 @@ function startUpTheCalculator() {
     let userDidSetDailyCalories = false;
     let userDidSetBodyFatPercentageGoal = false;
 
+    //#1% Down Section
+    const bodyfatestimationhelptoggle = document.getElementById('bodyfatestimationhelptoggle');
+    if (bodyfatestimationhelptoggle != null) {
+        console.log('we are going to calc 1% down');
+    };
+
+    function debounce(func, timeout = 500){
+        let timer;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+    }
+
+    function calcOnePercentDown(){
+        console.log('calculating one percent down in body fat');
+
+        let userWeight = onePercentWeightInputBox.value;
+        let userBodyFatPercentage = bodyFatPercentageInputBox.value;
+
+        if (userBodyFatPercentage == "") {
+            return;
+        }
+
+        let userFatMass = (userWeight * (userBodyFatPercentage/100));
+        let userLeanMass = (userWeight - userFatMass);
+        let userDesiredBodyFatPercentage = (userBodyFatPercentage - 1);
+
+        onePercentDownBodyFatPercentageInsert.textContent = userDesiredBodyFatPercentage;
+
+        let massToOnePercentDown = (userLeanMass / (1 - (userDesiredBodyFatPercentage/100)));
+
+        onePercentDownWeightInsert.textContent = massToOnePercentDown;
+
+        let massToLoseForOnePercentDown = (userWeight - massToOnePercentDown);
+
+        massToLoseForOnePercentDownInsert.textContent = massToLoseForOnePercentDown;
+    }
+
+    const processOnePercentDown = debounce(() => calcOnePercentDown());
+
+    const onePercentWeightInputBox = document.getElementById('onePercentWeightInputBox');
+    if (onePercentWeightInputBox != null) {
+        onePercentWeightInputBox.addEventListener('keyup', processOnePercentDown);
+    };
+
+    const bodyFatPercentageInputBox = document.getElementById('bodyFatPercentageInputBox');
+    if (bodyFatPercentageInputBox != null) {
+        bodyFatPercentageInputBox.addEventListener('keyup', processOnePercentDown);
+    }
+
+    let massToLoseForOnePercentDownInsert = document.getElementById('massToLoseForOnePercentDownInsert');
+
+    let onePercentDownWeightInsert = document.getElementById('onePercentDownWeightInsert');
+
+    let onePercentDownBodyFatPercentageInsert = document.getElementById('onePercentDownBodyFatPercentageInsert');
+
+
+    
+
     //#Testing Seciton
     const testResultH3 = document.getElementById('testResultH3');
 
     if (testing == true) {
         testEverything();
-    }
-    bootup();
+    }    
 
     function testEverything() {
         debugger;

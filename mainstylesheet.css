@@ -425,3 +425,13 @@ div #metricLabel{
     /* start with metric box hidden */
     display: none; 
 }
+
+.calculatorLink {
+    margin-top: 20px;
+}
+
+#onePercentDownWeightInsert, #onePercentDownBodyFatPercentageInsert, #massToLoseForOnePercentDownInsert {
+    background-color: #ff9bfc;
+    padding-left: 5px;
+    padding-right: 5px;
+}

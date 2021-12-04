@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>How to lose 1% Body Fat Calculator</title>
+	<link rel="stylesheet" type="text/css" href="mainstylesheet.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158081909-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-158081909-1');
+	</script>
+	<noscript>You need to enable JavaScript to run this calculator.</noscript>
+</head>
+<body>
+<nav>
+	<ul>
+		<li><a href="summerbod2021.html">SummerBod</a></li>
+		<li><a href="calculator.html">Abs Calculator</a></li>
+		<li><a href="macrostocalories.html">Macros to Calories Calculator</a></li>
+		<li><a href="index.html">Essay</a></li>
+		<li><a href="howtolose10pounds.html">How to Lose 10 <span name="selectedMassUnitOfMeasurement">pounds</span></a></li>
+		<li><a href="about.html">About</a></li>
+		<li class="topNavRight"><a href="login.html">Login</a></li>
+		<li class="hamburgerIcon"><a href="">&#9776</a></li>
+	</ul>
+</nav>
+
+<div class="mainContainer">
+
+<h1>How to Lose 1% Body Fat</h1>
+<h3>
+	Weight? ⚡️
+</h3>
+
+<div class="flex-container"> 
+	<div><input type="number" id="onePercentWeightInputBox" class="weightInputBox inputform" value="180"></div>
+	<div class="radio-group">
+		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Imperial" value="Imperial" checked>
+		<label for="Imperial">Imperial (US)</label>
+		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Metric" value="Metric">
+		<label for="Metric">Metric (World)</label>
+	</div>
+</div>
+
+<h3>Body fat percentage %?</h3>
+
+<div>
+	<input type="number" id="bodyFatPercentageInputBox" class="percentInputBox inputform" placeholder="Use whole number (20, not .2)">
+</div>
+
+<div id="bodyfatestimationhelptoggle">
+	Need help estimating your body fat? <a href="calculator.html" target="_blank">Take me to the abs calculator 🧮</a>
+</div>
+
+<h2>Results:</h2>
+
+<div>
+	To lose 1% body fat, you need to lose <span id="massToLoseForOnePercentDownInsert">X</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, to be at <span id="onePercentDownWeightInsert">Y</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, and <span id="onePercentDownBodyFatPercentageInsert">Z</span>% body fat.
+</div>
+
+<div>
+	👇🏻 Want a full plan to get abs generated for you? 👇🏻
+</div>
+
+<div class="calculatorLink">
+	<a href="calculator.html" target="_blank">Take me to the abs calculator 🧮</a>
+</div>
+
+<div id="signupform">
+	<!-- Begin Mailchimp Signup Form -->
+	<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+		/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+		   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+	</style>
+	<div id="mc_embed_signup">
+		<form action="https://twitter.us4.list-manage.com/subscribe/post?u=13626cb7e2c997963b598756e&amp;id=2c57e7e0ca" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			<div id="mc_embed_signup_scroll">
+				<h2>Want access to new calculators and updates?</h2>
+				<div class="mc-field-group">
+				<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+				</label>
+				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+				</div>
+
+			<div id="mce-responses" class="clear">
+				<div class="response" id="mce-error-response" style="display:none"></div>
+				<div class="response" id="mce-success-response" style="display:none"></div>
+			</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_13626cb7e2c997963b598756e_2c57e7e0ca" tabindex="-1" value="">
+			</div>
+
+			<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button squareButton">
+			</div>
+
+			</div>
+		</form>
+	</div>
+	<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+	<!--End mc_embed_signup-->
+</div>
+
+<div>
+	Version 0.1 - Page created
+</div>
+
+</div> <!--End main container-->
+
+<div class="footer">
+	
+	<a target="_blank" rel="noopener" class="joshdance-by" href="https://twitter.com/JoshDance"><img src="https://thisappwillgiveyouabs.com/images/adventure.png" /><p>by joshdance</p></a>
+</div>
+
+<script src="mainCalc.js"></script>
+<script src="exporttocsv.js"></script>
+</body>
+</html>
