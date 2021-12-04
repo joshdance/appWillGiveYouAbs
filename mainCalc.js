@@ -216,15 +216,20 @@ function startUpTheCalculator() {
 
     //#Metric Section
     function userPickedUnitOfMeasurement(){
+        console.log('user picked a unit of measurement');
         getAndSetUserSelectedUnitOfMeasurement();
         if (user.selectedMassUnitOfMeasurement == "Metric") {
             user.selectedMassUnit = "kilogram"
-            imperialHeightSection.style.display = "none";
-            metricHeightSection.style.display = "block";
+            if (imperialHeightSection != null) {
+                imperialHeightSection.style.display = "none";
+                metricHeightSection.style.display = "block";
+            }
         } else { //=="Imperial"
             user.selectedMassUnit = "pound"
-            imperialHeightSection.style.display = "block";
-            metricHeightSection.style.display = "none";
+            if (imperialHeightSection != null) {
+                imperialHeightSection.style.display = "block";
+                metricHeightSection.style.display = "none";
+            }
         }
 
         updatePageWithSelectedUnitsOfMeasurement();
@@ -1384,15 +1389,15 @@ function startUpTheCalculator() {
         let userLeanMass = (userWeight - userFatMass);
         let userDesiredBodyFatPercentage = (userBodyFatPercentage - 1);
 
-        onePercentDownBodyFatPercentageInsert.textContent = userDesiredBodyFatPercentage;
+        onePercentDownBodyFatPercentageInsert.textContent = roundNumPlace(userDesiredBodyFatPercentage,2);
 
         let massToOnePercentDown = (userLeanMass / (1 - (userDesiredBodyFatPercentage/100)));
 
-        onePercentDownWeightInsert.textContent = massToOnePercentDown;
+        onePercentDownWeightInsert.textContent = roundNumPlace(massToOnePercentDown,2);
 
         let massToLoseForOnePercentDown = (userWeight - massToOnePercentDown);
 
-        massToLoseForOnePercentDownInsert.textContent = massToLoseForOnePercentDown;
+        massToLoseForOnePercentDownInsert.textContent = roundNumPlace(massToLoseForOnePercentDown,2);
     }
 
     const processOnePercentDown = debounce(() => calcOnePercentDown());
