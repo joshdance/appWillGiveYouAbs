@@ -43,7 +43,11 @@ Todo List:
 25. Try "oninput" or onchange event and update results without having to click the button
 26. add a little toast message when it recalculated in case you can't see the changes
 27. Mobile first version. Idea from https://twitter.com/Victor_Stark7/status/1459249160050335747
+28. Link up https://thisappwillgiveyouabs.com/howtolose1percentbodyfat into the header
+29. Subtly flash the inputs when I update them so the user know something happened
 
+
+Generate a table for how to lose % of body weight
 
 Stop using user.GoalForPoundsOfBodyFat
 
