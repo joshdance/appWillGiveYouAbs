@@ -1419,6 +1419,11 @@ function startUpTheCalculator() {
     let onePercentDownBodyFatPercentageInsert = document.getElementById('onePercentDownBodyFatPercentageInsert');
 
 
+    //#Calculator Section
+
+    if (percentInputBox2 != null) {
+        bootup();
+    }
     
 
     //#Testing Seciton
