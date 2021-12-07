@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Protein Sparing Fast Calculator</title>
+	<link rel="stylesheet" type="text/css" href="mainstylesheet.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158081909-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-158081909-1');
+	</script>
+	<noscript>You need to enable JavaScript to run this calculator.</noscript>
+</head>
+<body>
+<nav>
+	<ul>
+		<li><a href="summerbod2021.html">SummerBod</a></li>
+		<li><a href="calculator.html">Abs Calculator</a></li>
+		<li><a href="macrostocalories.html">Macros to Calories Calculator</a></li>
+		<li><a href="index.html">Essay</a></li>
+		<li><a href="howtolose1percentbodyfat.html">How to Lose 1% Body Fat</a></li>
+		<li><a href="howtolose10pounds.html">How to Lose 10 <span name="selectedMassUnitOfMeasurement">pounds</span></a></li>
+		<li><a href="about.html">About</a></li>
+		<li class="topNavRight"><a href="login.html">Login</a></li>
+		<li class="hamburgerIcon"><a href="">&#9776</a></li>
+	</ul>
+</nav>
+
+
+<div class="mainContainer">
+
+<h1>Protein Sparing Fast Calculator</h1>
+<h2>Welcome to the hard mode</h2>
+<div>
+	<span class="calcOnlyWarning">This is an advanced fat loss technique. We are not medical professionals, make your own choices and be an adult.</span>
+</div>
+<div>
+	<span class="calcOnlyWarning">If you want the safer fat loss calculator <a href="calculator.html">click here.</a></span>
+</div>
+
+<h3 class="genderHeader">What is your gender?</h3>
+
+<div class="radio-group">
+	<input type="radio" class="sex toggle" name="sex" id="female" value="female">
+	<label for="female">Female</label>
+	<input type="radio" class="sex toggle" name="sex" id="male" value="male" checked>
+	<label for="male">Male</label>
+</div>
+
+<h3>
+	What is your current mass in <span name="selectedMassUnitOfMeasurement">pounds</span>? ⚡️
+</h3>
+
+<div class="flex-container"> 
+	<div><input type="number" id="weightInputBox" class="weightInputBox inputform" value="180"></div>
+	<div class="radio-group">
+		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Imperial" value="Imperial" checked>
+		<label for="Imperial">Imperial (US)</label>
+		<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Metric" value="Metric">
+		<label for="Metric">Metric (World)</label>
+	</div>
+</div>
+
+<h3>What is your current body fat percentage?</h3>
+
+<div>
+	<input type="number" id="bodyFatPercentageInputBox" class="percentInputBox inputform" placeholder="in whole percent. example 20 not .2" value="22">
+</div>
+
+<div>
+	At <span class="totalbodyweight" name="weightInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, with a body fat percentage of <span name="bfInsert">Y</span>%, you have <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of body fat and <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass for a total of <span name="weightInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of total mass. 
+</div>
+
+Your Goal Body Fat Percentage is 15% if you are a guy, 25% if you are a girl.
+
+<h2>How to get to <span name="goalBodyFatPercentageInsert">goal </span> % body fat</h2>
+<div>
+	You are at a body fat percentage of <span name="bfInsert">Y</span>%. With your current weight of <span name="weightInsert">X</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, that means you have <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass and <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of body fat. 
+</div>
+<div class="highlight">
+	<div>
+		With your goal body fat percentage of <span name="goalBodyFatPercentageInsert">goal</span>%, you would have a goal weight of <span name="newTotalBodyWeightInsert"></span> <span name="selectedMassUnitOfMeasurement">pounds</span>, with <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass and <span name="newFatInsert">C</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat.
+	</div>
+	<div>
+		<span name="newFatInsert">C</span> fat mass / <span name="newTotalBodyWeightInsert"></span> total mass = <span name="goalBodyFatPercentageInsert">goal</span>% body fat.
+	</div>
+</div>
+<div>
+	To make this calculation we assume you keep all of your <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean mass. We just decrease your fat mass by <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, and you are at <span name="goalBodyFatPercentageInsert">gender</span>% body fat. 
+</div>
+<div>
+	(Current fat mass of <span name="fatInsert">A</span> - Goal fat mass of <span name="newFatInsert">C</span> = <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat to lose)
+</div>
+
+<h2>How much protein do I need?</h2>
+<div>
+	Research shows that you need <span name="proteinPerUnit">1 - 2</span> grams of protein per <span name="selectedMassUnitOfMeasurement">pound</span> of total body mass. 
+
+	At <span name="weightInsert">X</span> <span name="selectedMassUnitOfMeasurement">pounds</span> total body weight, you need <span name='gramsProteinInsert'></span> grams of protein a day. 
+</div>
+<div>
+	<div>Pure Protein (theoretical): 100 g Protein and 400 Calories per 100 g = 25 gram per 100 calories</div>
+	<div>Canned Tuna: 23.6 g Protein and 116 Calories Per 100 g = 20 gram protein per 100 calories</div>
+	<div>Costco Protein Powder: 75 g protein and 375 Calorers per 100 g = 20 gram protein per 100 calories</div>
+	<div>Tilapia: 18.58 g protein and 97.34 calories per 100 g = 19.08 gram protein per 100 calories</div>
+	<div>Lean Pork Chop: 22.4 g Protein and 117 Calories Per 100 g = 19.14 gram protein per 100 calories</div>
+	<div>Shrimp: 20.3 g Protein and 144 Calories Per 100 g = 14.09 gram protein per 100 calories</div>
+	<div>Beef Skirt Steak (all fat trimmed): 22.6 g Protein and 174 Calories Per 100 g = 12.98 gram protein per calorie</div>
+	<div>Sockeye Salmon: 21.3 g Protein and 168 Calories Per 100 g = 12.67 gram protein per 100 calories</div>
+	<div>Chicken Breast: 24.8 g and 195 Calories Protein Per 100 g = 12.7 gram protein per 100 calories</div>
+	<div>Cheddar Cheese: 24.9 g Protein and 403 Calories Per 100 g = 6.17 gram protein per 100 calories</div>
+</div>
+
+<div class="imageContainer">
+	<img src="images/calories from protein.png">
+</div>
+
+<h3>Let's Calculate your BMR</h3>
+<div>
+	What is your age?
+	<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
+</div>
+<div id="metricHeightSection">
+	What is your height in centimeters?
+	<input type="number" class="inputform" name="userHeightInCentimetersInputBox" id="userHeightInCentimetersInputBox" value="172.72">
+</div>
+<div id="imperialHeightSection">
+<div>
+	What is your height in feet?
+	<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
+</div>
+<div>
+	and your remaining height in inches
+	<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
+</div>
+</div>
+
+<div>
+	We will use the weight that you entered earlier, of <span name="weightInsert">weight fill</span> <span name="selectedMassUnitOfMeasurement">pounds</span>.
+</div>
+
+<div>
+	<button type="button" class="calcBmrButton squareButton" id="calcBmrButton">Calculate your BMR!</button>
+</div>
+
+<div>
+	Your estimated BMR is <span class="bmrAnswer" name="bmrAnswer">bmrAnswer</span> calories per day. 
+</div>
+
+<div>
+<h3>What is your level of Activity?</h3>
+</div>
+<div>
+<label for="sedentary" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="sedentary" value="sedentary" checked> Sedentary (x 1.15)</label>
+<label for="light" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="light" value="light"> Light Activity (x 1.35)</label>
+<label for="moderate" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="moderate" value="moderate"> Moderate Activity (x 1.55)</label>
+<label for="veryactive" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="veryactive" value="veryactive"> Very Active (x 1.75)</label>
+<label for="extremely" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="extremely" value="extremely"> Extremely Active (x 1.95)</label>
+</div>
+
+<div>
+	Your BMR x Your Activity Multiplier gives your Total Daily Energy Expenditure or TDEE.
+</div>
+<div class="highlight">
+	<div>
+		<span name="bmrAnswer">bmrAnswer</span> x Activity Multiple = <span name="tdee"></span> calories per day.
+	</div>
+</div>
+
+<h2>Breakdown:</h2>
+<div>
+	You currently have <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat.
+</div>
+<div>
+	At <span name="goalBodyFatPercentageInsert">?</span>% body fat, you will have <span name="newFatInsert">C</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat.
+</div>
+<div>
+	You have to burn off <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat. 
+</div>
+<div>
+	There are <span name="numberOfCaloriesInSelectedMassUnitOfMeasurement">3500</span> calories in 1 <span name="selectedMassUnitOfMeasurement">pounds</span> of fat. 
+</div>
+<div>
+	This means we know know how many calories you need to burn off by eating less. <span name="numberOfCaloriesInSelectedMassUnitOfMeasurement">3500</span> * <span name="loseInsert">B</span> = <span name="caloriesToUseUp">calories</span> calories to use up.
+</div>
+
+<h3>
+	How much energy will you eat per day?
+</h3>
+
+<div>
+	With your TDEE of <span name="tdee">X</span> a 25% deficit would = <span name="twentyFivePercentCalorieDeficitInsert">a number</span> deficit per day. 
+</div>
+<div>
+	<span name="tdee">X</span> - <span name="twentyFivePercentCalorieDeficitInsert">a number</span> = <span name="theoreticalCalorieIntakeInsert">25% deficit</span> recommended calories of energy intake per day. 
+</div>
+
+<div>
+	Daily calories you will eat:  <input type="number" class="inputform" id="caloricBudgetInput" value="1500">
+</div>
+
+<div>
+	With your chosen energy intake of <span name="calorieBudgetInsert">calories a day you chose</span>, your caloric deficit is <span name="userPickedDeficitInsert">X calories</span> and your percent deficit is <span id="percentDeficitInsert">not calculated</span>%. 
+</div>
+
+<div>
+	<button type="button" class="squareButton" id="timeToGoalButton">Calc time to goal 🔥</button>
+</div>
+
+<h2>Time breakdown: </h2>
+
+<div class="dateCalculationsSection">
+	<div>
+		It will take you <span name="numberOfDaysTilGoalInsert">X</span> days to reach <span name="goalBodyFatPercentageInsert">?</span>%.
+	</div>
+
+	<div>
+		It will take you <span name="numberOfWeeksTilGoalInsert">X</span> weeks to reach <span name="goalBodyFatPercentageInsert">?</span>%. 
+	</div>
+
+	<div>
+		It will take you <span id="numberOfMonthsTilGoalInsert">X</span> months to reach <span name="goalBodyFatPercentageInsert">?</span>%. 
+	</div>
+</div>
+
+<div>
+	It will be <span id="dateFromCalculatedDaysAway">daysinsert</span> in <span name="numberOfDaysTilGoalInsert">X</span> days. 
+</div>
+
+
+<h2><a id="progressTableAnchorLink"></a>Progress Table</h2>
+<div>Here is how your journey to abs will look over time:</div>
+
+<button type="button" id="jumptoBottomOfTableButton" class="smallButton">Jump to bottom of table</button>
+
+<table id="progressTable"><tr><td>Enter your information to generate your progress table</td></tr></table>
+
+<button type="button" id="jumptoTopOfTableButton" class="smallButton">Jump to top of table</button>
+
+<div>
+	<button type="button" id="exportTableButton" class="squareButton">Download Progress Table data as CSV</button>
+</div>
+<div>Use your plan to track your progress in Excel, Google Sheets etc!</div>
+
+
+
+<h2>Final Results: Here is <span name="userNameInsert">there</span>'s plan for abs</h2>
+<div>Here is your completely calculated and filled out checklist to get abs.</div>
+	<ol>
+		<li>✅ Have abdominal muscles</li>
+		<li>Go from <span name="bfInsert">Y</span>% body fat to <span name="goalBodyFatPercentageInsert">?</span>% body fat, by using up <span name="loseInsert">B</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat, by consistently eating <span name="calorieBudgetInsert">this many</span> calories a day.</li>
+		<li>Lift weights to keep and gain muscle.</li>
+		<li>Eat <span name='gramsProteinInsert'>much protein</span> grams of protein a day.</li>
+		<li>Sleep 7-9 hours a night.</li>
+	</ol>
+<div>If you do the above steps, re-calculating as your body mass changes, you will get abs in <span name="numberOfWeeksTilGoalInsert">X</span> weeks.</div>
+
+<h2>Now is the time to take action</h2>
+<div>
+	You now have the map. You have the knowledge you need to reach your goal of having abs. Now you just need to execute.
+</div>
+<div>
+	You can do this! 🔥⚡️👊🏼
+</div>
+
+<h2><a id="updatesAnchorLink"></a>Want Updates?</h2>
+<div id="signupform">
+	<!-- Begin Mailchimp Signup Form -->
+	<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+		/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+		   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+	</style>
+	<div id="mc_embed_signup">
+		<form action="https://twitter.us4.list-manage.com/subscribe/post?u=13626cb7e2c997963b598756e&amp;id=2c57e7e0ca" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			<div id="mc_embed_signup_scroll">
+				<h2>Want new calculators and updates as I release them?</h2>
+				<div class="mc-field-group">
+				<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+				</label>
+				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+				</div>
+
+			<div id="mce-responses" class="clear">
+				<div class="response" id="mce-error-response" style="display:none"></div>
+				<div class="response" id="mce-success-response" style="display:none"></div>
+			</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_13626cb7e2c997963b598756e_2c57e7e0ca" tabindex="-1" value="">
+			</div>
+
+			<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button squareButton">
+			</div>
+
+			</div>
+		</form>
+	</div>
+	<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+	<!--End mc_embed_signup-->
+</div>
+
+<div>
+	Version 1.1 - Metric support added.
+</div>
+
+</div> <!--End main container-->
+
+<div class="footer">
+	
+	<a target="_blank" rel="noopener" class="joshdance-by" href="https://twitter.com/JoshDance"><img src="https://thisappwillgiveyouabs.com/images/adventure.png" /><p>by joshdance</p></a>
+</div>
+
+<script src="proteinsparingcalc.js"></script>
+<script src="exporttocsv.js"></script>
+</body>
+</html>
