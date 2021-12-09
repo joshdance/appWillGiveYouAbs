@@ -1373,6 +1373,10 @@ function startUpTheCalculator() {
         calculateProteinAmount();
         displayProteinAmount();
 
+        calcCaloriesFromOnlyPureProtein();
+        calcCaloriesFromProteinSources();
+        
+
         let userFatMass = (userWeight * (userBodyFatPercentage/100));
         let userLeanMass = (userWeight - userFatMass);
         let userDesiredBodyFatPercentage = (userBodyFatPercentage - 1);
