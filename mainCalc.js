@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
-
 //todo - refactor to have each function separate, not nested in one giant function.
 function startUpTheCalculator() {
     
