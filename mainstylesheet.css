@@ -293,14 +293,12 @@ body {
 }
 
 ol {
+    box-sizing: border-box;
     margin-top: 22px;
     margin-bottom: 25px;
-    padding: 19px 18px 0 30px;
-    clear: both;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(76,183,221,.02);
-    border-radius: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
     background-color: #f8fcff;
     box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
     color: #0e2430;
@@ -431,4 +429,8 @@ div #metricLabel{
     background-color: #ff9bfc;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.spacer{
+    height: 10vh;
 }
