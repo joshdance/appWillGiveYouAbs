@@ -3,19 +3,31 @@
 <html>
 <head>
 	<title>100 Days to 17% Body Fat Plan</title>
+
+	<!-- FireBase -->
+	<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<script>
+		// Initialize Firebase
+		const firebaseConfig = {
+		apiKey: "AIzaSyCHccy_g948A35CpYi9Bbwi76CtBLJm2s8",
+		authDomain: "abs-plan.firebaseapp.com",
+		projectId: "abs-plan",
+		storageBucket: "abs-plan.appspot.com",
+		messagingSenderId: "138522602384",
+		appId: "1:138522602384:web:39d9b90a4297f48d3fe115",
+		measurementId: "G-G3PBWWE9NJ"
+		};
+
+		const firebaseApp = firebase.initializeApp(firebaseConfig);
+	</script>
+	<!-- end Firebase -->
+
+	<script defer src="shepherd.js"></script>
+	<noscript>You need to enable JavaScript to run this calculator.</noscript>
 	<link rel="stylesheet" type="text/css" href="mainstylesheet.css">
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158081909-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-158081909-1');
-	</script>
-	<script src="shepherd.js"></script>
-	<noscript>You need to enable JavaScript to run this calculator.</noscript>
 </head>
 <body>
 <nav>
@@ -39,10 +51,24 @@
 
 <h3>Hi Josh, here's your plan for today, Monday May 3nd</h3>
 
+<h3>Wednesday May 4th</h3>
+<div>
+	<ol>
+		<li><input type="checkbox" id="sleepCheckbox542022">Did you sleep 8 hours last night?</li>
+		<li><input type="checkbox" id="weightCheckbox542022">Weight yourself (Remember weigh fluctuates)</li>
+		<li><input type="checkbox" id="mealPlanCheckbox542022">Do you have your meals planned?</li>
+		<li><input type="checkbox" id="calorieCheckbox542022">Eat 1500 calories today.</li>
+		<li><input type="checkbox" id="foodPhotoCheckbox542022">Take a picture of everything you eat today.</li>
+		<li><input type="checkbox" id="proteinCheckbox542022">Eat between 120 - 140 grams of protein today.</li>
+		<li><input type="checkbox" id="workoutCheckbox542022">Workout. Pull exercises</li>
+	</ol>
+</div>
+
+<h3>Tuesday May 3rd</h3>
 <div>
 	<ol>
 		<li><input type="checkbox" id="sleepCheckbox532022">Did you sleep 8 hours last night?</li>
-		<li><input type="checkbox" id="weightCheckbox532022">Weight yourself (Remember weigh fluttuates</li>
+		<li><input type="checkbox" id="weightCheckbox532022">Weight yourself (Remember weigh fluctuates)</li>
 		<li><input type="checkbox" id="mealPlanCheckbox532022">Do you have your meals planned?</li>
 		<li><input type="checkbox" id="calorieCheckbox532022">Eat 1500 calories today.</li>
 		<li><input type="checkbox" id="proteinCheckbox532022">Eat between 120 - 140 grams of protein today.</li>
@@ -142,4 +168,4 @@
 </div>
 
 </body>
-</html>
+</html>t
