@@ -5,9 +5,10 @@
 	<title>100 Days to 17% Body Fat Plan</title>
 
 	<!-- FireBase -->
-	<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 	<script>
 		// Initialize Firebase
 		const firebaseConfig = {
@@ -46,6 +47,20 @@
 
 
 <div class="mainContainer">
+
+	<div id="whenSignedOutSection">
+		<div id="signInMessage">
+			<h3>Sign in to get your personal daily plan.</h3>
+		</div>
+		<button id="signInWithGoogleButton">Sign in with Google</button>
+	</div>
+	<div id="whenSignedInSection" hidden="true">
+		<div id="userDetails">
+			<!-- user details go here -->
+		</div>
+
+		<button id="signOutButton">Sign Out</button>
+	</div>
 
 <h1>100 Days to 17% Body Fat Plan</h1>
 
@@ -103,7 +118,8 @@
 </div>
 
 <h3>Plan Overview</h3>
-<div>
+<div id="planDetailsSection"></div>
+<div id="planLength">
 	Length: 100 days
 </div>
 <div>
@@ -112,7 +128,7 @@
 <div>
 	On August 10th You will weigh 176.9 pounds. (146.4 lean mass. 30.5 fat mass)
 </div>
-<div>
+<div id="bodyFatChangeSection">
 	Body Fat % Change: 28% to 17.3%
 </div>
 <div>
