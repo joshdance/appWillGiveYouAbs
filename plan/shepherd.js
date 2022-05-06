@@ -35,12 +35,6 @@ let unsubscribe;
 
 let listOfDays = document.getElementById('listOfDays');
 
-displayListOfDays();
-
-function displayListOfDays (){
-    console.log('listing out the days');
-}
-
 function updateUiForUserState(user){
     if (user) {
         //signed in
@@ -49,25 +43,45 @@ function updateUiForUserState(user){
 
         userMessageH3.innerHTML = 'Hello ' + user.displayName;
 
-        plansReference = db.collection('plans');
+        allPlansReference = db.collection('plans');
 
-        plansReference.where('userId','==', user.uid).
-        get()
+        let filteredToUsersPlan = allPlansReference.where('userId','==', user.uid)
+        .get()
         .then((querySnapshot) => {
             querySnapshot.forEach(doc => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());
-                console.log(doc.data().collection('days'));
                 
                 updatePlan(doc);
-                
-                getDaysFromPlan(doc.id)
+
+                getDaysFromPlan(user.uid, doc.id)
 
             });
         })
         .catch((error) => {
             console.log('Error gettings documents: ' + error);
         });
+
+        //trying again
+        db.collection('plans').get()
+        .then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                console.log(doc.data())
+            })
+        })
+
+        //trying to get a subcollection
+        db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").get()
+        .then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                console.log("DID DAYS WORK??????");
+                console.log(doc.data());
+
+                let dayListItem = document.createElement('li');
+                dayListItem.innerText = doc.data().dayNumber;
+                listOfDays.appendChild(dayListItem);
+            })
+        })
         
     } else {
         //signed out
@@ -76,16 +90,22 @@ function updateUiForUserState(user){
     }
 }
 
-function getDaysFromPlan(planId){
- 
-    plansReference = db.collection('plans');
-    
-    const usersPlanDays = plansReference.where('userId','==', user.uid).collection('days');
+function getDaysFromPlan(userId, planId){
 
-    usersPlanDays.get().then((querySnapshot) => {
+    //get the users plan
+    //get all the documents in the days collection
+ 
+    let userDaysReference = db.collection('plans/'+userId+'/days');
+
+    userDaysReference.get()
+    .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
+            console.log("WE GOT SOMETHING!");
+            console.log("doc.id = " + doc.id, ", doc.data() = ", doc.data());
         });
+    })
+    .catch((error) => {
+        console.log('Error gettings documents: ' + error);
     });
 }   
 
