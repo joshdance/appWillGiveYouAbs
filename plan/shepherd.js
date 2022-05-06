@@ -33,6 +33,14 @@ let plansReference;
 let unsubscribe;
 //end db section
 
+let listOfDays = document.getElementById('listOfDays');
+
+displayListOfDays();
+
+function displayListOfDays (){
+    console.log('listing out the days');
+}
+
 function updateUiForUserState(user){
     if (user) {
         //signed in
@@ -49,7 +57,12 @@ function updateUiForUserState(user){
             querySnapshot.forEach(doc => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());
+                console.log(doc.data().collection('days'));
+                
                 updatePlan(doc);
+                
+                getDaysFromPlan(doc.id)
+
             });
         })
         .catch((error) => {
@@ -62,6 +75,19 @@ function updateUiForUserState(user){
         whenSignedOutSection.hidden = false;
     }
 }
+
+function getDaysFromPlan(planId){
+ 
+    plansReference = db.collection('plans');
+    
+    const usersPlanDays = plansReference.where('userId','==', user.uid).collection('days');
+
+    usersPlanDays.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+        });
+    });
+}   
 
 function updatePlan(doc) {
     const planLength = document.getElementById('planLength');
