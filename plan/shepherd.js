@@ -35,6 +35,8 @@ let unsubscribe;
 
 let listOfDays = document.getElementById('listOfDays');
 
+let dayNumberIncrement = 10;
+
 function updateUiForUserState(user){
     if (user) {
         //signed in
@@ -80,7 +82,7 @@ function updateUiForUserState(user){
                 let completionPercentage = (doc.data().completedTasks / doc.data().numberOfTasks);
                 let dayListItem = document.createElement('li');
                 dayListItem.innerText = (completionPercentage*100) + '%';
-                listOfDays.appendChild(dayListItem);
+                listOfDays.appendChild(dayListItem);              
             })
         })
         
@@ -117,6 +119,22 @@ function updatePlan(doc) {
     const bodyFatChangeSection = document.getElementById('bodyFatChangeSection');
     bodyFatChangeSection.innerHTML = 'Staring body fat ' + doc.data().planStartingBodyFatPercentage
     + '% - Ending body fat ' + doc.data().planEndingBodyFatPercentage + '%.';
+
+    dayNumberIncrement = dayNumberIncrement + 1;
+    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").add({
+        numberOfTasks: 8,
+        completedTasks: 3,
+        date: 2022-05-07,
+        dayNumber : dayNumberIncrement
+    });
+
+    let dayId = '6gdLds0vnQGYw8WTyPAD';
+    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
+        numberOfTasks: 50,
+        completedTasks: 3,
+        date: 2022-05-07,
+        dayNumber : dayNumberIncrement
+    });
 }
 
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
