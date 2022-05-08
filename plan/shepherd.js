@@ -77,8 +77,9 @@ function updateUiForUserState(user){
                 console.log("DID DAYS WORK??????");
                 console.log(doc.data());
 
+                let completionPercentage = (doc.data().completedTasks / doc.data().numberOfTasks);
                 let dayListItem = document.createElement('li');
-                dayListItem.innerText = doc.data().dayNumber;
+                dayListItem.innerText = (completionPercentage*100) + '%';
                 listOfDays.appendChild(dayListItem);
             })
         })
