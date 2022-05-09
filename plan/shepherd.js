@@ -9,19 +9,19 @@ const whenSignedOutSection = document.getElementById('whenSignedOutSection');
 
 const signInWithGoogleButton = document.getElementById('signInWithGoogleButton');
 const signOutButton = document.getElementById('signOutButton');
-
-const userDetails = document.getElementById('userDetails');
-
-const provider = new firebase.auth.GoogleAuthProvider();
-
 signInWithGoogleButton.onclick = () => auth.signInWithPopup(provider);
-
 signOutButton.onclick = () => auth.signOut();
 
-auth.onAuthStateChanged(updateUiForUserState);
+const createPlanButton = document.getElementById('createPlanButton');
+createPlanButton.onclick = createPlan;
+
+const userDetails = document.getElementById('userDetails');
+const provider = new firebase.auth.GoogleAuthProvider();
 
 let userMessageH3 = document.createElement("h3");
 userDetails.appendChild(userMessageH3);
+
+auth.onAuthStateChanged(updateUiForUserState);
 
 //db section
 console.log(db);
@@ -80,9 +80,7 @@ function updateUiForUserState(user){
                 console.log(doc.data());
 
                 let completionPercentage = (doc.data().completedTasks / doc.data().numberOfTasks);
-                let dayListItem = document.createElement('li');
-                dayListItem.innerText = (completionPercentage*100) + '%';
-                listOfDays.appendChild(dayListItem);              
+                console.log('completionPercentage' + completionPercentage);        
             })
         })
         
@@ -91,6 +89,32 @@ function updateUiForUserState(user){
         whenSignedInSection.hidden = true;
         whenSignedOutSection.hidden = false;
     }
+}
+
+function readInDaysAndDisplay(){
+    //trying to get a subcollection
+    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").get()
+    .then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            
+
+            let dayNumber = doc.data().dayNumber;
+            let dayListItem = document.createElement('li');
+            
+            var checkbox = document.createElement('input');
+            checkbox.type = "checkbox";
+            checkbox.checked = false;
+            checkbox.id = "dayNumber";
+
+            var label = document.createElement('label')
+            label.appendChild(document.createTextNode('Day ' + dayNumber));
+
+            dayListItem.appendChild(checkbox);
+            dayListItem.appendChild(label);
+
+            listOfDays.appendChild(dayListItem);   
+        })
+    })
 }
 
 function getDaysFromPlan(userId, planId){
@@ -128,13 +152,61 @@ function updatePlan(doc) {
         dayNumber : dayNumberIncrement
     });
 
-    let dayId = '6gdLds0vnQGYw8WTyPAD';
-    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
-        numberOfTasks: 50,
-        completedTasks: 3,
-        date: 2022-05-07,
-        dayNumber : dayNumberIncrement
-    });
+    // let dayId = '6gdLds0vnQGYw8WTyPAD';
+    // db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
+    //     numberOfTasks: 50,
+    //     completedTasks: 3,
+    //     date: 2022-05-07,
+    //     dayNumber : dayNumberIncrement
+    // });
+}
+
+function createPlan(){
+    let planStartDate = new Date("02 May 2022 06:30:00");
+    let numberOfDays = 100;
+    let dayNumber = 1;
+    let futureDate;
+
+    for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
+    
+        futureDate = addDays(planStartDate, dayIndex);
+
+        console.log('day number ' + (dayIndex+1) + ', the date is = ' + futureDate);
+
+        let dayData = {
+            
+            whereCreated: 'createPlan in the loop',
+            date: futureDate,
+            dayNumber : dayIndex, 
+            todoList: {
+                sleepTodo: {
+                    sleepGoal: 8,
+                    sleepTodoComplete: false
+                },
+                calorieTodo: {
+                    calorieGoal: 1500,
+                    calorieTodoComplete: false
+                },
+                workoutTodo: {
+                    workoutTodoComplete: false
+                },
+                takePictureGoal: true,
+                mealsPlannedTodo: {
+                    mealsPlannedTodoComplete: false
+                }
+            }
+        };
+          
+        db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").add(dayData);
+    }
+
+    readInDaysAndDisplay();
+}
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
 }
 
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
