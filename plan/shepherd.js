@@ -93,7 +93,7 @@ function updateUiForUserState(user){
 
 function readInDaysAndDisplay(){
     //trying to get a subcollection
-    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").get()
+    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").orderBy("date").limit(3).get()
     .then((snapshot) => {
         snapshot.docs.forEach(doc => {
             
