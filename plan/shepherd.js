@@ -107,8 +107,12 @@ function readInDaysAndDisplay(){
             checkbox.id = "dayNumber";
 
             var label = document.createElement('label')
-            label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + doc.data().date));
 
+            let planDayDate = (doc.data().date.toDate());            
+            let planDayDateString = planDayDate.toDateString();
+            
+            label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + planDayDateString));
+            
             dayListItem.appendChild(checkbox);
             dayListItem.appendChild(label);
 
@@ -171,7 +175,7 @@ function createPlan(){
     
         futureDate = addDays(planStartDate, dayIndex);
         //why isn't this showing up
-        console.log('day number ' + (dayIndex+1) + ', the date is = ' + futureDate);
+        console.log('day number ' + (dayIndex+1) + ', the date is = ' + futureDate.toDateString());
 
         let dayData = {
             
@@ -199,8 +203,6 @@ function createPlan(){
           
         db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").add(dayData);
     }
-
-    readInDaysAndDisplay();
 }
 
 function addDays(date, days) {
@@ -212,4 +214,5 @@ function addDays(date, days) {
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 function startUpTheCalculator() {
     console.log(shepherdGreeting);
+    readInDaysAndDisplay();
 }
