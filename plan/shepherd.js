@@ -93,7 +93,7 @@ function updateUiForUserState(user){
 
 function readInDaysAndDisplay(){
     //trying to get a subcollection
-    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").orderBy("date").limit(3).get()
+    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").orderBy("date").limit(75).get()
     .then((snapshot) => {
         snapshot.docs.forEach(doc => {
             
@@ -107,7 +107,7 @@ function readInDaysAndDisplay(){
             checkbox.id = "dayNumber";
 
             var label = document.createElement('label')
-            label.appendChild(document.createTextNode('Day ' + dayNumber));
+            label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + doc.data().date));
 
             dayListItem.appendChild(checkbox);
             dayListItem.appendChild(label);
@@ -144,13 +144,13 @@ function updatePlan(doc) {
     bodyFatChangeSection.innerHTML = 'Staring body fat ' + doc.data().planStartingBodyFatPercentage
     + '% - Ending body fat ' + doc.data().planEndingBodyFatPercentage + '%.';
 
-    dayNumberIncrement = dayNumberIncrement + 1;
-    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").add({
-        numberOfTasks: 8,
-        completedTasks: 3,
-        date: 2022-05-07,
-        dayNumber : dayNumberIncrement
-    });
+    // dayNumberIncrement = dayNumberIncrement + 1;
+    // db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").add({
+    //     numberOfTasks: 8,
+    //     completedTasks: 3,
+    //     date: 2022-05-07,
+    //     dayNumber : dayNumberIncrement
+    // });
 
     // let dayId = '6gdLds0vnQGYw8WTyPAD';
     // db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
@@ -170,7 +170,7 @@ function createPlan(){
     for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
     
         futureDate = addDays(planStartDate, dayIndex);
-
+        //why isn't this showing up
         console.log('day number ' + (dayIndex+1) + ', the date is = ' + futureDate);
 
         let dayData = {
