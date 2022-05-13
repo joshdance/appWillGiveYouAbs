@@ -104,7 +104,8 @@ function readInDaysAndDisplay(){
             var checkbox = document.createElement('input');
             checkbox.type = "checkbox";
             checkbox.checked = false;
-            checkbox.id = "dayNumber";
+            checkbox.id = doc.id;
+            checkbox.onclick = checkDayCheckbox;
 
             var label = document.createElement('label')
 
@@ -163,6 +164,18 @@ function updatePlan(doc) {
     //     date: 2022-05-07,
     //     dayNumber : dayNumberIncrement
     // });
+}
+
+function checkDayCheckbox(event){
+    console.log('checkbox was clicked');
+    let checkboxElement = event.srcElement;
+    console.log(checkboxElement.id);
+
+    let dayId = checkboxElement.id;
+    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
+        checked: true,
+        checkedDateTime: new Date()
+    });
 }
 
 function createPlan(){
