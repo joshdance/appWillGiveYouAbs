@@ -37,6 +37,11 @@ let listOfDays = document.getElementById('listOfDays');
 
 let dayNumberIncrement = 10;
 
+let daysArray = [];
+
+let tasksArray = [];
+let tasksArray2 = [];
+
 function updateUiForUserState(user){
     if (user) {
         //signed in
@@ -123,6 +128,21 @@ function readInDaysAndDisplay(){
     })
 }
 
+function readInTasksAndPutIntoDays(){
+    console.log('loading and organizing tasks');
+    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").orderBy("date").get()
+    .then((snapshot) => {
+        console.log(snapshot);
+
+        tasksArray2 = snapshot;
+        
+        snapshot.docs.forEach(doc => {
+            tasksArray.push(doc);
+        })
+        createDaysArray(tasksArray);
+    })
+}
+
 function getDaysFromPlan(userId, planId){
 
     //get the users plan
@@ -183,7 +203,7 @@ function checkDayCheckbox(event){
         if (isDayChecked == true) {
             console.log('it is checked!');
             console.log('lets uncheck it');
-            
+
             db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
                 checked: false,
                 checkedDateTime: new Date()
@@ -203,12 +223,40 @@ function checkDayCheckbox(event){
     });
 }
 
+function createDaysArray(tasksArray){
+    console.log('creating the days array');
+    let planStartDate = new Date("02 May 2022 06:30:00");
+    let planEndDate = new Date("10 Aug 2022 06:30:00");
+    let numberOfDays = 100;
+    let dayNumber = 1;
+    let futureDate;
+
+    //create day 1
+    //grab a task. if the days match add it to the day
+    //if the days don't match, create the next day and add the task
+    let newDayDate = new Date(); //empty new Date() created new date from current time
+    let newPlanDay = new planDay(newDayDate);
+    daysArray.push(newPlanDay);
+
+    tasksArray.forEach(task => {
+        daysArray[0].dayTaskArray.push(task);
+    });
+
+    //TODO - take each task, see if it matches the date, if not, create a new day and continue. 
+}
+
+function planDay(date) {
+    this.date = date;
+    this.dayTaskArray = [];
+}
+
 function createPlan(){
     let planStartDate = new Date("02 May 2022 06:30:00");
     let numberOfDays = 100;
     let dayNumber = 1;
     let futureDate;
 
+    //create calorie tasks
     for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
     
         futureDate = addDays(planStartDate, dayIndex);
@@ -217,29 +265,32 @@ function createPlan(){
 
         let dayData = {
             
-            whereCreated: 'createPlan in the loop',
             date: futureDate,
-            dayNumber : dayIndex, 
-            todoList: {
-                sleepTodo: {
-                    sleepGoal: 8,
-                    sleepTodoComplete: false
-                },
-                calorieTodo: {
-                    calorieGoal: 1500,
-                    calorieTodoComplete: false
-                },
-                workoutTodo: {
-                    workoutTodoComplete: false
-                },
-                takePictureGoal: true,
-                mealsPlannedTodo: {
-                    mealsPlannedTodoComplete: false
-                }
-            }
+            completed: false,
+            type: 'calorieGoal',
+            calorieGoalNumber: 1500,
+            text: "Did you eat " + this.calorieGoalNumber + "calories today?",
+            userResult: 0,
+            dayNumber : dayIndex
         };
           
-        db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").add(dayData);
+        db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").add(dayData);
+    }
+
+    //create workout tasks
+    for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
+        futureDate = addDays(planStartDate, dayIndex);
+
+        let taskData = {
+
+            date: futureDate,
+            completed: false,
+            type: 'workoutGoal',
+            workoutType: 'general',
+            dayNumber : dayIndex
+        };
+
+        db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").add(taskData);
     }
 }
 
@@ -253,4 +304,30 @@ document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 function startUpTheCalculator() {
     console.log(shepherdGreeting);
     readInDaysAndDisplay();
+    readInTasksAndPutIntoDays();
 }
+
+
+// let dayData = {
+            
+//     whereCreated: 'createPlan in the loop',
+//     date: futureDate,
+//     dayNumber : dayIndex, 
+//     todoList: {
+//         sleepTodo: {
+//             sleepGoal: 8,
+//             sleepTodoComplete: false
+//         },
+//         calorieTodo: {
+//             calorieGoal: 1500,
+//             calorieTodoComplete: false
+//         },
+//         workoutTodo: {
+//             workoutTodoComplete: false
+//         },
+//         takePictureGoal: true,
+//         mealsPlannedTodo: {
+//             mealsPlannedTodoComplete: false
+//         }
+//     }
+// };
