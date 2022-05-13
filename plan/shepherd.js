@@ -103,7 +103,8 @@ function readInDaysAndDisplay(){
             
             var checkbox = document.createElement('input');
             checkbox.type = "checkbox";
-            checkbox.checked = false;
+            checkbox.checked = doc.data().checked;
+            //did that work?
             checkbox.id = doc.id;
             checkbox.onclick = checkDayCheckbox;
 
@@ -172,9 +173,33 @@ function checkDayCheckbox(event){
     console.log(checkboxElement.id);
 
     let dayId = checkboxElement.id;
-    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
-        checked: true,
-        checkedDateTime: new Date()
+
+    let docReference = db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").doc(dayId);
+
+    docReference.get()
+    .then((doc) => {
+        let isDayChecked = doc.data().checked;
+        console.log(isDayChecked);
+        if (isDayChecked == true) {
+            console.log('it is checked!');
+            console.log('lets uncheck it');
+            
+            db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
+                checked: false,
+                checkedDateTime: new Date()
+            });
+        } else {
+            console.log('it is not checked');
+            console.log('let us check it');
+
+            db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
+                checked: true,
+                checkedDateTime: new Date()
+            });
+        }
+    })
+    .catch((error) => {
+        console.log('Error gettings documents: ' + error);
     });
 }
 
