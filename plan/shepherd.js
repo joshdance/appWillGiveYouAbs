@@ -230,19 +230,41 @@ function createDaysArray(tasksArray){
     let numberOfDays = 100;
     let dayNumber = 1;
     let futureDate;
+    let dayNumberTracker = 0;
 
-    //create day 1
-    //grab a task. if the days match add it to the day
-    //if the days don't match, create the next day and add the task
-    let newDayDate = new Date(); //empty new Date() created new date from current time
-    let newPlanDay = new planDay(newDayDate);
-    daysArray.push(newPlanDay);
+    //create all the days and add them to the days array
+    for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
+    
+        futureDate = addDays(planStartDate, dayIndex);
 
+        let newDayDate = futureDate; //empty new Date() created new date from current time
+        let newPlanDay = new planDay(newDayDate);
+        daysArray.push(newPlanDay); 
+    }
+    //take each task and compare it to the day, if it matches add it. 
     tasksArray.forEach(task => {
-        daysArray[0].dayTaskArray.push(task);
+        let taskDate = (task.data().date.toDate());  
+        let daysDate = daysArray[dayNumberTracker].date;
+        
+
+        daysDate.setHours(0, 0, 0, 0);
+        taskDate.setHours(0, 0, 0, 0);  
+        
+        console.log(taskDate); 
+        console.log(daysDate); 
+
+        if (daysDate.getTime() == taskDate.getTime()) {
+            console.log('same day! add the task');
+            daysArray[dayNumberTracker].dayTaskArray.push(task);
+        } else {
+            console.log('does not match, go to the next day');
+            dayNumberTracker = dayNumberTracker + 1
+        }
     });
 
-    //TODO - take each task, see if it matches the date, if not, create a new day and continue. 
+    //todo read the data out like this - daysArray[0].dayTaskArray[0].data().completed
+
+    
 }
 
 function planDay(date) {
