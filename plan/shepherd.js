@@ -96,36 +96,33 @@ function updateUiForUserState(user){
     }
 }
 
+//TODO update this page to use the daysArray
 function readInDaysAndDisplay(){
     //trying to get a subcollection
-    db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").orderBy("date").limit(75).get()
-    .then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-            
+    daysArray.forEach(day => {
+        console.log(day);
+        // let dayNumber = doc.data().dayNumber;
+        // let dayListItem = document.createElement('li');
+        
+        // var checkbox = document.createElement('input');
+        // checkbox.type = "checkbox";
+        // checkbox.checked = doc.data().checked;
+        // //did that work?
+        // checkbox.id = doc.id;
+        // checkbox.onclick = checkDayCheckbox;
 
-            let dayNumber = doc.data().dayNumber;
-            let dayListItem = document.createElement('li');
-            
-            var checkbox = document.createElement('input');
-            checkbox.type = "checkbox";
-            checkbox.checked = doc.data().checked;
-            //did that work?
-            checkbox.id = doc.id;
-            checkbox.onclick = checkDayCheckbox;
+        // var label = document.createElement('label')
 
-            var label = document.createElement('label')
+        // let planDayDate = (doc.data().date.toDate());            
+        // let planDayDateString = planDayDate.toDateString();
+        
+        // label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + planDayDateString));
+        
+        // dayListItem.appendChild(checkbox);
+        // dayListItem.appendChild(label);
 
-            let planDayDate = (doc.data().date.toDate());            
-            let planDayDateString = planDayDate.toDateString();
-            
-            label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + planDayDateString));
-            
-            dayListItem.appendChild(checkbox);
-            dayListItem.appendChild(label);
-
-            listOfDays.appendChild(dayListItem);   
-        })
-    })
+        // listOfDays.appendChild(dayListItem);   
+    });
 }
 
 function readInTasksAndPutIntoDays(){
