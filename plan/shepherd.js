@@ -1,12 +1,8 @@
-console.log(firebaseApp);
 const shepherdGreeting = 'Hello. I am Shepherd.';
-
 const auth = firebaseApp.auth();
 const db = firebaseApp.firestore();
-
 const whenSignedInSection = document.getElementById('whenSignedInSection');
 const whenSignedOutSection = document.getElementById('whenSignedOutSection');
-
 const signInWithGoogleButton = document.getElementById('signInWithGoogleButton');
 const signOutButton = document.getElementById('signOutButton');
 signInWithGoogleButton.onclick = () => auth.signInWithPopup(provider);
@@ -24,21 +20,16 @@ userDetails.appendChild(userMessageH3);
 auth.onAuthStateChanged(updateUiForUserState);
 
 //db section
-console.log(db);
-
 const planDetailsSection = document.getElementById('planDetailsSection');
-
-
 let plansReference;
 let unsubscribe;
 //end db section
 
-let listOfDays = document.getElementById('listOfDays');
 
+let listOfDays = document.getElementById('listOfDays');
 let dayNumberIncrement = 10;
 
 let daysArray = [];
-
 let tasksArray = [];
 let tasksArray2 = [];
 
@@ -56,9 +47,7 @@ function updateUiForUserState(user){
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach(doc => {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-                
+                // doc.data() is never undefined for query doc snapshots                
                 updatePlan(doc);
 
                 getDaysFromPlan(user.uid, doc.id)
@@ -69,23 +58,11 @@ function updateUiForUserState(user){
             console.log('Error gettings documents: ' + error);
         });
 
-        //trying again
-        db.collection('plans').get()
-        .then((snapshot) => {
-            snapshot.docs.forEach(doc => {
-                console.log(doc.data())
-            })
-        })
-
         //trying to get a subcollection
         db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").get()
         .then((snapshot) => {
             snapshot.docs.forEach(doc => {
-                console.log("DID DAYS WORK??????");
-                console.log(doc.data());
-
-                let completionPercentage = (doc.data().completedTasks / doc.data().numberOfTasks);
-                console.log('completionPercentage' + completionPercentage);        
+                let completionPercentage = (doc.data().completedTasks / doc.data().numberOfTasks);       
             })
         })
         
@@ -96,41 +73,39 @@ function updateUiForUserState(user){
     }
 }
 
-//TODO update this page to use the daysArray
 function readInDaysAndDisplay(){
-    //trying to get a subcollection
-    daysArray.forEach(day => {
-        console.log(day);
-        // let dayNumber = doc.data().dayNumber;
-        // let dayListItem = document.createElement('li');
-        
-        // var checkbox = document.createElement('input');
-        // checkbox.type = "checkbox";
-        // checkbox.checked = doc.data().checked;
-        // //did that work?
-        // checkbox.id = doc.id;
-        // checkbox.onclick = checkDayCheckbox;
+    daysArray.forEach(dayObject => {
+        let taskCompleted = dayObject.dayTaskArray[0].data().completed;
+        let dayNumber = dayObject.dayTaskArray[0].data().dayNumber;
+        let calorieGoalNumber = dayObject.dayTaskArray[0].data().calorieGoalNumber;
+        let taskID = dayObject.dayTaskArray[0].id;
+        let taskDate = (dayObject.dayTaskArray[0].data().date.toDate()); 
 
-        // var label = document.createElement('label')
-
-        // let planDayDate = (doc.data().date.toDate());            
-        // let planDayDateString = planDayDate.toDateString();
+        let dayListItem = document.createElement('li');
         
-        // label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + planDayDateString));
-        
-        // dayListItem.appendChild(checkbox);
-        // dayListItem.appendChild(label);
+        var checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.checked = taskCompleted;
+        checkbox.id = taskID;
+        checkbox.onclick = checkDayCheckbox;
 
-        // listOfDays.appendChild(dayListItem);   
+        var label = document.createElement('label')
+          
+        let planDayDateString = taskDate.toDateString();
+        
+        label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + planDayDateString));
+        
+        dayListItem.appendChild(checkbox);
+        dayListItem.appendChild(label);
+
+        listOfDays.appendChild(dayListItem);  
     });
 }
 
 function readInTasksAndPutIntoDays(){
-    console.log('loading and organizing tasks');
+    console.log('readInTasksAndPutIntoDays');
     db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").orderBy("date").get()
     .then((snapshot) => {
-        console.log(snapshot);
-
         tasksArray2 = snapshot;
         
         snapshot.docs.forEach(doc => {
@@ -150,8 +125,7 @@ function getDaysFromPlan(userId, planId){
     userDaysReference.get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            console.log("WE GOT SOMETHING!");
-            console.log("doc.id = " + doc.id, ", doc.data() = ", doc.data());
+
         });
     })
     .catch((error) => {
@@ -189,29 +163,29 @@ function checkDayCheckbox(event){
     let checkboxElement = event.srcElement;
     console.log(checkboxElement.id);
 
-    let dayId = checkboxElement.id;
+    let taskID = checkboxElement.id;
 
-    let docReference = db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days").doc(dayId);
+    let docReference = db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").doc(taskID);
 
     docReference.get()
     .then((doc) => {
-        let isDayChecked = doc.data().checked;
+        let isDayChecked = doc.data().completed;
         console.log(isDayChecked);
         if (isDayChecked == true) {
             console.log('it is checked!');
             console.log('lets uncheck it');
 
-            db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
-                checked: false,
-                checkedDateTime: new Date()
+            db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks/").doc(taskID).update({
+                completed: false,
+                completedDateTime: new Date()
             });
         } else {
             console.log('it is not checked');
             console.log('let us check it');
 
-            db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/days/").doc(dayId).update({
-                checked: true,
-                checkedDateTime: new Date()
+            db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks/").doc(taskID).update({
+                completed: true,
+                completedDateTime: new Date()
             });
         }
     })
@@ -221,7 +195,7 @@ function checkDayCheckbox(event){
 }
 
 function createDaysArray(tasksArray){
-    console.log('creating the days array');
+    console.log('createDaysArray');
     let planStartDate = new Date("02 May 2022 06:30:00");
     let planEndDate = new Date("10 Aug 2022 06:30:00");
     let numberOfDays = 100;
@@ -246,22 +220,17 @@ function createDaysArray(tasksArray){
 
         daysDate.setHours(0, 0, 0, 0);
         taskDate.setHours(0, 0, 0, 0);  
-        
-        console.log(taskDate); 
-        console.log(daysDate); 
 
         if (daysDate.getTime() == taskDate.getTime()) {
-            console.log('same day! add the task');
             daysArray[dayNumberTracker].dayTaskArray.push(task);
         } else {
-            console.log('does not match, go to the next day');
+            //didn't match to go next day
             dayNumberTracker = dayNumberTracker + 1
         }
-    });
+    });    
 
-    //todo read the data out like this - daysArray[0].dayTaskArray[0].data().completed
-
-    
+    console.log('days Array is created, now read it');
+    readInDaysAndDisplay();
 }
 
 function planDay(date) {
@@ -279,9 +248,7 @@ function createPlan(){
     for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
     
         futureDate = addDays(planStartDate, dayIndex);
-        //why isn't this showing up
-        console.log('day number ' + (dayIndex+1) + ', the date is = ' + futureDate.toDateString());
-
+        
         let dayData = {
             
             date: futureDate,
@@ -322,31 +289,6 @@ function addDays(date, days) {
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 function startUpTheCalculator() {
     console.log(shepherdGreeting);
-    readInDaysAndDisplay();
+
     readInTasksAndPutIntoDays();
 }
-
-
-// let dayData = {
-            
-//     whereCreated: 'createPlan in the loop',
-//     date: futureDate,
-//     dayNumber : dayIndex, 
-//     todoList: {
-//         sleepTodo: {
-//             sleepGoal: 8,
-//             sleepTodoComplete: false
-//         },
-//         calorieTodo: {
-//             calorieGoal: 1500,
-//             calorieTodoComplete: false
-//         },
-//         workoutTodo: {
-//             workoutTodoComplete: false
-//         },
-//         takePictureGoal: true,
-//         mealsPlannedTodo: {
-//             mealsPlannedTodoComplete: false
-//         }
-//     }
-// };
