@@ -25,8 +25,10 @@ let plansReference;
 let unsubscribe;
 //end db section
 
+let currentDayArea = document.getElementById('currentDayArea');
+let futureDaysArea = document.getElementById('futureDaysArea');
+let completedDaysArea = document.getElementById('completedDaysArea');
 
-let listOfDays = document.getElementById('listOfDays');
 let dayNumberIncrement = 10;
 
 let daysArray = [];
@@ -75,30 +77,65 @@ function updateUiForUserState(user){
 
 function readInDaysAndDisplay(){
     daysArray.forEach(dayObject => {
-        let taskCompleted = dayObject.dayTaskArray[0].data().completed;
-        let dayNumber = dayObject.dayTaskArray[0].data().dayNumber;
-        let calorieGoalNumber = dayObject.dayTaskArray[0].data().calorieGoalNumber;
-        let taskID = dayObject.dayTaskArray[0].id;
-        let taskDate = (dayObject.dayTaskArray[0].data().date.toDate()); 
 
-        let dayListItem = document.createElement('li');
-        
-        var checkbox = document.createElement('input');
-        checkbox.type = "checkbox";
-        checkbox.checked = taskCompleted;
-        checkbox.id = taskID;
-        checkbox.onclick = checkDayCheckbox;
+        let dayDiv = document.createElement('div');
+        dayDiv.classList.add('dayDiv');
 
-        var label = document.createElement('label')
-          
-        let planDayDateString = taskDate.toDateString();
-        
-        label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + planDayDateString));
-        
-        dayListItem.appendChild(checkbox);
-        dayListItem.appendChild(label);
+        let dayHeader = document.createElement('h3');
+        dayHeader.classList.add('dayHeader');
+        let formattedDate = dayObject.date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"long", day:"numeric"}) 
+        dayHeader.innerText = formattedDate;
 
-        listOfDays.appendChild(dayListItem);  
+        dayDiv.appendChild(dayHeader);
+
+        let dayObjectDate = dayObject.date;
+        let todaysDate = new Date();  
+       
+        dayObjectDate.setHours(0, 0, 0, 0);
+        todaysDate.setHours(0, 0, 0, 0);  //remove the time component to just check the date
+
+        //which section does it go in?
+        if (dayObjectDate.getTime() == todaysDate.getTime()) {
+            console.log('it is today');
+            currentDayArea.appendChild(dayDiv);
+        } else if (dayObjectDate.getTime() > todaysDate.getTime()) {
+            console.log('is the future jimmy!');
+            futureDaysArea.appendChild(dayDiv);
+        } else if (dayObjectDate.getTime() < todaysDate.getTime()){
+            console.log('it is the past');
+            completedDaysArea.appendChild(dayDiv);
+        }
+
+        let listOfTasks = document.createElement('ol');
+
+        let dayTaskArray = dayObject.dayTaskArray;
+        dayTaskArray.forEach(taskObject => {
+            let taskCompleted = taskObject.data().completed;
+            let dayNumber = taskObject.data().dayNumber;
+            let calorieGoalNumber = taskObject.data().calorieGoalNumber;
+            let taskID = taskObject.id;
+            let taskDate = (taskObject.data().date.toDate());
+            let taskType = taskObject.data().type;
+            let dayListItem = document.createElement('li');
+            
+            var checkbox = document.createElement('input');
+            checkbox.type = "checkbox";
+            checkbox.checked = taskCompleted;
+            checkbox.id = taskID;
+            checkbox.onclick = checkDayCheckbox;
+    
+            var label = document.createElement('label')
+              
+            let planDayDateString = taskDate.toDateString();
+            
+            label.appendChild(document.createTextNode('Day ' + dayNumber + ' Date: ' + planDayDateString + ' type = ' + taskType));
+            
+            dayListItem.appendChild(checkbox);
+            dayListItem.appendChild(label);
+    
+            listOfTasks.appendChild(dayListItem);
+            dayDiv.appendChild(listOfTasks); 
+        }); 
     });
 }
 
@@ -108,9 +145,11 @@ function readInTasksAndPutIntoDays(){
     .then((snapshot) => {
         tasksArray2 = snapshot;
         
+        console.log('tasksArray2 length = ' + tasksArray2.length)
         snapshot.docs.forEach(doc => {
             tasksArray.push(doc);
         })
+        console.log('tasksArray length = ' + tasksArray.length)
         createDaysArray(tasksArray);
     })
 }
@@ -244,7 +283,56 @@ function createPlan(){
     let dayNumber = 1;
     let futureDate;
 
-    //create calorie tasks
+    // //create calorie tasks
+    // for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
+    
+    //     futureDate = addDays(planStartDate, dayIndex);
+        
+    //     let dayData = {
+            
+    //         date: futureDate,
+    //         completed: false,
+    //         type: 'calorieGoal',
+    //         calorieGoalNumber: 1500,
+    //         text: "Did you eat " + this.calorieGoalNumber + "calories today?",
+    //         userResult: 0,
+    //         dayNumber : dayIndex
+    //     };
+          
+    //     db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").add(dayData);
+    // }
+
+    // //create workout tasks
+    // for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
+    //     futureDate = addDays(planStartDate, dayIndex);
+
+    //     let taskData = {
+
+    //         date: futureDate,
+    //         completed: false,
+    //         type: 'workoutGoal',
+    //         workoutType: 'general',
+    //         dayNumber : dayIndex
+    //     };
+
+    //     db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").add(taskData);
+    // }
+
+    // //create sleep goals
+    // for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
+    //     futureDate = addDays(planStartDate, dayIndex);
+
+    //     let taskData = {
+    //         date: futureDate,
+    //         completed: false,
+    //         type: 'sleepGoal',
+    //         dayNumber : dayIndex
+    //     };
+
+    //     db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").add(taskData);
+    // }
+
+    //create meal plan tasks
     for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
     
         futureDate = addDays(planStartDate, dayIndex);
@@ -253,31 +341,13 @@ function createPlan(){
             
             date: futureDate,
             completed: false,
-            type: 'calorieGoal',
-            calorieGoalNumber: 1500,
-            text: "Did you eat " + this.calorieGoalNumber + "calories today?",
-            userResult: 0,
+            type: 'mealPlanGoal',
             dayNumber : dayIndex
         };
           
         db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").add(dayData);
     }
-
-    //create workout tasks
-    for (let dayIndex = 0; (dayIndex - 1) < numberOfDays; dayIndex++) {
-        futureDate = addDays(planStartDate, dayIndex);
-
-        let taskData = {
-
-            date: futureDate,
-            completed: false,
-            type: 'workoutGoal',
-            workoutType: 'general',
-            dayNumber : dayIndex
-        };
-
-        db.collection("plans/QJjvFnRpxOVFj7ZdjM3w/tasks").add(taskData);
-    }
+    
 }
 
 function addDays(date, days) {
