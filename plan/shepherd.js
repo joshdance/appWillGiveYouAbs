@@ -273,6 +273,7 @@ function createDaysArray(tasksArray){
 }
 
 function planDay(date) {
+    //create the day object with an empty task array.
     this.date = date;
     this.dayTaskArray = [];
 }

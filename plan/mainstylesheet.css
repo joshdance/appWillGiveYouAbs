@@ -41,11 +41,16 @@ nav ul li a {
 .mainContainer {
     display: block;
     width: 100%;
-    max-width: 645px;
     margin-right: auto;
     margin-left: auto;
     clear: both;
 }
+
+@media (min-width: 600px) {
+    .column {
+      width: 50%;
+    }
+  }
 
 /* Table */
 table { 
@@ -342,7 +347,7 @@ ol {
 .inputform {
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
-    border-radius: 0px;
+    border-radius: 10px;
     width: 100%;
     max-width: 350px;
     padding: 15px;
