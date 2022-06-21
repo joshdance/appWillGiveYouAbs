@@ -43,6 +43,7 @@ nav ul li a {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
+    max-width: 645px;   
     clear: both;
 }
 
