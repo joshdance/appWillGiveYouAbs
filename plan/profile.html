@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- mainCalc.js + summerbodstyle.css -->
+<html>
+<head>
+	<title>Abs Calculator</title>
+	<link rel="shortcut icon" href="#" />
+	<!-- FireBase -->
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+	<script>
+		// Initialize Firebase
+		const firebaseConfig = {
+		apiKey: "AIzaSyCHccy_g948A35CpYi9Bbwi76CtBLJm2s8",
+		authDomain: "abs-plan.firebaseapp.com",
+		projectId: "abs-plan",
+		storageBucket: "abs-plan.appspot.com",
+		messagingSenderId: "138522602384",
+		appId: "1:138522602384:web:39d9b90a4297f48d3fe115",
+		measurementId: "G-G3PBWWE9NJ"
+		};
+
+		const firebaseApp = firebase.initializeApp(firebaseConfig);
+	</script>
+	<!-- end Firebase -->
+
+	<script defer src="profile.js"></script>
+	<noscript>You need to enable JavaScript to run this calculator.</noscript>
+	<link rel="stylesheet" type="text/css" href="profile.css">
+
+</head>
+<body>
+<nav>
+	<ul>
+		<li><a href="summerbod2021.html">SummerBod</a></li>
+		<li><a href="calculator.html">Abs Calculator</a></li>
+		<li><a href="macrostocalories.html">Macros to Calories Calculator</a></li>
+		<li><a href="index.html">Essay</a></li>
+		<li><a href="howtolose1percentbodyfat.html">How to Lose 1% Body Fat</a></li>
+		<li><a href="howtolose10pounds.html">How to Lose 10 <span name="selectedMassUnitOfMeasurement">pounds</span></a></li>
+		<li><a href="about.html">About</a></li>
+		<li class="topNavRight"><a href="login.html">Login</a></li>
+		<li class="hamburgerIcon"><a href="">&#9776</a></li>
+	</ul>
+</nav>
+
+<div class="mainContainer">
+	<h1>Profile</h1>
+
+	<div id="whenSignedOutSection">
+		<div id="signInMessage">
+			<h3>Sign in to view your Profile.</h3>
+		</div>
+		<button id="signInWithGoogleButton">Sign in with Google</button>
+	</div>
+	<div id="whenSignedInSection" hidden="true">
+		<div id="userDetails">
+			<!-- user details go here -->
+		</div>
+
+		<button id="signOutButton">Sign Out</button>
+	</div>
+</div> <!--End main container-->
+</body>
+</html>
