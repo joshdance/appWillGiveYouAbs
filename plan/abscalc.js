@@ -263,9 +263,8 @@ function checkDayCheckbox(event){
 
 function createDaysArray(tasksArray){
     console.log('createDaysArray');
-    let planStartDate = new Date("02 May 2022 06:30:00");
-    let planEndDate = new Date("10 Aug 2022 06:30:00");
-    let numberOfDays = 100;
+    let planStartDate = new Date(); //can set a different start date -     // let planStartDate = new Date("02 May 2022 06:30:00");
+    let numberOfDays = user.numberOfDaysTilGoal;
     let dayNumber = 1;
     let futureDate;
     let dayNumberTracker = 0;
