@@ -128,7 +128,7 @@ function editWeight(event){
 
     let editUserWeightButton = event.currentTarget;
     let userWeight = document.getElementById(editUserWeightButton.dataset.pairedId);
-    
+
     userWeight.innerHTML = 'Weight: ' + AbsUser.weight;
 }
 
@@ -141,6 +141,8 @@ function getUserData(user){
     //can change comes from firestore
     AbsUser.chosenName = 'Josh Danger Dance';
     AbsUser.weight = 199;
+
+    //https://stackoverflow.com/questions/40286442/firebase-adding-additional-user-data-to-separate-db
 }
 
 let AbsUser = new Object;
