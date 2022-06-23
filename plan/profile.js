@@ -65,6 +65,8 @@ function updateUiForUserState(user){
 
 function generateProfilePage(user){
 
+    userDetails.replaceChildren(); //you can include an array of children to replace but blank just clears https://stackoverflow.com/a/65413839/1296746
+
     //user name
     let userNamePairDiv = document.createElement("div");
     userNamePairDiv.classList.add('valueButtonPairContainer');
