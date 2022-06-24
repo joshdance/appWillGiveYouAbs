@@ -1,5 +1,7 @@
 const profileGreeting = 'Hello. I am Profile.';
 
+let AbsUser;
+
 const auth = firebaseApp.auth();
 const db = firebaseApp.firestore();
 const whenSignedInSection = document.getElementById('whenSignedInSection');
@@ -63,93 +65,93 @@ function updateUiForUserState(user){
     }
 }
 
-function generateProfilePage(user){
-
-    userDetails.replaceChildren(); //you can include an array of children to replace but blank just clears https://stackoverflow.com/a/65413839/1296746
-
-    //user name
-    let userNamePairDiv = document.createElement("div");
-    userNamePairDiv.classList.add('valueButtonPairContainer');
-    let userName = document.createElement("div");
-    userName.id = 'userName';
-    userName.innerHTML = 'Name: ' + AbsUser.chosenName;
-    userNamePairDiv.appendChild(userName);
-
-    let editUserNameButton = document.createElement("button");
-    editUserNameButton.id ="editUserNameButton";
-    editUserNameButton.innerHTML = "Edit";
-    editUserNameButton.dataset.pairedId = userName.id;
-    userNamePairDiv.appendChild(editUserNameButton);
-
-    console.log(AbsUser.chosenName);
-    editUserNameButton.onclick = editUserName;
-
-    userDetails.appendChild(userNamePairDiv);
-
-    //user weight
-    let userWeightPairDiv = document.createElement("div");
-    userWeightPairDiv.classList.add('valueButtonPairContainer');
-    let userWeight = document.createElement("div");
-    userWeight.id = 'userWeight';
-    userWeight.innerHTML = 'Weight: ' + AbsUser.weight;
-    userWeightPairDiv.appendChild(userWeight);
-
-    let editUserWeightButton = document.createElement("button");
-    editUserWeightButton.id ="editUserWeightButton";
-    editUserWeightButton.innerHTML = "Edit";
-    editUserWeightButton.dataset.pairedId = userWeight.id;
-    userWeightPairDiv.appendChild(editUserWeightButton);
-
-    console.log(AbsUser.weight);
-    editUserWeightButton.addEventListener('click', editWeight);
-
-    userDetails.appendChild(userWeightPairDiv);
-  
-    //user email - can't set comes from auth
-    let emailDiv = document.createElement("div");
-    let emailText = document.createElement("p");
-
-    emailText.innerHTML = 'Email: ' + user.email;
-    emailDiv.appendChild(emailText);
-    userDetails.append(emailDiv);
-}
-
-function editUserName(event){
-    console.log('editing user name');
-    AbsUser.chosenName = 'Josh NASA Dance';
-
-    let button = event.currentTarget;
-    let userInfo = document.getElementById(button.dataset.pairedId);
-
-    userInfo.innerHTML = 'Name: ' + AbsUser.chosenName;
-}
-
-function editWeight(event){
-    console.log('editing user weight');
-    AbsUser.weight = 165;
-
-    let editUserWeightButton = event.currentTarget;
-    let userWeight = document.getElementById(editUserWeightButton.dataset.pairedId);
-
-    userWeight.innerHTML = 'Weight: ' + AbsUser.weight;
-}
-
 function getUserData(user){
+
+    AbsUser = new Object;
+
     //can't change comes from auth
     AbsUser.AuthDisplayName = user.displayName;
     AbsUser.FirebaseId = user.uid;
     AbsUser.AuthEmail = user.email;
 
-    //can change comes from firestore
+    //load from firestore
     AbsUser.chosenName = 'Josh Danger Dance';
     AbsUser.weight = 199;
+    AbsUser.bodyFatPercentage = 27;
 
     //https://stackoverflow.com/questions/40286442/firebase-adding-additional-user-data-to-separate-db
 }
 
-let AbsUser = new Object;
+function generateProfilePage(user){
 
-//AbsUser.FirebaseId = user.uid;
+    userDetails.replaceChildren(); //you can include an array of children to replace but blank just clears https://stackoverflow.com/a/65413839/1296746
+
+    let arrayOfUserProperties = Object.entries(AbsUser);
+    arrayOfUserProperties.forEach(userPropertyKeyValuePair => {
+        console.log(userPropertyKeyValuePair[0]);
+        console.log(userPropertyKeyValuePair[1]);
+
+        //container
+        let containerElement = document.createElement("div");
+        containerElement.classList.add('valueButtonPairContainer');
+
+        //label
+        let labelElement = document.createElement("div");
+        labelElement.classList.add('labelClass');
+        labelElement.id = userPropertyKeyValuePair[0] + 'Label';
+        labelElement.innerHTML = userPropertyKeyValuePair[0] + ':';
+        containerElement.appendChild(labelElement);
+
+        //information
+        let infoElement = document.createElement("div");
+        infoElement.id = userPropertyKeyValuePair[0];
+        infoElement.innerHTML = userPropertyKeyValuePair[1];
+        containerElement.appendChild(infoElement);
+
+        //edit button
+        let editButton = document.createElement("button");
+        editButton.id = userPropertyKeyValuePair[0] + 'Button';
+        editButton.innerHTML = "Edit";
+        editButton.dataset.pairedId = infoElement.id;
+        containerElement.appendChild(editButton);
+        editButton.onclick = editUserInfo;
+
+        userDetails.appendChild(containerElement);
+    });
+}
+
+function editUserInfo(event){
+    let button = event.currentTarget;
+    let userInfoElement = document.getElementById(button.dataset.pairedId);
+    userInfoPropertyId = userInfoElement.id;
+
+    //text field
+    let editFieldElement = document.createElement("input");
+    editFieldElement.type = "text";
+    editFieldElement.value = AbsUser[userInfoPropertyId];
+    userInfoElement.replaceWith(editFieldElement);
+
+    //create save button
+    let saveButton = document.createElement("button");
+    saveButton.id = userInfoPropertyId + 'SaveButton';
+    saveButton.innerHTML = "Save";
+    saveButton.dataset.pairedId = userInfoPropertyId;
+    saveButton.onclick = function(){
+        AbsUser[userInfoPropertyId] = editFieldElement.value 
+        
+        console.log('saving ' + AbsUser[userInfoPropertyId]);
+
+        //update info element
+        userInfoElement.innerHTML = AbsUser[userInfoPropertyId];
+
+        //swap back to non-edit mode
+        editFieldElement.replaceWith(userInfoElement);
+        saveButton.replaceWith(button);
+    };
+
+    //swap buttons
+    button.replaceWith(saveButton);
+}
 
 // user.name
 // user.bodyFatPercentage

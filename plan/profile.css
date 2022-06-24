@@ -10,6 +10,10 @@ html {
     display: flex;
 }
 
+.labelClass {
+    padding-right: 5px;
+}
+
 /* --------- Nav Bar ------------------ */
 nav {
     display: block;
