@@ -2,8 +2,12 @@ const profileGreeting = 'Hello. I am Profile.';
 
 let AbsUser;
 
+//firebase setup
 const auth = firebaseApp.auth();
 const db = firebaseApp.firestore();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+//get elements on the page
 const whenSignedInSection = document.getElementById('whenSignedInSection');
 const whenSignedOutSection = document.getElementById('whenSignedOutSection');
 const signInWithGoogleButton = document.getElementById('signInWithGoogleButton');
@@ -11,8 +15,8 @@ const signOutButton = document.getElementById('signOutButton');
 signInWithGoogleButton.onclick = () => auth.signInWithPopup(provider);
 signOutButton.onclick = () => auth.signOut();
 
+//TODO rename user details section
 const userDetails = document.getElementById('userDetails');
-const provider = new firebase.auth.GoogleAuthProvider();
 
 let userMessageH3 = document.createElement("h3");
 userDetails.appendChild(userMessageH3);
@@ -74,7 +78,7 @@ function getUserData(user){
     AbsUser.FirebaseId = user.uid;
     AbsUser.AuthEmail = user.email;
 
-    //load from firestore
+    //TODO load from firestore
     AbsUser.chosenName = 'Josh Danger Dance';
     AbsUser.weight = 199;
     AbsUser.bodyFatPercentage = 27;
@@ -137,7 +141,9 @@ function editUserInfo(event){
     saveButton.innerHTML = "Save";
     saveButton.dataset.pairedId = userInfoPropertyId;
     saveButton.onclick = function(){
-        AbsUser[userInfoPropertyId] = editFieldElement.value 
+        AbsUser[userInfoPropertyId] = editFieldElement.value;
+
+        //TODO save to firestore
         
         console.log('saving ' + AbsUser[userInfoPropertyId]);
 
