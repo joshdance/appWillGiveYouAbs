@@ -1,9 +1,10 @@
-const profileGreeting = 'Hello. I am Profile.';
-
+const profileGreeting = 'Hello. I Profile.';
 let AbsUser;
 
 //firebase setup
 const auth = firebaseApp.auth();
+auth.onAuthStateChanged(updateUiForUserState); //this is the function that gets called whenever an auth state change is detected
+
 const db = firebaseApp.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -18,14 +19,8 @@ signOutButton.onclick = () => auth.signOut();
 //TODO rename user details section
 const userDetails = document.getElementById('userDetails');
 
-let userMessageH3 = document.createElement("h3");
-userDetails.appendChild(userMessageH3);
-
-auth.onAuthStateChanged(updateUiForUserState);
-
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 
-//todo - refactor to have each function separate, not nested in one giant function.
 function startUpTheCalculator() {
     console.log(profileGreeting);
 }
@@ -37,8 +32,9 @@ function updateUiForUserState(user){
         whenSignedOutSection.hidden = true;
 
         getUserData(user);
-
         generateProfilePage(user);
+        setUserData(user);
+
 
         allPlansReference = db.collection('plans');
 
@@ -69,21 +65,50 @@ function updateUiForUserState(user){
     }
 }
 
+function setUserData(user){
+
+    let arrayOfUserProperties = Object.entries(AbsUser);
+    arrayOfUserProperties.forEach(userPropertyKeyValuePair => {
+        
+        console.log(userPropertyKeyValuePair[0]);
+        console.log(userPropertyKeyValuePair[1]);
+    });
+
+    let userData = {
+        firstName: 'Joosh',
+        lastName: 'Apollo Dance',
+        weight: 199,
+        bodyFatPercentage: 27
+    };
+
+    db.collection("users").doc(user.uid).set(userData);
+
+    db.collection("users").doc(user.uid).update({
+        planSet: true,
+        weight: 199
+    });
+}
+
 function getUserData(user){
 
-    AbsUser = new Object;
+    db.collection("users").doc(user.uid).get()
+    .then((doc) => {
+        AbsUser.lastName = doc.data().lastName;
+        AbsUser.firstName = doc.data().firstName;
+        AbsUser.weight = doc.data().weight;
+        AbsUser.bodyFatPercentage = doc.data().bodyFatPercentage;
 
-    //can't change comes from auth
-    AbsUser.AuthDisplayName = user.displayName;
-    AbsUser.FirebaseId = user.uid;
-    AbsUser.AuthEmail = user.email;
+        AbsUser = new Object;
 
-    //TODO load from firestore
-    AbsUser.chosenName = 'Josh Danger Dance';
-    AbsUser.weight = 199;
-    AbsUser.bodyFatPercentage = 27;
-
-    //https://stackoverflow.com/questions/40286442/firebase-adding-additional-user-data-to-separate-db
+        //can't change comes from auth
+        AbsUser.AuthDisplayName = user.displayName;
+        AbsUser.FirebaseId = user.uid;
+        AbsUser.AuthEmail = user.email;
+        }
+    )
+    .catch((error) => {
+        console.log('Error gettings documents: ' + error);
+    });
 }
 
 function generateProfilePage(user){
@@ -129,17 +154,19 @@ function editUserInfo(event){
     let userInfoElement = document.getElementById(button.dataset.pairedId);
     userInfoPropertyId = userInfoElement.id;
 
-    //text field
+    //create text field
     let editFieldElement = document.createElement("input");
     editFieldElement.type = "text";
     editFieldElement.value = AbsUser[userInfoPropertyId];
-    userInfoElement.replaceWith(editFieldElement);
+    userInfoElement.replaceWith(editFieldElement); //swap out info for editable field
 
     //create save button
     let saveButton = document.createElement("button");
     saveButton.id = userInfoPropertyId + 'SaveButton';
     saveButton.innerHTML = "Save";
     saveButton.dataset.pairedId = userInfoPropertyId;
+    button.replaceWith(saveButton); //swap buttons
+    
     saveButton.onclick = function(){
         AbsUser[userInfoPropertyId] = editFieldElement.value;
 
@@ -153,10 +180,8 @@ function editUserInfo(event){
         //swap back to non-edit mode
         editFieldElement.replaceWith(userInfoElement);
         saveButton.replaceWith(button);
-    };
-
-    //swap buttons
-    button.replaceWith(saveButton);
+        setUserData(user);
+    };   
 }
 
 // user.name
@@ -188,8 +213,6 @@ function editUserInfo(event){
 
 let maleEstimateTextArray;
 let femaleEstimateTextArray;
-
-
 
 //db section
 const planDetailsSection = document.getElementById('planDetailsSection');
