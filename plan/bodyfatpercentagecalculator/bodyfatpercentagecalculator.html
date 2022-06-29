@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Body Fat Percentage Calculator</title>
+	<link rel="shortcut icon" href="#" />
+	<!-- FireBase -->
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+	<script>
+		// Initialize Firebase
+		const firebaseConfig = {
+		apiKey: "AIzaSyCHccy_g948A35CpYi9Bbwi76CtBLJm2s8",
+		authDomain: "abs-plan.firebaseapp.com",
+		projectId: "abs-plan",
+		storageBucket: "abs-plan.appspot.com",
+		messagingSenderId: "138522602384",
+		appId: "1:138522602384:web:39d9b90a4297f48d3fe115",
+		measurementId: "G-G3PBWWE9NJ"
+		};
+
+		const firebaseApp = firebase.initializeApp(firebaseConfig);
+	</script>
+	<!-- end Firebase -->
+
+	<script defer src="bodyfatpercentagecalculator.js"></script>
+	<noscript>You need to enable JavaScript to run this calculator.</noscript>
+	<link rel="stylesheet" type="text/css" href="bodyfatpercentagecalculator.css">
+</head>
+<body>
+<nav>
+	<ul>
+		<li><a href="/bodyfatpercentagecalculator/bodyfatpercentagecalculator.html">Body Fat Percentage Calculator</a></li>
+		<li><a href="summerbod2021.html">SummerBod</a></li>
+		<li><a href="calculator.html">Abs Calculator</a></li>
+		<li><a href="macrostocalories.html">Macros to Calories Calculator</a></li>
+		<li><a href="index.html">Essay</a></li>
+		<li><a href="howtolose1percentbodyfat.html">How to Lose 1% Body Fat</a></li>
+		<li><a href="howtolose10pounds.html">How to Lose 10 <span name="selectedMassUnitOfMeasurement">pounds</span></a></li>
+		<li><a href="about.html">About</a></li>
+		<li class="topNavRight"><a href="profile.html">Login</a></li>
+		<li class="hamburgerIcon"><a href="">&#9776</a></li>
+	</ul>
+</nav>
+
+<div class="mainContainer">
+	<h1>Body Fat Percentage Calculator</h1>
+
+	<p>Weight doesn't matter. How much body fat you have matters. You could be 200 pounds, and super strong and lean at 10% body fat, or you could be 200 pounds, weak, 35% body fat. Weight doesn't matter. Body fat percentage does.</p>
+	<p>So we need to measure (estimate) your body fat percentage.</p>
+	<p>That is what this calculator is for! Use it to estimate what percentage of your body weight is fat.</p>
+	<p>We can then calculate what you would need to weight to reach your goal body fat percentage.</p>
+
+	<h2>How to Measure Body Fat Percentage</h2>
+	<h3>How to measure fat mass?</h3>
+
+	<div>
+		There are many ways to measure fat mass. They all have their pros and cons. I have researched the accuracy and availability of each. I won't go into all the details here but if you are interested, put your email in the box at the end of this essay and I will notify you when I release that essay. 
+	</div>
+	<div>
+		Different methods to measure body fat are:
+		<ol>
+			<li>Estimate with pictures✅</li>
+			<li>Waist measurements👎🏻⚖️</li>
+			<li>Caliper measurements👷🏼‍♂️</li>
+			<li>Electrical impedance scale✅</li>
+			<li>Calculator from tape measurements👷🏼‍♂️</li>
+			<li>Bod Pod💵💵</li>
+			<li>Dexa Scan💵💵</li>
+			<li>Hydrostatic weighting💵💵💵</li>
+			<li>4 compartment analysis💵💵💵</li>
+			<li>Fat removal and measurement ☠️</li>
+	</ol></div>
+	<div>
+		#10 is the most accurate way to measure fat mass but this would kill you. ☠️ Don't do this. Waist measurements are not accurate enough alone. Caliper and tape measurements are too hard. Bod Pod, Dexa, Hydrostatic, and 4 comartment are too expensive. That leaves us with impedance and estimate with pictures. 
+	</div>
+	<div>
+		The easiest way is to use a electrical impedance scale. Fat is more reistance to electric currents than muscle, so the scale can use that to estimate your body fat levels. 
+	</div>
+	<div>
+		If you don't have an impedance scale, the next easiest way, which you can do right now, is to visually estimate it using comparison charts and progress pictures. It can be accurate enough to point us in the right direction. 
+	</div>
+
+
+	<div id="whenSignedOutSection">
+		<div id="signInMessage">
+			<h3>Sign in to view your Profile.</h3>
+		</div>
+		<button id="signInWithGoogleButton">Sign in with Google</button>
+	</div>
+	<div id="whenSignedInSection" hidden="true">
+		<div id="userDetails">
+			<!-- user details go here -->
+		</div>
+
+		<button id="signOutButton">Sign Out</button>
+	</div>
+</div> <!--End main container-->
+</body>
+</html>
