@@ -10,6 +10,10 @@ html {
     display: flex;
 }
 
+.inputContainer {
+    display: flex;
+}
+
 .labelClass {
     padding-right: 5px;
 }
