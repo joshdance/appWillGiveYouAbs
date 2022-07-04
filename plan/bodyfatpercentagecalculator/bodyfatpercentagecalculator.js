@@ -1,5 +1,6 @@
 const profileGreeting = 'Hello. I Profile.';
 let AbsUser;
+let userSelectedBodyFatPercentage;
 
 //firebase setup
 const auth = firebaseApp.auth();
@@ -21,9 +22,94 @@ const userDetails = document.getElementById('userDetails');
 
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 
+let percentInputBox;
+let percentInputSlider;
+let saveBodyFatPercentage;
+
 function startUpTheCalculator() {
     console.log(profileGreeting);
+
+    percentInputBox = document.getElementById('percentInputBox');
+    percentInputSlider = document.getElementById('percentInputSlider');
+
+    percentInputSlider.onchange = getSliderValueAndUpdatePercentageInputBox;
+    percentInputBox.onchange = getBoxValueAndUpdateSlider;
+
+    saveBodyFatPercentage = document.getElementById('saveBodyFatPercentage');
+    saveBodyFatPercentage.onclick = saveBodyFatPercentageToDB;
 }
+
+function getSliderValueAndUpdatePercentageInputBox(){
+    userSelectedBodyFatPercentage = percentInputSlider.value;
+    percentInputBox.value = percentInputSlider.value;
+    updateBodyFatPercentageText();
+}
+
+function getBoxValueAndUpdateSlider(){
+    userSelectedBodyFatPercentage = percentInputBox.value;
+    percentInputSlider.value = percentInputBox.value;
+    updateBodyFatPercentageText();
+}
+
+function updateBodyFatPercentageText(){
+    let bodyFatExplainerDiv = document.getElementById('bodyFatExplainerDiv');
+    bodyFatExplainerDiv.replaceChildren(); //can give it an array or null clears it
+
+    let text = document.createElement('p');
+    text.textContent = generateBodyFatText(userSelectedBodyFatPercentage);
+    bodyFatExplainerDiv.appendChild(text);
+}
+
+function saveBodyFatPercentageToDB(event){
+    console.log('save it to the DB');
+    
+    db.collection("users").doc(AbsUser.FirebaseId).update({
+        bodyFatPercentage: userSelectedBodyFatPercentage
+    });
+}
+
+function generateBodyFatText(bodyFatPercentage){
+
+    let bodyFatText;
+
+    if ((bodyFatPercentage <= 5)) {
+        bodyFatText = "5% body fat: Ridiculously (dangerously) lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin.";
+    } else if ((bodyFatPercentage > 5) && (bodyFatPercentage <= 8)) {
+        bodyFatText = "6-8% body fat: Extremely low levels of body fat. Absolutely chiseled from stone. Think Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
+    } else {
+        bodyFatText = 'havent coded this one yet';
+    }
+    
+    let fourtyPercent = "40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
+    let thirtyfivePercent = "35% body fat: This percentage of body fat is more of the beer gut look. The waist circumference at this point can be about 40+ inches."
+    let thirtyPercent = "30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist."
+    let twentyfivePercent = "25% body fat: This is the start of average territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
+    let twentyPercent = "20% body fat: Low end of the average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
+    let fifteenPercent = "15% body fat: This percentage of body fat usually fits into the “lean and fit” category. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
+    let tenToTwelvePercent = "10-12% body fat: Very in shape. This is the beach body fat percentage that most people strive for 🏝. Your abs can be clearly seen. At this level is some defined veins in the arms and legs."; 
+    //let maleEstimateTextArray = [fourtyPercent, thirtyfivePercent, thirtyPercent, twentyfivePercent, twentyPercent, fifteenPercent, tenToTwelvePercent, sixToEightPercent, fivePercent];
+
+    let femaleFiftyPercent = "50% body fat: Significant fat accumulation in all body regions. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese. This skin will appear more dimple or “cottage cheese” like.";
+    let femaleFourtyfivePercent = "45% body fat: At this body weight, the hips become noticeably wider than the shoulders. The general hip circumference may reach 45+ inches and waist circumference 35+ inches. The skin may start to lose its smooth nature at this percentage level.";
+    let femaleFourty = "40% body fat: At this level a women is considered obese. This means there is not a very balanced muscle to fat ratio. Some women may not look like they have 40% body fat, but their muscle mass is lower, which brings their percentage to 40%.";
+    let femaleThirtyfive = "35% body fat: The body has more fat accumulations and the face and neck begin to appear fuller and more round. Belly fat is also more pronounced at this level as well.";
+    let femaleThirty = "30% body fat: At this level there is more accumulation of fat in the hips and butt region. 30% body fat is considered a high average for women.";
+    let femaleTwentyfive = "25% body fat: This percentage is on the lower end of what is average for women. Abs and other muscles are not as apparent at this level, and there is generally more fat around the hips and buttocks areas."; 
+    let femaleTwentyToTwentytwo = "20-22% body fat: This is the beach body fat percentage that most people strive for 🏝. This level is the most common among female athletes. Some definition in the abs.";
+    let femaleFifteenToSeventeen = "15-17% body fat: At this level muscles are still visible. Abs, legs, and arms have definition. There is some separation between muscles there is also some vascularity. Women don’t have as much curvature in hips and buttocks because of the low body fat level. This is a common level of body fat among fitness models. Many women who are at this level may not be able to menstruate.";
+    let femaleTenToTwelve = "10-12% Body fat: Ridiculously (dangerously) lean. At this percentage the women’s vascularity and some striations are visible. The woman’s muscles are clearly separated. This level of body fat isn’t considered safe or healthy for women who menstruate.";
+    //let femaleEstimateTextArray = [femaleFiftyPercent, femaleFourtyfivePercent, femaleFourty, femaleThirtyfive, femaleThirty, femaleTwentyfive, femaleTwentyToTwentytwo, femaleFifteenToSeventeen, femaleTenToTwelve];
+
+        return bodyFatText;
+}
+
+
+
+
+
+
+
+//-------- old stuff maybe use
 
 function updateUiForUserState(user){
     if (user) {

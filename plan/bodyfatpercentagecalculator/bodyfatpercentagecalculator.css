@@ -12,6 +12,7 @@ html {
 
 .inputContainer {
     display: flex;
+    align-items: center;
 }
 
 .labelClass {
@@ -281,11 +282,6 @@ p {
     margin-bottom: 16px;
     font-family: Avenir,Tahoma,sans-serif;
     line-height: 25px;
-}
-
-div {
-    margin-bottom: 16px;
-
 }
 
 .genderHeader {
