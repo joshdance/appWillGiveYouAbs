@@ -77,7 +77,7 @@ function generateBodyFatText(bodyFatPercentage){
     } else if ((bodyFatPercentage > 5) && (bodyFatPercentage <= 8)) {
         bodyFatText = "6-8% body fat: Extremely low levels of body fat. Absolutely chiseled from stone. Think Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
     } else {
-        bodyFatText = 'havent coded this one yet';
+        bodyFatText = "approximately 30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist."
     }
     
     let fourtyPercent = "40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
