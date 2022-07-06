@@ -43,7 +43,19 @@ body {
     font-size: 10px;
  }
 
+.statsRowLabel{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 10px;
+}
 
+.cardClass h3 {
+    margin: 0;
+}
+
+.distanceToGoalStatLabel {
+    font-size: 5px;
+}
 
 
 

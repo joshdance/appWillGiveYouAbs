@@ -1,4 +1,43 @@
 const profileGreeting = 'Hello. I Profile.';
+let userObject = {
+    printIntroduction: function() {
+        console.log(`My name is ${this.firstName} ${this.lastName}.`);
+    },
+    generateStats: function() {
+        this.fatMass = roundNumPlace((this.weight * (this.bodyFatPercentage / 100)),1);
+        this.leanMass = this.weight - this.fatMass;
+
+        this.goalFatMass = roundNumPlace((this.goalWeight * (this.goalBodyFatPercentage / 100)),1);
+        this.goalLeanMass = this.goalWeight - this.goalFatMass;
+
+        this.distanceToGoalBodyFatPercentage = this.bodyFatPercentage - this.goalBodyFatPercentage;
+        this.distanceToGoalWeight = this.weight - this.goalWeight;
+        this.distanceToGoalLeanMass = roundNumPlace((this.leanMass - this.goalLeanMass),1);
+        this.distanceToGoalFatMass = this.fatMass - this.goalFatMass;
+
+        this.stats = {
+            bodyFatPercentage: this.bodyFatPercentage,
+            weight: this.weight,
+            leanMass: this.leanMass,
+            fatMass: this.fatMass
+        }
+
+        this.goalStats = {
+            goalBodyFatPercentage: this.goalBodyFatPercentage,
+            goalWeight: this.goalWeight,
+            goalLeanMass: this.goalLeanMass,
+            goalFatMass: this.goalFatMass
+        }
+
+        this.distanceStats = {
+            distanceToGoalBodyFatPercentage: this.distanceToGoalBodyFatPercentage,
+            distanceToGoalWeight: this.distanceToGoalWeight,
+            distanceToGoalLeanMass: this.distanceToGoalLeanMass,
+            distanceToGoalFatMass: this.distanceToGoalFatMass
+        }
+    }
+};
+
 let AbsUser;
 
 //firebase setup
@@ -102,7 +141,8 @@ function createUserDocument(user) {
 
 function getUserData(user){
 
-    AbsUser = new Object;
+    AbsUser = Object.create(userObject);
+
 
     db.collection("users").doc(user.uid).get()
     .then((doc) => {
@@ -123,11 +163,14 @@ function getUserData(user){
         AbsUser.FirebaseId = user.uid;
         AbsUser.AuthEmail = user.email;
 
+        //Generate fresh stats
+        AbsUser.generateStats();
+
         //we have the user data, now generate the page.
         generateProfilePage(AbsUser);
 
         //make the trading card
-        //generateProfileCard(AbsUser);
+        generateProfileCard(AbsUser);
         }
     )
     .catch((error) => {
@@ -135,22 +178,202 @@ function getUserData(user){
     });
 }
 
+function saveGoalsToDB(){
+    console.log('save it to the DB');
+    
+    db.collection("users").doc(AbsUser.FirebaseId).update({
+        goalWeight: 162
+    });
+}
+
 function generateProfileCard(AbsUser){
+    //temp
+    // saveGoalsToDB();
+
     tradingCard.replaceChildren(); //clear it with a null array
 
+    //make the card
     let card = document.createElement("div");
     card.classList.add('cardClass');
-
     tradingCard.appendChild(card);
 
-    let imageUserProfileContainer = document.createElement("div");
-    imageUserProfileContainer.classList.add('imageUserProfileContainer');
-    card.appendChild(imageUserProfileContainer);
-
+    //make the profile image
     let userImage = document.createElement("img");
     userImage.src = 'userimage.png';
     userImage.classList.add('userImageClass');
-    imageUserProfileContainer.appendChild(userImage);
+    card.appendChild(userImage);
+
+    //make the name h3
+    let userName = document.createElement("h3");
+    userName.textContent = AbsUser.firstName + ' ' + AbsUser.lastName;
+    userName.classList.add('userNameTitle');
+    card.appendChild(userName);
+
+    //Stats Row
+
+     //make the stats row label
+     let statsRowLabel = document.createElement("div");
+     statsRowLabel.classList.add('statsRowLabel');
+     statsRowLabel.textContent = 'Stats';
+     card.appendChild(statsRowLabel);
+
+    //make the stats container
+    let statsContainer = document.createElement("div");
+    statsContainer.classList.add('statsContainer');
+    card.appendChild(statsContainer);
+
+    //fill the stats Container
+    let arrayOfStats = Object.entries(AbsUser.stats);
+    
+    arrayOfStats.forEach(statsKeyValuePair => {
+        console.log(statsKeyValuePair[0]);
+        console.log(statsKeyValuePair[1]);
+
+        let stat = document.createElement("div");
+        stat.classList.add('stat');
+        statsContainer.appendChild(stat);
+        stat.textContent = statsKeyValuePair[1];
+
+        //add the label
+        let statLabel = document.createElement("div");
+        statLabel.classList.add('statLabel');
+        stat.appendChild(statLabel);
+        statLabel.textContent = statsKeyValuePair[0];
+    });
+
+    //Goal Stats Row
+
+    //make the goal stats row label
+    let goalStatsRowLabel = document.createElement("div");
+    goalStatsRowLabel.classList.add('statsRowLabel');
+    goalStatsRowLabel.classList.add('goalStatsRowLabel');
+    goalStatsRowLabel.textContent = 'Goals';
+    card.appendChild(goalStatsRowLabel);
+
+    //make the goal stats container
+    let goalStatsContainer = document.createElement("div");
+    goalStatsContainer.classList.add('statsContainer');
+    goalStatsContainer.classList.add('goalStatsContainer');
+    card.appendChild(goalStatsContainer);
+
+    //fill the goal stats Container
+    let arrayOfGoalStats = Object.entries(AbsUser.goalStats);
+    
+    arrayOfGoalStats.forEach(goalStatsKeyValuePair => {
+        console.log(goalStatsKeyValuePair[0]);
+        console.log(goalStatsKeyValuePair[1]);
+
+        let goalStat = document.createElement("div");
+        goalStat.classList.add('stat');
+        goalStat.classList.add('goalStat');
+        goalStatsContainer.appendChild(goalStat);
+        goalStat.textContent = goalStatsKeyValuePair[1];
+
+        //add the label
+        let goalStatLabel = document.createElement("div");
+        goalStatLabel.classList.add('statLabel');
+        goalStatLabel.classList.add('goalStatLabel');
+        goalStat.appendChild(goalStatLabel);
+        goalStatLabel.textContent = goalStatsKeyValuePair[0];
+    });
+
+    //Distance to Goal Row
+
+    //make the goal stats row label
+    let distanceToGoalRowLabel = document.createElement("div");
+    distanceToGoalRowLabel.classList.add('statsRowLabel');
+    distanceToGoalRowLabel.classList.add('distanceToGoalRowLabel');
+    distanceToGoalRowLabel.textContent = 'Distance to Goal';
+    card.appendChild(distanceToGoalRowLabel);
+
+    //make the goal stats container
+    let distanceToGoalStatsContainer = document.createElement("div");
+    distanceToGoalStatsContainer.classList.add('statsContainer');
+    distanceToGoalStatsContainer.classList.add('distanceToGoalStatsContainer');
+    card.appendChild(distanceToGoalStatsContainer);
+
+    //fill the goal stats Container
+    let arrayOfDistanceToGoalStats = Object.entries(AbsUser.distanceStats);
+
+    arrayOfDistanceToGoalStats.forEach(distanceToGoalStatsKeyValuePair => {
+        console.log(distanceToGoalStatsKeyValuePair[0]);
+        console.log(distanceToGoalStatsKeyValuePair[1]);
+
+        let distanceToGoalStat = document.createElement("div");
+        distanceToGoalStat.classList.add('stat');
+        distanceToGoalStat.classList.add('distanceToGoalStat');
+        distanceToGoalStatsContainer.appendChild(distanceToGoalStat);
+        distanceToGoalStat.textContent = distanceToGoalStatsKeyValuePair[1];
+
+        //add the label
+        let distanceToGoalStatLabel = document.createElement("div");
+        distanceToGoalStatLabel.classList.add('statLabel');
+        distanceToGoalStatLabel.classList.add('distanceToGoalStatLabel');
+        distanceToGoalStat.appendChild(distanceToGoalStatLabel);
+        distanceToGoalStatLabel.textContent = distanceToGoalStatsKeyValuePair[0];
+    });
+
+
+    // <div class="cardClass">
+	// 				<img src="/userimage.png">
+	// 				<h3>Josh Dance</h3>
+	// 		  		<div class="statsContainer">
+	// 					<div class="stat">
+	// 						26%
+	// 						<div class="statLabel">Body Fat %</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						197
+	// 						<div class="statLabel">Weight</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						142
+	// 						<div class="statLabel">Lean Mass</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						51
+	// 						<div class="statLabel">Fat Mass</div>
+	// 					</div>
+	// 				</div>
+	// 				<div class="statsRowLabel">Goals</div>
+	// 				<div class="statsContainer">
+	// 					<div class="stat">
+	// 						10%
+	// 						<div class="statLabel">Body Fat %</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						162
+	// 						<div class="statLabel">Weight</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						142
+	// 						<div class="statLabel">Lean Mass</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						10
+	// 						<div class="statLabel">Fat Mass</div>
+	// 					</div>
+	// 				</div>
+	// 				<div class="statsRowLabel">Distance To Goal</div>
+	// 				<div class="statsContainer">
+	// 					<div class="stat">
+	// 						10%
+	// 						<div class="statLabel">Body Fat %</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						162
+	// 						<div class="statLabel">Weight</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						142
+	// 						<div class="statLabel">Lean Mass</div>
+	// 					</div>
+	// 					<div class="stat">
+	// 						10
+	// 						<div class="statLabel">Fat Mass</div>
+	// 					</div>
+	// 				</div>
+	// 			</div>
 }
 
 function generateProfilePage(AbsUser){
@@ -232,6 +455,23 @@ function setUserData(userInfoPropertyId,AbsUser){
         [userInfoPropertyId]: AbsUser[userInfoPropertyId]
     });
 }
+
+function roundNumPlace(num, places) {
+    return +(Math.round(num + "e+" + places)  + "e-" + places);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// OLD STUFF PULL AS NEEDED
 
 // user.name
 // user.bodyFatPercentage
@@ -1454,9 +1694,7 @@ function getAbPlan() {
 }
 
 // #Math Functions
-function roundNumPlace(num, places) {
-    return +(Math.round(num + "e+" + places)  + "e-" + places);
-}
+
 
 function convertPoundsToKilograms(pounds) {
     return (pounds * 0.45359237);
