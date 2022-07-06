@@ -1,10 +1,54 @@
 html {
     font-family: Avenir,Tahoma,sans-serif;
-    font-size: 18px;
-    background-color: coral;
+    /* font-size: 18px; */
+    font-size: min(max(1rem, 4vw), 22px);
+}
+
+body {
+    background-color: #ffffff;
+    margin: 0;
 }
 
 /* new */
+
+.cardClass {
+    margin-top: 10px;
+    background-color: #c1c1c1;
+    width: 60%;
+    aspect-ratio: 241/336;
+    border-radius: 1rem;
+    box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
+}
+
+.cardClass img {
+    border-radius: 1rem 1rem 0 0; /* have to curve the corners of the image. */
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+ }
+
+ .statsContainer {
+    display: flex;
+    flex-direction: row;
+    border:1px solid black;
+    margin: 5px;
+    justify-content: space-around;
+ }
+
+ .stat {
+
+ }
+
+ .statLabel{
+    font-size: 10px;
+ }
+
+
+
+
+
+
+/* other stuff */
 
 .valueButtonPairContainer {
     display: flex;
@@ -60,39 +104,7 @@ nav ul li a {
     .column {
       width: 50%;
     }
-  }
-
-/* Table */
-table { 
-    border-collapse: collapse;
 }
-
-table tr td {
-    border: 1px solid #000;
-    padding: 10px;
-}
-
-table tr:nth-child(odd) {
-    background: #f4f4f4;
-}
-
-/*---- Mobile ------*/
-/*not yet minion, not yet! - Megamind*/
-/*@media screen and (max-width: 680px) {
-    nav ul li{
-        display: none;
-    }
-
-    .hamburgerIcon {
-        display: block;
-    }
-
-    .topNavRight {
-        display: block;
-    }
-}*/
-
-/* Main Calculator*/
 
 h1 {
     background-image: linear-gradient(45deg, #EE27E9, #06ECFF);
@@ -110,167 +122,10 @@ h1 {
     transition: all 0.15s cubic-bezier(0.68, -0.25, 0.265, 1.25);
 }
 
-.radiobuttonstack {
-    display: block;
-}
-
-.totalbodyweight {
-  text-decoration: underline #26EAA2;
-}
-
-.totalfatmass {
-  text-decoration: underline #EE27E9;
-}
-
-.totalleanmass {
-  text-decoration: underline #06ECFF;
-}
-
-.bmrAnswer {
-    text-decoration: underline #06ECFF;
-}
-
-
-.highlight{
-    border: 1px solid #EE27E9;
-    padding-top: 10px;
-    padding-left: 10px;
-}
-
-.summerSection{
-    border: 2px solid #EE27E9;
-    text-align: center;
-    font-size: 24px;
-    padding-top: 10px;
-    padding-left: 10;
-}
-
-.scienceSideNote {
-    background-color: #ccffcc
-}
-
-.scienceSideNoteBody {
-    border: 1px solid gray;
-}
-
-#poundMassPoundForceDetails {
-    display: none;
-}
-
-#weightDoesntMatterDetails {
-    display: none;
-}
-
-#spotReduceDetails {
-    display: none;
-}
-
-#fatCellDetails {
-    display: none;
-}
-
-#fattyAcidBreakdown {
-    display: none;
-}
-
-#scienceUnderDevelopedCore {
-    display: none;
-}
-
-#betaBanner {
-    background-color: yellow;
-    text-align: center;
-}
-
-.maleExampleImageLinks {
-    display: none;
-}
-
-.femaleExampleImageLinks {
-    display: none;
-}
-
-.calcOnlyWarning {
-    color: orange;
-}
-
-.imageContainer {
-    max-width: 800px;
-}
-
-.imageContainer img {
-    width: 100%;
-    height: auto;
-}
-
-#signupform {
-    margin-top: 22px;
-    margin-bottom: 25px;
-    padding: 19px 18px 0 30px;
-    clear: both;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(76,183,221,.02);
-    border-radius: 2px;
-    background-color: #f8fcff;
-    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
-    color: #0e2430;
-    line-height: 29px;
-}
-
-#estimateBodyFat {
-    display: block;
-    margin-top: 22px;
-    margin-bottom: 25px;
-    padding: 19px 18px 0 30px;
-    clear: both;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(76,183,221,.02);
-    border-radius: 2px;
-    background-color: #f8fcff;
-    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
-    color: #0e2430;
-    line-height: 29px;
-}
-
-#activityLevelSection {
-    display: none;
-    margin-top: 22px;
-    margin-bottom: 25px;
-    padding: 19px 18px 0 30px;
-    clear: both;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(76,183,221,.02);
-    border-radius: 2px;
-    background-color: #f8fcff;
-    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
-    color: #0e2430;
-    line-height: 29px;
-}
-
-#showEstimateSection {
-    color: red;
-}
-
-#buttonToggleActivityLevelSection {
-    color: red;
-}
-
-.tdeeResults {
-    margin-top: 22px;
-    margin-bottom: 25px;
-    padding: 19px 18px 0 30px;
-    clear: both;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(76,183,221,.02);
-    border-radius: 2px;
-    background-color: #f8fcff;
-    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
-    color: #0e2430;
-    line-height: 29px;
+h2 {
+    font-family: Avenir,Tahoma,sans-serif;
+    color: #06ECFF;
+    padding-bottom: 11px;
 }
 
 p {
@@ -279,60 +134,15 @@ p {
     line-height: 25px;
 }
 
-div {
-    margin-bottom: 16px;
-
-}
-
-.genderHeader {
-    margin-bottom: 16px;
-    font-family: Avenir,Tahoma,sans-serif;
-    line-height: 25px;
-}
-
-h1 {
-    font-family: Avenir,Tahoma,sans-serif;
-    color: #EE27E9;
-}
-
-h2 {
-    font-family: Avenir,Tahoma,sans-serif;
-    color: #06ECFF;
-    padding-bottom: 11px;
-}
-
-body {
-    background-color: #ffffff;
-    margin: 0;
-}
-
-ol {
-    box-sizing: border-box;
-    margin-top: 22px;
-    margin-bottom: 25px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    background-color: #f8fcff;
-    box-shadow: 0 5px 15px -10px rgba(0,89,156,.16);
-    color: #0e2430;
-    line-height: 29px;
-}
-
-
 .squareButton {
     margin-top: 16px;
     padding-top: 12px;
     padding-bottom: 12px;
     padding-right: 24px;
     padding-left: 24px;
-/*    box-shadow:inset 0px 1px 0px 0px #7a8eb9;*/
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
-/*    background: linear-gradient(90deg, #df43e8, #f667c2, #ff90a8);*/
     background-color:#637aad;
-    /*border:1px solid #9EB7EC;*/
-    /*border:2px solid rgba(158,183,236,.25);*/
     border:1px solid rgba(224, 69, 232,.1);
     display:inline-block;
     cursor:pointer;
@@ -351,27 +161,6 @@ ol {
 .squareButton:active {
     position:relative;
     top:1px;
-}
-
-.inputform {
-    -webkit-appearance: none;
-    -webkit-border-radius: 0px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 350px;
-    padding: 15px;
-    padding-bottom: 12px;
-    line-height: 14px;
-    color: #545454;
-    font-weight: bold;
-    font-size: 16px;
-    font-family: 'Inria Sans', sans-serif;
-    border: 2px solid #545454;
-    background-color: transparent;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    vertical-align: middle;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 
 .joshdance-by {
@@ -404,47 +193,4 @@ ol {
     margin-left:7px;
     font-weight:500;
     font-size:14px;
-}
-
-.flex-container {
-    /* We first create a flex layout context */
-    display: flex;
-    flex-direction: row;
-}
-
-.flex-container > div {
-    font-size: 1em;
-}
-
-div #imperialLabel{
-    margin-left: 10px;
-    margin-top: 5px;
-    margin-right: 2px;
-    margin-bottom: 5px;
-}
-
-div #metricLabel{
-    margin-left: 2px;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
-#metricHeightSection {
-    /* start with metric box hidden */
-    display: none; 
-}
-
-.calculatorLink {
-    margin-top: 20px;
-}
-
-#onePercentDownWeightInsert, #onePercentDownBodyFatPercentageInsert, #massToLoseForOnePercentDownInsert {
-    background-color: #ff9bfc;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.spacer{
-    height: 10vh;
 }

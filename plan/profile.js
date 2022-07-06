@@ -18,6 +18,7 @@ signOutButton.onclick = () => auth.signOut();
 
 //TODO rename user details section
 const userDetails = document.getElementById('userDetails');
+const tradingCard = document.getElementById('tradingCard');
 
 document.addEventListener("DOMContentLoaded", startUpTheCalculator);
 
@@ -124,11 +125,32 @@ function getUserData(user){
 
         //we have the user data, now generate the page.
         generateProfilePage(AbsUser);
+
+        //make the trading card
+        //generateProfileCard(AbsUser);
         }
     )
     .catch((error) => {
         console.log('Error gettings documents: ' + error);
     });
+}
+
+function generateProfileCard(AbsUser){
+    tradingCard.replaceChildren(); //clear it with a null array
+
+    let card = document.createElement("div");
+    card.classList.add('cardClass');
+
+    tradingCard.appendChild(card);
+
+    let imageUserProfileContainer = document.createElement("div");
+    imageUserProfileContainer.classList.add('imageUserProfileContainer');
+    card.appendChild(imageUserProfileContainer);
+
+    let userImage = document.createElement("img");
+    userImage.src = 'userimage.png';
+    userImage.classList.add('userImageClass');
+    imageUserProfileContainer.appendChild(userImage);
 }
 
 function generateProfilePage(AbsUser){

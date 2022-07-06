@@ -73,22 +73,27 @@ function generateBodyFatText(bodyFatPercentage){
     let bodyFatText;
 
     if ((bodyFatPercentage <= 5)) {
-        bodyFatText = "5% body fat: Ridiculously (dangerously) lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin.";
+        bodyFatText = "5% body fat: Ridiculously and dangerously lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin. Immune system and other normal body systems may not work like normal.";
     } else if ((bodyFatPercentage > 5) && (bodyFatPercentage <= 8)) {
         bodyFatText = "6-8% body fat: Extremely low levels of body fat. Absolutely chiseled from stone. Think Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
-    } else {
-        bodyFatText = "approximately 30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist."
+    } else if ((bodyFatPercentage > 8) && (bodyFatPercentage <= 12)) {
+        bodyFatText = "9% - 12% body fat: Very in shape. This is the beach body fat percentage that most people envison 🏝. Your abs can be clearly seen. At this level is some defined veins in the arms and legs.";
+    } else if ((bodyFatPercentage > 12) && (bodyFatPercentage <= 15)) {
+        bodyFatText = "13% - 15% body fat: Fit and lean. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
+    } else if ((bodyFatPercentage > 15) && (bodyFatPercentage <= 20)) {
+        bodyFatText = "16% - 20% body fat: Above average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
+    } else if ((bodyFatPercentage > 20) && (bodyFatPercentage <= 25)) {
+        bodyFatText = "21% - 25% body fat: Average male look territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
+    } else if ((bodyFatPercentage > 25) && (bodyFatPercentage <= 30)) {
+        bodyFatText = "26%-30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist.";
+    } else if ((bodyFatPercentage > 30) && (bodyFatPercentage <= 35)) {
+        bodyFatText = "31% - 35% body fat: This percentage of body fat is more of the beer gut look. The waist circumference at this point can be about 40+ inches.";
+    } else if ((bodyFatPercentage > 35) && (bodyFatPercentage <= 40)) {
+        bodyFatText = "36% - 40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
+    } else if ((bodyFatPercentage > 40)) {
+        bodyFatText = "40+% body fat: Morbidly obese. All daily activies are more difficult and significant health risks are present. Talk to your doctor immediately. At higher risks of heart diseases, strokes, cancers, Type 2 diabetes, gallbladder and liver problems, infertility, reproductive issues, arthritis, sleep apnea, anxiety, depression, and increased physical pain.";
     }
     
-    let fourtyPercent = "40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
-    let thirtyfivePercent = "35% body fat: This percentage of body fat is more of the beer gut look. The waist circumference at this point can be about 40+ inches."
-    let thirtyPercent = "30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist."
-    let twentyfivePercent = "25% body fat: This is the start of average territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
-    let twentyPercent = "20% body fat: Low end of the average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
-    let fifteenPercent = "15% body fat: This percentage of body fat usually fits into the “lean and fit” category. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
-    let tenToTwelvePercent = "10-12% body fat: Very in shape. This is the beach body fat percentage that most people strive for 🏝. Your abs can be clearly seen. At this level is some defined veins in the arms and legs."; 
-    //let maleEstimateTextArray = [fourtyPercent, thirtyfivePercent, thirtyPercent, twentyfivePercent, twentyPercent, fifteenPercent, tenToTwelvePercent, sixToEightPercent, fivePercent];
-
     let femaleFiftyPercent = "50% body fat: Significant fat accumulation in all body regions. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese. This skin will appear more dimple or “cottage cheese” like.";
     let femaleFourtyfivePercent = "45% body fat: At this body weight, the hips become noticeably wider than the shoulders. The general hip circumference may reach 45+ inches and waist circumference 35+ inches. The skin may start to lose its smooth nature at this percentage level.";
     let femaleFourty = "40% body fat: At this level a women is considered obese. This means there is not a very balanced muscle to fat ratio. Some women may not look like they have 40% body fat, but their muscle mass is lower, which brings their percentage to 40%.";
