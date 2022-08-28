@@ -4,38 +4,76 @@ html {
     background-color: coral;
 }
 
-
-/* --------- Nav Bar ------------------ */
-nav {
-    display: block;
-    width: 100%;
+body {
+    background-color: #ffffff;
     margin: 0;
 }
 
-nav ul {
-    margin: 0;
-    padding: 0;
+
+/* --------- Nav Bar ------------------ */
+.navMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+    width: 100%;
+}
+
+/* .navMenu li {
+    display: none;
+} */
+
+.menuItem {
+    display: none;
+}
+
+.navMenu li:first-child {
+    display: block;
+    margin-top: 0.2rem;
+    margin-right: auto;
+    display: block;
+}
+
+.navToggle {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    margin: 0rem 1rem;
+}
+
+input[type='checkbox'] {
+    display: none;
+}
+
+#navCheckbox {
+
+}
+
+
+
+.close {
+    display: none;
+}
+
+.menu {
+    margin-top: 0.2rem;
+}
+
+.navSVG {
+    width: 1.5rem;
 }
 
 nav ul li {
     list-style: none;
     text-decoration: none;
-    float: left;
 }
 
 nav ul li a {
     text-decoration: none;
     text-align: center;
-    padding: 1px;
-    margin: 8px;
-}
-
-.topNavRight {
-    float: right;
-}
-
-.hamburgerIcon {
-    display: none;
+    color: inherit;
 }
 
 .mainContainer {
@@ -293,10 +331,7 @@ h2 {
     padding-bottom: 11px;
 }
 
-body {
-    background-color: #ffffff;
-    margin: 0;
-}
+
 
 ol {
     box-sizing: border-box;
