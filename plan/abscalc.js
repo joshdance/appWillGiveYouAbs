@@ -35,31 +35,10 @@ if (navCheckbox != null) {
     navCheckbox.addEventListener('click', navHamburgerClicked);
 }
 
+let navBarLinks = document.getElementById('navBarLinks');
+
 function navHamburgerClicked(event) {
-    if (navCheckbox.checked == true) {
-        console.log('show it');
-        let menuItemsToShow = document.getElementsByClassName('menuItem');
-        Array.from(menuItemsToShow).forEach((element) => {
-            element.style.display = 'block';
-        });
-
-        let closeSVG = document.getElementById('closeSVG');
-        closeSVG.style.display = 'block';
-
-        let menuSVG = document.getElementById('menuSVG');
-        menuSVG.style.display = 'none';
-    } else {
-        let menuItemsToShow = document.getElementsByClassName('menuItem');
-        Array.from(menuItemsToShow).forEach((element) => {
-            element.style.display = 'none';
-        });
-
-        let closeSVG = document.getElementById('closeSVG');
-        closeSVG.style.display = 'none';
-
-        let menuSVG = document.getElementById('menuSVG');
-        menuSVG.style.display = 'block';
-    }
+    navBarLinks.classList.toggle('active');
 }
 
 

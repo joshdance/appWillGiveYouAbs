@@ -20,15 +20,37 @@ nav {
     width: 100%;
 }
 
-.navMenu {
+.navBar {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
+    justify-content: space-between;
+    align-items: flex-start;
     border-bottom: 1px solid gray;
+    font-weight: 600;
+
+    position: relative;
+}
+
+.navBarLinks {
     width: 100%;
+    display: none;
+}
+
+.navBarLinks.active {
+    display: flex;
+}
+
+.navBarLinks ul {
     margin: 0;
+    padding: 0;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    width: 100%;
+}
+
+.navBarLinks li {
+    text-align: center;
+    padding: 0.2rem;
 }
 
 .navCheckbox {
@@ -39,8 +61,8 @@ nav {
     position: absolute;
     right: 0;
     cursor: pointer;
-    margin-right: 0.5rem;
-    margin-top: 0rem;
+    margin-right: 0.8rem;
+    margin-top: 0.3rem;
 }
 
 input[type='checkbox'] {
@@ -48,16 +70,10 @@ input[type='checkbox'] {
     margin-top: 0;
 }
 
-.menuItem {
-    display: none;
-}
-
-.navMenu li:first-child {
-    /* logo */
-    display: block;
-    margin-right: auto;
-    margin-top: 0.2rem;
-    display: block;
+.navLogo {
+    margin-left: .5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
 .navSVG {
@@ -67,7 +83,6 @@ input[type='checkbox'] {
 .close {
     display: none;
 }
-
 .menu {
     margin-top: 0.2rem;
 }
@@ -76,30 +91,52 @@ input[type='checkbox'] {
     width: 1.5rem;
 }
 
-nav ul li {
+.navBarLinks li {
     list-style: none;
     text-decoration: none;
 }
 
-nav ul li a {
+.navBarLinks li a {
     text-decoration: none;
     text-align: center;
     color: inherit;
 }
 
-@media only screen and (min-width: 1080px) {
-    .navToggle {
-        display: none;
+/* media query for desktop */
+@media only screen and (min-width: 1100px) {
+    
+    .navBar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid gray;
+        font-weight: 600;
+    
+        position: relative;
     }
 
-    .navMenu {
+    .navBarLinks {
+        display: flex;
+    }
+
+    .navLogo {
+        justify-content: flex-start
+    }
+
+    .navBarLinks ul {        
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        width: 100%;
     }
 
     .menuItem {
         display: block;
+    }
+
+    .navToggle {
+        display: none;
     }
 }
 
@@ -323,11 +360,6 @@ p {
     margin-bottom: 16px;
     font-family: Avenir,Tahoma,sans-serif;
     line-height: 25px;
-}
-
-div {
-    margin-bottom: 16px;
-
 }
 
 .genderHeader {
