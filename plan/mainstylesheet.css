@@ -25,10 +25,10 @@ nav {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(190, 190, 190);
     font-weight: 600;
-
     position: relative;
+    background-color: #f4f4f4;
 }
 
 .navBarLinks {
@@ -74,6 +74,13 @@ input[type='checkbox'] {
     margin-left: .5rem;
     margin-top: .5rem;
     margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.brandText {
+    color: #ee27e73f;
+    margin-left: 0.5rem;
 }
 
 .navSVG {
