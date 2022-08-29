@@ -16,6 +16,10 @@ body {
 
 /* --------- Nav Bar ------------------ */
 
+nav {
+    width: 100%;
+}
+
 .navMenu {
     display: flex;
     flex-direction: column;
@@ -31,22 +35,10 @@ body {
     margin: 0;
 }
 
-.menuItem {
-    display: none;
-}
-
-.navMenu li:first-child {
-    display: block;
-    margin-right: auto;
-    margin-top: 0.2rem;
-    display: block;
-}
-
 .navToggle {
     position: absolute;
     right: 0;
     cursor: pointer;
-    /* margin: 0rem 1rem; */
     margin-right: 0.5rem;
     margin-top: 0rem;
 }
@@ -54,6 +46,18 @@ body {
 input[type='checkbox'] {
     display: none;
     margin-top: 0;
+}
+
+.menuItem {
+    display: none;
+}
+
+.navMenu li:first-child {
+    /* logo */
+    display: block;
+    margin-right: auto;
+    margin-top: 0.2rem;
+    display: block;
 }
 
 .navSVG {
@@ -83,7 +87,7 @@ nav ul li a {
     color: inherit;
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1080px) {
     .navToggle {
         display: none;
     }
@@ -91,22 +95,10 @@ nav ul li a {
     .navMenu {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        /* font-weight: 600;
-        border-bottom: 1px solid gray;
-        width: 100%; */
+        justify-content: space-around;
     }
 
     .menuItem {
-        display: block;
-    }
-
-    .navMenu li:first-child {
-        display: block;
-        margin-top: 0.2rem;
-        margin-right: 0.2rem;
         display: block;
     }
 }
@@ -127,7 +119,7 @@ nav ul li a {
 }
 
 .topTitle {
-    margin-top: 0;
+    margin-top: 1rem;
     background-color: red;
 }
 
@@ -144,22 +136,6 @@ table tr td {
 table tr:nth-child(odd) {
     background: #f4f4f4;
 }
-
-/*---- Mobile ------*/
-/*not yet minion, not yet! - Megamind*/
-/*@media screen and (max-width: 680px) {
-    nav ul li{
-        display: none;
-    }
-
-    .hamburgerIcon {
-        display: block;
-    }
-
-    .topNavRight {
-        display: block;
-    }
-}*/
 
 /* Main Calculator*/
 
@@ -178,6 +154,7 @@ h1 {
     background-clip: text;
     text-fill-color: transparent;
     transition: all 0.15s cubic-bezier(0.68, -0.25, 0.265, 1.25);
+    margin: 0.5rem;
 }
 
 .radiobuttonstack {
@@ -199,7 +176,6 @@ h1 {
 .bmrAnswer {
     text-decoration: underline #06ECFF;
 }
-
 
 .highlight{
     border: 1px solid #EE27E9;
@@ -374,8 +350,6 @@ h2 {
 h2:last-of-type {
     margin-bottom: 0;
 }
-
-
 
 ol {
     box-sizing: border-box;
