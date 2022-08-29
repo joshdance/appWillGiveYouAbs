@@ -138,11 +138,11 @@ input[type='checkbox'] {
         width: 100%;
     }
 
-    .menuItem {
-        display: block;
+    .navToggle {
+        display: none;
     }
 
-    .navToggle {
+    .brandText {
         display: none;
     }
 }
