@@ -1,16 +1,21 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
 html {
     font-family: Avenir,Tahoma,sans-serif;
-    font-size: 18px;
-    background-color: coral;
 }
 
 body {
     background-color: #ffffff;
-    margin: 0;
 }
 
 
 /* --------- Nav Bar ------------------ */
+
 .navMenu {
     display: flex;
     flex-direction: column;
@@ -19,11 +24,12 @@ body {
     font-weight: 600;
     border-bottom: 1px solid gray;
     width: 100%;
+    margin: 0;
 }
 
-/* .navMenu li {
-    display: none;
-} */
+.navCheckbox {
+    margin: 0;
+}
 
 .menuItem {
     display: none;
@@ -31,8 +37,8 @@ body {
 
 .navMenu li:first-child {
     display: block;
-    margin-top: 0.2rem;
     margin-right: auto;
+    margin-top: 0.2rem;
     display: block;
 }
 
@@ -40,18 +46,19 @@ body {
     position: absolute;
     right: 0;
     cursor: pointer;
-    margin: 0rem 1rem;
+    /* margin: 0rem 1rem; */
+    margin-right: 0.5rem;
+    margin-top: 0rem;
 }
 
 input[type='checkbox'] {
     display: none;
+    margin-top: 0;
 }
 
-#navCheckbox {
-
+.navSVG {
+    margin-top: 0;
 }
-
-
 
 .close {
     display: none;
@@ -76,20 +83,53 @@ nav ul li a {
     color: inherit;
 }
 
+@media only screen and (min-width: 1300px) {
+    .navToggle {
+        display: none;
+    }
+
+    .navMenu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        /* font-weight: 600;
+        border-bottom: 1px solid gray;
+        width: 100%; */
+    }
+
+    .menuItem {
+        display: block;
+    }
+
+    .navMenu li:first-child {
+        display: block;
+        margin-top: 0.2rem;
+        margin-right: 0.2rem;
+        display: block;
+    }
+}
+
 .mainContainer {
     display: block;
     width: 100%;
+    margin-top: 0;
     margin-right: auto;
     margin-left: auto;
     max-width: 645px;   
-    clear: both;
 }
 
 @media (min-width: 600px) {
     .column {
-      width: 50%;
+        width: 50%;
     }
-  }
+}
+
+.topTitle {
+    margin-top: 0;
+    background-color: red;
+}
 
 /* Table */
 table { 
@@ -329,6 +369,10 @@ h2 {
     font-family: Avenir,Tahoma,sans-serif;
     color: #06ECFF;
     padding-bottom: 11px;
+}
+
+h2:last-of-type {
+    margin-bottom: 0;
 }
 
 
