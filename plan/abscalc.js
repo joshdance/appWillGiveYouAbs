@@ -27,6 +27,14 @@ let user = new Object;
 // user.selectedMassUnit
 // user.totalCaloriesUntilBfGoal
 
+const sexElements = document.getElementsByName('sexButton');//return 'array like' list. All the buttons. Careful. 
+const sex = Array.from(sexElements);
+sex.forEach( function(element, index) {
+    element.addEventListener('click', genderPicked);
+    console.log('got the button');
+});
+
+
 let maleEstimateTextArray;
 let femaleEstimateTextArray;
 
@@ -190,7 +198,7 @@ function readInTasksAndPutIntoDays(){
             tasksArray.push(doc);
         })
         console.log('tasksArray length = ' + tasksArray.length)
-        createDaysArray(tasksArray);
+        //createDaysArray(tasksArray);
     })
 }
 
@@ -540,18 +548,38 @@ function userSetTheirName(){
     updatePageWithUserName();
 }
 
-function genderPicked(){
+function genderPicked(event){
+    
+    // if it is not the button, let it bubble up
+    if (event.target.tagName.toLowerCase() != 'button') {
+        return
+    }
+
+    let buttonClicked = event.target;
+
+    //clear the selection
+    sex.forEach( function(button) {
+        button.dataset.userSelected = false;
+        button.classList.remove('selectedButton');
+    });
+
+    //set the data to show which button the user picked
+    buttonClicked.dataset.userSelected = true;
+
+    //visually highlight the picked button
+    buttonClicked.classList.add('selectedButton');
+
     getUserGender();
     setUpForSelectedGender();
 }
 
 function getUserGender(){
-    sex.forEach( function(element, index) {
-        let evaluatedSexOption = element;
-        if (evaluatedSexOption.checked == true) {
-            user.sex = evaluatedSexOption.value;
-        } // end of if
-    }); //end of sex.forEach
+    sex.forEach( function(button) {
+        if (button.dataset.userSelected == 'true') {
+            let userGenderPicked = button.dataset.gender;
+            user.sex = userGenderPicked;
+        }
+    });
 }
 
 function setUpForSelectedGender(){
@@ -1623,12 +1651,6 @@ const maleExampleImageLinks = Array.from(tempmaleExampleImageLinks);
 
 const tempfemaleExampleImageLinks = document.getElementsByClassName('femaleExampleImageLinks');
 const femaleExampleImageLinks = Array.from(tempfemaleExampleImageLinks);
-
-const sexElements = document.getElementsByClassName('sex');//return 'array like' list. All the checkboxes. Careful. 
-const sex = Array.from(sexElements);
-sex.forEach( function(element, index) {
-    element.addEventListener('change', genderPicked);
-});
 
 const age = document.getElementById('age');
 const feet = document.getElementById('feet');

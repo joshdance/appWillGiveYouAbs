@@ -162,6 +162,72 @@ input[type='checkbox'] {
     }
 }
 
+/* gender button sections */
+.genderQuestion {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.genderRadioButtons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1em;
+}
+
+.radioOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+
+.genderButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 1em;
+    background-color: #fefcff;
+    border: 2px solid #a2a2a2;
+    color: #202020;
+}
+
+.genderButton span {
+    pointer-events: none;
+}
+
+.genderButton svg {
+    color: #202020;
+    pointer-events: none;
+}
+
+.selectedButton {
+    color: #634de2;
+    border: 2px solid #634de2;
+    background-color: #e5e4f3;
+}
+
+.buttonIcon {
+    width: 60px;
+}
+
+.selectedButton svg {
+    color: #573ee5;
+}
+
+.genderName {
+    margin: 0.5em;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+
+
+
+
 .topTitle {
     margin-top: 1rem;
     background-color: red;
