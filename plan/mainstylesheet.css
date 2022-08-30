@@ -192,6 +192,7 @@ input[type='checkbox'] {
     background-color: #fefcff;
     border: 2px solid #a2a2a2;
     color: #202020;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .genderButton span {
@@ -207,6 +208,7 @@ input[type='checkbox'] {
     color: #634de2;
     border: 2px solid #634de2;
     background-color: #e5e4f3;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 
 .buttonIcon {
