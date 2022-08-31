@@ -65,10 +65,7 @@
 		</label>
 	</nav>
 
-	<div class="mainContainer">
-
-		<h1 class="topTitle">Abs Calculator</h1>
-
+	<div class="userSidebar">
 		<div id="whenSignedOutSection">
 			<div id="signInMessage">
 				<h3>Sign in to get your personal daily plan.</h3>
@@ -83,18 +80,56 @@
 
 			<button id="signOutButton">Sign Out</button>
 		</div>
+	</div>
 
-		<h3 id="testResultH3">What's your name? </h3>
+	<div class="mainContainer">
 
-		<div>
-			<input type="text" id="nameInputBox" class="inputform" value="Player One">
+		<h1 class="topTitle">Abs Calculator</h1>
+
+		<div class="questionSection">
+			<h3>
+				What is your current mass in <span name="selectedMassUnitOfMeasurement">pound</span>s? ⚡️
+			</h3>
+
+			<div>
+				<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
+				<span name="selectedMassUnitOfMeasurement">pound</span>s
+			</div>
+
+			<!-- todo build out the slider and up and down buttons -->
+			<!-- <input type="range" class="range-style" value="210" min="90" max="400"></input> -->
+
+			<!-- todo when the weight changes, then run the calcs -->
+			<!-- <div>
+				<button type="button" id="setWeightButton" class="calcButton squareButton">Set Weight. Make it so Mr. Sulu 🖖🏻</button>
+			</div> -->
+
 		</div>
 
-		<div>
-			<button type="button" id="nameButton" class="squareButton">I shall be known by 👆🏻</button>
+		<div class="questionSection">
+			<h3 class="questionHeader">Which measurement system do you prefer?</h3>
+			<div class="radioButtonSection">
+				<div class="radioButtonsOption">
+					<button class="radioButton selectedButton" name="weightSystemButton" data-gender="metric">
+						<span class="radioButtonName">🌍 Metric</span>
+					</button>
+				</div>
+				<div class="radioOption">
+					<button class="radioButton" name="weightSystemButton" data-gender="imperial">
+						<span class="radioButtonName">🇺🇸 Imperial</span>
+					</button>
+				</div>
+			</div>
+
+			<div class="radio-group">
+				<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Imperial" value="Imperial" checked>
+				<label for="Imperial">Imperial (US)</label>
+				<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Metric" value="Metric">
+				<label for="Metric">Metric (World)</label>
+			</div>
 		</div>
 
-		<div class="genderQuestion">
+		<div class="questionSection">
 			<h3 class="genderHeader">What is your gender?</h3>
 			<div class="genderRadioButtons">
 				<div class="radioOption">
@@ -176,24 +211,6 @@
 					</button>
 				</div>
 			</div>
-		</div>
-
-		<h3>
-			What is your current mass in <span name="selectedMassUnitOfMeasurement">pounds</span>? ⚡️
-		</h3>
-
-		<div class="flex-container"> 
-			<div><input type="number" id="weightInputBox" class="weightInputBox inputform" value="180"></div>
-			<div class="radio-group">
-				<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Imperial" value="Imperial" checked>
-				<label for="Imperial">Imperial (US)</label>
-				<input type="radio" class="unitOfMeasurementToggle" name="unitOfMeasurement" id="Metric" value="Metric">
-				<label for="Metric">Metric (World)</label>
-			</div>
-		</div>
-
-		<div>
-			<button type="button" id="setWeightButton" class="calcButton squareButton">Set Weight. Make it so Mr. Sulu 🖖🏻</button>
 		</div>
 
 		<h3>Do you know your current body fat percentage?</h3>
@@ -454,6 +471,18 @@
 
 		<h3>How should I workout?</h3>
 		<div>You can pick nearly any plan. As long as it has progressive overload where you are lifting more weight, or doing more reps or time, you will maintain and even increase your lean muscle mass.</div>
+
+		<div class="questionSection">
+			<h3 id="testResultH3">What's your name? </h3>
+
+			<div>
+				<input type="text" id="nameInputBox" class="inputform" value="Player One">
+			</div>
+
+			<div>
+				<button type="button" id="nameButton" class="squareButton">I shall be known by 👆🏻</button>
+			</div>
+		</div>
 
 		<h2>Final Results: Here is <span name="userNameInsert">there</span>'s plan for abs</h2>
 		<div>Here is your completely calculated and filled out checklist to get abs.</div>
