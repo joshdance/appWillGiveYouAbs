@@ -27,11 +27,18 @@ let user = new Object;
 // user.selectedMassUnit
 // user.totalCaloriesUntilBfGoal
 
+//picking gender
 const sexElements = document.getElementsByName('sexButton');//return 'array like' list. All the buttons. Careful. 
 const sex = Array.from(sexElements);
 sex.forEach( function(element, index) {
     element.addEventListener('click', genderPicked);
-    console.log('got the button');
+});
+
+//#Unit of Measurement Setup
+const unitOfMeasurementElements = document.getElementsByName('unitOfMeasurementButton');//return 'array like' list. All the checkboxes. Careful. 
+const unitOfMeasurementArray = Array.from(unitOfMeasurementElements);
+unitOfMeasurementArray.forEach(element => {
+    element.addEventListener('click', userPickedUnitOfMeasurement);
 });
 
 
@@ -657,26 +664,52 @@ function updatePageWithOptimalBodyFatGoal(){
 }
 
     //#Metric Section
-function userPickedUnitOfMeasurement(){
+function userPickedUnitOfMeasurement(event){
+
+    //if the event is real run it
+    if (event != null) {
+        // if it is not the button, let it bubble up
+        if (event.target.tagName.toLowerCase() != 'button') {
+            return
+        }
+
+        let buttonClicked = event.target;
+
+        //clear the selection
+        unitOfMeasurementArray.forEach( function(button) {
+            button.dataset.userSelected = false;
+            button.classList.remove('selectedButton');
+        });
+
+        //set the data to show which button the user picked
+        buttonClicked.dataset.userSelected = true;
+
+        //visually highlight the picked button
+        buttonClicked.classList.add('selectedButton');
+    }
+
     console.log('user picked a unit of measurement');
+
     getAndSetUserSelectedUnitOfMeasurement();
+
+    updatePageWithSelectedUnitSection();
+    updatePageWithSelectedUnitsOfMeasurement();
+    updatePageWithCaloriesInSelectedUnitsOfMeasurement();
+    updatePageWithProteinPerUnitOfWeight();
+}
+
+function updatePageWithSelectedUnitSection() {
     if (user.selectedMassUnitOfMeasurement == "Metric") {
-        user.selectedMassUnit = "kilogram"
         if (imperialHeightSection != null) {
             imperialHeightSection.style.display = "none";
             metricHeightSection.style.display = "block";
         }
     } else { //=="Imperial"
-        user.selectedMassUnit = "pound"
         if (imperialHeightSection != null) {
             imperialHeightSection.style.display = "block";
             metricHeightSection.style.display = "none";
         }
     }
-
-    updatePageWithSelectedUnitsOfMeasurement();
-    updatePageWithCaloriesInSelectedUnitsOfMeasurement();
-    updatePageWithProteinPerUnitOfWeight();
 }
 
 function updatePageWithCaloriesInSelectedUnitsOfMeasurement(){
@@ -690,12 +723,13 @@ function updatePageWithCaloriesInSelectedUnitsOfMeasurement(){
 }
 
 function getAndSetUserSelectedUnitOfMeasurement(){
-    arrayOfUnitsOfMeasurement.forEach( function(element, index) {
-        let evaluatedUnitOption = element;
-        if (evaluatedUnitOption.checked == true) {
-            user.selectedMassUnitOfMeasurement = evaluatedUnitOption.value;
+
+    unitOfMeasurementArray.forEach( function(button) {
+        if (button.dataset.userSelected == 'true') {
+            user.selectedMassUnitOfMeasurement = button.dataset.unitSystem;
+            user.selectedMassUnit = button.dataset.massUnit;
         }
-    }); //end of arrayOfUnitsOfMeasurement.forEach
+    });
 }
 
 function updatePageWithSelectedUnitsOfMeasurement(){
@@ -1516,13 +1550,6 @@ function exportButtonClicked(){
 }
 
 let userManuallyPickedDeficit = false;
-
-//#Unit of Measurement Setup
-const unitOfMeasurementElements = document.getElementsByClassName('unitOfMeasurementToggle');//return 'array like' list. All the checkboxes. Careful. 
-const arrayOfUnitsOfMeasurement = Array.from(unitOfMeasurementElements);
-arrayOfUnitsOfMeasurement.forEach( function(element, index) {
-    element.addEventListener('change', userPickedUnitOfMeasurement);
-});
 
 const selectedMassUnitOfMeasurement = document.getElementsByName('selectedMassUnitOfMeasurement');
 
