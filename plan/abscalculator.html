@@ -96,8 +96,6 @@
 				<span name="selectedMassUnitOfMeasurement">pound</span>s
 			</div>
 
-			<!-- todo build out the slider and up and down buttons -->
-			<!-- <input type="range" class="range-style" value="210" min="90" max="400"></input> -->
 
 			<!-- todo when the weight changes, then run the calcs -->
 			<!-- <div>
@@ -203,6 +201,24 @@
 						<span class="genderName">Male</span>
 					</button>
 				</div>
+			</div>
+		</div>
+
+		<div class="questionSection">
+			<h3>What is your current body fat percentage?</h3>
+
+			<div class="bodyFatPercentageImageSection">
+				<img id="bodyFatPercentageImage" src="images/dkmetcalf.jpeg">
+			</div>
+
+			<div class="bodyfatpercentagedisplay">
+				<span id="bodyFatPercentageDisplayArea">30</span>
+			</div>
+
+			<div class="bodyfatpercentageselectorcontrol">
+				<button name="bodyfatsliderbutton" id="bodyfatsliderbuttonDown">Down</button>
+				<input id="bodyfatslider" type="range" class="range-style" value="30" min="5" max="60"></input>
+				<button name="bodyfatsliderbutton" id="bodyfatsliderbuttonUp">Up</button>
 			</div>
 		</div>
 

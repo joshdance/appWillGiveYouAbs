@@ -27,6 +27,45 @@ let user = new Object;
 // user.selectedMassUnit
 // user.totalCaloriesUntilBfGoal
 
+//body fat percentage
+const bodyFatPercentageDisplayArea = document.getElementById('bodyFatPercentageDisplayArea');
+
+const bodyfatslider = document.getElementById('bodyfatslider');
+bodyfatslider.addEventListener('input', bodyFatSliderChanged);
+
+let bodyfatsliderbuttons = document.getElementsByName('bodyfatsliderbutton');
+const bodyfatsliderbuttonsArray = Array.from(bodyfatsliderbuttons);
+bodyfatsliderbuttonsArray.forEach( function(element, index) {
+    element.addEventListener('click', bodyFatButtonsClicked);
+});
+
+let bodyFatPercentageImage = document.getElementById('bodyFatPercentageImage');
+
+function bodyFatSliderChanged() {
+    bodyFatPercentageDisplayArea.textContent = bodyfatslider.value;
+
+    bodyFatPercentageImage.src = 'images/science.png';
+
+    percentInputBox2.value = parseInt(bodyfatslider.value);
+}
+
+function bodyFatButtonsClicked(event) {
+     // if it is not the button, let it bubble up
+     if (event.target.tagName.toLowerCase() != 'button') {
+        return
+    }
+
+    let buttonClicked = event.target;
+
+    if (buttonClicked.id == 'bodyfatsliderbuttonUp') {
+        bodyfatslider.value = parseInt(bodyfatslider.value) + 1;
+    } else {
+        bodyfatslider.value = parseInt(bodyfatslider.value) - 1;
+    }
+    bodyFatSliderChanged();
+}
+
+
 //picking gender
 const sexElements = document.getElementsByName('sexButton');//return 'array like' list. All the buttons. Careful. 
 const sex = Array.from(sexElements);
