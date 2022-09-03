@@ -57,12 +57,18 @@ function bodyFatButtonsClicked(event) {
 
     let buttonClicked = event.target;
 
+    buttonClicked.classList.add('buttonClicked');
+
     if (buttonClicked.id == 'bodyfatsliderbuttonUp') {
         bodyfatslider.value = parseInt(bodyfatslider.value) + 1;
     } else {
         bodyfatslider.value = parseInt(bodyfatslider.value) - 1;
     }
     bodyFatSliderChanged();
+
+    setTimeout(() => {
+        buttonClicked.classList.remove('buttonClicked');
+      }, "80")
 }
 
 

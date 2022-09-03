@@ -202,7 +202,21 @@ input[type='checkbox'] {
     width: 100%;
 }
 
-/* cool slider */
+.bodyfatpercentagebutton {
+    border-radius: 1em;
+    background-color: #fefcff;
+    border: 2px solid #a2a2a2;
+    color: #202020;
+    padding: 1.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    width: 6rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.bodyfatpercentagebutton.buttonClicked {     
+    background-color:rgb(77, 255, 240);
+}
 
 input[type='range'] {
     -webkit-appearance: none;
