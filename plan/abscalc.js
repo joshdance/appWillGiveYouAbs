@@ -28,6 +28,95 @@ let user = new Object;
 // user.totalCaloriesUntilBfGoal
 
 //body fat percentage
+
+let bodyfatExamples = [
+    { from:1, to:5, price:'1 - 5'},
+    { from:6, to:8, price:'6 - 8'},
+    { from:9, to:12, price:'9 - 12'}
+];    
+
+function isInRange(range, value) {
+    if (range.from <= value && range.to >= value) {
+        //in range
+        return true
+    } else {
+        return false
+    }
+}
+
+var value = 5;
+var priceFound = false
+for (var i = 0; i < bodyfatExamples.length && !priceFound; i++) {
+    var range = bodyfatExamples[i];
+    if (isInRange(range, value)) {
+        alert("price: " + range.price);
+        priceFound = true
+    }
+}
+
+let bodyFatLevelExamples = [
+    {
+        "bodyfatExampleObjectID": 1,
+        "bodyfatLowerPercentage": 1,
+        "bodyfatUpperPercentage": 5,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/4-5.png'
+      },
+      {
+        "bodyfatExampleObjectID": 2,
+        "bodyfatLowerPercentage": 6,
+        "bodyfatUpperPercentage": 8,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/6-7.png'
+      },
+      {
+        "bodyfatExampleObjectID": 3,
+        "bodyfatLowerPercentage": 9,
+        "bodyfatUpperPercentage": 12,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/11-12.png'
+      },
+      {
+        "bodyfatExampleObjectID": 4,
+        "bodyfatLowerPercentage": 13,
+        "bodyfatUpperPercentage": 15,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/13-15.png'
+      },
+      {
+        "bodyfatExampleObjectID": 5,
+        "bodyfatLowerPercentage": 16,
+        "bodyfatUpperPercentage": 20,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/16-19.png'
+      },
+      {
+        "bodyfatExampleObjectID": 6,
+        "bodyfatLowerPercentage": 21,
+        "bodyfatUpperPercentage": 25,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/20-24.png'
+      },
+      {
+        "bodyfatExampleObjectID": 7,
+        "bodyfatLowerPercentage": 26,
+        "bodyfatUpperPercentage": 30,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/25-30.png'
+      },
+      {
+        "bodyfatExampleObjectID": 8,
+        "bodyfatLowerPercentage": 31,
+        "bodyfatUpperPercentage": 35,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/4-5.png'
+      },
+      {
+        "bodyfatExampleObjectID": 9,
+        "bodyfatLowerPercentage": 36,
+        "bodyfatUpperPercentage": 40,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/35-40.png'
+      },
+      {
+        "bodyfatExampleObjectID": 10,
+        "bodyfatLowerPercentage": 41,
+        "bodyfatUpperPercentage": 100,
+        "bodyfatExampleImagePath": 'images/malePercentagePictures/35-40.png'
+      }
+]
+
 const bodyFatPercentageDisplayArea = document.getElementById('bodyFatPercentageDisplayArea');
 
 const bodyfatslider = document.getElementById('bodyfatslider');
@@ -41,10 +130,36 @@ bodyfatsliderbuttonsArray.forEach( function(element, index) {
 
 let bodyFatPercentageImage = document.getElementById('bodyFatPercentageImage');
 
+function setBodyFatPercentageObject() {
+    if ((bodyFatPercentage <= bodyFatLevelExamples[0][1])) {
+        bodyFatText = "5% body fat: Ridiculously and dangerously lean. All muscles, veins, and striations (the rod looking stripes on a muscle) are very visible. This is around the lowest level of body fat a human male can have. You look like an anatomy mannequin. Immune system and other normal body systems may not work like normal.";
+    } else if ((bodyFatPercentage > 5) && (bodyFatPercentage <= 8)) {
+        bodyFatText = "6-8% body fat: Extremely low levels of body fat. Absolutely chiseled from stone. Think Baywatch or Blade. This level is very difficult to maintain and not easily sustainable. This level is characterized by muscle definition in most muscle groups and some clear showing of your veins (vascularity) in areas such as arms, legs, and abs.";
+    } else if ((bodyFatPercentage > 8) && (bodyFatPercentage <= 12)) {
+        bodyFatText = "9% - 12% body fat: Very in shape. This is the beach body fat percentage that most people envison 🏝. Your abs can be clearly seen. At this level is some defined veins in the arms and legs.";
+    } else if ((bodyFatPercentage > 12) && (bodyFatPercentage <= 15)) {
+        bodyFatText = "13% - 15% body fat: Fit and lean. Outlines of muscle can be seen, but there is not really a clear separation between them. Muscles and veins can slightly be seen, but are covered by a thin layer of fat. However, the overall body shape is present and can be noticed.";
+    } else if ((bodyFatPercentage > 15) && (bodyFatPercentage <= 20)) {
+        bodyFatText = "16% - 20% body fat: Above average territory. Muscle definition is not as present and noticeable especially in the abdomen. A man with this level of body fat typically has the “soft” look and has a pouch on his abdomen.";
+    } else if ((bodyFatPercentage > 20) && (bodyFatPercentage <= 25)) {
+        bodyFatText = "21% - 25% body fat: Average male look territory, but 25% body fat for a man is still considered obese. The waist is creeping over 40 inches, which is considered abdominal obesity. There is almost no separation of muscles, no noticeable veins and no muscle striations. There may be a little neck fat. However, this man may not look like he has 25% body fat in normal clothing.";
+    } else if ((bodyFatPercentage > 25) && (bodyFatPercentage <= 30)) {
+        bodyFatText = "26%-30% body fat: Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist.";
+    } else if ((bodyFatPercentage > 30) && (bodyFatPercentage <= 35)) {
+        bodyFatText = "31% - 35% body fat: This percentage of body fat is more of the beer gut look. The waist circumference at this point can be about 40+ inches.";
+    } else if ((bodyFatPercentage > 35) && (bodyFatPercentage <= 40)) {
+        bodyFatText = "36% - 40% body fat: Significant fat accumulation in the stomach and waist region. Basic daily activities like walking up stairs or bending over to pick something up are difficult. This body fat percentage is considered morbidly obese.";
+    } else if ((bodyFatPercentage > 41)) {
+        bodyFatText = "40+% body fat: Morbidly obese. All daily activies are more difficult and significant health risks are present. Talk to your doctor immediately. At higher risks of heart diseases, strokes, cancers, Type 2 diabetes, gallbladder and liver problems, infertility, reproductive issues, arthritis, sleep apnea, anxiety, depression, and increased physical pain.";
+    }
+}
+
 function bodyFatSliderChanged() {
     bodyFatPercentageDisplayArea.textContent = bodyfatslider.value;
 
     bodyFatPercentageImage.src = 'images/science.png';
+
+
 
     percentInputBox2.value = parseInt(bodyfatslider.value);
 }
