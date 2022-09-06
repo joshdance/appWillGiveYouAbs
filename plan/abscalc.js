@@ -29,11 +29,22 @@ let user = new Object;
 
 //body fat percentage
 
+
 let bodyfatExamples = [
-    { from:1, to:5, price:'1 - 5'},
-    { from:6, to:8, price:'6 - 8'},
-    { from:9, to:12, price:'9 - 12'}
+    { from:1, to:3, path:'images/malePercentagePictures/1-3.png'},
+    { from:4, to:5, path:'images/malePercentagePictures/4-5.png'},
+    { from:6, to:8, path:'images/malePercentagePictures/6-7.png'},
+    { from:9, to:12, path:'images/malePercentagePictures/11-12.png'},
+    { from:13, to:15, path:'images/malePercentagePictures/13-15.png'},
+    { from:16, to:20, path:'images/malePercentagePictures/16-19.png'},
+    { from:21, to:25, path:'images/malePercentagePictures/20-24.png'},
+    { from:26, to:30, path:'images/malePercentagePictures/25-30.png'},
+    { from:31, to:35, path:'images/malePercentagePictures/35-40.png'},
+    { from:36, to:40, path:'images/malePercentagePictures/35-40.png'},
+    { from:41, to:100, path:'images/malePercentagePictures/35-40.png'},
 ];    
+
+let userSelectedBodyFatExample = bodyfatExamples[8];
 
 function isInRange(range, value) {
     if (range.from <= value && range.to >= value) {
@@ -44,78 +55,16 @@ function isInRange(range, value) {
     }
 }
 
-var value = 5;
-var priceFound = false
-for (var i = 0; i < bodyfatExamples.length && !priceFound; i++) {
-    var range = bodyfatExamples[i];
-    if (isInRange(range, value)) {
-        alert("price: " + range.price);
-        priceFound = true
+function checkAndChangeBodyFatExample(bodyFatPercentageToCheck){
+    var matchFound = false
+    for (var i = 0; i < bodyfatExamples.length && !matchFound; i++) {
+        var bodyfatExample = bodyfatExamples[i];
+        if (isInRange(bodyfatExample, bodyFatPercentageToCheck)) {
+            matchFound = true
+            userSelectedBodyFatExample = bodyfatExample;
+        }
     }
 }
-
-let bodyFatLevelExamples = [
-    {
-        "bodyfatExampleObjectID": 1,
-        "bodyfatLowerPercentage": 1,
-        "bodyfatUpperPercentage": 5,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/4-5.png'
-      },
-      {
-        "bodyfatExampleObjectID": 2,
-        "bodyfatLowerPercentage": 6,
-        "bodyfatUpperPercentage": 8,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/6-7.png'
-      },
-      {
-        "bodyfatExampleObjectID": 3,
-        "bodyfatLowerPercentage": 9,
-        "bodyfatUpperPercentage": 12,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/11-12.png'
-      },
-      {
-        "bodyfatExampleObjectID": 4,
-        "bodyfatLowerPercentage": 13,
-        "bodyfatUpperPercentage": 15,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/13-15.png'
-      },
-      {
-        "bodyfatExampleObjectID": 5,
-        "bodyfatLowerPercentage": 16,
-        "bodyfatUpperPercentage": 20,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/16-19.png'
-      },
-      {
-        "bodyfatExampleObjectID": 6,
-        "bodyfatLowerPercentage": 21,
-        "bodyfatUpperPercentage": 25,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/20-24.png'
-      },
-      {
-        "bodyfatExampleObjectID": 7,
-        "bodyfatLowerPercentage": 26,
-        "bodyfatUpperPercentage": 30,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/25-30.png'
-      },
-      {
-        "bodyfatExampleObjectID": 8,
-        "bodyfatLowerPercentage": 31,
-        "bodyfatUpperPercentage": 35,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/4-5.png'
-      },
-      {
-        "bodyfatExampleObjectID": 9,
-        "bodyfatLowerPercentage": 36,
-        "bodyfatUpperPercentage": 40,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/35-40.png'
-      },
-      {
-        "bodyfatExampleObjectID": 10,
-        "bodyfatLowerPercentage": 41,
-        "bodyfatUpperPercentage": 100,
-        "bodyfatExampleImagePath": 'images/malePercentagePictures/35-40.png'
-      }
-]
 
 const bodyFatPercentageDisplayArea = document.getElementById('bodyFatPercentageDisplayArea');
 
@@ -157,11 +106,12 @@ function setBodyFatPercentageObject() {
 function bodyFatSliderChanged() {
     bodyFatPercentageDisplayArea.textContent = bodyfatslider.value;
 
-    bodyFatPercentageImage.src = 'images/science.png';
+    checkAndChangeBodyFatExample(bodyfatslider.value);
 
-
+    bodyFatPercentageImage.src = userSelectedBodyFatExample.path;
 
     percentInputBox2.value = parseInt(bodyfatslider.value);
+
 }
 
 function bodyFatButtonsClicked(event) {

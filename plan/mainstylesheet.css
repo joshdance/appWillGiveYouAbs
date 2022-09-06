@@ -196,10 +196,12 @@ input[type='checkbox'] {
 
 .bodyFatPercentageImageSection {
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .bodyFatPercentageImageSection img {
-    width: 100%;
+    width: 200px;
 }
 
 .bodyfatpercentagebutton {
