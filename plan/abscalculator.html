@@ -98,6 +98,7 @@
 
 
 			<!-- todo when the weight changes, then run the calcs -->
+			<!-- todo Add in the 'open full how to estimate body fat section or separate article? -->
 
 		</div>
 
@@ -208,40 +209,35 @@
 				<img id="bodyFatPercentageImage" src="images/malePercentagePictures/25-30.png">
 			</div>
 
+			
+			<div class="bodyFatTextSection" id="bodyFatTextSection">
+				<!-- text goes here -->
+			</div>
+
 			<div class="bodyfatpercentagedisplay">
-				<span id="bodyFatPercentageDisplayArea">30</span>
+				<input type="number" id="percentInputBox" class="percentInputBox inputform" placeholder="in whole percent. example 20 not .2" value="22">
 			</div>
 
 			<div class="bodyfatpercentageselectorcontrol">
 				<button class="bodyfatpercentagebutton" name="bodyfatsliderbutton" id="bodyfatsliderbuttonDown">Down</button>
-				<input id="bodyfatslider" type="range" class="range-style" value="30" min="3" max="60"></input>
+				<input id="bodyfatslider" type="range" class="range-style" value="30" min="1" max="60"></input>
 				<button class="bodyfatpercentagebutton" name="bodyfatsliderbutton" id="bodyfatsliderbuttonUp">Up</button>
 			</div>
-
-			<div>
-				Description Text
-			</div>
-		</div>
-
-		<div class="questionSection">
-			<h3>What is your current body fat percentage?</h3>
-
-			<div>
-				<input type="number" id="percentInputBox" class="percentInputBox inputform" placeholder="in whole percent. example 20 not .2" value="22">
-			</div>
-
-			<div>
-				<button type="button" id="setBodyFatPercentageButton" class="calcButton squareButton">Set body fat percentage!</button>
-			</div>
-
-			<p>todo add in slider that will show the selected body fat images</p>
-			<p>Add in the 'open full how to estimate body fat section or separate article?</p>
 		</div>
 
 		<div class="resultsSection">
+			<h3>Body Composition Results</h3>
 			<div>
 				At <span class="totalbodyweight" name="weightInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, with a body fat percentage of <span name="bfInsert">Y</span>%, you have <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of body fat and <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass for a total of <span name="weightInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of total mass. 
 			</div>
+		</div>
+
+		<h3>Do you want to see all the body fat examples and descriptions in a list?</h3>
+		<div class="radio-group">
+			<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="No" value="No" checked>
+			<label for="No">Yep</label>
+			<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="Yes" value="Yes">
+			<label for="Yes">Nope</label>
 		</div>
 
 		<div id="estimateBodyFat">
@@ -268,14 +264,6 @@
 			<h3>Body Fat Level Descriptions</h3>
 			<div id="estimateBodyFatLevelDescriptions">	
 			</div>
-		</div>
-
-		<h3>Do you know your current body fat percentage?</h3>
-		<div class="radio-group">
-			<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="No" value="No" checked>
-			<label for="No">No</label>
-			<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="Yes" value="Yes">
-			<label for="Yes">Yes</label>
 		</div>
 
 
