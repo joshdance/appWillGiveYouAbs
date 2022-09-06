@@ -185,6 +185,11 @@ input[type='checkbox'] {
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
+}
+
+input[type="button"]{
+    touch-action: manipulation;
 }
 
 .bodyfatpercentagedisplay {
@@ -214,6 +219,7 @@ input[type='checkbox'] {
     margin-right: 0.5rem;
     width: 6rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    touch-action: manipulation;
 }
 
 .bodyfatpercentagebutton.buttonClicked {     
@@ -322,6 +328,7 @@ input[type='range']::-moz-range-thumb {
     border: 2px solid #a2a2a2;
     color: #202020;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    touch-action: manipulation;
 }
 
 .radioButton span {
@@ -386,6 +393,7 @@ input[type='range']::-moz-range-thumb {
     border: 2px solid #a2a2a2;
     color: #202020;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    touch-action: manipulation;
 }
 
 .genderButton span {
