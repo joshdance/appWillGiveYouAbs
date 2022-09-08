@@ -106,12 +106,12 @@
 			<h3 class="questionHeader">Which measurement system do you prefer?</h3>
 			<div class="radioButtonSection">
 				<div class="radioButtonsOption">
-					<button class="radioButton selectedButton" name="unitOfMeasurementButton" data-unit-system="Metric" data-mass-unit="Kilogram">
+					<button class="radioButton" name="unitOfMeasurementButton" data-unit-system="Metric" data-mass-unit="Kilogram">
 						<span class="radioButtonName">🌍 Metric</span>
 					</button>
 				</div>
 				<div class="radioOption">
-					<button class="radioButton" name="unitOfMeasurementButton" data-unit-system="Imperial" data-mass-unit="Pound" data-user-selected="true">
+					<button class="radioButton selectedButton" name="unitOfMeasurementButton" data-unit-system="Imperial" data-mass-unit="Pound" data-user-selected="true">
 						<span class="radioButtonName">🇺🇸 Imperial</span>
 					</button>
 				</div>
@@ -235,9 +235,9 @@
 		<h3>Do you want to see all the body fat examples and descriptions in a list?</h3>
 		<div class="radio-group">
 			<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="No" value="No" checked>
-			<label for="No">Yep</label>
+			<label for="No">No</label>
 			<input type="radio" class="bodyFatKnowledge toggle" name="bodyFatKnowledge" id="Yes" value="Yes">
-			<label for="Yes">Nope</label>
+			<label for="Yes">Yes</label>
 		</div>
 
 		<div id="estimateBodyFat">
@@ -281,9 +281,7 @@
 		</div>
 
 		<h2>How to get to <span name="goalBodyFatPercentageInsert">goal </span> % body fat</h2>
-		<div>
-			You are at a body fat percentage of <span name="bfInsert">Y</span>%. With your current weight of <span name="weightInsert">X</span> <span name="selectedMassUnitOfMeasurement">pounds</span>, that means you have <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass and <span name="fatInsert">A</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of body fat. 
-		</div>
+	
 		<div class="highlight">
 			<div>
 				With your goal body fat percentage of <span name="goalBodyFatPercentageInsert">goal</span>%, you would have a goal weight of <span name="newTotalBodyWeightInsert"></span> <span name="selectedMassUnitOfMeasurement">pounds</span>, with <span name="leanInsert">Z</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of lean body mass and <span name="newFatInsert">C</span> <span name="selectedMassUnitOfMeasurement">pounds</span> of fat.
@@ -304,31 +302,39 @@
 			What is your age?
 			<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
 		</div>
+
+		<h3>What is your height?</h3>
 		<div id="metricHeightSection">
-			What is your height in centimeters?
-			<input type="number" class="inputform" name="userHeightInCentimetersInputBox" id="userHeightInCentimetersInputBox" value="172.72">
-		</div>
-		<div id="imperialHeightSection">
-		<div>
-			What is your height in feet?
-			<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
-		</div>
-		<div>
-			and your remaining height in inches
-			<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
-		</div>
+			In centimeters?
+			<input type="number" class="inputform bmrInputForm" name="userHeightInCentimetersInputBox" id="userHeightInCentimetersInputBox" value="172.72">
 		</div>
 
+		
+		<div class="imperialHeightSection" id="imperialHeightSection">
+			<div>
+				Feet
+				<input type="number" class="inputform bmrInputForm" name="feet" id="feet" value="5">
+			</div>
+			<div>
+				Inches
+				<input type="number" class="inputform bmrInputForm" name="inches" id="inches" value="8">
+			</div>
+		</div>
+
+		<div class="heightSliderSection">
+			<input id="heightSlider" type="range" class="range-style" value="173" min="134" max="221"></input>
+		</div>
+
+		<div class="resultsSection">
+			<div>
+				Your estimated BMR is <span class="bmrAnswer" name="bmrAnswer">bmrAnswer</span> calories per day. 
+			</div>
+		</div>
+
+
+		<h3>Do you want to know how your BMR is calculated?</h3>
 		<div>
 			We will use the weight that you entered earlier, of <span name="weightInsert">weight fill</span> <span name="selectedMassUnitOfMeasurement">pounds</span>.
-		</div>
-
-		<div>
-			<button type="button" class="calcBmrButton squareButton" id="calcBmrButton">Calculate your BMR!</button>
-		</div>
-
-		<div>
-			Your estimated BMR is <span class="bmrAnswer" name="bmrAnswer">bmrAnswer</span> calories per day. 
 		</div>
 
 		<div>

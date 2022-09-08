@@ -29,6 +29,100 @@ let user = new Object;
 
 //body fat percentage
 
+//height section
+const heightSlider = document.getElementById('heightSlider');
+heightSlider.addEventListener('input', heightSliderChanged);
+
+const userHeightInCentimetersInputBox = document.getElementById("userHeightInCentimetersInputBox");
+
+userHeightInCentimetersInputBox.addEventListener('change',metricHeightChanged);
+
+const age = document.getElementById('age');
+age.addEventListener('change',BmrInfoEntered);
+
+const feet = document.getElementById('feet');
+feet.addEventListener('change',imperialHeightChanged);
+const inches = document.getElementById('inches');
+inches.addEventListener('change',imperialHeightChanged);
+
+const bmrAnswer = document.getElementsByName('bmrAnswer');
+
+function metricHeightChanged() {
+    let newCentimeterValue = userHeightInCentimetersInputBox.value;
+    heightSlider.value = newCentimeterValue;
+    BmrInfoEntered();
+}
+
+function imperialHeightChanged(event) {
+    
+    //was it feet or inches changed?
+    let changedInput = event.target;
+
+    if (changedInput.id == 'feet') {
+        //feet were changed
+
+    } else {
+        //inches were changed
+        if (inches.value > 11) {
+            feet.value = parseInt(feet.value) + 1;
+            inches.value = 0;
+        }
+
+        if (inches.value < 0) {
+            feet.value = parseInt(feet.value) - 1;
+            inches.value = 11;
+        }
+    }
+    
+    let newFeetValue = feet.value;
+    let newInchesValue = inches.value;
+
+    let newOnlyInches = convertFeetAndInchesToTotalInches(newFeetValue,newInchesValue);
+
+    let newCentimeterValue = convertInchesToCentimeters(newOnlyInches);
+    console.log('user height in centimeters =' + newCentimeterValue);
+
+    userHeightInCentimetersInputBox.value = newCentimeterValue;
+    heightSlider.value = newCentimeterValue;
+    BmrInfoEntered();
+}
+
+function heightSliderChanged() {
+
+    userHeightInCentimeters = heightSlider.value;
+    console.log('user height in centimeters =' + userHeightInCentimeters);
+
+    //set centimeter input box
+    userHeightInCentimetersInputBox.value = parseInt(heightSlider.value);
+
+    //set imperical input boxes as we convert first
+    let userHeightObject = convertCentimetersToFeetAndInches(userHeightInCentimeters);
+    feet.value = userHeightObject.feet;
+    inches.value = userHeightObject.inches;
+
+    BmrInfoEntered();
+}
+
+function convertCentimetersToFeetAndInches(centimeters){
+    //quick convert centimeters to inches
+    let allInches = (centimeters * 0.393700);
+
+    //convert to the feet
+    let feetWithDecimal = allInches / 12;
+    let feetWithoutDecimal = Math.floor(feetWithDecimal);
+
+    //get remaining inches
+    let inchesDecimal = (feetWithDecimal - feetWithoutDecimal) * 12;
+    let inchesConvertedFromDecimal = Math.round(inchesDecimal);
+    
+    let userHeightObject = {
+        feet: feetWithoutDecimal,
+        inches: inchesConvertedFromDecimal
+    }
+
+    return userHeightObject;
+}
+
 
 let bodyfatExamples = [
     { from:1, to:2, path:'images/malePercentagePictures/1-3.png', textdescription: '1-2% body fat: You are probably dead. Your brain and organs are made of fat and you do not have enough to live. See a doctor. Get help.'},
@@ -120,6 +214,8 @@ const sex = Array.from(sexElements);
 sex.forEach( function(element, index) {
     element.addEventListener('click', genderPicked);
 });
+
+
 
 //#Unit of Measurement Setup
 const unitOfMeasurementElements = document.getElementsByName('unitOfMeasurementButton');//return 'array like' list. All the checkboxes. Careful. 
@@ -559,7 +655,8 @@ function bootup() {
         getUserName();
         getUserGender();
         setUpForSelectedGender();
-        userPickedUnitOfMeasurement();
+
+        loadUnitOfMeasurement();
 
         getUserWeight();
         getUserHeight();
@@ -750,7 +847,68 @@ function updatePageWithOptimalBodyFatGoal(){
     });
 }
 
-    //#Metric Section
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //#Unit of Measurement Section
+function loadUnitOfMeasurement(){
+
+    //todo load this from firebase
+    let userPickedUnit = 'Imperial';
+    // let userPickedUnit = 'Metric';
+
+    //clear built in selection
+    unitOfMeasurementArray.forEach( function(button) {
+        button.dataset.userSelected = false;
+        button.classList.remove('selectedButton');
+    });
+
+    unitOfMeasurementArray.forEach( function(button) {
+        if (button.dataset.unitSystem == userPickedUnit) {
+            button.dataset.userSelected = true;
+            button.classList.add('selectedButton');
+        }
+    });
+
+    getAndSetUserSelectedUnitOfMeasurement();
+}
+    
+function setPageUpForUnitOfMeasurement(){
+        updatePageWithSelectedUnitSection();
+        updatePageWithSelectedUnitsOfMeasurement();
+        updatePageWithCaloriesInSelectedUnitsOfMeasurement();
+        updatePageWithProteinPerUnitOfWeight();
+}
+    
+function getAndSetUserSelectedUnitOfMeasurement(){
+    
+    unitOfMeasurementArray.forEach( function(button) {
+        if (button.dataset.userSelected == 'true') {
+            user.selectedMassUnitOfMeasurement = button.dataset.unitSystem;
+            user.selectedMassUnit = button.dataset.massUnit;
+        }
+    });
+
+    setPageUpForUnitOfMeasurement();
+}
+
 function userPickedUnitOfMeasurement(event){
 
     //if the event is real run it
@@ -762,38 +920,34 @@ function userPickedUnitOfMeasurement(event){
 
         let buttonClicked = event.target;
 
-        //clear the selection
+        //clear built in selection
         unitOfMeasurementArray.forEach( function(button) {
-            button.dataset.userSelected = false;
-            button.classList.remove('selectedButton');
+        button.dataset.userSelected = false;
+        button.classList.remove('selectedButton');
         });
 
         //set the data to show which button the user picked
         buttonClicked.dataset.userSelected = true;
 
+        let unitPicked = buttonClicked.dataset.unitSystem;
+
         //visually highlight the picked button
         buttonClicked.classList.add('selectedButton');
+
+        console.log('user picked ' + unitPicked + ' as their unit of measurement');
+        getAndSetUserSelectedUnitOfMeasurement();
     }
-
-    console.log('user picked a unit of measurement');
-
-    getAndSetUserSelectedUnitOfMeasurement();
-
-    updatePageWithSelectedUnitSection();
-    updatePageWithSelectedUnitsOfMeasurement();
-    updatePageWithCaloriesInSelectedUnitsOfMeasurement();
-    updatePageWithProteinPerUnitOfWeight();
 }
 
 function updatePageWithSelectedUnitSection() {
     if (user.selectedMassUnitOfMeasurement == "Metric") {
         if (imperialHeightSection != null) {
             imperialHeightSection.style.display = "none";
-            metricHeightSection.style.display = "block";
+            metricHeightSection.style.display = "flex";
         }
     } else { //=="Imperial"
         if (imperialHeightSection != null) {
-            imperialHeightSection.style.display = "block";
+            imperialHeightSection.style.display = "flex";
             metricHeightSection.style.display = "none";
         }
     }
@@ -809,15 +963,7 @@ function updatePageWithCaloriesInSelectedUnitsOfMeasurement(){
     });
 }
 
-function getAndSetUserSelectedUnitOfMeasurement(){
 
-    unitOfMeasurementArray.forEach( function(button) {
-        if (button.dataset.userSelected == 'true') {
-            user.selectedMassUnitOfMeasurement = button.dataset.unitSystem;
-            user.selectedMassUnit = button.dataset.massUnit;
-        }
-    });
-}
 
 function updatePageWithSelectedUnitsOfMeasurement(){
     selectedMassUnitOfMeasurement.forEach( function(element, index) {
@@ -950,12 +1096,14 @@ function updatePageWithUserCurrentBodyFatPercentage(){
     });
 }
 
-function toggleEstimates() {
-    console.log('toggleEstimates')
+function showAndHideEstimates() {
+    
     if (estimateBodyFatSection.style.display == "block") {
         estimateBodyFatSection.style.display = "none";
+        console.log('hiding estimates');
     } else {
         estimateBodyFatSection.style.display = "block";
+        console.log('showing estimates');
     }
 }
 
@@ -1036,7 +1184,7 @@ function updatePageWithUserGoalForTotalBodyWeight(){
 }
 
 // #BMR Section
-function calcBmrButtonClicked(){
+function BmrInfoEntered(){
     getUserAge();
     getUserWeight();
     getUserHeight();
@@ -1060,14 +1208,9 @@ function calcBmr(){
 }
 
 function getUserHeight(){
-    if (user.selectedMassUnitOfMeasurement == "Metric") {
         user.heightInCentimeters = userHeightInCentimetersInputBox.value;
-        convertUserHeightToFeetAndInches(user.heightInCentimeters);
-    } else { //=="Imperial"
         user.heightFeet = feet.value;
         user.heightInches = inches.value;
-        convertUserHeightToCentimeters(user.heightFeet,user.heightInches);
-    }
 }
 
 function convertUserHeightToFeetAndInches(heightInCentimeters){
@@ -1645,7 +1788,6 @@ const proteinPerUnit = document.getElementsByName('proteinPerUnit');
 const numberOfCaloriesInSelectedMassUnitOfMeasurement = document.getElementsByName('numberOfCaloriesInSelectedMassUnitOfMeasurement');
 
 
-const userHeightInCentimetersInputBox = document.getElementById("userHeightInCentimetersInputBox");
 const imperialHeightSection = document.getElementById("imperialHeightSection");
 const metricHeightSection = document.getElementById("metricHeightSection");
 
@@ -1719,7 +1861,7 @@ const poundMassPoundForceDetails = document.getElementById('poundMassPoundForceD
 const doYouKnowBodyFatQuestionAnswers = document.getElementsByName('bodyFatKnowledge');//return 'array like' list. All the checkboxes. Careful. 
 if (doYouKnowBodyFatQuestionAnswers != null) {
     doYouKnowBodyFatQuestionAnswers.forEach( function(element, index) {
-    element.addEventListener('change', toggleEstimates);
+    element.addEventListener('change', showAndHideEstimates);
 });
 };
 
@@ -1739,12 +1881,6 @@ if (timeToGoalButton != null) {
 
 const calcTimeToGoalButton = document.getElementById('calcTimeToGoalButton');
 
-//remember to use the correct selector! Or just id. 
-const calcBmrButton = document.getElementById('calcBmrButton');
-if (calcBmrButton != null) {
-    calcBmrButton.addEventListener('click',calcBmrButtonClicked);
-}
-
 const weightInputBox2 = document.getElementById('weightInputBox');
 const percentInputBox2 = document.getElementById('percentInputBox');
 
@@ -1760,11 +1896,6 @@ const maleExampleImageLinks = Array.from(tempmaleExampleImageLinks);
 
 const tempfemaleExampleImageLinks = document.getElementsByClassName('femaleExampleImageLinks');
 const femaleExampleImageLinks = Array.from(tempfemaleExampleImageLinks);
-
-const age = document.getElementById('age');
-const feet = document.getElementById('feet');
-const inches = document.getElementById('inches');
-const bmrAnswer = document.getElementsByName('bmrAnswer');
 
 let tdee = document.getElementsByName('tdee');
 
@@ -1873,9 +2004,7 @@ if (bfGoalInputBox != null) {
 }
 
 const estimateBodyFatSection = document.getElementById('estimateBodyFat');
-if (estimateBodyFatSection != null) {
-    estimateBodyFatSection.style.display = "block";
-}
+
 const estimateBodyFatLevelDescriptions = document.getElementById('estimateBodyFatLevelDescriptions');
 
 const buttonToggleActivityLevelSection = document.getElementById('buttonToggleActivityLevelSection');
