@@ -88,12 +88,14 @@
 
 		<div class="questionSection">
 			<h3>
-				What is your current mass in <span name="selectedMassUnitOfMeasurement">pound</span>s? ⚡️
+				What is your current weight? ⚡️
 			</h3>
 
-			<div>
+			<div class="center weightbox">
 				<input type="number" id="weightInputBox" class="weightInputBox inputform" value="180">
-				<span name="selectedMassUnitOfMeasurement">pound</span>s
+				<div class="weightBoxLabel">
+					<span name="selectedMassUnitOfMeasurement">pound</span>s
+				</div>
 			</div>
 
 
@@ -211,7 +213,7 @@
 
 			
 			<div class="bodyFatTextSection" id="bodyFatTextSection">
-				<!-- text goes here -->
+				26%-30% body fat:&nbsp;Obese. Fat is present all around the body including waist, back, thighs, and calves. The waist will appear slightly larger relative to the hips, and the stomach will most likely be protruding noticeably over the waist.
 			</div>
 
 			<div class="bodyfatpercentagedisplay">
@@ -272,12 +274,8 @@
 			Remember, as a <span name="selectedGenderInsert">male</span>, your abs really pop at <span class="genderOptimalBfGoal">10</span>% body fat, but you can set any goal you desire here. 
 		</div>
 
-		<div>
-			<input type="number" class="inputform" id="bfGoalInputBox" value="10">
-		</div>
-
-		<div>
-			<button type="button" id="getAbPlanButton" class="squareButton">Set my goal!</button>
+		<div class="center">
+			<input type="number" class="inputform" id="bfGoalInputBox" value="10" min="1" max="100">
 		</div>
 
 		<h2>How to get to <span name="goalBodyFatPercentageInsert">goal </span> % body fat</h2>
@@ -300,7 +298,7 @@
 		<h3>Let's Calculate your BMR</h3>
 		<div>
 			What is your age?
-			<input type="number" class="inputform bmrInputForm" name="age" id="age" value="33">
+			<input type="number" class="inputform bmrInputForm" name="age" id="age" value="36">
 		</div>
 
 		<h3>What is your height?</h3>

@@ -2001,6 +2001,7 @@ const dailyCaloriesAtMaxInsert = document.getElementsByName('dailyCaloriesAtMaxI
 const bfGoalInputBox = document.getElementById('bfGoalInputBox');
 if (bfGoalInputBox != null) {
     bfGoalInputBox.addEventListener('focusin',userPickedBodyFatPercentageGoal);
+    bfGoalInputBox.addEventListener('change',getAbPlan);
 }
 
 const estimateBodyFatSection = document.getElementById('estimateBodyFat');
