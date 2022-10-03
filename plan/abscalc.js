@@ -1312,17 +1312,6 @@ function updatePageWithTDEE(){
     });
 }
 
-function toggleActivityLevelSection() {
-    console.log('toggle activity estimtes section');
-    if (activityLevelSection.style.display == 'block') {
-        activityLevelSection.style.display = "none";
-        buttonToggleActivityLevelSection.textContent = 'Click to show Activity estimating section.';
-    } else {
-        activityLevelSection.style.display = "block";
-        buttonToggleActivityLevelSection.textContent = 'Click to hide Activity estimating section.';
-    }
-}
-
 // #Caloric deficit section
 function getUserCalorieIntake(){
     user.selectedDailyCalories = parseInt(caloricBudgetInput.value);
@@ -2007,11 +1996,6 @@ if (bfGoalInputBox != null) {
 const estimateBodyFatSection = document.getElementById('estimateBodyFat');
 
 const estimateBodyFatLevelDescriptions = document.getElementById('estimateBodyFatLevelDescriptions');
-
-const buttonToggleActivityLevelSection = document.getElementById('buttonToggleActivityLevelSection');
-if (buttonToggleActivityLevelSection != null) {
-    buttonToggleActivityLevelSection.addEventListener('click', toggleActivityLevelSection);
-}
 
 const activityLevelSection = document.getElementById('activityLevelSection');
 

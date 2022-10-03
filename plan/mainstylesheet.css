@@ -344,6 +344,12 @@ input[type='range']::-moz-range-thumb {
     gap: 1em;
 }
 
+.radioButtonSection.activityLevelSection {
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+}
+
 .radioButtonsOption {
     display: flex;
     align-items: center;
@@ -414,6 +420,13 @@ input[type='range']::-moz-range-thumb {
     align-items: center;
     justify-content: center;
     width: 60%;
+}
+
+.radioOption.activytLevelSelection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .genderButton {

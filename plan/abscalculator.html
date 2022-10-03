@@ -336,49 +336,71 @@
 		</div>
 
 		<div>
-		<h3>What is your level of Activity?</h3>
+		<h3></h3>
 		</div>
+		<p>
+			Warning: Studies have shown that we all overestimate how much we are active. So read the descriptions, pick where you think you are, then move down one level. For example if you think you are Moderately Active, chose Lightly Active. Since it is an estimate it just needs to be close and then you can see what the results are and tweak it.
+		</p>
+
+		<div class="activityLevelButtons">
+			<div class="questionSection">
+				<h3 class="questionHeader">What is your level of Activity?</h3>
+				<div class="radioButtonSection activityLevelSection">
+
+					<div class="radioOption activytLevelSelection">
+						<button class="radioButton" name="unitOfMeasurementButton" data-unit-system="Metric" data-mass-unit="Kilogram">
+							<span class="radioButtonName">Sedentary 1.15</span>
+							<p>
+								You don’t intentionally exercise at all. Get up, go to work, come home, eat dinner, relax. Desk job.
+							</p>
+						</button>
+					</div>
+
+					<div class="radioOption activytLevelSelection">
+						<button class="radioButton selectedButton" name="unitOfMeasurementButton" data-unit-system="Imperial" data-mass-unit="Pound" data-user-selected="true">
+							<span class="radioButtonName">Lightly Active 1.2</span>
+							<p>
+								On average, you walk for exercise about 30 minutes a day. Or you are running or lifting weights fro 15 minutes a day.
+							</p>
+						</button>
+					</div>
+
+					<div class="radioOption activytLevelSelection">
+						<button class="radioButton selectedButton" name="unitOfMeasurementButton" data-unit-system="Imperial" data-mass-unit="Pound" data-user-selected="true">
+							<span class="radioButtonName">Moderately Active 1.4</span>
+							<p>
+								If I was looking for you, one of the places I would check is the gym. 50 minutes of vigorous exercise a day. Or about one hour and 45 minutes of walking (for exercise, not going around your house) per day. Most people do not do this.
+							</p>
+						</button>
+					</div>
+
+					<div class="radioOption activytLevelSelection">
+						<button class="radioButton selectedButton" name="unitOfMeasurementButton" data-unit-system="Imperial" data-mass-unit="Pound" data-user-selected="true">
+							<span class="radioButtonName">Very Active 1.6</span>
+							<p>
+								You move vigorously for your work (think something like construction or yardwork), or you workout every single day for more than an hour. If you were to get this level of activity only walking, it would be a nearly impossible four hours and 15 minutes of walking (again, for intentional exercise) a day.
+							</p>
+						</button>
+					</div>
+
+					<div class="radioOption activytLevelSelection">
+						<button class="radioButton selectedButton" name="unitOfMeasurementButton" data-unit-system="Imperial" data-mass-unit="Pound" data-user-selected="true">
+							<span class="radioButtonName">Extreme Activity 1.8</span>
+							<p>
+								Hey there Michael Phelps. 2 workouts a day, Extreme activity. You have a physical job like construction or landscaping. Almost no one does this. Every single day you are working out hard for an hour and a half.
+							</p>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div>
 		<label for="sedentary" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="sedentary" value="sedentary" checked> Sedentary (x 1.15)</label>
 		<label for="light" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="light" value="light"> Light Activity (x 1.35)</label>
 		<label for="moderate" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="moderate" value="moderate"> Moderate Activity (x 1.55)</label>
 		<label for="veryactive" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="veryactive" value="veryactive"> Very Active (x 1.75)</label>
 		<label for="extremely" class="radiobuttonstack"><input type="radio" class="activity" name="activity" id="extremely" value="extremely"> Extremely Active (x 1.95)</label>
-		</div>
-		<div>Need help picking your activity level? 👇🏻</div>
-		<div>
-			<span id='buttonToggleActivityLevelSection'>Click to show the Estimating Activity Level Section</span>
-		</div>
-		<div id="activityLevelSection">
-			<h2>How to estimate your Activity Level</h2>
-			<p>
-				Studies have shown that we all overestimate how much we are active. So read the descriptions, pick where you think you are, then move down one level. For example if you think you are Moderately Active, chose Lightly Active. Since it is an estimate it just needs to be close and then you can see what the results are and tweak it.
-			</p>
-
-			<h4>Sedentary 1.15</h4>
-			<p>
-				You don’t intentionally exercise at all. Get up, go to work, come home, eat dinner, relax.
-			</p>
-
-			<h4>Lightly Active 1.2</h4>
-			<p>
-				On average, you walk for exercise about 30 minutes a day. Or you are running or lifting weights fro 15 minutes a day.
-			</p>
-
-			<h4>Moderately Active 1.4</h4>
-			<p>
-				If I was looking for you on a weeknight, I would call the gym. 50 minutes of vigorous exercise a day. Or about one hour and 45 minutes of walking (for exercise, not going around your house) per day. Most people do not do this.
-			</p>
-
-			<h4>Very Active 1.6</h4>
-			<p>
-				You move vigorously for your work (think something like construction or yardwork), or you workout every single day for more than an hour. If you were to get this level of activity only walking, it would be a nearly impossible four hours and 15 minutes of walking (again, for intentional exercise) a day.
-			</p>
-
-			<h4>Extra Active 1.8</h4>
-			<p>
-				Hey there Michael Phelps. Almost no one does this. This means every single day you are working out hard for an hour and a half. Or you are a professional speed walker.
-			</p>
 		</div>
 
 		<div>
